@@ -1,0 +1,28 @@
+.main-header .logo{
+    height:140px !important;
+    padding-top: 20px;
+    background: #3b53ff !important;
+}
+.main-sidebar{
+    background: #3b53ff !important;
+}
+.sidebar-menu>li>a{
+    background: #3b53ff !important;
+    color:#fff !important
+}
+.sidebar-menu>li>a:hover{
+    background: #263be0 !important;
+    color:#fff !important
+}
+.sidebar-menu>li.header{
+    color:#fff !important;
+    background: #1c30bb;
+}
+.treeview-menu>li>a{
+    color: #ffffff;
+    background: #2f42c5;
+}
+.treeview-menu>li>a:hover{
+    color: #ffffff;
+    background: #3b53ff;
+}

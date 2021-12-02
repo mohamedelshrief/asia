@@ -181,6 +181,7 @@ return [
         FleetCart\Providers\RouteServiceProvider::class,
         Nwidart\Modules\LaravelModulesServiceProvider::class,
         Mehedi\Stylist\StylistServiceProvider::class,
+        FleetCartApi\Providers\FleetCartApiServiceProvider::class,
     ],
 
     /*

@@ -19,3 +19,8 @@ Route::get('download-csv', [
     'uses' => 'DownloadCsvController@index',
     'middleware' => 'can:admin.importer.index',
 ]);
+
+
+Route::get('data-import',[
+    'uses'=>"ImporterController@importData",
+]);

@@ -6,6 +6,11 @@ use Maatwebsite\Excel\Excel;
 use Modules\Import\Imports\ProductImport;
 use Maatwebsite\Excel\Facades\Excel as ExcelFacade;
 use Modules\Import\Http\Requests\StoreImporterRequest;
+use DB;
+use Modules\Product\Entities\Product;
+use Modules\Product\Entities\ProductTranslation;
+use Modules\Meta\Entities\MetaData;
+use Modules\Meta\Entities\MetaDataTranslation;
 
 class ImporterController
 {
@@ -40,5 +45,142 @@ class ImporterController
         }
 
         return back()->with('success', trans('import::messages.the_importer_has_been_run_successfully'));
+    }
+    public function importData(){
+        /*
+        ********************************************
+        ------------  Category Import --------------
+        ********************************************
+
+        $categories = DB::connection('mysql2')->table('oc_category')->get();
+        foreach ($categories as $key => $value) {
+            $name=DB::connection('mysql2')->table('oc_category_description')->where("category_id",$value->category_id)->where("language_id",1)->first();
+            $category=new Category;
+            $category->id= $value->category_id;
+            $category->parent_id= $value->parent_id;
+            $category->slug= str_replace(" ","-",$name->name);
+            $category->is_searchable= 1;
+            $category->is_active= 1;
+            $category->save();
+            $name_categories = DB::connection('mysql2')->table('oc_category_description')->where("category_id",$value->category_id)->get();
+            foreach ($name_categories as $key => $item) {
+                    $translation=new CategoryTranslation;
+                    $translation->category_id= $value->category_id;
+                    if($item->language_id==1){
+                        $translation->locale="en";
+                    }else{
+                        $translation->locale="ar_SA";
+                    }
+                    $translation->name=$item->name;
+                    $translation->save();
+            }
+            echo $item->name;
+            
+        }*/
+        
+        /*
+        ********************************************
+        ------------  Brand Import -----------------
+        ********************************************
+        $brands=DB::connection('mysql2')->table('oc_manufacturer')->get();
+        foreach ($brands as $key => $value) {
+            $brand=new Brand;
+            $brand->id=$value->manufacturer_id;
+            $brand->slug=str_replace(" ","-",$value->name);
+            $brand->is_active=1;
+            $brand->save();
+
+            $translation=new BrandTranslation;
+            $translation->brand_id=$value->manufacturer_id;
+            $translation->locale="en";
+            $translation->name=$value->name;
+            $translation->save();
+
+            echo $value->name."<br/>";
+        }
+        */
+
+        /*
+        ********************************************
+        ------------  Product Import ---------------
+        ********************************************
+        */
+        
+        $products = DB::connection('mysql2')->table('oc_product')
+        ->join("oc_product_description","oc_product_description.product_id","=","oc_product.product_id")
+        ->select("oc_product.*","oc_product_description.*")
+        ->get();
+        //->join("oc_product_to_category","oc_product_to_category.product_id","=","oc_product.product_id")
+        
+        foreach ($products as $key => $item) {
+            //Adding Product
+            $check=Product::where("tmp_id",$item->product_id)->count();
+            if($check==0){
+
+                    $product=new Product;
+                    $product->slug=str_replace(" ","-",$item->name);
+                    $product->tmp_id=$item->product_id;
+                    $product->brand_id=$item->manufacturer_id;
+                    $product->price=$item->price;
+                    $product->special_price_type="";
+                    $product->special_price_type="fixed";
+                    $product->qty=$item->quantity;
+                    $product->manage_stock=0;
+                    $product->viewed=0;
+                    $product->in_stock=1;
+                    $product->is_active=1;
+                    $product->save();
+
+
+                    $descriptions= DB::connection('mysql2')->table('oc_product_description')->where("product_id",$item->product_id)->get();
+                    
+                    
+                    $meta=new MetaData;
+                    $meta->entity_type="Modules\Product\Entities\Product";
+                    $meta->entity_id=$product->id;
+                    $meta->save();
+
+
+                    foreach ($descriptions as $key => $description) {
+                        $transation=new ProductTranslation;
+                        $transation->product_id=$product->id;
+                        if($description->language_id==1){
+                            $transation->locale="en";
+                        }else{
+                            $transation->locale="ar_SA";
+                        }
+                        $transation->name=$description->name;
+                        $transation->description=$description->description;
+                        $transation->short_description=$description->meta_description;
+                        $transation->save();
+
+                        
+
+                        $metaData=new MetaDataTranslation;
+                        $metaData->meta_data_id=$meta->id;
+                        
+                        if($description->language_id==1){
+                            $metaData->locale="en";
+                        }else{
+                            $metaData->locale="ar_SA";
+                        }
+                        $metaData->meta_title=$description->meta_title;
+                        $metaData->meta_description=$description->meta_description;
+                        $metaData->save();
+                    }
+
+                    $categories= DB::connection('mysql2')->table('oc_product_to_category')->where("product_id",$item->product_id)->get();
+
+                    foreach ($categories as $key => $category) {
+                        DB::table('product_categories')->insert(
+                            ['product_id' => $product->id, 'category_id' => $category->category_id]
+                        );
+                    }
+
+                    echo $item->name."<br/>";
+                    
+                }
+        }
+
     }
 }

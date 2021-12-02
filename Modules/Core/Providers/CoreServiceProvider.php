@@ -17,7 +17,8 @@ class CoreServiceProvider extends ServiceProvider
      * @var array
      */
     protected $middleware = [
-        'auth' => \Modules\Core\Http\Middleware\Authenticate::class,
+        'auth' =>\FleetCartApi\Http\Middleware\Authenticate::class,
+        'api' =>\FleetCartApi\Http\Middleware\Authenticate::class,
         'admin' => \Modules\Core\Http\Middleware\AdminMiddleware::class,
         'licensed' => \FleetCart\Http\Middleware\LicenseChecker::class,
         'guest' => \Modules\Core\Http\Middleware\GuestMiddleware::class,

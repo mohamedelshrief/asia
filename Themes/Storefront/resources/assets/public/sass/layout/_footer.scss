@@ -1,6 +1,165 @@
-@import 'footer/_footer-top',
-        'footer/_footer-bottom';
+@import "footer/_footer-top", "footer/footer-middle", "footer/_footer-bottom";
 
 .footer {
-    padding-top: 70px;
+    padding: 0 70px;
+    .footer-top {
+        padding: 70px 100px;
+    }
+    .footer-middle,
+    .footer-bottom {
+        padding: 20px 100px;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .footer {
+        padding: 0 50px;
+        .footer-top,
+        .footer-middle,
+        .footer-bottom {
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .footer {
+        padding: 0 20px;
+        .footer-top {
+            padding: 70px 0;
+        }
+        .footer-middle,
+        .footer-bottom {
+            padding: 20px 0;
+        }
+    }
+}
+
+@media screen and (max-width: $lg) {
+    .footer {
+        .footer-top > .row {
+            .logo {
+                img {
+                    width: 50%;
+                }
+            }
+            .col-lg-4 {
+                justify-content: flex-start;
+            }
+        }
+    }
+}
+@media screen and (max-width: $md) {
+    .footer {
+        .footer-top {
+            .title {
+                font-size: 18px;
+            }
+            .footer-links:not(.footer-tags) .list-inline li {
+                font-size: 12px;
+            }
+            > .row {
+                .logo {
+                    display: flex;
+                    justify-content: center;
+                    img {
+                        width: 75%;
+                    }
+                }
+                .col-lg-4 {
+                    justify-content: center;
+                }
+                .contact-us {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    p {
+                        margin: 25px 100px;
+                        width: auto;
+                        text-align: center;
+                        font-size: 12px;
+                    }
+                    .social-links {
+                        margin: 0;
+                        li {
+                            a {
+                                font-size: 25px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .footer-middle {
+            > .row {
+                justify-content: center;
+            }
+            .download {
+                padding-top: 20px;
+                .content {
+                    &:first-child a {
+                        font-size: 16px;
+                    }
+                    ~ div {
+                        display: flex;
+                        width: 40%;
+                    }
+                }
+                img {
+                    width: 100%;
+                }
+            }
+            .phone-address {
+                div {
+                    h5 {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+        .footer-bottom {
+            .footer-text {
+                text-align: center;
+                margin: 0 auto;
+            }
+
+            .footer-payment {
+                margin-top: 15px;
+                justify-content: center;
+            }
+        }
+    }
+}
+@media screen and (max-width: $md) {
+    .footer {
+        .footer-top > .row .contact-us p {
+            margin: 25px 0px;
+        }
+        .footer-text {
+            font-size: 10px;
+        }
+        .footer-middle .download {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .content {
+                margin: 0;
+                &:first-child a {
+                    text-align: center;
+                }
+                ~ div {
+                    width: 80%;
+                    padding-top: 10px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $md) {
+    .footer .footer-top .title {
+        font-size: 16px;
+    }
 }

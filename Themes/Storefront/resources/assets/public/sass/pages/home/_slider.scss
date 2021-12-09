@@ -43,7 +43,7 @@
         display: flex;
         height: 100%;
         width: 100%;
-        align-items: center;
+        align-items: flex-start;
 
         &.align-left {
             left: 0;
@@ -51,6 +51,7 @@
 
             .captions {
                 margin-left: 100px;
+                margin-top: 70px;
                 text-align: left;
 
                 .caption-2 {
@@ -65,6 +66,7 @@
 
             .captions {
                 margin-right: 100px;
+                margin-top: 70px;
                 text-align: right;
 
                 .caption-2 {
@@ -74,7 +76,11 @@
         }
 
         .captions {
-            width: 400px;
+            width: 50%;
+            a {
+                background-color: $color-secondary;
+                color: $color-default;
+            }
         }
 
         .caption {
@@ -83,15 +89,16 @@
 
         .caption-1 {
             font-size: 48px;
-            font-weight: 300;
+            font-weight: 500;
             line-height: 48px;
-            color: $color-black;
+            color: $color-white;
         }
 
         .caption-2 {
-            font-size: 16px;
-            line-height: 26px;
-            color: $color-gray;
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 100;
+            color: $color-white;
             margin-top: 16px;
         }
 
@@ -146,19 +153,42 @@
     }
 
     .slick-dots {
-        bottom: 20px;
+        bottom: 15%;
+        margin-left: 100px;
+        justify-content: flex-start;
+        margin-bottom: 0;
     }
 }
-
-@media screen and (max-width: $md) {
+@media screen and (max-width: 1080px) {
     .home-slider {
         .slide-content {
             &.align-left {
                 .captions {
-                    margin-left: 80px;
-
+                    margin-left: 50px;
+                }
+            }
+            .caption-1 {
+                font-size: 35px;
+            }
+            .btn-slider {
+                font-size: 14px;
+                padding: 6px 20px;
+            }
+        }
+    }
+}
+@media screen and (max-width: $md) {
+    .home-slider {
+        .slide-content {
+            height: 410px;
+            align-items: center;
+            &.align-left {
+                .captions {
+                    margin-left: 60px;
+                    margin-top: 0;
                     .caption-2 {
-                        margin-right: 60px;
+                        // margin-right: 60px;
+                        margin-right: 50%;
                     }
                 }
             }
@@ -178,20 +208,21 @@
             }
 
             .caption-1 {
-                font-size: 38px;
-                line-height: 38px
+                font-size: 35px;
+                line-height: 38px;
             }
 
             .caption-2 {
-                font-size: 15px;
-                line-height: 25px;
-                margin-top: 13px;
+                font-size: 14px;
+                line-height: 20px;
+                margin-top: 12px;
             }
 
             .btn-slider {
                 font-size: 14px;
                 margin-top: 32px;
                 padding: 8px 20px;
+                width: 40%;
             }
         }
     }
@@ -200,12 +231,13 @@
 @media screen and (max-width: $sm) {
     .home-slider {
         .slide-content {
+            height: 196px;
             &.align-left {
                 .captions {
                     margin: 0 50px 0 40px;
 
                     .caption-2 {
-                        margin-right: 0;
+                        // margin-right: 0;
                     }
                 }
             }
@@ -221,20 +253,20 @@
             }
 
             .caption-1 {
-                font-size: 28px;
-                line-height: 28px;
+                font-size: 22px;
+                line-height: 22px;
             }
 
             .caption-2 {
-                font-size: 14px;
-                line-height: 24px;
+                font-size: 10px;
+                line-height: 16px;
                 margin-top: 10px;
             }
 
             .btn-slider {
-                font-size: 13px;
+                font-size: 12px;
                 margin-top: 27px;
-                padding: 6px 16px;
+                padding: 4px 16px;
             }
         }
     }

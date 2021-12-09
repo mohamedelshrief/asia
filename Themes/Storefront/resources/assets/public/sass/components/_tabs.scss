@@ -12,11 +12,10 @@
         position: absolute;
         content: '';
         left: 50%;
-        bottom: 0;
-        height: 1px;
+        bottom: -1px;
+        height: 2px;
         width: 0;
-        background: $color-default;
-        background: var(--color-primary);
+        background-color: $color-secondary;
         transform: translateX(-50%);
         transition: 150ms ease-in-out;
     }
@@ -25,11 +24,13 @@
         position: absolute;
         content: '';
         left: 50%;
-        bottom: -7px;
-        height: 8px;
-        width: 15px;
-        background: $color-default;
-        background: var(--color-primary);
+        // bottom: -7px;
+        // height: 8px;
+        // width: 15px;
+        bottom: -5px;
+        height: 5px;
+        width: 8px;
+        background-color: $color-secondary;
         border-bottom-left-radius: 12px;
         border-bottom-right-radius: 12px;
         opacity: 0;
@@ -45,9 +46,8 @@
     }
 
     &.active {
-        font-weight: 500;
-        color: $color-default;
-        color: var(--color-primary);
+        font-weight: 700;
+        color: $color-black;
 
         &:before {
             width: 100%;
@@ -106,7 +106,8 @@
 
 .tab-content {
     .slick-list {
-        margin: 0 -15px -50px;
+        // margin: 0 -20px -50px;
+        margin: 0 -16px -50px;
         padding: 30px 0 50px;
 
         .slick-track {

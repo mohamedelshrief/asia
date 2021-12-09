@@ -13,7 +13,7 @@ if (! function_exists('resolve_theme_color')) {
     function resolve_theme_color($color)
     {
         $colors = [
-            'blue' => '#0068e1',
+            'blue' => '#0335d6',
             'bondi-blue' => '#0095b6',
             'cornflower' => '#6453f7',
             'violet' => '#723881',
@@ -27,7 +27,7 @@ if (! function_exists('resolve_theme_color')) {
             'magenta' => '#f8008c',
         ];
 
-        return $colors[$color] ?? '#0068e1';
+        return $colors[$color] ?? '#0335d6';
     }
 }
 
@@ -35,7 +35,7 @@ if (! function_exists('storefront_theme_color')) {
     function storefront_theme_color()
     {
         if (setting('storefront_theme_color') === 'custom_color') {
-            return setting('storefront_custom_theme_color', '#0068e1');
+            return setting('storefront_custom_theme_color', '#0335d6');
         }
 
         return resolve_theme_color(setting('storefront_theme_color'));
@@ -46,7 +46,7 @@ if (! function_exists('mail_theme_color')) {
     function mail_theme_color()
     {
         if (setting('storefront_mail_theme_color') === 'custom_color') {
-            return setting('storefront_custom_mail_theme_color', '#0068e1');
+            return setting('storefront_custom_mail_theme_color', '#0335d6');
         }
 
         return resolve_theme_color(setting('storefront_mail_theme_color'));

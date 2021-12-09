@@ -1,5 +1,6 @@
 .vertical-products-wrap {
     margin-top: 44px;
+
 }
 
 .daily-deals-wrap {
@@ -7,15 +8,29 @@
         margin-bottom: 30px;
         border-bottom: 1px solid $border-color-lite;
     }
+    .daily-deals {
+        .daily-deals-inner {
+            .product-info {
+                .product-rating {
+                    padding-right: 15px;
+                }
+            }
+        }
+    }
 
     .section-title {
-        font-weight: 400;
-        padding-bottom: 13px;
-
         b {
             color: $color-default;
             color: var(--color-primary);
         }
+    }
+}
+.vertical-products-header, .daily-deals-header {
+    .section-title {
+        font-weight: 600;
+        padding-bottom: 10px;
+        font-size: 16px;
+        color: $color-black;
     }
 }
 
@@ -42,7 +57,8 @@
     }
 
     .product-image {
-        height: 320px;
+        // height: 320px;
+        height: 280px;
         margin-bottom: 14px;
         overflow: hidden;
 
@@ -73,9 +89,10 @@
             text-align: center;
             overflow: hidden;
             text-overflow: ellipsis;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
             transition: $transition-default;
+            font-size: 16px;
         }
     }
 
@@ -85,8 +102,9 @@
         padding: 10px 0 8px;
         align-items: center;
         justify-content: space-between;
-        border-top: 1px solid $color-gray-lite;
-        border-bottom: 1px solid $color-gray-lite;
+        border: 1px solid $color-gray-lite;
+        // border-top: 1px solid $color-gray-lite;
+        // border-bottom: 1px solid $color-gray-lite;
     }
 
     .product-rating {
@@ -102,7 +120,9 @@
         .countdown-amount {
             height: 40px;
             width: 40px;
-            background: $color-white-lite;
+            // background: $color-white-lite;
+            background-color: $color-black;
+            color: $color-white;
         }
 
         .countdown-section {
@@ -177,7 +197,8 @@
                     margin-bottom: 12px;
 
                     h6 {
-                        line-height: 24px;
+                        line-height: 18px;
+                        font-size: 14px;
                         max-height: 48px;
                     }
                 }

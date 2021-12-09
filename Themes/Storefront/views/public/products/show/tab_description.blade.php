@@ -1,3 +1,3 @@
 <div id="description" class="tab-pane description" :class="{ active: activeTab === 'description' }">
-    {!! $product->description !!}
+    {!! html_entity_decode($product->description)  !!}
 </div>

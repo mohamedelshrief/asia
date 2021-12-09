@@ -35,7 +35,7 @@
             :initial-logo="category.logo"
             :url="route('storefront.featured_category_products.index', { categoryNumber: index + 1 })"
         >
-        </dynamic-tab>
+        </dynamic-tab> 
     </section>
 </template>
 

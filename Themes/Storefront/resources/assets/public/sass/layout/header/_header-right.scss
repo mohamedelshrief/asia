@@ -1,11 +1,22 @@
 .header-column-right {
     height: 60px;
     padding: 0 15px;
+    align-items: center;
+
+    .header-wishlist {
+        margin: 0 15px;
+    }
 
     .header-wishlist,
-    .header-cart {
+    .header-cart,
+    .header-arrow {
         display: flex;
         align-items: center;
+        border: 1px solid #e1e1e1;
+        border-radius: 100px;
+        height: 50px;
+        width: 50px;
+        justify-content: center;
 
         > span {
             line-height: 28px;
@@ -15,7 +26,31 @@
         }
     }
 
-    .header-wishlist {
+    .header-arrow {
+        .icon-wrap {
+            i {
+                font-size: 18px;
+                margin-top: 6px;
+                &:first-child {
+                    margin-right: 7px;
+                }
+                ~ i {
+                    position: absolute;
+                    margin-left: 16px;
+                    top: -5px;
+                    left: -5px;
+                }
+            } 
+            > .count {
+                top: 14px;
+            }
+
+        }
+    }
+
+    .header-wishlist,
+    .header-cart,
+    .header-arrow {
         &:hover {
             > span,
             .icon-wrap > i {
@@ -26,7 +61,7 @@
     }
 
     .header-cart {
-        margin-left: 35px;
+        // margin-left: 35px;
         cursor: pointer;
 
         &:hover {
@@ -40,27 +75,33 @@
 
     .icon-wrap {
         position: relative;
-        margin-right: 10px;
+        // margin-right: 10px;
 
         > i {
-            font-size: 34px;
+            font-size: 25px;
             line-height: 36px;
             color: $color-black;
             transition: $transition-default;
         }
 
         > .count {
+            left: -18px;
+            height: 15px;
+            width: 15px;
+            top: 12px;
+            line-height: 16px;
+
             position: absolute;
             font-size: 10px;
-            line-height: 20px;
-            top: 1px;
-            right: -6px;
-            height: 18px;
-            width: 18px;
             color: $color-white;
             background: $color-red;
             text-align: center;
             border-radius: 50%;
+            // line-height: 20px;
+            // top: 1px;
+            // right: -6px;
+            // height: 18px;
+            // width: 18px;
         }
     }
 }
@@ -68,7 +109,7 @@
 @media screen and (max-width: $xl) {
     .header-column-right {
         .icon-wrap {
-            margin-right: 6px;
+            // margin-right: 6px;
         }
 
         .header-wishlist,
@@ -82,7 +123,7 @@
 
 @media screen and (max-width: $lg) {
     .header-column-right {
-        .header-wishlist {
+        .header-wishlist, .header-arrow {
             display: none;
         }
 

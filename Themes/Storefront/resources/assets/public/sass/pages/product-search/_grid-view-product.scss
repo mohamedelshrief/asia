@@ -8,14 +8,41 @@
         flex: 0 0 20%;
         max-width: 20%;
         margin-bottom: 30px;
+        border-right: 1px solid #efefef;
+        padding: 0;
+
+        &:nth-child(4n) {
+            border-right: none;
+        }
+
+        &:hover {
+            border-right: none;
+        }
     }
 
     .product-card {
         width: 100%;
         margin: 0;
+        .product-name {
+            h6 {
+                padding-right: 60px;
+            }
+        }
+        &:hover {
+            border-left: 1px solid $color-black;
+            border-right: 1px solid $color-black;
+        }
     }
 }
 
+@media screen and (max-width: 1760px) {
+    .grid-view-products {
+        .product-card {
+            flex: 1;
+            max-width: 100%;
+        }
+    }
+}
 @media screen and (max-width: 1700px) {
     .grid-view-products {
         > .col {

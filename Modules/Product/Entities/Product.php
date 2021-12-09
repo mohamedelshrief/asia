@@ -110,7 +110,7 @@ class Product extends Model
      *
      * @var string
      */
-    protected $slugAttribute = 'slug';
+    protected $slugAttribute = 'name';
 
     /**
      * Perform any actions required after the model boots.

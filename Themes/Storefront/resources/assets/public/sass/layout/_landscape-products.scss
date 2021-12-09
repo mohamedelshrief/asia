@@ -1,9 +1,15 @@
 .landscape-products-wrap {
-	margin-top: 45px;
+    margin-top: 45px;
 
-	.products-header {
-		border-bottom: 1px solid $border-color-lite;
-	}
+    &.related-products-wrap {
+        .slick-track {
+            width: 1305px !important;
+        }
+    }
+
+    .products-header {
+        border-bottom: 1px solid $border-color-lite;
+    }
 
     .section-title {
         padding-bottom: 14px;
@@ -11,12 +17,12 @@
 }
 
 .landscape-products {
-	.arrow-prev.slick-arrow,
+    .arrow-prev.slick-arrow,
     .arrow-next.slick-arrow {
         top: -40px;
     }
 
-	.slick-list {
+    .slick-list {
         margin: 0 -15px -50px;
         padding: 30px 0 50px;
 

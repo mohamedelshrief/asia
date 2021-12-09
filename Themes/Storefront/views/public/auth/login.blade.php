@@ -50,7 +50,7 @@
                     {{ trans('user::auth.dont_have_an_account') }}
                 </span>
 
-                <a href="{{ route('register') }}" class="btn btn-default btn-create-account">
+                <a href="{{ route('register') }}" class="btn btn-secondary btn-create-account">
                     {{ trans('user::auth.create_account') }}
                 </a>
             </div>

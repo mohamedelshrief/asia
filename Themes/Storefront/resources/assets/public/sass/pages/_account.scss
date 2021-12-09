@@ -48,16 +48,28 @@
                 color: var(--color-primary);
 
 				&:after {
-	                position: absolute;
-	                content: '';
-	                left: 0;
-	                top: 17px;
-	                height: 15px;
-	                width: 7px;
-	                background: $color-default;
-                    background: var(--color-primary);
-	                border-top-right-radius: 12px;
-	                border-bottom-right-radius: 12px;
+	                // position: absolute;
+	                // content: '';
+	                // left: 0;
+	                // top: 17px;
+	                // height: 15px;
+	                // width: 7px;
+	                // background: $color-default;
+                    // background: var(--color-primary);
+	                // border-top-right-radius: 12px;
+	                // border-bottom-right-radius: 12px;\
+
+					position: absolute;
+					content: "";
+					left: 0;
+					top: 18px;
+					transition: 150ms ease-in-out;
+					width: 0;
+					height: 0;
+					border-top: 7px solid transparent;
+					border-bottom: 7px solid transparent;
+					border-left: 7px solid var(--color-primary);
+					border-left: 7px solid $color-default;
 				}
 			}
 		}

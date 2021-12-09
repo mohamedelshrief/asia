@@ -1,5 +1,5 @@
 <template>
-    <section class="landscape-products-wrap" v-if="hasAnyProduct">
+    <section class="landscape-products-wrap related-products-wrap" v-if="hasAnyProduct">
         <div class="products-header">
             <h5 class="section-title">{{ $trans('storefront::product.related_products') }}</h5>
         </div>

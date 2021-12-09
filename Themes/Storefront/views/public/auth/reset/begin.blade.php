@@ -21,7 +21,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-reset-password" data-loading>
+                    <button type="submit" class="btn btn-secondary btn-reset-password" data-loading style="width: 100%;">
                         {{ trans('user::auth.submit') }}
                     </button>
                 </form>

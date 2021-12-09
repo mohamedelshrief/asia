@@ -116,7 +116,7 @@
                     {{ trans('user::auth.already_have_an_account') }}
                 </span>
 
-                <a href="{{ route('login') }}" class="btn btn-default btn-sign-in">
+                <a href="{{ route('login') }}" class="btn btn-secondary btn-sign-in">
                     {{ trans('user::auth.sign_in') }}
                 </a>
             </div>

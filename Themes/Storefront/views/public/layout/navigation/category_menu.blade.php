@@ -1,7 +1,8 @@
 <div class="category-nav {{ request()->routeIs('home') ? 'show' : '' }}">
     <div class="category-nav-inner">
+    <i class="las la-bars"></i>
         {{ trans('storefront::layout.all_categories_header') }}
-        <i class="las la-bars"></i>
+        <i class="las la-sort-down"></i>
     </div>
 
     @if ($categoryMenu->menus()->isNotEmpty())

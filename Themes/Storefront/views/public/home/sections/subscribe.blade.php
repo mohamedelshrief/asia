@@ -5,7 +5,7 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-14 col-lg-18">
                         <div class="subscribe">
-                            <div class="row align-items-center">
+                            <!-- <div class="row align-items-center"> -->
                                 <div class="col-lg-9 col-md-18">
                                     <div class="subscribe-text">
                                         <span class="title">
@@ -21,6 +21,7 @@
                                 <div class="col-lg-9 col-md-18">
                                     <div class="subscribe-field">
                                         <form @submit.prevent="subscribe">
+
                                             <div class="form-group">
                                                 <input
                                                     type="text"
@@ -41,7 +42,7 @@
 
                                                 <button
                                                     type="submit"
-                                                    class="btn btn-primary btn-subscribe"
+                                                    class="btn btn-secondary btn-subscribe"
                                                     :class="{ 'btn-loading': subscribing }"
                                                     v-else
                                                     v-cloak
@@ -52,7 +53,7 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>

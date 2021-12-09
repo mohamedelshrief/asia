@@ -13,29 +13,35 @@
 
                     <a href="{{ route('home') }}" class="header-logo">
                         @if (is_null($logo))
-                            <h3>{{ setting('store_name') }}</h3>
+                        <h3>{{ setting('store_name') }}</h3>
                         @else
-                            <img src="{{ $logo }}" alt="logo">
+                        <img src="{{ $logo }}" alt="logo">
                         @endif
                     </a>
                 </div>
 
-                <header-search
-                    :categories="{{ $categories }}"
-                    :most-searched-keywords="{{ $mostSearchedKeywords }}"
-                    initial-query="{{ request('query') }}"
-                    initial-category="{{ request('category') }}"
-                >
+                <header-search :categories="{{ $categories }}" :most-searched-keywords="{{ $mostSearchedKeywords }}" initial-query="{{ request('query') }}" initial-category="{{ request('category') }}">
                 </header-search>
 
                 <div class="header-column-right d-flex">
+
+                    <div class="header-arrow">
+                        <div class="icon-wrap">
+                            <i class="las la-long-arrow-alt-right"></i>
+                            <i class="las la-long-arrow-alt-left"></i>
+                            <div class="count" v-text="cart.quantity"></div>
+                        </div>
+
+                        <!-- <span v-html="cart.subTotal.inCurrentCurrency.formatted"></span> -->
+                    </div>
+
                     <a href="{{ route('account.wishlist.index') }}" class="header-wishlist">
                         <div class="icon-wrap">
                             <i class="lar la-heart"></i>
                             <div class="count" v-text="wishlistCount"></div>
                         </div>
 
-                        <span>{{ trans('storefront::layout.favorites') }}</span>
+                        <!-- <span>{{ trans('storefront::layout.favorites') }}</span> -->
                     </a>
 
                     <div class="header-cart">
@@ -44,7 +50,7 @@
                             <div class="count" v-text="cart.quantity"></div>
                         </div>
 
-                        <span v-html="cart.subTotal.inCurrentCurrency.formatted"></span>
+                        <!-- <span v-html="cart.subTotal.inCurrentCurrency.formatted"></span> -->
                     </div>
                 </div>
             </div>

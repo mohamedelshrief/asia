@@ -61,8 +61,10 @@
     line-height: 24px;
     display: flex;
     color: $color-default;
+    padding-left: 15px;
     color: var(--color-primary);
-
+    // padding-left: 15px;
+    
     .previous-price {
         position: relative;
         font-size: 12px;

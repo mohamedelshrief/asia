@@ -104,7 +104,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-lg btn-primary btn-save-changes" data-loading>
+                    <button type="submit" class="btn btn-lg btn-secondary btn-save-changes" data-loading>
                         {{ trans('storefront::account.profile.save_changes') }}
                     </button>
                 </form>

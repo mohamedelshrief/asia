@@ -150,7 +150,7 @@
                                     </div>
 
                                     <div class="col-md-18">
-                                        <button type="submit" class="btn btn-lg btn-primary" data-loading>
+                                        <button type="submit" class="btn btn-lg btn-secondary" data-loading>
                                             {{ trans('storefront::contact.send_message') }}
                                         </button>
                                     </div>

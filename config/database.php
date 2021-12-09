@@ -65,7 +65,6 @@ return [
             'strict' => true,
             'engine' => 'InnoDB',
         ],
-
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),

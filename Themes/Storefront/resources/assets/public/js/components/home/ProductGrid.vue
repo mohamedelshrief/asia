@@ -2,7 +2,8 @@
     <section class="grid-products-wrap clearfix">
         <div class="container">
             <div class="tab-products-header clearfix">
-                <ul class="tabs float-left">
+                <h5 class="section-title float-left">Laptops & Computers</h5>
+                <ul class="tabs float-right">
                     <li
                         v-for="(tab, index) in tabs"
                         :key="index"
@@ -15,8 +16,16 @@
             </div>
 
             <div class="tab-content grid-products">
-                <div v-for="(productChunks, index) in $chunk(products, 12)" :key="index" class="grid-products-inner">
-                    <ProductCard v-for="product in productChunks" :key="product.id" :product="product"/>
+                <div
+                    v-for="(productChunks, index) in $chunk(products, 12)"
+                    :key="index"
+                    class="grid-products-inner"
+                >
+                    <ProductCard
+                        v-for="product in productChunks"
+                        :key="product.id"
+                        :product="product"
+                    />
                 </div>
             </div>
 
@@ -24,7 +33,11 @@
                 v-for="(tabLabel, index) in data"
                 :key="index"
                 :label="tabLabel"
-                :url="route('storefront.product_grid.index', { tabNumber: index + 1 })"
+                :url="
+                    route('storefront.product_grid.index', {
+                        tabNumber: index + 1,
+                    })
+                "
             >
             </dynamic-tab>
         </div>
@@ -32,46 +45,44 @@
 </template>
 
 <script>
-    import ProductCard from '../ProductCard.vue';
-    import DynamicTabsMixin from '../../mixins/DynamicTabsMixin';
-    import { slickPrevArrow, slickNextArrow } from '../../functions';
+import ProductCard from "../ProductCard.vue";
+import DynamicTabsMixin from "../../mixins/DynamicTabsMixin";
+import { slickPrevArrow, slickNextArrow } from "../../functions";
 
-    export default {
-        components: { ProductCard },
+export default {
+    components: { ProductCard },
 
-        mixins: [
-            DynamicTabsMixin,
-        ],
+    mixins: [DynamicTabsMixin],
 
-        props: ['data'],
+    props: ["data"],
 
-        methods: {
-            selector() {
-                return $('.grid-products');
-            },
-
-            slickOptions() {
-                return {
-                    rows: 0,
-                    dots: false,
-                    arrows: true,
-                    infinite: true,
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    rtl: window.FleetCart.rtl,
-                    prevArrow: slickPrevArrow(),
-                    nextArrow: slickNextArrow(),
-                    responsive: [
-                        {
-                            breakpoint: 768,
-                            settings: {
-                                dots: true,
-                                arrows: false,
-                            },
-                        },
-                    ],
-                };
-            },
+    methods: {
+        selector() {
+            return $(".grid-products");
         },
-    };
+
+        slickOptions() {
+            return {
+                rows: 0,
+                dots: false,
+                arrows: true,
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                rtl: window.FleetCart.rtl,
+                prevArrow: slickPrevArrow(),
+                nextArrow: slickNextArrow(),
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            dots: true,
+                            arrows: false,
+                        },
+                    },
+                ],
+            };
+        },
+    },
+};
 </script>

@@ -8,7 +8,7 @@
                     :href="topBrand.url"
                     class="top-brand-image"
                 >
-                    <img :src="topBrand.logo.path" alt="brand logo">
+                    <img :src="topBrand.logo.path" alt="brand logo" />
                 </a>
             </div>
         </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    export default {
-        props: ['topBrands'],
-    };
+export default {
+    props: ["topBrands"],
+};
 </script>

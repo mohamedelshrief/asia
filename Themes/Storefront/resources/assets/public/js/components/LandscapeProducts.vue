@@ -70,6 +70,8 @@
                     {
                         breakpoint: 881,
                         settings: {
+                            dots: true,
+                            arrows: false,
                             slidesToShow: 3,
                             slidesToScroll: 3,
                         },

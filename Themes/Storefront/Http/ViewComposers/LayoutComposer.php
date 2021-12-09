@@ -68,7 +68,7 @@ class LayoutComposer
         try {
             return new Color(storefront_theme_color());
         } catch (\Exception $e) {
-            return new Color('#0068e1');
+            return new Color('#0335d6');
         }
     }
 

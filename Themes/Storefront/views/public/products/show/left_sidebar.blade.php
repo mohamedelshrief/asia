@@ -17,7 +17,7 @@
         </div>
     @endif
 
-    @if ($banner->image->exists)
+    <!-- @if ($banner->image->exists)
         <a
             href="{{ $banner->call_to_action_url }}"
             class="banner d-none d-lg-block"
@@ -25,5 +25,5 @@
         >
             <img src="{{ $banner->image->path }}" alt="Banner">
         </a>
-    @endif
+    @endif -->
 </aside>

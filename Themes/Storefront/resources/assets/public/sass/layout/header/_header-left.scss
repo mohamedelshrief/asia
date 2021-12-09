@@ -35,7 +35,8 @@
             height: 2px;
             width: 16px;
             margin-bottom: 4px;
-            background: $color-black;
+            background: #000;
+            // background: $color-black;
             transition: $transition-primary;
 
             &:nth-child(2) {

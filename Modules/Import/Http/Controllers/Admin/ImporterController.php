@@ -109,13 +109,16 @@ class ImporterController
         $products = DB::connection('mysql2')->table('oc_product')
         ->join("oc_product_description","oc_product_description.product_id","=","oc_product.product_id")
         ->select("oc_product.*","oc_product_description.*")
+        ->limit(10)
         ->get();
         //->join("oc_product_to_category","oc_product_to_category.product_id","=","oc_product.product_id")
         
         foreach ($products as $key => $item) {
+            $base="https://www.apmpllc.com/image/";
+            echo $base.$item->image;
             //Adding Product
-            $check=Product::where("tmp_id",$item->product_id)->count();
-            if($check==0){
+           // $check=Product::where("tmp_id",$item->product_id)->count();
+           /* if($check==0){
 
                     $product=new Product;
                     $product->slug=str_replace(" ","-",$item->name);
@@ -179,7 +182,7 @@ class ImporterController
 
                     echo $item->name."<br/>";
                     
-                }
+                }*/
         }
 
     }

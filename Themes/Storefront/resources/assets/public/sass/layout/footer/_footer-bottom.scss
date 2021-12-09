@@ -1,21 +1,35 @@
 .footer-bottom {
-    margin-top: 60px;
-    padding: 20px 0;
-    border-top: 1px solid $border-color-lite;
-}
+    display: flex;
+    justify-content: center;
 
+    .row {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
 .footer-text {
     line-height: 26px;
+    font-size: 12px;
     color: $color-gray;
-
+    &.footer-terms {
+        display: flex;
+        justify-content: flex-end;
+        a {
+            padding-right: 5px;
+            color: $color-gray;
+            font-weight: 400;
+            cursor: pointer;
+            &:hover {
+                color: $color-secondary;
+            }
+        }
+    }
     a {
         font-weight: 500;
         color: $color-default;
-        color: var(--color-primary);
 
         &:hover {
             color: $color-default-hover;
-            color: var(--color-primary-hover);
         }
     }
 }
@@ -27,21 +41,5 @@
     > img {
         max-height: 30px;
         max-width: 100%;
-    }
-}
-
-@media screen and (max-width: $md) {
-    .footer-bottom {
-        margin-top: 50px;
-        padding-top: 13px;
-    }
-
-    .footer-text {
-        text-align: center;
-    }
-
-    .footer-payment {
-        margin-top: 15px;
-        justify-content: center;
     }
 }

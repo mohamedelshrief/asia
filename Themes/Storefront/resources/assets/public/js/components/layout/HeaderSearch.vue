@@ -36,13 +36,15 @@
                         </select>
 
                         <button type="submit" class="btn btn-primary btn-search">
-                            <i class="las la-search"></i>
+                            <!-- <i class="las la-search"></i> -->
+                            Search
                         </button>
                     </div>
                 </div>
 
                 <div class="header-search-sm">
                     <i class="las la-search"></i>
+                    <!-- Search -->
                 </div>
             </form>
 

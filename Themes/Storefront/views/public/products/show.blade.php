@@ -145,7 +145,7 @@
 
                                         <button
                                             type="submit"
-                                            class="btn btn-primary btn-add-to-cart"
+                                            class="btn btn-secondary btn-add-to-cart"
                                             :class="{'btn-loading': addingToCart }"
                                             {{ $product->isOutOfStock() ? 'disabled' : '' }}
                                         >

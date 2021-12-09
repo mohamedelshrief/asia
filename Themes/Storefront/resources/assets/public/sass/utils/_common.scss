@@ -34,10 +34,17 @@
         content: '';
         position: absolute;
         left: 0;
-        bottom: -1px;
-        width: 50px;
-        border-bottom: 2px solid $color-default;
-        border-bottom: 2px solid var(--color-primary);
+        bottom: -2px;
+        width: 220px;
+        border-bottom: 2px solid $color-secondary;
+    }
+}
+
+.vertical-products-wrap {
+    .section-title {
+        &:after {
+            width: 50px;
+        }
     }
 }
 
@@ -62,7 +69,7 @@
 }
 
 .tab-products-header {
-    border-bottom: 1px solid $border-color-lite;
+    border-bottom: 2px solid $border-color-lite;
 }
 
 .vertical-products {
@@ -267,8 +274,7 @@
             justify-content: center;
 
             &:hover {
-                color: $color-default;
-                color: var(--color-primary);
+                color: $color-secondary;
             }
         }
     }

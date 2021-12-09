@@ -35,9 +35,9 @@
     &:not(:disabled):not(.disabled):active,
     &:not(:disabled):not(.disabled).active {
         background: $color-default-hover;
-        background: var(--color-primary-hover);
+        // background: var(--color-primary-hover);
     }
-    
+
     &:disabled,
     &.disabled,
     &[disabled] {
@@ -47,6 +47,39 @@
         &:hover:focus {
             background: $color-default;
             background: var(--color-primary);
+        }
+    }
+}
+
+.btn-secondary {
+    font-weight: 500;
+    color: $color-default;
+    background: $color-secondary;
+
+    &:focus {
+        background: $color-secondary;
+    }
+
+    &:active,
+    &:hover,
+    &:active:focus {
+        background: $color-secondary-hover;
+    }
+
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active {
+        background: $color-secondary-hover;
+    }
+
+    &:disabled,
+    &.disabled,
+    &[disabled] {
+        &:active,
+        &:hover,
+        &:focus,
+        &:hover:focus {
+            background: $color-black;
+            // background: $color-secondary;
         }
     }
 }

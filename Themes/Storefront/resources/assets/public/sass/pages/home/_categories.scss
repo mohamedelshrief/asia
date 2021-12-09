@@ -1,0 +1,54 @@
+.top-categories-wrap {
+    .top-categories {
+        .slick-prev {
+            left: 25px;
+        }
+        .slick-next {
+            right: 25px;
+        }
+        .slick-prev,
+        .slick-next {
+            &:before {
+                font-weight: 900;
+            }
+        }
+        border: none;
+        padding: 35px 50px;
+        border-radius: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        .top-brand-image {
+            flex-direction: column;
+            margin: 0 10px;
+
+            > span {
+                width: 100%;
+                &:first-child {
+                    background-color: #efefef;
+                    height: 55px;
+                    border-top-right-radius: 100px;
+                    border-top-left-radius: 100px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                i {
+                    color: $color-gray;
+                    font-size: 25px;
+                }
+                > img {
+                    max-height: 100%;
+                    max-width: 100%;
+                    transition: 200ms ease-in-out;
+                }
+            }
+            h6 {
+                color: $color-gray;
+                font-size: 10px;
+                font-weight: bold;
+                text-align: center;
+                margin: 3px 0;
+            }
+        }
+    }
+}

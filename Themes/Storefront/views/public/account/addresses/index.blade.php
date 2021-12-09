@@ -292,7 +292,7 @@
 
                                             <button
                                                 type="submit"
-                                                class="btn btn-lg btn-primary btn-save-address"
+                                                class="btn btn-lg btn-secondary btn-save-address"
                                                 :class="{ 'btn-loading': loading }"
                                             >
                                                 {{ trans('storefront::account.addresses.save_address') }}

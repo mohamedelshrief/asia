@@ -355,6 +355,56 @@ $(() => {
         ],
     });
 
+
+    let topCategories = $('.top-categories');
+
+    topCategories.slick({
+        rows: 0,
+        dots: false,
+        arrows: true,
+        infinite: true,
+        slidesToShow: 9,
+        slidesToScroll: 9,
+        rtl: window.FleetCart.rtl,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 8,
+                    slidesToScroll: 8,
+                },
+            },
+            {
+                breakpoint: 1050,
+                settings: {
+                    slidesToShow: 7,
+                    slidesToScroll: 7,
+                },
+            },
+            {
+                breakpoint: 900,
+                settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 5,
+                },
+            },
+            {
+                breakpoint: 750,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
+                },
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                },
+            },
+        ],
+    });
+
     /*      sidebar filter
     /*----------------------------------------*/
 

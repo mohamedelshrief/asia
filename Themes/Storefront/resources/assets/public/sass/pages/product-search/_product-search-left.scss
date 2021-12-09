@@ -5,8 +5,17 @@
 
     .section-title {
         margin-bottom: 24px;
-        padding-bottom: 13px;
-        border-bottom: 1px solid $border-color-lite;
+        padding-bottom: 8px;
+        border-bottom: 2px solid $border-color-lite;
+        font-size: 18px;
+        color: #000;
+        font-weight: 500;
+    
+
+        &::after {
+            border-color: $color-default;
+            width: 40px;
+        }
     }
 
     .vertical-products {

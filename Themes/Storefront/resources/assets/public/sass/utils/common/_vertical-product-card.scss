@@ -2,6 +2,10 @@
     display: flex;
     margin-bottom: 20px;
 
+    .product-price {
+        padding-left: 0;
+    }
+
     &:last-child {
         margin-bottom: 0;
     }

@@ -2,12 +2,7 @@
 .phpintel/
 *.sublime-project
 .DS_Store
-
 node_modules/
-/vendor/
-/public/storage/
-/public/modules/
-/public/themes/
 /Modules/*/Assets/
 /Themes/*/assets/
 /tags

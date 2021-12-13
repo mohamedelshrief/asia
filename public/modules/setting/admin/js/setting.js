@@ -104,7 +104,7 @@ eval("window.admin.removeSubmitButtonOffsetOn(['#logo', '#courier']);\nvar curre
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\asia\Modules\Setting\Resources\assets\admin\js\main.js */"./Modules/Setting/Resources/assets/admin/js/main.js");
+module.exports = __webpack_require__(/*! E:\sehrish\asia\Modules\Setting\Resources\assets\admin\js\main.js */"./Modules/Setting/Resources/assets/admin/js/main.js");
 
 
 /***/ })

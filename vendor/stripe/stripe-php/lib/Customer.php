@@ -78,8 +78,6 @@ class Customer extends ApiResource
         $url = $this->instanceUrl() . '/discount';
         list($response, $opts) = $this->_request('delete', $url, $params, $opts);
         $this->refreshFrom(['discount' => null], $opts, true);
-
-        return $this;
     }
 
     /**
@@ -160,6 +158,7 @@ class Customer extends ApiResource
     {
         return self::_updateNestedResource($id, static::PATH_BALANCE_TRANSACTIONS, $balanceTransactionId, $params, $opts);
     }
+
     const PATH_SOURCES = '/sources';
 
     /**
@@ -234,6 +233,7 @@ class Customer extends ApiResource
     {
         return self::_updateNestedResource($id, static::PATH_SOURCES, $sourceId, $params, $opts);
     }
+
     const PATH_TAX_IDS = '/tax_ids';
 
     /**

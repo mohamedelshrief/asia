@@ -264,6 +264,7 @@ class Account extends ApiResource
     {
         return self::_updateNestedResource($id, static::PATH_CAPABILITIES, $capabilityId, $params, $opts);
     }
+
     const PATH_EXTERNAL_ACCOUNTS = '/external_accounts';
 
     /**
@@ -338,6 +339,7 @@ class Account extends ApiResource
     {
         return self::_updateNestedResource($id, static::PATH_EXTERNAL_ACCOUNTS, $externalAccountId, $params, $opts);
     }
+
     const PATH_LOGIN_LINKS = '/login_links';
 
     /**
@@ -353,6 +355,7 @@ class Account extends ApiResource
     {
         return self::_createNestedResource($id, static::PATH_LOGIN_LINKS, $params, $opts);
     }
+
     const PATH_PERSONS = '/persons';
 
     /**

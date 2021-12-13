@@ -122,7 +122,7 @@
                                     <div class="details-info-middle-actions">
                                         <div class="number-picker">
                                             <label for="qty">{{ trans('storefront::product.quantity') }}</label>
-                                            @if (isset($product->onetime) && $product->onetime==1)
+                                            @if (isset($product->one_time_purchaseable) && $product->one_time_purchaseable==1)
 
                                                 <div class="input-group-quantity">
                                                     <input

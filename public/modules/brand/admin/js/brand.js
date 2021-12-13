@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("window.admin.removeSubmitButtonOffsetOn('#images');//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9Nb2R1bGVzL0JyYW5kL1Jlc291cmNlcy9hc3NldHMvYWRtaW4vanMvbWFpbi5qcz8zZTcxIl0sIm5hbWVzIjpbIndpbmRvdyIsImFkbWluIiwicmVtb3ZlU3VibWl0QnV0dG9uT2Zmc2V0T24iXSwibWFwcGluZ3MiOiJBQUFBQSxNQUFNLENBQUNDLEtBQVAsQ0FBYUMsMEJBQWIsQ0FBd0MsU0FBeEMiLCJmaWxlIjoiLi9Nb2R1bGVzL0JyYW5kL1Jlc291cmNlcy9hc3NldHMvYWRtaW4vanMvbWFpbi5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIndpbmRvdy5hZG1pbi5yZW1vdmVTdWJtaXRCdXR0b25PZmZzZXRPbignI2ltYWdlcycpO1xyXG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./Modules/Brand/Resources/assets/admin/js/main.js\n");
+eval("window.admin.removeSubmitButtonOffsetOn('#images');//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9Nb2R1bGVzL0JyYW5kL1Jlc291cmNlcy9hc3NldHMvYWRtaW4vanMvbWFpbi5qcz8zZTcxIl0sIm5hbWVzIjpbIndpbmRvdyIsImFkbWluIiwicmVtb3ZlU3VibWl0QnV0dG9uT2Zmc2V0T24iXSwibWFwcGluZ3MiOiJBQUFBQSxNQUFNLENBQUNDLEtBQVAsQ0FBYUMsMEJBQWIsQ0FBd0MsU0FBeEMiLCJmaWxlIjoiLi9Nb2R1bGVzL0JyYW5kL1Jlc291cmNlcy9hc3NldHMvYWRtaW4vanMvbWFpbi5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIndpbmRvdy5hZG1pbi5yZW1vdmVTdWJtaXRCdXR0b25PZmZzZXRPbignI2ltYWdlcycpO1xuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./Modules/Brand/Resources/assets/admin/js/main.js\n");
 
 /***/ }),
 
@@ -104,7 +104,7 @@ eval("window.admin.removeSubmitButtonOffsetOn('#images');//# sourceURL=[module]\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\sehrish\asia\Modules\Brand\Resources\assets\admin\js\main.js */"./Modules/Brand/Resources/assets/admin/js/main.js");
+module.exports = __webpack_require__(/*! /var/www/html/Amp/Modules/Brand/Resources/assets/admin/js/main.js */"./Modules/Brand/Resources/assets/admin/js/main.js");
 
 
 /***/ })

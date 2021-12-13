@@ -48,11 +48,6 @@
                                         <span class="error-message" v-if="errors.has('reviewer_name')" v-text="errors.get('reviewer_name')"></span>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="comment">{{ trans('storefront::product.review_form.comment') }}<span>*</span></label>
-                                        <textarea rows="5" name="comment" v-model="reviewForm.comment" id="comment" class="form-control"></textarea>
-                                        <span class="error-message" v-if="errors.has('comment')" v-text="errors.get('comment')"></span>
-                                    </div>
 
                                     <div class="form-group p-t-5">
                                         @captcha

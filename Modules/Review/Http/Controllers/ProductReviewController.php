@@ -38,7 +38,6 @@ class ProductReviewController
                 'reviewer_id' => auth()->id(),
                 'rating' => $request->rating,
                 'reviewer_name' => $request->reviewer_name,
-                'comment' => $request->comment,
                 'is_approved' => setting('auto_approve_reviews', 0),
             ]);
     }

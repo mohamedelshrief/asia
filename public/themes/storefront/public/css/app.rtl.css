@@ -30929,3 +30929,26 @@ textarea.form-control {
 [v-cloak] {
   display: none !important;
 }
+
+.goog-logo-link {
+  display: none;
+}
+
+.goog-te-gadget {
+  font-family: arial;
+  font-size: 11px;
+  color: #fff;
+  white-space: nowrap;
+  height: 31px;
+  overflow: hidden;
+}
+
+.goog-te-gadget .goog-te-combo {
+  color: #847e87;
+  margin: 4px 0;
+  background-color: #fff;
+  padding: 5px 10px;
+  margin-top: -2px !important;
+  font-weight: 600;
+  font-size: 12px;
+}

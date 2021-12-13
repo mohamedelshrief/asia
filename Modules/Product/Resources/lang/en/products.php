@@ -46,5 +46,6 @@ return [
         'choose' => 'Choose',
         'delete_file' => 'Delete File',
         'add_new_file' => 'Add New File',
+        'onetime_purchase' => 'One-time Purchase Only',
     ],
 ];

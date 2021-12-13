@@ -52,7 +52,6 @@ export default {
             if (isNaN(qty)) {
                 qty = 1;
             }
-
             this.loadingOrderSummary = true;
 
             cartItem.qty = qty;

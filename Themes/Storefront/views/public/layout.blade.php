@@ -114,6 +114,28 @@
 
         @stack('scripts')
 
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <script>
+
+            googleTranslateElementInit();
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,ar',
+                    }, 'google_translate_element');
+                    $('.goog-te-gadget select').change(function(){
+                        setTimeout(() => {
+                            if($(this).val()=='ar'){
+                                window.location.assign("{{url('')}}/ar")
+                            }else{
+                                window.location.assign("{{url('')}}/"+$(this).val())
+                            }
+                        }, 2000);
+                    })
+                    $(".goog-te-gadget div ").append('<img src="http://localhost:8000/themes/storefront/public/assets/img/world-icon.png" alt="">')
+
+            }
+        </script>
         {!! setting('custom_footer_assets') !!}
     </body>
 </html>

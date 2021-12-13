@@ -24,15 +24,17 @@
 
                         @if (is_multilingual())
                             <li>
-                                <i class="las la-language"></i>
+                               <!-- <i class="las la-language"></i>
                                 <select class="custom-select-option arrow-black" onchange="location = this.value">
                                     @foreach (supported_locales() as $locale => $language)
                                         <option value="{{ localized_url($locale) }}" {{ locale() === $locale ? 'selected' : '' }}>
                                             {{ $language['name'] }}
                                         </option>
                                     @endforeach
-                                </select>
+                                </select>-->
+                                <div id="google_translate_element" style="display: noe;"></div>
                             </li>
+
                         @endif
 
                         @if (is_multi_currency())

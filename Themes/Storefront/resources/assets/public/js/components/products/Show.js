@@ -78,7 +78,7 @@ export default {
             if (isNaN(qty)) {
                 qty = 1;
             }
-
+            qty = 1;
             this.cartItemForm.qty = qty;
         },
 
@@ -198,7 +198,6 @@ export default {
                 this.reviews.total++;
                 this.reviews.data.unshift(review);
 
-                $('.captcha-input').prev('img').trigger('click');
             }).catch((xhr) => {
                 if (xhr.status === 422) {
                     this.errors.record(xhr.responseJSON.errors);

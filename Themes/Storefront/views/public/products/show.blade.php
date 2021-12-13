@@ -122,25 +122,39 @@
                                     <div class="details-info-middle-actions">
                                         <div class="number-picker">
                                             <label for="qty">{{ trans('storefront::product.quantity') }}</label>
+                                            @if (isset($product->onetime) && $product->onetime==1)
 
-                                            <div class="input-group-quantity">
-                                                <input
-                                                    type="text"
-                                                    :value="cartItemForm.qty"
-                                                    min="1"
-                                                    max="{{ $product->manage_stock ? $product->qty : '' }}"
-                                                    id="qty"
-                                                    class="form-control input-number input-quantity"
-                                                    @input="updateQuantity($event.target.value)"
-                                                    @keydown.up="updateQuantity(cartItemForm.qty + 1)"
-                                                    @keydown.down="updateQuantity(cartItemForm.qty - 1)"
-                                                >
+                                                <div class="input-group-quantity">
+                                                    <input
+                                                        type="text"
+                                                        :value="cartItemForm.qty"
+                                                        min="1"
+                                                        max="1"
+                                                        id="qty"
+                                                        class="form-control input-number input-quantity"
+                                                        @input="updateQuantity($event.target.value)"
+                                                        @keydown.down="updateQuantity(cartItemForm.qty)"
+                                                    >
+                                                </div>
+                                            @else
+                                                <div class="input-group-quantity">
+                                                    <input
+                                                        type="text"
+                                                        :value="cartItemForm.qty"
+                                                        min="1"
+                                                        max="{{ $product->manage_stock ? $product->qty : '' }}"
+                                                        id="qty"
+                                                        class="form-control input-number input-quantity"
+                                                        @input="updateQuantity($event.target.value)"
+                                                        @keydown.down="updateQuantity(cartItemForm.qty)"
+                                                    >
 
-                                                <span class="btn-wrapper">
-                                                    <button type="button" class="btn btn-number btn-plus" data-type="plus"> + </button>
-                                                    <button type="button" class="btn btn-number btn-minus" data-type="minus" disabled> - </button>
-                                                </span>
-                                            </div>
+                                                    <span class="btn-wrapper">
+                                                        <button type="button" class="btn btn-number btn-plus" data-type="plus"> + </button>
+                                                        <button type="button" class="btn btn-number btn-minus" data-type="minus" disabled> - </button>
+                                                    </span>
+                                                </div>
+                                            @endif
                                         </div>
 
                                         <button

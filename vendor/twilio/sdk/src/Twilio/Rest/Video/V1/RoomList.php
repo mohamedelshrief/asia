@@ -54,6 +54,7 @@ class RoomList extends ListResource {
             'MediaRegion' => $options['mediaRegion'],
             'RecordingRules' => Serialize::jsonObject($options['recordingRules']),
             'AudioOnly' => Serialize::booleanToString($options['audioOnly']),
+            'MaxParticipantDuration' => $options['maxParticipantDuration'],
         ]);
 
         $payload = $this->version->create('POST', $this->uri, [], $data);

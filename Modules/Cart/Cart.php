@@ -12,6 +12,9 @@ use Modules\Shipping\Facades\ShippingMethod;
 use Darryldecode\Cart\Cart as DarryldecodeCart;
 use Modules\Product\Services\ChosenProductOptions;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Validation\ValidationException;
+use Darryldecode\Cart\Exceptions\InvalidItemException;
+use Darryldecode\Cart\Exceptions\UnknownModelException;
 
 class Cart extends DarryldecodeCart implements JsonSerializable
 {
@@ -49,6 +52,24 @@ class Cart extends DarryldecodeCart implements JsonSerializable
     {
         $options = array_filter($options);
         $product = Product::with('files', 'categories', 'taxClass')->findOrFail($productId);
+
+        if($product->one_time_purchaseable){
+
+            if(auth()->check()) {
+                $past_orders = auth()->user()->orders()->whereHas('products')->with(['products' => function($query) use ($product) {
+                    return $query->where('product_id', $product->id);
+                }])->get();
+
+
+                if(count($past_orders)){
+                    throw new UnknownModelException("You can not purchase this as this is only one time purchasable product");
+                }
+            }
+
+            $qty = 1;
+
+        }
+
         $chosenOptions = new ChosenProductOptions($product, $options);
 
         $this->add([
@@ -66,7 +87,15 @@ class Cart extends DarryldecodeCart implements JsonSerializable
 
     public function updateQuantity($id, $qty)
     {
-        $this->update($id, [
+
+       $current = $this->findByCartId($id);
+
+       if($current->first() && $current->first()->product->one_time_purchaseable) {
+            dd($current->first()->product->one_time_purchaseable);
+            $qty = 1;
+       }
+
+       $this->update($id, [
             'quantity' => [
                 'relative' => false,
                 'value' => $qty,
@@ -85,6 +114,14 @@ class Cart extends DarryldecodeCart implements JsonSerializable
     {
         return $this->findByProductId($productId)->sum('qty');
     }
+
+    public function findByCartId($cartId)
+    {
+        return $this->items()->filter(function ($cartItem) use ($cartId) {
+            return $cartItem->id == $cartId;
+        });
+    }
+
 
     public function findByProductId($productId)
     {

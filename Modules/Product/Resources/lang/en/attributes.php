@@ -10,6 +10,7 @@ return [
     'tax_class_id' => 'Tax Class',
     'tags' => 'Tags',
     'virtual' => 'Virtual',
+    'onetime' => 'One-Time Purchase',
     'is_active' => 'Status',
     'price' => 'Price',
     'special_price' => 'Special Price',

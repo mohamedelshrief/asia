@@ -196,7 +196,7 @@ final class Versions
   'maximebf/debugbar' => 'v1.17.3@e8ac3499af0ea5b440908e06cc0abe5898008b3c',
   'nunomaduro/collision' => 'v5.10.0@3004cfa49c022183395eabc6d0e5207dfe498d00',
   'symfony/debug' => 'v4.4.31@43ede438d4cb52cd589ae5dc070e9323866ba8e0',
-  'envaysoft/fleetcart' => '1.0.x-dev@686e2165cf566ac6238bb39df52298c7c8b5c9aa',
+  'envaysoft/fleetcart' => 'dev-main@6062ae7eee4ce6f790f7e8ba5949714afdd4d8cb',
 );
 
     private function __construct()

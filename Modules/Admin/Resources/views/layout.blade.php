@@ -6,8 +6,20 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>
-            @yield('title') - FleetCart Admin
+            @yield('title') - AMP Admin
         </title>
+        <style>
+            .goog-te-banner-frame {
+                display: none !important;
+            }
+            .goog-logo-link{
+                display: none !important;
+            }
+            .skiptranslate{
+                display: none !important;
+            }
+
+        </style>
 
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -19,7 +31,6 @@
         <link media="all" type="text/css" rel="stylesheet" href="{{ url('/css/style.css') }}">
 
         @stack('styles')
-
         @include('admin::partials.globals')
     </head>
 

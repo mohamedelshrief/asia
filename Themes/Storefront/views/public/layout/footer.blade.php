@@ -9,7 +9,7 @@
                                 <img src="{{url('/images/logo.png')}}" width="75%" />
                             </a>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas temporibus ipsa repellendus nihil, ratione, praesentium.
+                                Asia Mobile Group started its journey in 2004 in order to provide a unique shopping experience
                             </p>
                             <!-- <h4 class="title">{{ trans('storefront::layout.contact_us') }}</h4> -->
 

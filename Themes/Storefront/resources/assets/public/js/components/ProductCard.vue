@@ -2,7 +2,6 @@
     <div class="product-card">
         <div class="product-card-middle">
             <a :href="productUrl" class="product-name">
-                <h6 class="product-category">laptop</h6>
                 <h6>{{ product.name }}</h6>
             </a>
             <ul class="list-inline product-badge">

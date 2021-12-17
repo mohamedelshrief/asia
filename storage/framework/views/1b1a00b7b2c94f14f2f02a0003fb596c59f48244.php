@@ -9,7 +9,7 @@
                                 <img src="<?php echo e(url('/images/logo.png')); ?>" width="75%" />
                             </a>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas temporibus ipsa repellendus nihil, ratione, praesentium.
+                                Asia Mobile Group started its journey in 2004 in order to provide a unique shopping experience
                             </p>
                             <!-- <h4 class="title"><?php echo e(trans('storefront::layout.contact_us')); ?></h4> -->
 
@@ -209,4 +209,5 @@
             </div>
         </div>
     </div>
-</footer><?php /**PATH /var/www/html/Amp/Themes/Storefront/views/public/layout/footer.blade.php ENDPATH**/ ?>
+</footer>
+<?php /**PATH /var/www/html/Amp/Themes/Storefront/views/public/layout/footer.blade.php ENDPATH**/ ?>

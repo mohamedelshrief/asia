@@ -11,7 +11,7 @@ export default {
         ProductCardMixin,
     ],
 
-    props: ['product', 'reviewCount', 'avgRating'],
+    props: ['product','reviewCount', 'avgRating','csrf','userName'],
 
     data() {
         return {
@@ -21,13 +21,16 @@ export default {
             fetchingReviews: false,
             reviews: {},
             addingNewReview: false,
-            reviewForm: {},
+            reviewForm: {
+                reviewer_name:this.userName,
+            },
             cartItemForm: {
                 product_id: this.product.id,
                 qty: 1,
                 options: {},
             },
             errors: new Errors(),
+            size_id:'',
         };
     },
 
@@ -70,6 +73,34 @@ export default {
     },
 
     methods: {
+        setProductMeasurement(){
+
+        },
+
+        showLogin(){
+            console.log('here');
+        },
+
+        addQuantity(){
+            if(this.cartItemForm.qty < this.product.qty){
+                $('.btn-minus').attr('disabled',false);
+                // this.cartItemForm.qty = this.cartItemForm.qty + 1;
+                if(this.cartItemForm.qty == this.product.qty){
+                    $('.btn-plus').attr('disabled',true);
+                }
+            }
+        },
+
+        minusQuantity(){
+            if(this.cartItemForm.qty > 1){
+                $('.btn-plus').attr('disabled',false);
+                // this.cartItemForm.qty--;
+                if(this.cartItemForm.qty == 1){
+                    $('.btn-minus').attr('disabled',true);
+                }
+            }
+        },
+
         updateQuantity(qty) {
             if (qty < 1 || this.exceedsMaxStock(qty)) {
                 return;
@@ -78,7 +109,7 @@ export default {
             if (isNaN(qty)) {
                 qty = 1;
             }
-            qty = 1;
+
             this.cartItemForm.qty = qty;
         },
 
@@ -97,7 +128,10 @@ export default {
                 $.ajax({
                     method: 'POST',
                     url: route('products.price.show', { id: this.product.id }),
-                    data: { options: this.cartItemForm.options },
+                    data: {
+                        "_token":this.csrf,
+                        options: this.cartItemForm.options
+                    },
                 }).then((price) => {
                     this.price = price;
                 }).catch((xhr) => {
@@ -188,7 +222,7 @@ export default {
 
         addNewReview() {
             this.addingNewReview = true;
-
+            this.reviewForm['_token'] = this.csrf;
             $.ajax({
                 method: 'POST',
                 url: route('products.reviews.store', { productId: this.product.id }),
@@ -198,6 +232,7 @@ export default {
                 this.reviews.total++;
                 this.reviews.data.unshift(review);
 
+                $('.captcha-input').prev('img').trigger('click');
             }).catch((xhr) => {
                 if (xhr.status === 422) {
                     this.errors.record(xhr.responseJSON.errors);
@@ -211,14 +246,22 @@ export default {
 
         addToCart() {
             this.addingToCart = true;
-
+            this.cartItemForm['_token'] = this.csrf;
+            var size  = this.size_id.split('|');
+            this.cartItemForm['size_id'] = size[0];
+            this.cartItemForm['size_name'] = size[1];
             $.ajax({
                 method: 'POST',
-                url: route('cart.items.store', this.cartItemForm),
+                // url: route('cart.items.store', this.cartItemForm),
+                url: route('cart.items.store'),
+                data: this.cartItemForm,
             }).then((cart) => {
                 store.updateCart(cart);
 
                 $('.header-cart').trigger('click');
+
+                $('.top-nav-wrap').append('<div class="alert alert-success alert-dismissible fade show"><button type="button" data-dismiss="alert" class="close"><i class="las la-times"></i></button><i class="las la-check-circle"></i>Item added to cart</div>');
+
             }).catch((xhr) => {
                 if (xhr.status === 422) {
                     this.errors.record(xhr.responseJSON.errors);

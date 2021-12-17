@@ -129,7 +129,7 @@
                                     <div class="details-info-middle-actions">
                                         <div class="number-picker">
                                             <label for="qty"><?php echo e(trans('storefront::product.quantity')); ?></label>
-                                            <?php if(isset($product->onetime) && $product->onetime==1): ?>
+                                            <?php if(isset($product->one_time_purchaseable) && $product->one_time_purchaseable==1): ?>
 
                                                 <div class="input-group-quantity">
                                                     <input

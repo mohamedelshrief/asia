@@ -15,6 +15,18 @@
 
             <?php endif; ?>
         </title>
+        <style>
+            .goog-te-banner-frame {
+                display: none !important;
+            }
+            .goog-logo-link{
+                display: none !important;
+            }
+            body{
+                top:0px !important
+            }
+
+        </style>
 
         <?php echo $__env->yieldPushContent('meta'); ?>
 

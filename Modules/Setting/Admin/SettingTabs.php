@@ -50,6 +50,11 @@ class SettingTabs extends Tabs
             ->add($this->checkPayment());
     }
 
+
+    public function getPaymentTabs(){
+        return $this->getSortedTabs();
+    }
+
     private function general()
     {
         return tap(new Tab('general', trans('setting::settings.tabs.general')), function (Tab $tab) {

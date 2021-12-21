@@ -92,7 +92,6 @@ class Cart extends DarryldecodeCart implements JsonSerializable
        $current = $this->findByCartId($id);
 
        if($current->first() && $current->first()->product->one_time_purchaseable) {
-            dd($current->first()->product->one_time_purchaseable);
             $qty = 1;
        }
 

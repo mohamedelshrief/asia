@@ -2,6 +2,7 @@
 
 namespace Modules\Cart\Providers;
 
+use FleetCart\DBStorage;
 use Modules\Cart\Cart;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,9 +15,12 @@ class CartServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(Cart::class, function ($app) {
+
+        $storage = new DBStorage();
+        $this->app->singleton(Cart::class, function ($app) use($storage) {
             return new Cart(
-                $app['session'],
+                $storage,
+                // $app['session'],
                 $app['events'],
                 'cart',
                 session()->getId(),

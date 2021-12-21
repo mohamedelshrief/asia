@@ -1,5 +1,7 @@
 <?php
 
+use FleetCart\DBStorage;
+
 return [
     /*
      * ---------------------------------------------------------------
@@ -23,7 +25,7 @@ return [
      *
      * the configuration for persisting cart
      */
-    'storage' => \FleetCart\DBStorage::class,
+    'storage' => DBStorage::class,
 
     /*
      * ---------------------------------------------------------------

@@ -1,6 +1,7 @@
 <?php
 
 namespace Modules\Cart\Http\Controllers;
+use Modules\Cart\Facades\Cart;
 
 class CartController
 {
@@ -11,6 +12,15 @@ class CartController
      */
     public function index()
     {
+        if(request()->expectsJson()){
+
+            return $cart = Cart::instance();
+
+        }
+
         return view('public.cart.index');
     }
+
+
+
 }

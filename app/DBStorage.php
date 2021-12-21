@@ -3,40 +3,38 @@
 namespace FleetCart;
 
 use Darryldecode\Cart\CartCollection;
-use Darryldecode\Cart\Cart as DarryldecodeCart;
-class DBStorage extends DarryldecodeCart{
 
-        public function has($key)
+class DBStorage
+{
+    public function has($key)
+    {
+        return DatabaseStorageModel::find($key);
+    }
+    public function get($key)
+    {
+        if($this->has($key))
         {
-            return CartStorage::find($key);
+            return new CartCollection(DatabaseStorageModel::find($key)->cart_data);
         }
-
-        public function get($key)
+        else
         {
-            if($this->has($key))
-            {
-                return new CartCollection(CartStorage::find($key)->cart_data);
-            }
-            else
-            {
-                return [];
-            }
+            return [];
         }
-
-        public function put($key, $value)
+    }
+    public function put($key, $value)
+    {
+        if($row = DatabaseStorageModel::find($key))
         {
-            if($row = CartStorage::find($key))
-            {
-                // update
-                $row->cart_data = $value;
-                $row->save();
-            }
-            else
-            {
-                CartStorage::create([
-                    'id' => $key,
-                    'cart_data' => $value
-                ]);
-            }
+            // update
+            $row->cart_data = $value;
+            $row->save();
         }
+        else
+        {
+            DatabaseStorageModel::create([
+                'id' => $key,
+                'cart_data' => $value
+            ]);
+        }
+    }
 }

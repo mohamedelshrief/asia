@@ -6,8 +6,20 @@
         <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
         <title>
-            <?php echo $__env->yieldContent('title'); ?> - FleetCart Admin
+            <?php echo $__env->yieldContent('title'); ?> - AMP Admin
         </title>
+        <style>
+            .goog-te-banner-frame {
+                display: none !important;
+            }
+            .goog-logo-link{
+                display: none !important;
+            }
+            .skiptranslate{
+                display: none !important;
+            }
+
+        </style>
 
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -19,7 +31,6 @@
         <link media="all" type="text/css" rel="stylesheet" href="<?php echo e(url('/css/style.css')); ?>">
 
         <?php echo $__env->yieldPushContent('styles'); ?>
-
         <?php echo $__env->make('admin::partials.globals', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </head>
 

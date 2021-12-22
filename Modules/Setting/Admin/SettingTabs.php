@@ -46,7 +46,7 @@ class SettingTabs extends Tabs
             //->add($this->razorpay())
             //->add($this->instamojo())
             ->add($this->cod())
-            ->add($this->bankTransfer())
+            ->add($this->bankTransfer());
             //->add($this->checkPayment());
     }
 

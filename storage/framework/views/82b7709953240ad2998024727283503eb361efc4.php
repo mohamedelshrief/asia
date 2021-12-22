@@ -26,11 +26,10 @@
                 <div class="header-column-right d-flex">
 
                     <div class="header-arrow">
-                        <div class="icon-wrap">
+                        <a href="<?php echo e(route('compare.index')); ?>" class="icon-wrap">
                             <i class="las la-long-arrow-alt-right"></i>
                             <i class="las la-long-arrow-alt-left"></i>
-                            <div class="count" v-text="cart.quantity"></div>
-                        </div>
+                        </a>
 
                         <!-- <span v-html="cart.subTotal.inCurrentCurrency.formatted"></span> -->
                     </div>
@@ -56,4 +55,5 @@
             </div>
         </div>
     </div>
-</header><?php /**PATH /var/www/html/Amp/Themes/Storefront/views/public/layout/header.blade.php ENDPATH**/ ?>
+</header>
+<?php /**PATH /var/www/html/Amp/Themes/Storefront/views/public/layout/header.blade.php ENDPATH**/ ?>

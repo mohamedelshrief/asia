@@ -10,7 +10,7 @@
                     <h2>Shop And Save <span>Save Big</span> On Hottest Tablets</h2>
                     <button>
                         <span>Starting At</span>
-                        <span><i class="fas fa-dollar-sign"></i>79<sup>99</sup></span>
+                        <span>AED 79<sup>99</sup></span>
                     </button>
                 </div>
                 <img :src="banner.image.path" alt="banner" />

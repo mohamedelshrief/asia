@@ -26,6 +26,10 @@
                 top:0px !important
             }
 
+            .product-details-wrap .product-price {
+                    padding-left: 13px !important;
+                }
+
         </style>
 
         <?php echo $__env->yieldPushContent('meta'); ?>

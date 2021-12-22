@@ -15,12 +15,12 @@
                             </a>
                         </li>
 
-                        <li>
+                        <!--<li>
                             <a href="{{ route('compare.index') }}">
                                 <i class="las la-random"></i>
                                 {{ trans('storefront::layout.compare') }}
                             </a>
-                        </li>
+                        </li>-->
 
                         @if (is_multilingual())
                             <li>

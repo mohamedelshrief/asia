@@ -26,11 +26,10 @@
                 <div class="header-column-right d-flex">
 
                     <div class="header-arrow">
-                        <div class="icon-wrap">
+                        <a href="{{ route('compare.index') }}" class="icon-wrap">
                             <i class="las la-long-arrow-alt-right"></i>
                             <i class="las la-long-arrow-alt-left"></i>
-                            <div class="count" v-text="cart.quantity"></div>
-                        </div>
+                        </a>
 
                         <!-- <span v-html="cart.subTotal.inCurrentCurrency.formatted"></span> -->
                     </div>

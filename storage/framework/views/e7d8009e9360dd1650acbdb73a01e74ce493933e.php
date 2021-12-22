@@ -16,13 +16,13 @@
                             </a>
                         </li>
 
-                        <li>
+                        <!--<li>
                             <a href="<?php echo e(route('compare.index')); ?>">
                                 <i class="las la-random"></i>
                                 <?php echo e(trans('storefront::layout.compare')); ?>
 
                             </a>
-                        </li>
+                        </li>-->
 
                         <?php if(is_multilingual()): ?>
                             <li>

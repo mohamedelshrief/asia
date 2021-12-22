@@ -22,7 +22,7 @@ class SettingTabs extends Tabs
         $this->group('general_settings', trans('setting::settings.tabs.group.general_settings'))
             ->active()
             ->add($this->general())
-            ->add($this->maintenance())
+            //->add($this->maintenance())
             ->add($this->store())
             ->add($this->currency())
             ->add($this->sms())
@@ -41,13 +41,13 @@ class SettingTabs extends Tabs
 
         $this->group('payment_methods', trans('setting::settings.tabs.group.payment_methods'))
             ->add($this->paypal())
-            ->add($this->stripe())
-            ->add($this->paytm())
-            ->add($this->razorpay())
-            ->add($this->instamojo())
+            //->add($this->stripe())
+            //->add($this->paytm())
+            //->add($this->razorpay())
+            //->add($this->instamojo())
             ->add($this->cod())
             ->add($this->bankTransfer())
-            ->add($this->checkPayment());
+            //->add($this->checkPayment());
     }
 
 

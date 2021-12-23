@@ -1,0 +1,23 @@
+{
+    "name": "arif/fleetcart-api",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Arif Iqbal",
+            "email": "arifiqbal@outlook.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Arif\\FleetCartApi\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Arif\\FleetCartApi\\Providers\\FleetCartApiServiceProvider"
+            ]
+        }
+    }
+}

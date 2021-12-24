@@ -23,6 +23,7 @@ class OrderController extends BaseController
         $orders = auth('api')->user()
             ->orders()
             ->latest()
+            ->with(['products'])
             ->paginate(request('per_page', config('fleetcart_api.per_page', 10)));
 
         return response()->json($orders);

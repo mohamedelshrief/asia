@@ -29,6 +29,16 @@
             .product-details-wrap .product-price {
                     padding-left: 13px !important;
                 }
+            body.rtl a.banner {
+                display: flex;
+                justify-content: flex-end;
+            }
+            body.rtl .banner-wrap.three-column-banner .banner .banner-content {
+                align-items: center;
+            }
+            body.rtl .slide-content .captions{
+                align-items: center;
+            }
 
         </style>
 

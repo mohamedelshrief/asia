@@ -12,7 +12,7 @@ class CountriesController
 {
     public function index()
     {
-        $countries = Country::all();
+        $countries = Country::supported();
         $json= (array)[];
         foreach ($countries as $key => $value) {
             $json[]=[

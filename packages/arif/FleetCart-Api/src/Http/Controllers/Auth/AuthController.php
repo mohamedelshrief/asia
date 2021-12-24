@@ -188,9 +188,8 @@ class AuthController extends BaseAuthController
             "zip"=>"required",
             "country"=>"required",
         ]);
-        $check=Address::where("customer_id",auth('api')->user()->id)->count();
-        if($check!=0){
-             return response(['message' => 'Default Address Already Set'], 422);
+        if($request->default_address==1){
+            Address::where("customer_id",auth('api')->user()->id)->update(["default_address"=>0]);
         }
 
 
@@ -219,11 +218,13 @@ class AuthController extends BaseAuthController
     }
     public function update_address(Request $request,$id){
 
-        Address::where("id",$id)->update($request->all());
-        $check=Address::where("customer_id",auth('api')->user()->id)->count();
-        if($check!=0){
-             return response(['message' => 'Default Address Already Set'], 422);
+
+        if($request->default_address==1){
+            Address::where("customer_id",auth('api')->user()->id)->update(["default_address"=>0]);
         }
+
+        Address::where("id",$id)->update($request->all());
+
 
         return response(['message' => 'Address Updated'], 200);
 

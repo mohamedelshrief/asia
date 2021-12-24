@@ -26,6 +26,8 @@ class Cart extends DarryldecodeCart implements JsonSerializable
      */
     public function instance()
     {
+        $this->session('88uuiioo99888');
+
         return $this;
     }
 

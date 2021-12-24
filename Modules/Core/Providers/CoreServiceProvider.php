@@ -197,8 +197,11 @@ class CoreServiceProvider extends ServiceProvider
      */
     private function blacklistAdminRoutesOnFrontend()
     {
-        if (! $this->app['inAdminPanel']) {
-            $this->app['config']->set('ziggy.blacklist', ['admin.*']);
+
+        // dd(request()->url(), $this->app['inAdminPanel']);
+
+        if (!$this->app['inAdminPanel']) {
+            // $this->app['config']->set('ziggy.blacklist', ['admin.*']);
         }
     }
 }

@@ -9,6 +9,14 @@ use Modules\Core\Http\Requests\Request;
 
 class StoreOrderRequest extends Request
 {
+
+
+    public function authorize()
+    {
+        return true;
+    }
+
+
     /**
      * Available attributes.
      *

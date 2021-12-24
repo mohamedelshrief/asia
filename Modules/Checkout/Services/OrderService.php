@@ -43,8 +43,12 @@ class OrderService
             return;
         }
 
+        $user = auth('api')->user();
+
+        if (!$user) $user = auth()->user();
+
         if ($request->newBillingAddress) {
-            $address = auth()->user()->addresses()->create(
+            $address = $user->addresses()->create(
                 $this->extractAddress($request->billing)
             );
 
@@ -52,7 +56,7 @@ class OrderService
         }
 
         if ($request->ship_to_a_different_address && $request->newShippingAddress) {
-            auth()->user()->addresses()->create(
+            $user->addresses()->create(
                 $this->extractAddress($request->shipping)
             );
         }
@@ -93,8 +97,12 @@ class OrderService
 
     private function store($request)
     {
+        $user = auth('api')->user();
+
+        if (!$user) $user = auth()->user();
+
         return Order::create([
-            'customer_id' => auth()->id(),
+            'customer_id' => $user->id,
             'customer_email' => $request->customer_email,
             'customer_phone' => $request->customer_phone,
             'customer_first_name' => $request->billing['first_name'],

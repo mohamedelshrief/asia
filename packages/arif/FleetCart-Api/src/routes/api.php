@@ -29,6 +29,9 @@ Route::prefix('api')
                     Route::post("update_address/{id}",\FleetCartApi\Http\Controllers\Auth\AuthController::class. '@update_address');
                     Route::post("delete_address",\FleetCartApi\Http\Controllers\Auth\AuthController::class. '@delete_address');
                 });
+
+
+
             });
 
 

@@ -7,8 +7,13 @@ use Exception;
 use Illuminate\Routing\Controller;
 use Modules\Payment\Facades\Gateway;
 use Modules\User\Services\CustomerService;
-use Modules\Order\Http\Requests\StoreOrderRequest;
 use FleetCart\DBStorage;
+use Illuminate\Http\Request;
+use Modules\Cart\Facades\Cart;
+use Modules\Order\Http\Requests\StoreOrderRequest;
+use Modules\Cart\Http\Middleware\CheckCouponUsageLimit;
+use Modules\Cart\Http\Middleware\RedirectIfCartIsEmpty;
+use Modules\Cart\Http\Middleware\CheckCartStock;
 
 class CheckoutController extends Controller
 {
@@ -19,7 +24,14 @@ class CheckoutController extends Controller
      */
     public function __construct()
     {
-         $this->middleware(['cart_not_empty', 'check_stock', 'check_coupon_usage_limit']);
+        $this->middleware([
+            // 'api',
+            'auth:api',
+            RedirectIfCartIsEmpty::class,
+            CheckCartStock::class,
+            CheckCouponUsageLimit::class,
+        ]);
+
     }
 
     /**
@@ -30,9 +42,9 @@ class CheckoutController extends Controller
      * @param \Modules\Checkout\Services\OrderService $orderService
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrderRequest $request, CustomerService $customerService, OrderService $orderService)
+    public function store(Request $globalRequest, StoreOrderRequest $request, CustomerService $customerService, OrderService $orderService)
     {
-        if (auth()->guest() && $request->create_an_account) {
+        if (auth('api')->guest() && $request->create_an_account) {
             $customerService->register($request)->login();
         }
 
@@ -49,6 +61,8 @@ class CheckoutController extends Controller
                 'message' => $e->getMessage(),
             ], 403);
         }
+
+        Cart::clear();
 
         return response()->json($response);
     }

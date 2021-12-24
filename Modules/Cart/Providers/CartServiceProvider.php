@@ -17,13 +17,16 @@ class CartServiceProvider extends ServiceProvider
     {
 
         $storage = new DBStorage();
-        $this->app->singleton(Cart::class, function ($app) use($storage) {
+        $session_key = session()->getId();
+        $session_key = '88uuiioo99888';
+
+        $this->app->singleton(Cart::class, function ($app) use($storage, $session_key) {
             return new Cart(
                 $storage,
                 // $app['session'],
                 $app['events'],
                 'cart',
-                session()->getId(),
+                $session_key,
                 config('fleetcart.modules.cart.config')
             );
         });

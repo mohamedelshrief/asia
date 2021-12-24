@@ -17,7 +17,21 @@ class RedirectIfCartIsEmpty
      */
     public function handle(Request $request, Closure $next)
     {
+
+        // $cart = Cart::instance();
+
+        // $cart->session('88uuiioo99888');
+
+        // // dd($cart);
+
         if (Cart::isEmpty()) {
+
+            if($request->expectsJson()){
+                return response(['message' => 'The given data was invalid', 'errors' => [
+                    'cart' => "Cart is empty",
+                ]], 422);
+            }
+
             return redirect()->route('cart.index');
         }
 

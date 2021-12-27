@@ -13,7 +13,7 @@ use Modules\Product\Filters\ProductFilter;
 use Modules\Product\Http\Controllers\ProductSearch;
 use Modules\Product\Http\Middleware\SetProductSortOption;
 use Modules\Review\Entities\Review;
-
+use Auth;
 class ProductController extends Controller
 {
     use ProductSearch;
@@ -54,7 +54,15 @@ class ProductController extends Controller
         $relatedProducts = $product->relatedProducts()->forCard()->get();
         $upSellProducts = $product->upSellProducts()->forCard()->get();
         $review = $this->getReviewData($product);
-
+        if(Auth::check()){
+            if(auth()->user()->wishlistHas($product->id)){
+                $product["wishlist_fill"]=true;
+            }else{
+                $product["wishlist_fill"]=false;
+            }
+        }else{
+            $product["wishlist_fill"]=false;
+        }
         event(new ProductViewed($product));
 
         return response()->json(compact('product', 'relatedProducts', 'upSellProducts', 'review'));

@@ -3607,3 +3607,313 @@
 #53 /var/www/html/Amp/server.php(21): require_once('/var/www/html/A...')
 #54 {main}
 "} 
+[2021-12-27 12:01:22] production.ERROR: Command "make:module" is not defined.
+
+Did you mean one of these?
+    make:cast
+    make:channel
+    make:command
+    make:component
+    make:controller
+    make:event
+    make:exception
+    make:export
+    make:factory
+    make:import
+    make:job
+    make:listener
+    make:mail
+    make:middleware
+    make:migration
+    make:model
+    make:notification
+    make:observer
+    make:policy
+    make:provider
+    make:request
+    make:resource
+    make:rule
+    make:seeder
+    make:test
+    scaffold:module {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"make:module\" is not defined.
+
+Did you mean one of these?
+    make:cast
+    make:channel
+    make:command
+    make:component
+    make:controller
+    make:event
+    make:exception
+    make:export
+    make:factory
+    make:import
+    make:job
+    make:listener
+    make:mail
+    make:middleware
+    make:migration
+    make:model
+    make:notification
+    make:observer
+    make:policy
+    make:provider
+    make:request
+    make:resource
+    make:rule
+    make:seeder
+    make:test
+    scaffold:module at /var/www/html/Amp/vendor/symfony/console/Application.php:682)
+[stacktrace]
+#0 /var/www/html/Amp/vendor/symfony/console/Application.php(255): Symfony\\Component\\Console\\Application->find()
+#1 /var/www/html/Amp/vendor/symfony/console/Application.php(167): Symfony\\Component\\Console\\Application->doRun()
+#2 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Console/Application.php(94): Symfony\\Component\\Console\\Application->run()
+#3 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#4 /var/www/html/Amp/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#5 {main}
+"} 
+[2021-12-27 12:01:45] production.ERROR: No arguments expected for "scaffold:module" command, got "Notification". {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): No arguments expected for \"scaffold:module\" command, got \"Notification\". at /var/www/html/Amp/vendor/symfony/console/Input/ArgvInput.php:186)
+[stacktrace]
+#0 /var/www/html/Amp/vendor/symfony/console/Input/ArgvInput.php(80): Symfony\\Component\\Console\\Input\\ArgvInput->parseArgument()
+#1 /var/www/html/Amp/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#2 /var/www/html/Amp/vendor/symfony/console/Command/Command.php(258): Symfony\\Component\\Console\\Input\\Input->bind()
+#3 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#4 /var/www/html/Amp/vendor/symfony/console/Application.php(978): Illuminate\\Console\\Command->run()
+#5 /var/www/html/Amp/vendor/symfony/console/Application.php(295): Symfony\\Component\\Console\\Application->doRunCommand()
+#6 /var/www/html/Amp/vendor/symfony/console/Application.php(167): Symfony\\Component\\Console\\Application->doRun()
+#7 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Console/Application.php(94): Symfony\\Component\\Console\\Application->run()
+#8 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#9 /var/www/html/Amp/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#10 {main}
+"} 
+[2021-12-27 12:20:30] production.ERROR: require(/var/www/html/Amp/Modules/Notification//Routes/web.php): failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): require(/var/www/html/Amp/Modules/Notification//Routes/web.php): failed to open stream: No such file or directory at /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php:35)
+[stacktrace]
+#0 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(35): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError()
+#1 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(35): require()
+#2 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/Router.php(425): Illuminate\\Routing\\RouteFileRegistrar->register()
+#3 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/Router.php(382): Illuminate\\Routing\\Router->loadRoutes()
+#4 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteRegistrar.php(161): Illuminate\\Routing\\Router->group()
+#5 /var/www/html/Amp/Modules/Notification/Providers/RouteServiceProvider.php(52): Illuminate\\Routing\\RouteRegistrar->group()
+#6 /var/www/html/Amp/Modules/Notification/Providers/RouteServiceProvider.php(38): Modules\\Notification\\Providers\\RouteServiceProvider->mapWebRoutes()
+#7 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Modules\\Notification\\Providers\\RouteServiceProvider->map()
+#8 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#9 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#10 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#11 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Container.php(653): Illuminate\\Container\\BoundMethod::call()
+#12 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php(122): Illuminate\\Container\\Container->call()
+#13 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php(45): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->loadRoutes()
+#14 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->Illuminate\\Foundation\\Support\\Providers\\{closure}()
+#15 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#16 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(81): Illuminate\\Container\\Util::unwrapIfClosure()
+#17 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#18 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Container.php(653): Illuminate\\Container\\BoundMethod::call()
+#19 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Support/ServiceProvider.php(119): Illuminate\\Container\\Container->call()
+#20 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(917): Illuminate\\Support\\ServiceProvider->callBootedCallbacks()
+#21 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(895): Illuminate\\Foundation\\Application->bootProvider()
+#22 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}()
+#23 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(896): array_walk()
+#24 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#25 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(237): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap()
+#26 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith()
+#27 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#28 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#29 {main}
+"} 
+[2021-12-27 12:20:30] production.ERROR: require(/var/www/html/Amp/Modules/Notification//Routes/web.php): failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): require(/var/www/html/Amp/Modules/Notification//Routes/web.php): failed to open stream: No such file or directory at /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php:35)
+[stacktrace]
+#0 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(35): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError()
+#1 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(35): require()
+#2 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/Router.php(425): Illuminate\\Routing\\RouteFileRegistrar->register()
+#3 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/Router.php(382): Illuminate\\Routing\\Router->loadRoutes()
+#4 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteRegistrar.php(161): Illuminate\\Routing\\Router->group()
+#5 /var/www/html/Amp/Modules/Notification/Providers/RouteServiceProvider.php(52): Illuminate\\Routing\\RouteRegistrar->group()
+#6 /var/www/html/Amp/Modules/Notification/Providers/RouteServiceProvider.php(38): Modules\\Notification\\Providers\\RouteServiceProvider->mapWebRoutes()
+#7 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Modules\\Notification\\Providers\\RouteServiceProvider->map()
+#8 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#9 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#10 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#11 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Container.php(653): Illuminate\\Container\\BoundMethod::call()
+#12 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php(122): Illuminate\\Container\\Container->call()
+#13 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php(45): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->loadRoutes()
+#14 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->Illuminate\\Foundation\\Support\\Providers\\{closure}()
+#15 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#16 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(81): Illuminate\\Container\\Util::unwrapIfClosure()
+#17 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#18 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Container.php(653): Illuminate\\Container\\BoundMethod::call()
+#19 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Support/ServiceProvider.php(119): Illuminate\\Container\\Container->call()
+#20 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(917): Illuminate\\Support\\ServiceProvider->callBootedCallbacks()
+#21 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(895): Illuminate\\Foundation\\Application->bootProvider()
+#22 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}()
+#23 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(896): array_walk()
+#24 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#25 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(237): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap()
+#26 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith()
+#27 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#28 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#29 {main}
+"} 
+[2021-12-27 12:20:41] production.ERROR: require(/var/www/html/Amp/Modules/Notification//Routes/api.php): failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): require(/var/www/html/Amp/Modules/Notification//Routes/api.php): failed to open stream: No such file or directory at /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php:35)
+[stacktrace]
+#0 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(35): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError()
+#1 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(35): require()
+#2 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/Router.php(425): Illuminate\\Routing\\RouteFileRegistrar->register()
+#3 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/Router.php(382): Illuminate\\Routing\\Router->loadRoutes()
+#4 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteRegistrar.php(161): Illuminate\\Routing\\Router->group()
+#5 /var/www/html/Amp/Modules/Notification/Providers/RouteServiceProvider.php(67): Illuminate\\Routing\\RouteRegistrar->group()
+#6 /var/www/html/Amp/Modules/Notification/Providers/RouteServiceProvider.php(36): Modules\\Notification\\Providers\\RouteServiceProvider->mapApiRoutes()
+#7 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Modules\\Notification\\Providers\\RouteServiceProvider->map()
+#8 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#9 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#10 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#11 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Container.php(653): Illuminate\\Container\\BoundMethod::call()
+#12 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php(122): Illuminate\\Container\\Container->call()
+#13 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php(45): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->loadRoutes()
+#14 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->Illuminate\\Foundation\\Support\\Providers\\{closure}()
+#15 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#16 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(81): Illuminate\\Container\\Util::unwrapIfClosure()
+#17 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#18 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Container.php(653): Illuminate\\Container\\BoundMethod::call()
+#19 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Support/ServiceProvider.php(119): Illuminate\\Container\\Container->call()
+#20 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(917): Illuminate\\Support\\ServiceProvider->callBootedCallbacks()
+#21 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(895): Illuminate\\Foundation\\Application->bootProvider()
+#22 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}()
+#23 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(896): array_walk()
+#24 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#25 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(237): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap()
+#26 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith()
+#27 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#28 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#29 {main}
+"} 
+[2021-12-27 12:20:50] production.ERROR: require(/var/www/html/Amp/Modules/Notification//Routes/api.php): failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): require(/var/www/html/Amp/Modules/Notification//Routes/api.php): failed to open stream: No such file or directory at /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php:35)
+[stacktrace]
+#0 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(35): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError()
+#1 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(35): require()
+#2 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/Router.php(425): Illuminate\\Routing\\RouteFileRegistrar->register()
+#3 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/Router.php(382): Illuminate\\Routing\\Router->loadRoutes()
+#4 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteRegistrar.php(161): Illuminate\\Routing\\Router->group()
+#5 /var/www/html/Amp/Modules/Notification/Providers/RouteServiceProvider.php(67): Illuminate\\Routing\\RouteRegistrar->group()
+#6 /var/www/html/Amp/Modules/Notification/Providers/RouteServiceProvider.php(36): Modules\\Notification\\Providers\\RouteServiceProvider->mapApiRoutes()
+#7 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Modules\\Notification\\Providers\\RouteServiceProvider->map()
+#8 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#9 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#10 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#11 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Container.php(653): Illuminate\\Container\\BoundMethod::call()
+#12 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php(122): Illuminate\\Container\\Container->call()
+#13 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php(45): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->loadRoutes()
+#14 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->Illuminate\\Foundation\\Support\\Providers\\{closure}()
+#15 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#16 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(81): Illuminate\\Container\\Util::unwrapIfClosure()
+#17 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#18 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Container.php(653): Illuminate\\Container\\BoundMethod::call()
+#19 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Support/ServiceProvider.php(119): Illuminate\\Container\\Container->call()
+#20 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(917): Illuminate\\Support\\ServiceProvider->callBootedCallbacks()
+#21 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(895): Illuminate\\Foundation\\Application->bootProvider()
+#22 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}()
+#23 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(896): array_walk()
+#24 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#25 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(237): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap()
+#26 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith()
+#27 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#28 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#29 {main}
+"} 
+[2021-12-27 12:21:30] production.ERROR: require(/var/www/html/Amp/Modules/Notification//Routes/api.php): failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): require(/var/www/html/Amp/Modules/Notification//Routes/api.php): failed to open stream: No such file or directory at /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php:35)
+[stacktrace]
+#0 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(35): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError()
+#1 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(35): require()
+#2 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/Router.php(425): Illuminate\\Routing\\RouteFileRegistrar->register()
+#3 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/Router.php(382): Illuminate\\Routing\\Router->loadRoutes()
+#4 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteRegistrar.php(161): Illuminate\\Routing\\Router->group()
+#5 /var/www/html/Amp/Modules/Notification/Providers/RouteServiceProvider.php(67): Illuminate\\Routing\\RouteRegistrar->group()
+#6 /var/www/html/Amp/Modules/Notification/Providers/RouteServiceProvider.php(36): Modules\\Notification\\Providers\\RouteServiceProvider->mapApiRoutes()
+#7 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Modules\\Notification\\Providers\\RouteServiceProvider->map()
+#8 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#9 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#10 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#11 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Container.php(653): Illuminate\\Container\\BoundMethod::call()
+#12 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php(122): Illuminate\\Container\\Container->call()
+#13 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php(45): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->loadRoutes()
+#14 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->Illuminate\\Foundation\\Support\\Providers\\{closure}()
+#15 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#16 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(81): Illuminate\\Container\\Util::unwrapIfClosure()
+#17 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#18 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Container.php(653): Illuminate\\Container\\BoundMethod::call()
+#19 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Support/ServiceProvider.php(119): Illuminate\\Container\\Container->call()
+#20 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(917): Illuminate\\Support\\ServiceProvider->callBootedCallbacks()
+#21 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(895): Illuminate\\Foundation\\Application->bootProvider()
+#22 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}()
+#23 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(896): array_walk()
+#24 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#25 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(237): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap()
+#26 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith()
+#27 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#28 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#29 {main}
+"} 
+[2021-12-27 12:21:30] production.ERROR: require(/var/www/html/Amp/Modules/Notification//Routes/api.php): failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): require(/var/www/html/Amp/Modules/Notification//Routes/api.php): failed to open stream: No such file or directory at /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php:35)
+[stacktrace]
+#0 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(35): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError()
+#1 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(35): require()
+#2 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/Router.php(425): Illuminate\\Routing\\RouteFileRegistrar->register()
+#3 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/Router.php(382): Illuminate\\Routing\\Router->loadRoutes()
+#4 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteRegistrar.php(161): Illuminate\\Routing\\Router->group()
+#5 /var/www/html/Amp/Modules/Notification/Providers/RouteServiceProvider.php(67): Illuminate\\Routing\\RouteRegistrar->group()
+#6 /var/www/html/Amp/Modules/Notification/Providers/RouteServiceProvider.php(36): Modules\\Notification\\Providers\\RouteServiceProvider->mapApiRoutes()
+#7 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Modules\\Notification\\Providers\\RouteServiceProvider->map()
+#8 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#9 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#10 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#11 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Container.php(653): Illuminate\\Container\\BoundMethod::call()
+#12 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php(122): Illuminate\\Container\\Container->call()
+#13 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php(45): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->loadRoutes()
+#14 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->Illuminate\\Foundation\\Support\\Providers\\{closure}()
+#15 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#16 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(81): Illuminate\\Container\\Util::unwrapIfClosure()
+#17 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#18 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Container.php(653): Illuminate\\Container\\BoundMethod::call()
+#19 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Support/ServiceProvider.php(119): Illuminate\\Container\\Container->call()
+#20 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(917): Illuminate\\Support\\ServiceProvider->callBootedCallbacks()
+#21 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(895): Illuminate\\Foundation\\Application->bootProvider()
+#22 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}()
+#23 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(896): array_walk()
+#24 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#25 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(237): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap()
+#26 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith()
+#27 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#28 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#29 {main}
+"} 
+[2021-12-27 12:21:30] production.ERROR: require(/var/www/html/Amp/Modules/Notification//Routes/api.php): failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): require(/var/www/html/Amp/Modules/Notification//Routes/api.php): failed to open stream: No such file or directory at /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php:35)
+[stacktrace]
+#0 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(35): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError()
+#1 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php(35): require()
+#2 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/Router.php(425): Illuminate\\Routing\\RouteFileRegistrar->register()
+#3 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/Router.php(382): Illuminate\\Routing\\Router->loadRoutes()
+#4 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Routing/RouteRegistrar.php(161): Illuminate\\Routing\\Router->group()
+#5 /var/www/html/Amp/Modules/Notification/Providers/RouteServiceProvider.php(67): Illuminate\\Routing\\RouteRegistrar->group()
+#6 /var/www/html/Amp/Modules/Notification/Providers/RouteServiceProvider.php(36): Modules\\Notification\\Providers\\RouteServiceProvider->mapApiRoutes()
+#7 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Modules\\Notification\\Providers\\RouteServiceProvider->map()
+#8 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#9 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#10 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#11 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Container.php(653): Illuminate\\Container\\BoundMethod::call()
+#12 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php(122): Illuminate\\Container\\Container->call()
+#13 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Support/Providers/RouteServiceProvider.php(45): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->loadRoutes()
+#14 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate\\Foundation\\Support\\Providers\\RouteServiceProvider->Illuminate\\Foundation\\Support\\Providers\\{closure}()
+#15 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#16 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(81): Illuminate\\Container\\Util::unwrapIfClosure()
+#17 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#18 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Container/Container.php(653): Illuminate\\Container\\BoundMethod::call()
+#19 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Support/ServiceProvider.php(119): Illuminate\\Container\\Container->call()
+#20 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(917): Illuminate\\Support\\ServiceProvider->callBootedCallbacks()
+#21 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(895): Illuminate\\Foundation\\Application->bootProvider()
+#22 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}()
+#23 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(896): array_walk()
+#24 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#25 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(237): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap()
+#26 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith()
+#27 /var/www/html/Amp/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#28 Command line code(1): Illuminate\\Foundation\\Console\\Kernel->handle()
+#29 {main}
+"} 

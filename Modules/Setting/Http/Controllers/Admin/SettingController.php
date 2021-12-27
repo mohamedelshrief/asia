@@ -29,9 +29,9 @@ class SettingController
      */
     public function update(UpdateSettingRequest $request)
     {
+        setting($request->except('_token', '_method'));
         $this->handleMaintenanceMode($request);
 
-        setting($request->except('_token', '_method'));
 
         return redirect(non_localized_url())
             ->with('success', trans('setting::messages.settings_have_been_saved'));

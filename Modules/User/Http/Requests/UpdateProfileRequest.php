@@ -27,6 +27,7 @@ class UpdateProfileRequest extends Request
             'first_name' => ['required'],
             'last_name' => ['required'],
             'password' => ['nullable', 'confirmed', 'min:6'],
+            'image' => ['image|mimes:jpeg,png,jpg,gif,svg|max:2048'],
         ];
     }
 

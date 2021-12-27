@@ -18,6 +18,7 @@ use Modules\User\Http\Requests\UpdateProfileRequest;
 use Modules\User\Mail\Welcome;
 use Modules\Address\Entities\Address;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends BaseAuthController
 {
@@ -145,6 +146,19 @@ class AuthController extends BaseAuthController
     public function update_me(UpdateProfileRequest $request)
     {
         $request->bcryptPassword();
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $s3 = Storage::disk('s3');
+            $file_name = date("dmYhis").uniqid() .'.'. $image->getClientOriginalExtension();
+            # define s3 target directory to upload file to
+            $s3filePath = '/media/' . $file_name;
+            $s3->put($s3filePath, base64_encode($image), 'public');
+            $request['image']= $s3filePath;
+
+        }else{
+
+            unset($request['image']);
+        }
 
         auth()->user()->update($request->all());
 

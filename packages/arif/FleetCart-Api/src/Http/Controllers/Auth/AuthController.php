@@ -145,7 +145,7 @@ class AuthController extends BaseAuthController
      */
     public function update_me(UpdateProfileRequest $request)
     {
-        return $request->all();
+        //return $request->all();
         $request->bcryptPassword();
         if ($request->has('image')) {
             $image = $request->file('image');

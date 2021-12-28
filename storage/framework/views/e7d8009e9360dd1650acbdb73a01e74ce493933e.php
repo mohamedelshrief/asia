@@ -26,7 +26,7 @@
 
                         <?php if(is_multilingual()): ?>
                             <li>
-                               <!-- <i class="las la-language"></i>
+                               <i class="las la-language"></i>
                                 <select class="custom-select-option arrow-black" onchange="location = this.value">
                                     <?php $__currentLoopData = supported_locales(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $locale => $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <option value="<?php echo e(localized_url($locale)); ?>" <?php echo e(locale() === $locale ? 'selected' : ''); ?>>
@@ -34,8 +34,7 @@
 
                                         </option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </select>-->
-                                <div id="google_translate_element" style="display: noe;"></div>
+                                </select>
                             </li>
 
                         <?php endif; ?>

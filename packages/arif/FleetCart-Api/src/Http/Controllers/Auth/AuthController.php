@@ -162,7 +162,7 @@ class AuthController extends BaseAuthController
         }
         auth('api')->user()->update($request->all());
 
-        return \response()->json(['message' => trans('account::messages.profile_updated')]);
+        return \response()->json(["user"=>auth('api')->user(),'message' => trans('account::messages.profile_updated')]);
     }
 
     public function getReset()

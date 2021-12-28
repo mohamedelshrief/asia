@@ -16,7 +16,7 @@ Route::prefix('api')
                     Route::get('/orders', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@index');
                     Route::get('/orders/{id}', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@index');
                     Route::get('/orders/recent', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@recent');
-                    Route::post('/', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@update_me');
+                    Route::post('/update', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@update_me');
                     Route::get('/reviews', \FleetCartApi\Http\Controllers\Account\AccountReviewController::class . '@index');
                     Route::get('/wishlist', \FleetCartApi\Http\Controllers\Account\WishlistController::class . '@index');
                     Route::post('/wishlist', \FleetCartApi\Http\Controllers\Account\WishlistController::class . '@toggle');

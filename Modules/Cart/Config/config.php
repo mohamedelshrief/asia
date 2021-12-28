@@ -25,7 +25,8 @@ return [
      *
      * the configuration for persisting cart
      */
-    'storage' => DBStorage::class,
+    'storage' => null,
+    // 'storage' => DBStorage::class,
 
     /*
      * ---------------------------------------------------------------

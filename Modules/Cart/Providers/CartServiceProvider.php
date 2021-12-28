@@ -17,18 +17,15 @@ class CartServiceProvider extends ServiceProvider
     public function register()
     {
 
-        $storage = new DBStorage();
+        $this->app->singleton(Cart::class, function ($app) {
 
-        $session_key = session()->getId();
+            $session_key = session()->getId();
 
-        $session_key = "default";
+            $storage = new DBStorage();
 
-        // Log::info($session_key);
-
-        $this->app->singleton(Cart::class, function ($app) use($storage, $session_key) {
             return new Cart(
                 $storage,
-                //$app['session'],
+                // $app['session'],
                 $app['events'],
                 'cart',
                 $session_key,

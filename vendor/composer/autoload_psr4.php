@@ -103,6 +103,7 @@ return array(
     'Modules\\Page\\' => array($baseDir . '/Modules/Page'),
     'Modules\\Order\\' => array($baseDir . '/Modules/Order'),
     'Modules\\Option\\' => array($baseDir . '/Modules/Option'),
+    'Modules\\Notification\\' => array($baseDir . '/Modules/Notification'),
     'Modules\\Newsletter\\' => array($baseDir . '/Modules/Newsletter'),
     'Modules\\Meta\\' => array($baseDir . '/Modules/Meta'),
     'Modules\\Menu\\' => array($baseDir . '/Modules/Menu'),

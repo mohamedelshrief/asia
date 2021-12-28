@@ -64,7 +64,7 @@ class AuthController extends BaseAuthController
     {
         $request->merge(['password' => bcrypt(request('password'))]);
 
-        $data = $request->only(['first_name', 'last_name', 'email', 'password']);
+        $data = $request->only(['first_name', 'last_name', 'email','player_id', 'password','phone']);
 
         $user = User::create($data);
 
@@ -103,11 +103,13 @@ class AuthController extends BaseAuthController
         }
 
         try {
+            User::where("id",$user->id)->update(["player_id"=>$request->player_id]);
             $token = $user->createToken('Web Token')->accessToken;
+            $userData=User::where("id",$user->id)->first();
             return response()
                 ->json([
                 'token' => $token,
-                'user' => $user
+                'user' => $userData
             ]);
         } catch (NotActivatedException $e) {
             return response()

@@ -23,6 +23,7 @@ class RegisterRequest extends Request
         $roles = [
             'first_name' => 'required',
             'last_name' => 'required',
+            'phone' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:6',
         ];

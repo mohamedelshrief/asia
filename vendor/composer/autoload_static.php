@@ -209,6 +209,7 @@ class ComposerStaticInitc39e8913993107e6fe516386813c780b
             'Modules\\Page\\' => 13,
             'Modules\\Order\\' => 14,
             'Modules\\Option\\' => 15,
+            'Modules\\Notification\\' => 21,
             'Modules\\Newsletter\\' => 19,
             'Modules\\Meta\\' => 13,
             'Modules\\Menu\\' => 13,
@@ -732,6 +733,10 @@ class ComposerStaticInitc39e8913993107e6fe516386813c780b
         'Modules\\Option\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Modules/Option',
+        ),
+        'Modules\\Notification\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Notification',
         ),
         'Modules\\Newsletter\\' => 
         array (
@@ -6315,6 +6320,13 @@ class ComposerStaticInitc39e8913993107e6fe516386813c780b
         'Modules\\Newsletter\\Http\\Controllers\\SubscriberController' => __DIR__ . '/../..' . '/Modules/Newsletter/Http/Controllers/SubscriberController.php',
         'Modules\\Newsletter\\Http\\Requests\\StoreSubscriberRequest' => __DIR__ . '/../..' . '/Modules/Newsletter/Http/Requests/StoreSubscriberRequest.php',
         'Modules\\Newsletter\\Providers\\NewsletterServiceProvider' => __DIR__ . '/../..' . '/Modules/Newsletter/Providers/NewsletterServiceProvider.php',
+        'Modules\\Notification\\Database\\Seeders\\NotificationDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Notification/Database/Seeders/NotificationDatabaseSeeder.php',
+        'Modules\\Notification\\Entities\\Notification' => __DIR__ . '/../..' . '/Modules/Notification/Entities/Notification.php',
+        'Modules\\Notification\\Http\\Controllers\\Admin\\NotificationController' => __DIR__ . '/../..' . '/Modules/Notification/Http/Controllers/Admin/NotificationController.php',
+        'Modules\\Notification\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/Modules/Notification/Http/Controllers/NotificationController.php',
+        'Modules\\Notification\\Providers\\NotificationServiceProvider' => __DIR__ . '/../..' . '/Modules/Notification/Providers/NotificationServiceProvider.php',
+        'Modules\\Notification\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Notification/Providers/RouteServiceProvider.php',
+        'Modules\\Notification\\Sidebar\\SidebarExtender' => __DIR__ . '/../..' . '/Modules/Notification/Sidebar/SidebarExtender.php',
         'Modules\\Option\\Admin\\OptionTable' => __DIR__ . '/../..' . '/Modules/Option/Admin/OptionTable.php',
         'Modules\\Option\\Admin\\OptionTabs' => __DIR__ . '/../..' . '/Modules/Option/Admin/OptionTabs.php',
         'Modules\\Option\\Admin\\ProductTabsExtender' => __DIR__ . '/../..' . '/Modules/Option/Admin/ProductTabsExtender.php',

@@ -6,6 +6,7 @@ namespace FleetCartApi\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Product\Entities\Product;
 use Modules\Product\Events\ProductViewed;
@@ -96,16 +97,16 @@ class ProductController extends Controller
         return response()->json($json);
     }
 
-    public function newArrivalProducts(){
+    public function newArrivalProducts(Request $request){
         $newProducts = Product::orderBy("id","DESC")->paginate(20);
         return response()->json($newProducts);
     }
-    public function recommededProducts(){
-        $newProducts = Product::orderBy("id","DESC")->paginate(20);
+    public function recommededProducts(Request $request){
+        $newProducts = Product::orderBy("id","DESC")->where("")->paginate(20);
         return response()->json($newProducts);
     }
-    public function mostPurchaseProducts(){
-        $newProducts = Product::orderBy("id","DESC")->paginate(20);
+    public function mostPurchaseProducts(Request $request){
+        $newProducts = Product::orderBy("id","DESC")->where("")->paginate(20);
         return response()->json($newProducts);
     }
 }

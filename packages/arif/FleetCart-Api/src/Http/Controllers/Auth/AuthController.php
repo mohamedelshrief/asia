@@ -146,7 +146,7 @@ class AuthController extends BaseAuthController
     public function update_me(UpdateProfileRequest $request)
     {
         $request->bcryptPassword();
-        if ($request->has('image')) {
+        /*if ($request->has('image')) {
             $image = $request->file('image');
             $s3 = Storage::disk('s3');
             $file_name = date("dmYhis").uniqid() .'.'. $image->getClientOriginalExtension();
@@ -158,7 +158,7 @@ class AuthController extends BaseAuthController
         }else{
 
             unset($request['image']);
-        }
+        }*/
 
         auth()->user()->update($request->all());
 

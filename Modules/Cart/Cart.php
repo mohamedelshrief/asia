@@ -26,7 +26,7 @@ class Cart extends DarryldecodeCart implements JsonSerializable
      */
     public function instance()
     {
-        $this->session('88uuiioo99888');
+        // $this->session('88uuiioo99888');
 
         return $this;
     }
@@ -53,6 +53,12 @@ class Cart extends DarryldecodeCart implements JsonSerializable
      */
     public function store($productId, $qty, $options = [])
     {
+
+        // dd(request()->uuid);
+        // if(auth()->check())
+
+        // $wish_list->session($uuid)
+
         $options = array_filter($options);
         $product = Product::with('files', 'categories', 'taxClass')->findOrFail($productId);
 

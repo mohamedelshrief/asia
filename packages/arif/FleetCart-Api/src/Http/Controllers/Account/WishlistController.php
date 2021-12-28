@@ -6,6 +6,9 @@ namespace FleetCartApi\Http\Controllers\Account;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Http\Request;
+use FleetCartApi\Entities\User;
+
 
 class WishlistController
 {
@@ -16,7 +19,7 @@ class WishlistController
      */
     public function index()
     {
-        return auth()->user()
+        return auth("api")->user()
             ->wishlist()
             ->with('files')
             ->latest()
@@ -28,10 +31,11 @@ class WishlistController
      *
      * @return JsonResponse
      */
-    public function store()
+    public function store(Request $request)
     {
-        if (!auth()->user()->wishlistHas(request('productId'))) {
-            auth()->user()->wishlist()->attach(request('productId'));
+        //return auth('api')->user()->wishlistHas($request->productId);
+        if (!auth('api')->user()->wishlistHas($request->productId)) {
+            auth('api')->user()->wishlist()->attach($request->productId);
         }
 
         return response()->json([
@@ -46,7 +50,7 @@ class WishlistController
      */
     public function toggle(): JsonResponse
     {
-        if (auth()->user()->wishlistHas(request('productId'))) {
+        if (auth("api")->user()->wishlistHas(request('productId'))) {
             return $this->destroy(request('productId'));
         }
 
@@ -61,7 +65,7 @@ class WishlistController
      */
     public function destroy($productId)
     {
-        auth()->user()->wishlist()->detach($productId);
+        auth("api")->user()->wishlist()->detach($productId);
 
         return response()->json([
             'message' => trans('fleetcart_api::validation.wishlist_deleted')

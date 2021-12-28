@@ -19,6 +19,7 @@ use Modules\User\Mail\Welcome;
 use Modules\Address\Entities\Address;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 use Illuminate\Support\Facades\Storage;
+use File;
 
 class AuthController extends BaseAuthController
 {
@@ -150,14 +151,12 @@ class AuthController extends BaseAuthController
         //return $request->all();
         $request->bcryptPassword();
         if ($request->has('image')) {
-            $image = $request->file('image');
-            $s3 = Storage::disk('s3');
-            $file_name = date("dmYhis").uniqid() .'.'. $image->getClientOriginalExtension();
-            # define s3 target directory to upload file to
-            $s3filePath = '/media/' . $file_name;
-            $s3->put($s3filePath, base64_encode($image), 'public');
-            $request['image']= $s3filePath;
-
+            $image = $request->image;  // your base64 encoded
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $imageName = date("dmYhis").uniqid() .'.'.'png';
+            File::put(public_path(). '/storage/media/' . $imageName, base64_decode($image));
+            $request['image']="/storage/media/".$imageName;
         }else{
 
             unset($request['image']);

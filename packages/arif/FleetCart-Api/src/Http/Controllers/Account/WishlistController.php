@@ -68,14 +68,10 @@ class WishlistController
      * @param string $productId
      * @return JsonResponse
      */
-    public function destroy(Request $request)
+    public function destroy($productId)
     {
-        $request->validate([
-            "productId"=>"required"
-        ],[
-            "productId.required"=>"Product Required"
-        ]);
-        auth("api")->user()->wishlist()->detach($request->productId);
+
+        auth("api")->user()->wishlist()->detach($productId);
 
         return response()->json([
             'message' => trans('fleetcart_api::validation.wishlist_deleted')

@@ -42,6 +42,7 @@ class User extends EloquentUser implements AuthenticatableContract
      */
     protected $dates = ['last_login'];
 
+
     public static function registered($email)
     {
         return static::where('email', $email)->exists();

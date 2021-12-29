@@ -162,7 +162,6 @@ class AuthController extends BaseAuthController
             unset($request['image']);
         }
         auth('api')->user()->update($request->all());
-
         return \response()->json(["user"=>auth('api')->user(),'message' => trans('account::messages.profile_updated')]);
     }
 

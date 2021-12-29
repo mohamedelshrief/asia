@@ -55,17 +55,17 @@ class ProductController extends Controller
         $relatedProducts = $product->relatedProducts()->forCard()->get();
         $upSellProducts = $product->upSellProducts()->forCard()->get();
         $review = $this->getReviewData($product);
-        if(Auth::check()){
-            if(auth()->user()->wishlistHas($product->id)){
+        //return $product->id;
+        if(auth("api")->user()){
+            if(auth('api')->user()->wishlistHas($product->id)){
                 $product["wishlist_fill"]=true;
             }else{
                 $product["wishlist_fill"]=false;
             }
         }else{
-            $product["wishlist_fill"]=false;
+            $product["wishlist_fill"]="sad";
         }
         event(new ProductViewed($product));
-
         return response()->json(compact('product', 'relatedProducts', 'upSellProducts', 'review'));
     }
 

@@ -98,7 +98,7 @@ class UpdateSettingRequest extends Request
             'paypal_client_id' => 'required_if:paypal_enabled,1',
             'paypal_secret' => 'required_if:paypal_enabled,1',
 
-            'stripe_enabled' => 'required|boolean',
+            /*'stripe_enabled' => 'required|boolean',
             'translatable.stripe_label' => 'required_if:stripe_enabled,1',
             'translatable.stripe_description' => 'required_if:stripe_enabled,1',
             'stripe_publishable_key' => 'required_if:stripe_enabled,1',
@@ -115,7 +115,7 @@ class UpdateSettingRequest extends Request
             'translatable.instamojo_description' => 'required_if:instamojo_enabled,1',
             'instamojo_test_mode' => 'required|boolean',
             'instamojo_api_key' => 'required_if:instamojo_enabled,1',
-            'instamojo_auth_token' => 'required_if:instamojo_enabled,1',
+            'instamojo_auth_token' => 'required_if:instamojo_enabled,1',*/
 
             'cod_enabled' => 'required|boolean',
             'translatable.cod_label' => 'required_if:cod_enabled,1',
@@ -126,10 +126,10 @@ class UpdateSettingRequest extends Request
             'translatable.bank_transfer_description' => 'required_if:bank_transfer_enabled,1',
             'translatable.bank_transfer_instructions' => 'required_if:bank_transfer_enabled,1',
 
-            'check_payment_enabled' => 'required|boolean',
+            /*'check_payment_enabled' => 'required|boolean',
             'translatable.check_payment_label' => 'required_if:check_payment_enabled,1',
             'translatable.check_payment_description' => 'required_if:check_payment_enabled,1',
-            'translatable.check_payment_instructions' => 'required_if:check_payment_enabled,1',
+            'translatable.check_payment_instructions' => 'required_if:check_payment_enabled,1',*/
         ];
     }
 

@@ -33,6 +33,11 @@ class WishlistController
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "productId"=>"required"
+        ],[
+            "productId.required"=>"Product Required"
+        ]);
         //return auth('api')->user()->wishlistHas($request->productId);
         if (!auth('api')->user()->wishlistHas($request->productId)) {
             auth('api')->user()->wishlist()->attach($request->productId);
@@ -65,6 +70,11 @@ class WishlistController
      */
     public function destroy($productId)
     {
+        $request->validate([
+            "productId"=>"required"
+        ],[
+            "productId.required"=>"Product Required"
+        ]);
         auth("api")->user()->wishlist()->detach($productId);
 
         return response()->json([

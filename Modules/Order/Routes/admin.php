@@ -31,3 +31,10 @@ Route::get('orders/{order}/print', [
     'uses' => 'OrderPrintController@show',
     'middleware' => 'can:admin.orders.show',
 ]);
+
+
+
+Route::post('orders/dispatch', [
+    'as' => 'admin.orders.action.dispatch',
+    'uses' => 'OrderStatusController@dispatch',
+]);

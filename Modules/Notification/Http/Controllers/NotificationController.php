@@ -5,7 +5,7 @@ namespace Modules\Notification\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
+use Modules\Notification\Entities\Notification;
 class NotificationController extends Controller
 {
     /**

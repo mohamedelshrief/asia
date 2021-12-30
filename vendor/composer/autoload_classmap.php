@@ -4955,6 +4955,7 @@ return array(
     'Modules\\Admin\\Ui\\Facades\\Form' => $baseDir . '/Modules/Admin/Ui/Facades/Form.php',
     'Modules\\Admin\\Ui\\Facades\\TabManager' => $baseDir . '/Modules/Admin/Ui/Facades/TabManager.php',
     'Modules\\Admin\\Ui\\Form' => $baseDir . '/Modules/Admin/Ui/Form.php',
+    'Modules\\Admin\\Ui\\NotificationTable' => $baseDir . '/Modules/Admin/Ui/NotificationTable.php',
     'Modules\\Admin\\Ui\\Tab' => $baseDir . '/Modules/Admin/Ui/Tab.php',
     'Modules\\Admin\\Ui\\TabManager' => $baseDir . '/Modules/Admin/Ui/TabManager.php',
     'Modules\\Admin\\Ui\\Tabs' => $baseDir . '/Modules/Admin/Ui/Tabs.php',

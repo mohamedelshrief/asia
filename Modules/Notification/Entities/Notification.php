@@ -8,7 +8,6 @@ use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Modules\Admin\Ui\NotificationTable;
 use Modules\User\Entities\User;
-
 class Notification extends Model
 {
 

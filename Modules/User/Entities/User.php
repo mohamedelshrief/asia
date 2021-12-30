@@ -42,6 +42,10 @@ class User extends EloquentUser implements AuthenticatableContract
      */
     protected $dates = ['last_login'];
 
+    public function getImageAttribute($value){
+        $url=url($value);
+        return $url;
+    }
 
     public static function registered($email)
     {

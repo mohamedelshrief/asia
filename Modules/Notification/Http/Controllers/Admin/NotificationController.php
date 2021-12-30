@@ -4,7 +4,7 @@ namespace Modules\Notification\Http\Controllers\Admin;
 
 use Modules\Admin\Traits\HasCrudActions;
 use Illuminate\Http\Request;
-use Modules\Notifications\Entities\Notification;
+use Modules\Notification\Entities\Notification;
 use Modules\Page\Entities\Page;
 use Modules\User\Entities\User;
 
@@ -43,7 +43,7 @@ class NotificationController
             return $notifications->table($request);
         }
 
-        return view('notifications::admin.notification.index');
+        return view('notification::admin.notification.index');
     }
 
     /**
@@ -52,7 +52,7 @@ class NotificationController
      */
     public function create()
     {
-        return view('notifications::create');
+        return view('notification::create');
     }
 
     /**
@@ -72,7 +72,7 @@ class NotificationController
      */
     public function show()
     {
-        return view('notifications::show');
+        return view('notification::show');
     }
 
     /**

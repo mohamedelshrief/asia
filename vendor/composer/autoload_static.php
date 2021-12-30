@@ -6115,6 +6115,7 @@ class ComposerStaticInitc39e8913993107e6fe516386813c780b
         'Modules\\Admin\\Ui\\Facades\\Form' => __DIR__ . '/../..' . '/Modules/Admin/Ui/Facades/Form.php',
         'Modules\\Admin\\Ui\\Facades\\TabManager' => __DIR__ . '/../..' . '/Modules/Admin/Ui/Facades/TabManager.php',
         'Modules\\Admin\\Ui\\Form' => __DIR__ . '/../..' . '/Modules/Admin/Ui/Form.php',
+        'Modules\\Admin\\Ui\\NotificationTable' => __DIR__ . '/../..' . '/Modules/Admin/Ui/NotificationTable.php',
         'Modules\\Admin\\Ui\\Tab' => __DIR__ . '/../..' . '/Modules/Admin/Ui/Tab.php',
         'Modules\\Admin\\Ui\\TabManager' => __DIR__ . '/../..' . '/Modules/Admin/Ui/TabManager.php',
         'Modules\\Admin\\Ui\\Tabs' => __DIR__ . '/../..' . '/Modules/Admin/Ui/Tabs.php',

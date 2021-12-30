@@ -7,5 +7,7 @@ return [
     'pending' => 'Pending',
     'pending_payment' => 'Pending Payment',
     'processing' => 'Processing',
+    'dispatch' => 'Dispatch',
+    'onway' => 'Onway',
     'refunded' => 'Refunded',
 ];

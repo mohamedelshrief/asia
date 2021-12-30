@@ -30,6 +30,8 @@ class Order extends Model
     const PENDING = 'pending';
     const PENDING_PAYMENT = 'pending_payment';
     const PROCESSING = 'processing';
+    const DISPATCH = 'dispatch';
+    const ONWAY = 'onway';
     const REFUNDED = 'refunded';
 
     /**

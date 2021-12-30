@@ -1,11 +1,17 @@
 <?php
 
 use \Illuminate\Support\Facades\Route;
+/*
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => ['localize', 'locale_session_redirect', 'localization_redirect', 'api', ''],
+])->group(function () {
+
+});*/
 
 Route::prefix('api')
     ->middleware('api_cors')
     ->group(function () {
-
         Route::middleware('auth:api')
             ->group(function () {
 

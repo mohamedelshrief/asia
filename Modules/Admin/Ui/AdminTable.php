@@ -74,7 +74,23 @@ class AdminTable implements Responsable
             ->rawColumns(array_merge($this->defaultRawColumns, $this->rawColumns))
             ->removeColumn('translations');
     }
-
+    public function notificationTable()
+    {
+        return datatables($this->source)
+            ->addColumn('checkbox', function ($entity) {
+                return view('admin::partials.table.checkbox', compact('entity'));
+            })
+            ->editColumn('status', function ($entity) {
+                return $entity->read_at
+                    ? '<span class="dot green"></span>'
+                    : '<span class="dot red"></span>';
+            })
+            ->editColumn('created', function ($entity) {
+                return view('admin::partials.table.date')->with('date', $entity->created_at);
+            })
+            ->rawColumns(array_merge($this->defaultRawColumns, $this->rawColumns))
+            ->removeColumn('translations');
+    }
     /**
      * Create an HTTP response that represents the object.
      *

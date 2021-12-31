@@ -10,8 +10,8 @@ use Modules\Currency\Entities\CurrencyRate;
 
 class Money implements JsonSerializable
 {
-    private $amount;
-    private $currency;
+    public $amount;
+    public $currency;
 
     public function __construct($amount, $currency)
     {

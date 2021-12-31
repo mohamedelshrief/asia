@@ -41,6 +41,9 @@ class Order extends Model
      */
     protected $guarded = [];
 
+    protected $casts=[
+        "shipping_data"=>"json"
+    ];
     /**
      * The attributes that should be mutated to dates.
      *

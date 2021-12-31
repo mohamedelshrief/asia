@@ -1,9 +1,14 @@
 <div class="order-information-wrapper">
     <div class="order-information-buttons">
-        <a href="<?php echo e(route('admin.orders.print.show', $order)); ?>" class="btn btn-default" target="_blank" data-toggle="tooltip" title="<?php echo e(trans('order::orders.print')); ?>">
+
+        <?php if($order->shipping_data!=""): ?>
+            <a href="<?php echo e(route('admin.orders.action.label', $order->id)); ?>" style="margin-left:10px" class="btn btn-default" target="_blank" data-toggle="tooltip" title="<?php echo e(trans('order::orders.print')); ?>">
+                Download Shipping Label <i class="fa fa-print" aria-hidden="true"></i>
+            </a>
+        <?php endif; ?>
+        <a href="<?php echo e(route('admin.orders.action.label', $order)); ?>" class="btn btn-default" target="_blank" data-toggle="tooltip" title="<?php echo e(trans('order::orders.print')); ?>">
             <i class="fa fa-print" aria-hidden="true"></i>
         </a>
-
         <form method="POST" action="<?php echo e(route('admin.orders.email.store', $order)); ?>">
             <?php echo e(csrf_field()); ?>
 
@@ -12,6 +17,7 @@
                 <i class="fa fa-envelope-o" aria-hidden="true"></i>
             </button>
         </form>
+
     </div>
 
     <h3 class="section-title"><?php echo e(trans('order::orders.order_and_account_information')); ?></h3>

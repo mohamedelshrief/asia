@@ -1,13 +1,24 @@
 <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModal" aria-hidden="true">
     <div class="modal-dialog " role="document">
       <div class="modal-content modal-lg">
+        <div class="shippingLoading hide" id="shippingLoading">
+            <center>
+                    <img src="https://icon-library.com/images/loading-icon-transparent-background/loading-icon-transparent-background-12.jpg" width="50px"/>
+                    <br/>
+                    <b>Please wait...</b>
+            </center>
+        </div>
         <form method="POST" id="bookingFormAction">
             @csrf
             <input type="hidden" name="order_id" value="{{$order->id}}" />
+
             <div class="modal-header">
             <h3 class="modal-title" id="bookingModalTitle" style="color: #000">Dispatch Packages</h3>
+
             </div>
             <div class="modal-body">
+                @if ($order->shipping_data=="")
+                <input type="hidden" class="shipping_status" id="shipping_status" value="0"/>
                 <div class="row">
                     <div class="col-md-6">
                         <h4>Parcel Weight & Size</h4>
@@ -65,11 +76,28 @@
                         </div>
                     </div>
                 </div>
+
+                @else
+                    <input type="hidden" class="shipping_status" id="shipping_status" value="1"/>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text-center">
+                            <img src="{{url('images/parcel.png')}}" width="300px" />
+                            <br/><br/>
+                            <h4>Order Already Dispatched
+                                <br/>
+                                <b>Tracking Number: {{$order->shipping_data["AWBNumber"]}} </b>
+                            </h4>
+                        </div>
+                    </div>
+                @endif
             </div>
             <div class="modal-footer">
 
-            <button type="submit" class="btn btn-primary" >Dispatch</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
+            @if ($order->shipping_data=="")
+                <button type="submit" class="btn btn-primary" >Dispatch</button>
+            @endif
+                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cancel</button>
             </div>
         </form>
       </div>
@@ -80,6 +108,7 @@
   @push('scripts')
     <script>
         $("#bookingFormAction").submit(function(e) {
+            $("#shippingLoading").removeClass("hide");
             e.preventDefault();
             $("input,textarea").removeClass("error");
             $(".error_msg").html("");
@@ -90,8 +119,17 @@
                 data: form_data,
                 async: false,
                 success: function (reponse) {
-
+                    if(reponse=="success"){
+                        success("Order has been dispatched")
+                        setTimeout(() => {
+                            $("#shippingLoading").addClass("hide");
+                            window.location.reload();
+                        }, 3000);
+                    }else{
+                        console.log(reponse);
+                    }
                 },error: function (xhr) {
+                    $("#shippingLoading").addClass("hide");
                     setTimeout(function(){
                         $.each(xhr.responseJSON.errors, function(key,value) {
                             $("#"+key+"_msg").html(value);

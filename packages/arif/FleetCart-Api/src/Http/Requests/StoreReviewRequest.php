@@ -24,7 +24,6 @@ class StoreReviewRequest extends Request
         return [
             'rating' => 'required|numeric',
             'reviewer_name' => 'required',
-            'comment' => 'required',
         ];
     }
 }

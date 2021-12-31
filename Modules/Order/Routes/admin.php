@@ -38,3 +38,9 @@ Route::post('orders/dispatch', [
     'as' => 'admin.orders.action.dispatch',
     'uses' => 'OrderStatusController@dispatch',
 ]);
+
+
+Route::get('orders/label/{id}', [
+    'as' => 'admin.orders.action.label',
+    'uses' => 'OrderStatusController@label',
+]);

@@ -88,35 +88,39 @@ class OrderStatusController
             "*.numeric"=>"Only enter numeric value",
         ]);
 
+        //Store Details
+        $storeDetail = setting()->all();
 
-        $settings = setting()->all();
-        return
+        //Order Details
+        $order=Order::findOrFail($request->order_id);
+        //return $order;
+
+
         //Booking Create Service
         $client = new Client();
-
         $payload=[
             "BookingRequest"=>[
-                "SenderContactName"=> "Mr. John",
-                "SenderCompanyName"=> "Sender Company Name",
-                "SenderAddress"=> "Some Test Address",
+                "SenderContactName"=>$storeDetail["store_name"],
+                "SenderCompanyName"=> $storeDetail["store_name"],
+                "SenderAddress"=> $storeDetail["store_address_1"]." ".$storeDetail["store_address_2"],
                 "SenderCity"=> 1,
-                "SenderContactMobile"=> "512354123",
-                "SenderContactPhone"=> "1234123",
-                "SenderEmail"=> "sendersemail@gmail.com",
-                "SenderZipCode"=> "00000",
+                "SenderContactMobile"=> "",
+                "SenderContactPhone"=>$storeDetail["store_phone"],
+                "SenderEmail"=> $storeDetail["store_phone"],
+                "SenderZipCode"=> $storeDetail["store_zip"],
                 "SenderState"=> "Dubai",
                 "SenderCountry"=> 971,
-                "ReceiverContactName"=> "Mr. Sam",
-                "ReceiverCompanyName"=> "Receiver Company Name",
-                "ReceiverAddress"=> "Some Test ReceiverAddress",
+                "ReceiverContactName"=> $order->shipping_first_name." ".$order->shipping_last_name,
+                "ReceiverCompanyName"=> "",
+                "ReceiverAddress"=> $order->shipping_address_1." ".$order->shipping_address_2,
                 "ReceiverCity"=> 2,
-                "ReceiverContactMobile"=> "14222212",
-                "ReceiverContactPhone"=> "443124",
-                "ReceiverEmail"=> "sasdf@asdf.com",
-                "ReceiverZipCode"=> "00000",
+                "ReceiverContactMobile"=> "",
+                "ReceiverContactPhone"=> $order->customer_phone,
+                "ReceiverEmail"=> $order->customer_phone,
+                "ReceiverZipCode"=> $order->shipping_zip,
                 "ReceiverState"=> "Abu Dhabi",
                 "ReceiverCountry"=> 971,
-                "ReferenceNo"=> "Cross-Ref-123456789",
+                "ReferenceNo"=> "Cross-Ref-".$order->id,
                 "ReferenceNo1"=> null,
                 "ReferenceNo2"=> null,
                 "ReferenceNo3"=> null,
@@ -129,7 +133,7 @@ class OrderStatusController
                 "PaymentType"=> "Credit",
                 "CODAmount"=> "0",
                 "CODCurrency"=> null,
-                "CommodityDescription"=> "Any good description",
+                "CommodityDescription"=> $order->note,
                 "Pieces"=> 1,
                 "Weight"=> $request->weight,
                 "WeightUnit"=> "Grams",
@@ -137,14 +141,14 @@ class OrderStatusController
                 "Width"=> $request->width,
                 "Height"=> $request->height,
                 "DimensionUnit"=> "Centimetre",
-                "ItemValue"=> "124",
+                "ItemValue"=> $order->total->amount,
                 "ValueCurrency"=> "AED",
                 "ProductCode"=> null,
                 "DeliveryInstructionsID"=> null,
                 "RequestSource"=> null,
                 "SendMailToSender"=> "No",
                 "SendMailToReceiver"=> "No",
-                "PreferredPickupDate"=> strtotime("d-M-Y",$request->pickup_date),
+                "PreferredPickupDate"=> date("d-M-Y", strtotime($request->pickup_date)),
                 "PreferredPickupTimeFrom"=> $request->pickupFrom,
                 "PreferredPickupTimeTo"=> $request->pickupTo,
                 "Is_Return_Service"=> "No",
@@ -170,7 +174,49 @@ class OrderStatusController
         $body = $response->getBody();
         $json_data=json_decode($body);
 
-        return $json_data->BookingResponse->AWBNumber;
+
+
+        //If Success Is True. Status Change To Dispatch
+        $shipping_data=$json_data->BookingResponse;
+
+
+
+        if($json_data->BookingResponse->serviceResult->success){
+            Order::where("id",$request->order_id)->update(["shipping_data"=>json_encode($shipping_data),"status"=>"dispatch"]);
+            return "success";
+        }
+
+
+        //If Return Error.
+        return $shipping_data;
+    }
+
+    public function label($id){
+        $order=Order::findOrFail($id);
+        $bin = base64_decode($order->shipping_data["AWBLabel"], true);
+
+        if (strpos($bin, '%PDF') !== 0) {
+          throw new Exception('Missing the PDF file signature');
+        }
+
+        # Write the PDF contents to a local file
+        file_put_contents('pdfs/order_'.$order->id.'_shipping.pdf', $bin);
+        $url ='pdfs/order_'.$order->id.'_shipping.pdf';
+        //return $url ;
+
+        if (file_exists($url)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . basename($url) . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($url));
+            readfile($url);
+            exit;
+        }
+
+        return "No File Exist";
 
     }
 }

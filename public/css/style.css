@@ -30,3 +30,13 @@
 .product-details-wrap .product-price {
     padding-left: 13px !important;
 }
+.shippingLoading {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.8);
+    top: 0px;
+    left: 0px;
+    z-index: 111111;
+    position: absolute;
+    padding-top: 35%;
+}

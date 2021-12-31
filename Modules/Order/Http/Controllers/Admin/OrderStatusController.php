@@ -89,6 +89,8 @@ class OrderStatusController
         ]);
 
 
+        $settings = setting()->all();
+        return
         //Booking Create Service
         $client = new Client();
 
@@ -142,9 +144,9 @@ class OrderStatusController
                 "RequestSource"=> null,
                 "SendMailToSender"=> "No",
                 "SendMailToReceiver"=> "No",
-                "PreferredPickupDate"=> "1-jan-2022",
-                "PreferredPickupTimeFrom"=> "15:00",
-                "PreferredPickupTimeTo"=> "18:00",
+                "PreferredPickupDate"=> strtotime("d-M-Y",$request->pickup_date),
+                "PreferredPickupTimeFrom"=> $request->pickupFrom,
+                "PreferredPickupTimeTo"=> $request->pickupTo,
                 "Is_Return_Service"=> "No",
                 "PrintType"=> "LabelOnly",
                 "Latitude"=> "40.689263",

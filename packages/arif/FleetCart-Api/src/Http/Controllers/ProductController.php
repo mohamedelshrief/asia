@@ -63,7 +63,7 @@ class ProductController extends Controller
                 $product["wishlist_fill"]=false;
             }
         }else{
-            $product["wishlist_fill"]="sad";
+            $product["wishlist_fill"]=false;
         }
         event(new ProductViewed($product));
         return response()->json(compact('product', 'relatedProducts', 'upSellProducts', 'review'));

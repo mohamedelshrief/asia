@@ -20,6 +20,7 @@ Route::prefix('api')
                 Route::prefix('me')->group(function () {
                     Route::get('/', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@me');
                     Route::get('/orders', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@index');
+                    Route::get('/notifications', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@notifications');
                     Route::get('/orders/{id}', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@index');
                     Route::get('/orders/recent', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@recent');
                     Route::post('/update', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@update_me');

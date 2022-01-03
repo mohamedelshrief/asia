@@ -8,6 +8,7 @@ use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Modules\Admin\Ui\NotificationTable;
 use Modules\User\Entities\User;
+use Modules\Order\Entities\Order;
 class Notification extends Model
 {
 
@@ -62,18 +63,12 @@ class Notification extends Model
 
 
     public function getNotificationTextAttribute(){
-
         $type = $this->type;
 
-        if(strpos($type, "Order") > -1){
-            $order = collect($this->data)->first();
+        if(strpos($type, "NewOrder") > -1){
+            $order =Order::findOrFail($this->data);
             $name = $order['customer_first_name'].' '.$order['customer_last_name'];
             return "New Order received from $name";
-        }
-        else if(strpos($type, "Register") > -1){
-            $name = $this->data['first_name'].' '.$this->data['last_name'];
-            $userType = ($this->data['isdressmaker']) ? 'dressmaker' : 'user';
-            return "New $userType registered from $name";
         }
         /*else if(strpos($type, "DispatchNotification") > -1){
             $name = $this->data['name'];
@@ -91,7 +86,6 @@ class Notification extends Model
             $order_id = $this->data['order_id'];
             return "Dressmaker - $name has cancelled the Order # $order_id";
         }*/
-
         return "New Notification";
     }
 
@@ -114,7 +108,8 @@ class Notification extends Model
     public function markAsRead()
     {
         if (is_null($this->read_at)) {
-            $this->forceFill(['read_at' => $this->freshTimestamp()])->save();
+            //$this->forceFill(['read_at' => $this->freshTimestamp()])->update();
+            //$this->update(['read_at' => $this->freshTimestamp()]);
         }
     }
 

@@ -43,7 +43,12 @@ class User extends EloquentUser implements AuthenticatableContract
     protected $dates = ['last_login'];
 
     public function getImageAttribute($value){
-        $url=url($value);
+        if(is_null($value)){
+            $url="https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar-300x300.jpg";
+        }else{
+
+            $url=url($value);
+        }
         return $url;
     }
 

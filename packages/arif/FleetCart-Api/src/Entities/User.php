@@ -9,4 +9,5 @@ use Modules\User\Entities\User as BaseUser;
 class User extends BaseUser
 {
     use HasApiTokens, Notifiable;
+
 }

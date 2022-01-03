@@ -19,6 +19,7 @@ use Modules\User\Mail\Welcome;
 use Modules\Address\Entities\Address;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 use Illuminate\Support\Facades\Storage;
+use Modules\Notification\Entities\Notification;
 use File;
 
 class AuthController extends BaseAuthController
@@ -241,6 +242,15 @@ class AuthController extends BaseAuthController
 
 
         return response(['message' => 'Address Updated'], 200);
+
+    }
+    public function notifications(){
+
+        $notifications = new Notification();
+        $user_id = auth("api")->user()->id;
+        $notification_data=$notifications->where('notifiable_id', $user_id)->paginate(20);
+        Notification::update(["read_at"=>date("d")]);
+        return $notification_data;
 
     }
 }

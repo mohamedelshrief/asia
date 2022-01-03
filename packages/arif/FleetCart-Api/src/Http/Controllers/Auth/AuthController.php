@@ -154,6 +154,8 @@ class AuthController extends BaseAuthController
         if ($request->has('image')) {
             $image = $request->image;  // your base64 encoded
             $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace('data:image/jpg;base64,', '', $image);
+            $image = str_replace('data:image/jpeg;base64,', '', $image);
             $image = str_replace(' ', '+', $image);
             $imageName = date("dmYhis").uniqid() .'.'.'png';
             File::put(public_path(). '/storage/media/' . $imageName, base64_decode($image));

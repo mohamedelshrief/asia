@@ -35,6 +35,8 @@ Route::prefix('api')
                     Route::post("add_address",\FleetCartApi\Http\Controllers\Auth\AuthController::class. '@add_address');
                     Route::post("update_address/{id}",\FleetCartApi\Http\Controllers\Auth\AuthController::class. '@update_address');
                     Route::post("delete_address",\FleetCartApi\Http\Controllers\Auth\AuthController::class. '@delete_address');
+
+                    Route::get('/order-shipping-status/{track_id}', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@orderStatus');
                 });
 
 

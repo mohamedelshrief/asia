@@ -10,6 +10,8 @@ use FleetCartApi\Http\Requests\StoreReviewRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Modules\Product\Entities\Product;
+use Illuminate\Http\Request;
+use GuzzleHttp\Client;
 
 class OrderController extends BaseController
 {
@@ -53,6 +55,22 @@ class OrderController extends BaseController
             ->firstOrFail();
 
         return response()->json($order);
+    }
+
+    public function orderStatus(Request $request){
+        $client = new Client();
+
+        $response = $client->get('https://osbtest.epg.gov.ae/ebs/epg.pos.trackandtrace.rest/GetTrackDetails?track_id=1000003699324', [
+            'headers' => [
+              'Authorization'=>'Basic '.base64_encode("osb.user:EPG@12345"),
+              'Content-Type'=>'application/json'
+            ]
+          ]);
+
+        $body = $response->getBody();
+        $json_data=json_decode($body);
+
+        return $json_data->track_final_result;
     }
 
 }

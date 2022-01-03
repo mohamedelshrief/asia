@@ -48,7 +48,8 @@ class Notification extends Model
     ];
 
     protected $appends = [
-        'notification_text',
+        'notification_title',
+        'notification_description',
     ];
 
     /**
@@ -62,30 +63,23 @@ class Notification extends Model
     ];
 
 
-    public function getNotificationTextAttribute(){
+    public function getNotificationDescriptionAttribute(){
         $type = $this->type;
 
         if(strpos($type, "NewOrder") > -1){
             $order =Order::findOrFail($this->data);
             $name = $order['customer_first_name'].' '.$order['customer_last_name'];
-            return "New Order received from $name";
+            return "New Order Placed from $name";
         }
-        /*else if(strpos($type, "DispatchNotification") > -1){
-            $name = $this->data['name'];
-            $order_id = $this->data['order_id'];
-            return "Dressmaker - $name has dispatch the Order # $order_id";
+        return "New Notification";
+    }
+
+    public function getNotificationTitleAttribute(){
+        $type = $this->type;
+
+        if(strpos($type, "NewOrder") > -1){
+            return "New Order Placed";
         }
-        else if(strpos($type, "OrderStatusNotification") > -1){
-            $name = $this->data['name'];
-            $order_id = $this->data['order_id'];
-            $status = @$this->data['status'];
-            return "Dressmaker - $name has {$status} the Order # $order_id";
-        }
-        else if(strpos($type, "CancelNotification") > -1){
-            $name = $this->data['name'];
-            $order_id = $this->data['order_id'];
-            return "Dressmaker - $name has cancelled the Order # $order_id";
-        }*/
         return "New Notification";
     }
 

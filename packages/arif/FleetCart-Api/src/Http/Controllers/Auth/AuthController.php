@@ -251,7 +251,7 @@ class AuthController extends BaseAuthController
         $notifications = new Notification();
         $user_id = auth("api")->user()->id;
         $notification_data=$notifications->where('notifiable_id', $user_id)->paginate(20);
-        Notification::update(["read_at"=>date("d")]);
+       // Notification::update(["read_at"=>date("d")]);
         return $notification_data;
 
     }

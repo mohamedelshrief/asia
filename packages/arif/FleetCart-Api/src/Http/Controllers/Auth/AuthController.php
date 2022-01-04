@@ -150,7 +150,12 @@ class AuthController extends BaseAuthController
     public function update_me(UpdateProfileRequest $request)
     {
         //return $request->all();
-        $request->bcryptPassword();
+        if($request->password !="" && $request->old_password!=""){
+            if(!Hash::check($request->old_password, auth('api')->user()->password)){
+                return response(['message' => 'Old password is invalid'], 403);
+            }
+            $request->bcryptPassword();
+        }
         if ($request->has('image')) {
             $image = $request->image;  // your base64 encoded
             $image = str_replace('data:image/png;base64,', '', $image);

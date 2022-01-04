@@ -4,7 +4,7 @@ namespace Modules\User\Http\Requests;
 
 use Illuminate\Validation\Rule;
 use Modules\Core\Http\Requests\Request;
-
+use Hash;
 class UpdateProfileRequest extends Request
 {
     /**
@@ -26,6 +26,7 @@ class UpdateProfileRequest extends Request
             'phone' => ['required'],
             'first_name' => ['required'],
             'last_name' => ['required'],
+            'old_password' => ['nullable'],
             'password' => ['nullable', 'confirmed', 'min:6'],
         ];
     }
@@ -37,8 +38,9 @@ class UpdateProfileRequest extends Request
      */
     public function bcryptPassword()
     {
+
         if ($this->filled('password')) {
-            return $this->merge(['password' => bcrypt($this->password)]);
+                return $this->merge(['password' => bcrypt($this->password)]);
         }
 
         unset($this['password']);

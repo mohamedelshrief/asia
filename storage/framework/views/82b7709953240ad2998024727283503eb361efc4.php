@@ -25,14 +25,13 @@
 
                 <div class="header-column-right d-flex">
 
-                    <div class="header-arrow">
+                   <!-- <div class="header-arrow">
                         <a href="<?php echo e(route('compare.index')); ?>" class="icon-wrap">
                             <i class="las la-long-arrow-alt-right"></i>
                             <i class="las la-long-arrow-alt-left"></i>
                         </a>
 
-                        <!-- <span v-html="cart.subTotal.inCurrentCurrency.formatted"></span> -->
-                    </div>
+                    </div>-->
 
                     <a href="<?php echo e(route('account.wishlist.index')); ?>" class="header-wishlist">
                         <div class="icon-wrap">

@@ -13,3 +13,9 @@ Route::put('translations/{key}', [
     'as' => 'admin.translations.update',
     'middleware' => 'can:admin.translations.edit',
 ]);
+
+Route::get('import-ar', [
+    'uses' => 'TranslationController@importAr',
+    'as' => 'admin.translations.import',
+]);
+

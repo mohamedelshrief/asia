@@ -39,6 +39,7 @@ class CheckoutController extends Controller
      */
     public function create()
     {
+        //return Country::supported();
         return view('public.checkout.create', [
             'cart' => Cart::instance(),
             'countries' => Country::supported(),

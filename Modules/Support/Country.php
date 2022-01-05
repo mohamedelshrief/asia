@@ -50,13 +50,23 @@ class Country
             return self::$supported;
         }
 
-        $supportedCountries = setting('supported_countries');
+        $supportedCountries = Country::countryWithId();//setting('supported_countries');
+
+        return $supportedCountries;
 
         return self::$supported = array_filter(static::all(), function ($code) use ($supportedCountries) {
             return in_array($code, $supportedCountries);
         }, ARRAY_FILTER_USE_KEY);
-    }
 
+    }
+    public static function countryWithId(){
+        $countries=\Modules\Setting\Entities\Country::get();
+        $data=null;
+        foreach ($countries as $key => $value) {
+            $data[$value->country_id]=$value->country_name;
+        }
+        return $data;
+    }
     /**
      * Get all country codes.
      *

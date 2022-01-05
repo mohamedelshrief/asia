@@ -4,6 +4,7 @@ namespace Modules\Order\Http\Controllers\Admin;
 
 use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderProduct;
+use Modules\Setting\Entities\Country;
 use Modules\Order\Events\OrderStatusChanged;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -217,6 +218,38 @@ class OrderStatusController
         }
 
         return "No File Exist";
+
+    }
+    public function getCountries(){
+
+        //Booking Create Service
+        $client = new Client();
+
+        $response = $client->get('https://osbtest.epg.gov.ae/ebs/genericapi/lookups/rest/GetCountries', [
+            'headers' => [
+              'AccountNo'=>'C175120',
+              'Password'=>'C175120',
+              'Content-Type'=>'application/json'
+            ]
+          ]);
+
+        $body = $response->getBody();
+        $json_data=json_decode($body);
+
+
+        $shipping_data=$json_data->CountriesResponse->Countries->Country;
+        foreach ($shipping_data as $key => $value) {
+            $country=new Country;
+            $country->country_id=$value->CountryId;
+            $country->country_code=$value->CountryCode;
+            $country->country_name=$value->CountryName;
+            $country->save();
+
+            echo $value->CountryName."<br/>";
+        }
+
+
+
 
     }
 }

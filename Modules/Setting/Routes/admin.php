@@ -13,3 +13,4 @@ Route::put('settings', [
     'uses' => 'SettingController@update',
     'middleware' => 'can:admin.settings.edit',
 ]);
+

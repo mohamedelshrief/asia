@@ -44,3 +44,10 @@ Route::get('orders/label/{id}', [
     'as' => 'admin.orders.action.label',
     'uses' => 'OrderStatusController@label',
 ]);
+
+
+Route::get('getCountries', [
+    'as' => 'admin.settings.country',
+    'uses' => 'OrderStatusController@getCountries',
+]);
+

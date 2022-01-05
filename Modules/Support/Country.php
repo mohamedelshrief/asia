@@ -50,9 +50,9 @@ class Country
             return self::$supported;
         }
 
-        $supportedCountries = Country::countryWithId();//setting('supported_countries');
+        $supportedCountries = setting('supported_countries');
 
-        return $supportedCountries;
+        //return $supportedCountries;
 
         return self::$supported = array_filter(static::all(), function ($code) use ($supportedCountries) {
             return in_array($code, $supportedCountries);

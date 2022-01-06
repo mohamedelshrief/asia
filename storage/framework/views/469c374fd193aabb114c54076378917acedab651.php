@@ -51,6 +51,7 @@
         <?php else: ?>
             <link rel="stylesheet" href="<?php echo e(v(Theme::url('public/css/app.css'))); ?>">
         <?php endif; ?>
+        <link rel="stylesheet" href="<?php echo e(url('css/front.css')); ?>">
 
         <link rel="shortcut icon" href="<?php echo e($favicon); ?>" type="image/x-icon">
 

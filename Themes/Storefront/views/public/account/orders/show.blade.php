@@ -12,8 +12,9 @@
     <section class="order-details-wrap">
         <div class="container">
             <div class="order-details-top">
-                <h3 class="section-title">{{ trans('storefront::account.view_order.view_order') }}</h3>
 
+                <h3 class="section-title">{{ trans('storefront::account.view_order.view_order') }}</h3>
+                <div style="float:right"><a class="btn btn-primary" href="{{route('account.orders.tracking',$order->id)}}">{{ trans('storefront::account.view_order.track_order') }}</a></div>
                 <div class="row">
                     @include('public.account.orders.show.order_information')
                     @include('public.account.orders.show.billing_address')

@@ -1,6 +1,7 @@
 <?php
 
 namespace Modules\Account\Http\Controllers;
+use GuzzleHttp\Client;
 
 class AccountOrdersController
 {
@@ -34,5 +35,29 @@ class AccountOrdersController
             ->firstOrFail();
 
         return view('public.account.orders.show', compact('order'));
+    }
+
+    public function tracking($id){
+        $order = auth()->user()
+            ->orders()
+            ->with(['products', 'coupon', 'taxes'])
+            ->where('id', $id)
+            ->firstOrFail();
+        return view('public.account.orders.Tracking', compact('order'));
+    }
+    public function getTracking($id){
+            //Tracking
+            $client = new Client();
+
+            $response = $client->get('https://osbtest.epg.gov.ae/ebs/epg.pos.trackandtrace.rest/GetTrackDetails?track_id='.$id, [
+                'headers' => [
+                    'Authorization'=>'Basic '.base64_encode("osb.user:EPG@12345"),
+                    'Content-Type'=>'application/json'
+                ]
+            ]);
+
+            $body = $response->getBody();
+            $json_data=json_decode($body);
+            return $json_data;
     }
 }

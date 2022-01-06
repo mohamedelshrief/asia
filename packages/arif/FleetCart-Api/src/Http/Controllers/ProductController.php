@@ -70,6 +70,7 @@ class ProductController extends Controller
             $product["wishlist_fill"]=false;
         }
         event(new ProductViewed($product));
+        $product->description=html_entity_decode($product->description);
         return response()->json(compact('product', 'relatedProducts', 'upSellProducts', 'review'));
     }
 

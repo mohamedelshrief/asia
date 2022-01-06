@@ -49,6 +49,7 @@
         @else
             <link rel="stylesheet" href="{{ v(Theme::url('public/css/app.css')) }}">
         @endif
+        <link rel="stylesheet" href="{{ url('css/front.css') }}">
 
         <link rel="shortcut icon" href="{{ $favicon }}" type="image/x-icon">
 

@@ -10,8 +10,9 @@
     <section class="order-details-wrap">
         <div class="container">
             <div class="order-details-top">
-                <h3 class="section-title"><?php echo e(trans('storefront::account.view_order.view_order')); ?></h3>
 
+                <h3 class="section-title"><?php echo e(trans('storefront::account.view_order.view_order')); ?></h3>
+                <div style="float:right"><a class="btn btn-primary" href="<?php echo e(route('account.orders.tracking',$order->id)); ?>">Track order</a></div>
                 <div class="row">
                     <?php echo $__env->make('public.account.orders.show.order_information', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     <?php echo $__env->make('public.account.orders.show.billing_address', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

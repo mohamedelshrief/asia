@@ -47,6 +47,7 @@ return [
         'subtotal' => 'Subtotal',
         'coupon' => 'Coupon',
         'total' => 'Total',
+        'track_order'=>"Track Order"
     ],
     'downloads' => [
         'filename' => 'FILENAME',

@@ -10,6 +10,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('account/orders', 'AccountOrdersController@index')->name('account.orders.index');
     Route::get('account/orders/{id}', 'AccountOrdersController@show')->name('account.orders.show');
+    Route::get('tracking/{id}', 'AccountOrdersController@tracking')->name('account.orders.tracking');
+    Route::get('get-tracking/{id}', 'AccountOrdersController@getTracking')->name('account.orders.gettracking');
 
     Route::get('account/downloads', 'AccountDownloadsController@index')->name('account.downloads.index');
     Route::get('account/downloads/{id}', 'AccountDownloadsController@show')->name('account.downloads.show');

@@ -1,6 +1,6 @@
 <?php
 
-use \Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route;
 /*
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
@@ -11,7 +11,10 @@ Route::group([
 
 Route::prefix('api')
     ->middleware('api_cors')
+    ->middleware('localize')
     ->group(function () {
+
+
         Route::middleware('auth:api')
             ->group(function () {
 
@@ -59,6 +62,7 @@ Route::prefix('api')
         Route::get('/products', \FleetCartApi\Http\Controllers\ProductController::class . '@index');
         Route::get('/flash-sale-products', \Themes\Storefront\Http\Controllers\FlashSaleProductController::class . '@index');
         Route::get('/products/{slug}', \FleetCartApi\Http\Controllers\ProductController::class . '@show');
+        Route::get('/brands', \FleetCartApi\Http\Controllers\ProductController::class . '@brands');
         Route::get('/categories', \FleetCartApi\Http\Controllers\CategoryController::class . '@index');
         Route::get('/settings', \FleetCartApi\Http\Controllers\SettingsController::class . '@index');
         Route::get('/countries', \FleetCartApi\Http\Controllers\CountriesController::class . '@index');

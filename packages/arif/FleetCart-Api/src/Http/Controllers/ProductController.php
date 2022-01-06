@@ -15,6 +15,8 @@ use Modules\Product\Http\Controllers\ProductSearch;
 use Modules\Product\Http\Middleware\SetProductSortOption;
 use Modules\Review\Entities\Review;
 use Auth;
+use Modules\Brand\Entities\Brand;
+
 class ProductController extends Controller
 {
     use ProductSearch;
@@ -108,5 +110,9 @@ class ProductController extends Controller
     public function mostPurchaseProducts(Request $request){
         $newProducts = Product::orderBy("id","DESC")->where("")->paginate(20);
         return response()->json($newProducts);
+    }
+    public function brands(){
+        $brands=Brand::all();
+        return response()->json($brands);
     }
 }

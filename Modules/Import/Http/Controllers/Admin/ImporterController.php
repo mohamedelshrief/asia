@@ -75,9 +75,9 @@ class ImporterController
                     $translation->save();
             }
             echo $item->name;
-            
+
         }*/
-        
+
         /*
         ********************************************
         ------------  Brand Import -----------------
@@ -105,14 +105,14 @@ class ImporterController
         ------------  Product Import ---------------
         ********************************************
         */
-        
+
         $products = DB::connection('mysql2')->table('oc_product')
         ->join("oc_product_description","oc_product_description.product_id","=","oc_product.product_id")
         ->select("oc_product.*","oc_product_description.*")
         ->limit(10)
         ->get();
         //->join("oc_product_to_category","oc_product_to_category.product_id","=","oc_product.product_id")
-        
+
         foreach ($products as $key => $item) {
             $base="https://www.apmpllc.com/image/";
             echo $base.$item->image;
@@ -136,8 +136,8 @@ class ImporterController
 
 
                     $descriptions= DB::connection('mysql2')->table('oc_product_description')->where("product_id",$item->product_id)->get();
-                    
-                    
+
+
                     $meta=new MetaData;
                     $meta->entity_type="Modules\Product\Entities\Product";
                     $meta->entity_id=$product->id;
@@ -157,11 +157,11 @@ class ImporterController
                         $transation->short_description=$description->meta_description;
                         $transation->save();
 
-                        
+
 
                         $metaData=new MetaDataTranslation;
                         $metaData->meta_data_id=$meta->id;
-                        
+
                         if($description->language_id==1){
                             $metaData->locale="en";
                         }else{
@@ -181,7 +181,7 @@ class ImporterController
                     }
 
                     echo $item->name."<br/>";
-                    
+
                 }*/
         }
 

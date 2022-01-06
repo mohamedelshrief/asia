@@ -21,7 +21,7 @@ class Brand extends Model
      *
      * @var array
      */
-    protected $with = ['translations'];
+    protected $with = ['translations','files'];
 
     /**
      * The attributes that are mass assignable.

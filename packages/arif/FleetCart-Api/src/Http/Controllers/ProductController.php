@@ -15,8 +15,10 @@ use Modules\Product\Http\Controllers\ProductSearch;
 use Modules\Product\Http\Middleware\SetProductSortOption;
 use Modules\Review\Entities\Review;
 use Auth;
+use Modules\Translation\Entities\Translation;
 use Modules\Brand\Entities\Brand;
 
+use Modules\Setting\Entities\Setting;
 class ProductController extends Controller
 {
     use ProductSearch;
@@ -114,5 +116,8 @@ class ProductController extends Controller
     public function brands(){
         $brands=Brand::all();
         return response()->json($brands);
+    }
+    public function translation(){
+        return Setting::allCached()["supported_locales"];
     }
 }

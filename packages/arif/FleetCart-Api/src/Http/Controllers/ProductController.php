@@ -115,7 +115,7 @@ class ProductController extends Controller
         return response()->json($newProducts);
     }
     public function brands(){
-        $brands=Brand::all();
+        $brands=Brand::paginate(20);
         return response()->json($brands);
     }
     public function translation(){

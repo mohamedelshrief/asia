@@ -121,4 +121,12 @@ class ProductController extends Controller
     public function translation(){
         return Setting::allCached()["supported_locales"];
     }
+    public function brandsImport(){
+        $brands=Brand::all();
+        foreach ($brands as $key => $value) {
+            $slug=strtolower(str_replace(" ","-",$value->name));
+            Brand::where("id",$value->id)->update(["slug"=>$slug]);
+        }
+        return $brands;
+    }
 }

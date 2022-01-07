@@ -61,7 +61,7 @@ foreach (Setting::allCached()["supported_locales"] as $key => $value) {
             Route::get('/products', \FleetCartApi\Http\Controllers\ProductController::class . '@index');
             Route::get('/flash-sale-products', \Themes\Storefront\Http\Controllers\FlashSaleProductController::class . '@index');
             Route::get('/products/{slug}', \FleetCartApi\Http\Controllers\ProductController::class . '@show');
-            Route::get('/tran', \FleetCartApi\Http\Controllers\ProductController::class . '@translation');
+            Route::get('/import-brands', \FleetCartApi\Http\Controllers\ProductController::class . '@brandsImport');
             Route::get('/brands', \FleetCartApi\Http\Controllers\ProductController::class . '@brands');
             Route::get('/categories', \FleetCartApi\Http\Controllers\CategoryController::class . '@index');
             Route::get('/settings', \FleetCartApi\Http\Controllers\SettingsController::class . '@index');

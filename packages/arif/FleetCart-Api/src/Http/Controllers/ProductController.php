@@ -9,28 +9,48 @@ use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Product\Entities\Product;
+use Modules\Product\Entities\ProductTranslation;
 use Modules\Product\Events\ProductViewed;
-use Modules\Product\Filters\ProductFilter;
 use Modules\Product\Http\Controllers\ProductSearch;
 use Modules\Product\Http\Middleware\SetProductSortOption;
 use Modules\Review\Entities\Review;
 use Auth;
 use Modules\Translation\Entities\Translation;
 use Modules\Brand\Entities\Brand;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Query\JoinClause;
+use Modules\Product\Filters\ProductFilter;
+use GuzzleHttp\Client;
 
 use Modules\Setting\Entities\Setting;
 class ProductController extends Controller
 {
     use ProductSearch;
-
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+
+
+    private $groupColumns = [
+        'products.id',
+        'slug',
+        'price',
+        'selling_price',
+        'special_price',
+        'special_price_type',
+        'special_price_start',
+        'special_price_end',
+        'in_stock',
+        'manage_stock',
+        'qty',
+        'new_from',
+        'new_to',
+    ];
     public function __construct()
     {
-        $this->middleware(SetProductSortOption::class)->only('index');
+        $this->middleware(SetProductSortOption::class)->only('index','HomepageProduct');
     }
 
     /**
@@ -82,22 +102,27 @@ class ProductController extends Controller
 
         return Review::countAndAvgRating($product);
     }
+
     public function HomepageProduct(){
-        $newProducts = Product::orderBy("id","DESC")->limit(20)->get();
+
+        $newProducts = Product::latest()->take(10)->get();
+        $relevanceProducts =Product::all()->random(10);
+        $Most= Product::all()->random(10);
+
         $json[]=[
             "title"=>"New Arrival",
             "products"=>$newProducts,
-            "url"=>"/new-arrival"
+            "url"=>"/products?sort=latest"
         ];
         $json[]=[
-            "title"=>"Recommended",
-            "products"=>$newProducts,
-            "url"=>"/recommeded-products"
+            "title"=>"Relevance",
+            "products"=>$relevanceProducts,
+            "url"=>"/products?sort=relevance"
         ];
         $json[]=[
             "title"=>"Most Purchased",
-            "products"=>$newProducts,
-            "url"=>"/most-recommeded-products"
+            "products"=> $Most,
+            "url"=>"/products?sort=topRated"
         ];
         return response()->json($json);
     }

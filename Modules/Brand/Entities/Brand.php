@@ -51,7 +51,7 @@ class Brand extends Model
      *
      * @var string
      */
-    protected $slugAttribute = 'name';
+    protected $slugAttribute = 'slug';
 
     /**
      * Perform any actions required after the model boots.

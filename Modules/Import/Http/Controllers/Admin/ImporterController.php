@@ -11,6 +11,10 @@ use Modules\Product\Entities\Product;
 use Modules\Product\Entities\ProductTranslation;
 use Modules\Meta\Entities\MetaData;
 use Modules\Meta\Entities\MetaDataTranslation;
+use Modules\Brand\Entities\Brand;
+use Modules\Brand\Entities\BrandTranslation;
+use Storage;
+use Illuminate\Support\Facades\File;
 
 class ImporterController
 {
@@ -81,24 +85,51 @@ class ImporterController
         /*
         ********************************************
         ------------  Brand Import -----------------
-        ********************************************
-        $brands=DB::connection('mysql2')->table('oc_manufacturer')->get();
+        ********************************************/
+        $brands=DB::table('oc_manufacturer')->get();
         foreach ($brands as $key => $value) {
-            $brand=new Brand;
-            $brand->id=$value->manufacturer_id;
-            $brand->slug=str_replace(" ","-",$value->name);
-            $brand->is_active=1;
-            $brand->save();
 
-            $translation=new BrandTranslation;
-            $translation->brand_id=$value->manufacturer_id;
-            $translation->locale="en";
-            $translation->name=$value->name;
-            $translation->save();
+            //$brand->id=$value->manufacturer_id;
 
-            echo $value->name."<br/>";
+
+            $base="https://www.apmpllc.com/image/";
+
+            $url = $base.$value->image;
+            $contents = file_get_contents($url);
+            $name = substr($url, strrpos($url, '/') + 1);
+
+            $fileUrl='storage/media/'.$name;
+            File::put( public_path( $fileUrl), $contents);
+
+
+
+            $file_id=DB::table('files')->insertGetId(
+                [
+                    'user_id' => auth()->user()->id,
+                    'filename' =>$name,
+                    'disk'=>'public_storage',
+                    'path'=>'media/'.$name,
+                    'extension'=>'jpg',
+                    'size'=>2048,
+                    'mime'=>'jpg',
+                ]
+            );
+
+            DB::table('entity_files')->insertGetId(
+                [
+                    'file_id' => $file_id,
+                    'entity_type' =>'Modules\Brand\Entities\Brand',
+                    'zone'=>'logo',
+                    'entity_id'=>$value->manufacturer_id,
+                ]
+            );
+
+
+
+            echo $base.$value->image."<br/>";
+
         }
-        */
+
 
         /*
         ********************************************
@@ -106,16 +137,16 @@ class ImporterController
         ********************************************
         */
 
-        $products = DB::connection('mysql2')->table('oc_product')
+        /*$products = DB::connection('mysql2')->table('oc_product')
         ->join("oc_product_description","oc_product_description.product_id","=","oc_product.product_id")
         ->select("oc_product.*","oc_product_description.*")
         ->limit(10)
-        ->get();
+        ->get();*/
         //->join("oc_product_to_category","oc_product_to_category.product_id","=","oc_product.product_id")
 
-        foreach ($products as $key => $item) {
-            $base="https://www.apmpllc.com/image/";
-            echo $base.$item->image;
+        //foreach ($products as $key => $item) {
+            //$base="https://www.apmpllc.com/image/";
+            //echo $base.$item->image;
             //Adding Product
            // $check=Product::where("tmp_id",$item->product_id)->count();
            /* if($check==0){
@@ -183,7 +214,7 @@ class ImporterController
                     echo $item->name."<br/>";
 
                 }*/
-        }
+       // }
 
     }
 }

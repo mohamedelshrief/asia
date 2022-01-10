@@ -30,6 +30,7 @@ return [
         'cod' => 'Cash On Delivery',
         'bank_transfer' => 'Bank Transfer',
         'check_payment' => 'Check / Money Order',
+        'ngenius' => 'N-genius',
     ],
     'form' => [
         'allow_reviews' => 'Allow customers to give reviews & ratings',
@@ -74,6 +75,7 @@ return [
         'enable_cod' => 'Enable Cash On Delivery',
         'enable_bank_transfer' => 'Enable Bank Transfer',
         'enable_check_payment' => 'Enable Check / Money Order',
+        'enable_ngenius'=>'Enable Ngenius'
     ],
     'validation' => [
         'sqlite_is_not_installed' => 'SQLite is not installed.',

@@ -81,9 +81,11 @@ class CheckoutController extends Controller
         $order = $orderService->create($request);
 
         $gateway = Gateway::get($request->payment_method);
-        //return $request;
         try {
+
             $response = $gateway->purchase($order, $request);
+
+            //return $request;
         } catch (Exception $e) {
             $orderService->delete($order);
 
@@ -91,7 +93,6 @@ class CheckoutController extends Controller
                 'message' => $e->getMessage(),
             ], 403);
         }
-
         return response()->json($response);
     }
 }

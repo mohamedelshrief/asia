@@ -46,7 +46,8 @@ class SettingTabs extends Tabs
             //->add($this->razorpay())
             //->add($this->instamojo())
             ->add($this->cod())
-            ->add($this->bankTransfer());
+            ->add($this->bankTransfer())
+            ->add($this->ngenius());
             //->add($this->checkPayment());
     }
 
@@ -383,6 +384,13 @@ class SettingTabs extends Tabs
             ]);
 
             $tab->view('setting::admin.settings.tabs.bank_transfer');
+        });
+    }
+    private function ngenius()
+    {
+        return tap(new Tab('ngenius', trans('setting::settings.tabs.ngenius')), function (Tab $tab) {
+            $tab->weight(70);
+            $tab->view('setting::admin.settings.tabs.ngenius');
         });
     }
 

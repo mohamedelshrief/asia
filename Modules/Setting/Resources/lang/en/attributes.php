@@ -136,4 +136,10 @@ return [
     'supported_countries.*' => 'Supported Countries',
     'supported_locales.*' => 'Supported Locales',
     'supported_currencies.*' => 'Supported Currencies',
+
+    'ngenius_enabled'=>'Ngenius Enabled',
+    'ngenius_api_key'=>"Ngenius Api key",
+    'ngenius_outlet_key'=>'Ngenius Outlet key',
+    'ngenius_label'=>'Ngenius label',
+    'ngenius_description'=>'Ngenius Description'
 ];

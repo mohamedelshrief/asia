@@ -17,4 +17,6 @@
         </div>
     </div>
 </div>
+
+
 <?php /**PATH /var/www/html/Amp/Modules/Setting/Resources/views/admin/settings/tabs/paypal.blade.php ENDPATH**/ ?>

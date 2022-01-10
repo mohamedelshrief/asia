@@ -12,6 +12,7 @@ use Illuminate\Support\ServiceProvider;
 use Modules\Payment\Gateways\Instamojo;
 use Modules\Payment\Gateways\BankTransfer;
 use Modules\Payment\Gateways\CheckPayment;
+use Modules\Payment\Gateways\Ngenius;
 
 class PaymentServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,7 @@ class PaymentServiceProvider extends ServiceProvider
         $this->registerCashOnDelivery();
         $this->registerBankTransfer();
         $this->registerCheckPayment();
+        $this->registerNgenius();
     }
 
     private function enabled($paymentMethod)
@@ -98,6 +100,11 @@ class PaymentServiceProvider extends ServiceProvider
     {
         if ($this->enabled('check_payment')) {
             Gateway::register('check_payment', new CheckPayment);
+        }
+    }
+    public function registerNgenius(){
+        if ($this->enabled('ngenius')) {
+            Gateway::register('ngenius', new Ngenius);
         }
     }
 }

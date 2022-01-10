@@ -272,9 +272,7 @@ export default {
             if (! this.form.terms_and_conditions || this.placingOrder) {
                 return;
             }
-
             this.placingOrder = true;
-
             $.ajax({
                 method: 'POST',
                 url: route('checkout.create'),
@@ -288,7 +286,9 @@ export default {
                     this.confirmPaytmPayment(response);
                 } else if (this.form.payment_method === 'razorpay') {
                     this.confirmRazorpayPayment(response);
-                } else {
+                } else if (this.form.payment_method === 'ngenius') {
+                    window.location.href = response;
+                }else {
                     this.confirmOrder(response.orderId, this.form.payment_method);
                 }
             }).catch((xhr) => {

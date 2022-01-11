@@ -17,3 +17,11 @@
         </div>
     </section>
 @endsection
+
+@push('pre-scripts')
+<script>
+    setTimeout(() => {
+        window.ReactNativeWebView.postMessage('success');
+    }, 1000);
+    </script>
+@endpush

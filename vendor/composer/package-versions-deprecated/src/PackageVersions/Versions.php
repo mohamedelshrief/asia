@@ -77,6 +77,7 @@ final class Versions
   'guzzlehttp/psr7' => '2.1.0@089edd38f5b8abba6cb01567c2a8aaa47cec4c72',
   'instamojo/instamojo-php' => '0.4@99dc50bf008be77be84f447607e416f73f319904',
   'jackiedo/dotenv-editor' => '1.2.0@f93690a80915d51552931d9406d79b312da226b9',
+  'ladumor/one-signal' => 'v0.4.1@e6e37041c657a6b963ab27fe55f8373819974df0',
   'laminas/laminas-diactoros' => '2.8.0@0c26ef1d95b6d7e6e3943a243ba3dc0797227199',
   'laravel/framework' => 'v8.73.2@0e1c63315eeaee5920552ff042bd820bb4014533',
   'laravel/helpers' => 'v1.4.1@febb10d8daaf86123825de2cb87f789a3371f0ac',
@@ -206,7 +207,7 @@ final class Versions
   'maximebf/debugbar' => 'v1.17.3@e8ac3499af0ea5b440908e06cc0abe5898008b3c',
   'nunomaduro/collision' => 'v5.10.0@3004cfa49c022183395eabc6d0e5207dfe498d00',
   'symfony/debug' => 'v4.4.31@43ede438d4cb52cd589ae5dc070e9323866ba8e0',
-  'envaysoft/fleetcart' => 'dev-main@a4c7ebf49ac344e3c8b1a5596557501364097a90',
+  'envaysoft/fleetcart' => 'dev-main@41d1b7c5bb4368f485cda3b2e57814f44cc580f6',
 );
 
     private function __construct()

@@ -256,6 +256,7 @@ class ComposerStaticInitc39e8913993107e6fe516386813c780b
             'Laravel\\Passport\\Database\\Factories\\' => 36,
             'Laravel\\Passport\\' => 17,
             'Laminas\\Diactoros\\' => 18,
+            'Ladumor\\OneSignal\\' => 18,
         ),
         'J' => 
         array (
@@ -923,6 +924,10 @@ class ComposerStaticInitc39e8913993107e6fe516386813c780b
         'Laminas\\Diactoros\\' => 
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-diactoros/src',
+        ),
+        'Ladumor\\OneSignal\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ladumor/one-signal/src',
         ),
         'JmesPath\\' => 
         array (
@@ -6050,6 +6055,11 @@ class ComposerStaticInitc39e8913993107e6fe516386813c780b
         'JmesPath\\TreeInterpreter' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/TreeInterpreter.php',
         'JmesPath\\Utils' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/Utils.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'Ladumor\\OneSignal\\OneSignal' => __DIR__ . '/..' . '/ladumor/one-signal/src/OneSignal.php',
+        'Ladumor\\OneSignal\\OneSignalClient' => __DIR__ . '/..' . '/ladumor/one-signal/src/OneSignalClient.php',
+        'Ladumor\\OneSignal\\OneSignalManager' => __DIR__ . '/..' . '/ladumor/one-signal/src/OneSignalManager.php',
+        'Ladumor\\OneSignal\\OneSignalServiceProvider' => __DIR__ . '/..' . '/ladumor/one-signal/src/OneSignalServiceProvider.php',
+        'Ladumor\\OneSignal\\commands\\PublishUserDevice' => __DIR__ . '/..' . '/ladumor/one-signal/src/commands/PublishUserDevice.php',
         'Laminas\\Diactoros\\AbstractSerializer' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/AbstractSerializer.php',
         'Laminas\\Diactoros\\CallbackStream' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/CallbackStream.php',
         'Laminas\\Diactoros\\ConfigProvider' => __DIR__ . '/..' . '/laminas/laminas-diactoros/src/ConfigProvider.php',
@@ -7204,6 +7214,7 @@ class ComposerStaticInitc39e8913993107e6fe516386813c780b
         'Modules\\Payment\\Gateways\\COD' => __DIR__ . '/../..' . '/Modules/Payment/Gateways/COD.php',
         'Modules\\Payment\\Gateways\\CheckPayment' => __DIR__ . '/../..' . '/Modules/Payment/Gateways/CheckPayment.php',
         'Modules\\Payment\\Gateways\\Instamojo' => __DIR__ . '/../..' . '/Modules/Payment/Gateways/Instamojo.php',
+        'Modules\\Payment\\Gateways\\Ngenius' => __DIR__ . '/../..' . '/Modules/Payment/Gateways/Ngenius.php',
         'Modules\\Payment\\Gateways\\PayPal' => __DIR__ . '/../..' . '/Modules/Payment/Gateways/PayPal.php',
         'Modules\\Payment\\Gateways\\Paytm' => __DIR__ . '/../..' . '/Modules/Payment/Gateways/Paytm.php',
         'Modules\\Payment\\Gateways\\Razorpay' => __DIR__ . '/../..' . '/Modules/Payment/Gateways/Razorpay.php',
@@ -7272,6 +7283,7 @@ class ComposerStaticInitc39e8913993107e6fe516386813c780b
         'Modules\\Review\\Sidebar\\SidebarExtender' => __DIR__ . '/../..' . '/Modules/Review/Sidebar/SidebarExtender.php',
         'Modules\\Setting\\Admin\\SettingTabs' => __DIR__ . '/../..' . '/Modules/Setting/Admin/SettingTabs.php',
         'Modules\\Setting\\Database\\Seeders\\SettingDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Setting/Database/Seeders/SettingDatabaseSeeder.php',
+        'Modules\\Setting\\Entities\\Country' => __DIR__ . '/../..' . '/Modules/Setting/Entities/Country.php',
         'Modules\\Setting\\Entities\\Setting' => __DIR__ . '/../..' . '/Modules/Setting/Entities/Setting.php',
         'Modules\\Setting\\Entities\\SettingTranslation' => __DIR__ . '/../..' . '/Modules/Setting/Entities/SettingTranslation.php',
         'Modules\\Setting\\Events\\SettingSaved' => __DIR__ . '/../..' . '/Modules/Setting/Events/SettingSaved.php',

@@ -6,6 +6,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Notification\Entities\Notification;
+use Ladumor\OneSignal\OneSignal;
+
 class NotificationController extends Controller
 {
     /**
@@ -76,4 +78,5 @@ class NotificationController extends Controller
     {
         //
     }
+
 }

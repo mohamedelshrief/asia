@@ -182,7 +182,8 @@ return [
         Nwidart\Modules\LaravelModulesServiceProvider::class,
         Mehedi\Stylist\StylistServiceProvider::class,
         FleetCartApi\Providers\FleetCartApiServiceProvider::class,
-        
+        Ladumor\OneSignal\OneSignalServiceProvider::class,
+
     ],
 
     /*
@@ -229,5 +230,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
         'Module' => \Nwidart\Modules\Facades\Module::class,
+        'OneSignal' => \Ladumor\OneSignal\OneSignal::class,
     ],
 ];

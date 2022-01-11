@@ -26,9 +26,64 @@ class OrderStatusController
         $message = trans('order::messages.status_updated');
 
         event(new OrderStatusChanged($order));
+        if(request('status')=="canceled") {
+            $this->pushNotification($order,"Order no# ".$order->id,"Sorry, Your order canceled");
+        }else if(request('status')=="completed") {
+            $this->pushNotification($order,"Order no# ".$order->id,"Congratulations! Your order completed");
+        }else if(request('status')=="processing") {
+            $this->pushNotification($order,"Order no# ".$order->id,"Your order on processing");
+        }else if(request('status')=="dispatch") {
+            $this->pushNotification($order,"Order no# ".$order->id,"Your order has been dispatched from store");
+        }else if(request('status')=="onway") {
+            $this->pushNotification($order,"Order no# ".$order->id,"Your order delivery onway");
+        }else if(request('status')=="refunded") {
+            $this->pushNotification($order,"Order no# ".$order->id,"Your order amount refunded");
+        }
 
         return $message;
     }
+    public function pushNotification($order,$title,$description){
+        $device_ids = array('8970e282-72bd-11ec-96e5-3ae6363ac16c');
+
+        $content = array(
+            "en" => $description
+        );
+        $headings = array(
+            "en" => $title
+        );
+        $data = array(
+                "title"          => $title,
+                "message"        => $description
+            );
+        $fields = array(
+            'app_id' => '209cfc78-58d5-4fd7-ba64-ac38a41c7aab', // your api key
+            'include_player_ids' => $device_ids,
+            'data' => $data,
+            'large_icon' => "https://i.ibb.co/F8QtR4Q/G73-Yp-QKn-Lo-ZBpy-Y3-MYDvmpd-M1-Bq-C2j-HA32ms-It-Ls.png",
+            'headings' => $headings,
+            'contents' => $content
+        );
+
+        $sendContent = json_encode($fields);
+
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
+        curl_setopt($ch, CURLOPT_HTTPHEADER,
+                            array('Content-Type: application/json;
+                                    charset=utf-8',
+                                    'Authorization: Basic OGI4MjA5MDktYzIyMS00MDA3LWE4MDYtMWIyNTE4YzNjZDk1' // your api key
+                            ));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendContent);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+        $response = curl_exec($ch);
+        curl_close($ch);
+    }
+
 
     private function adjustStock(Order $order)
     {
@@ -184,6 +239,8 @@ class OrderStatusController
 
         if($json_data->BookingResponse->serviceResult->success){
             Order::where("id",$request->order_id)->update(["shipping_data"=>json_encode($shipping_data),"status"=>"dispatch"]);
+
+            $this->pushNotification($order,"Order no# ".$request->order_id,"Your order has been dispatched");
             return "success";
         }
 

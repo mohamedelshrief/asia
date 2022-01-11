@@ -9,3 +9,10 @@ Route::get('/sales-analytics', [
     'uses' => 'SalesAnalyticsController@index',
     'middleware' => 'can:admin.orders.index',
 ]);
+
+
+Route::get('test', [
+    'as' => 'admin.notification.test',
+    'uses' => 'SalesAnalyticsController@test'
+]);
+//02878ece-72b8-11ec-85ca-e234e563d17f

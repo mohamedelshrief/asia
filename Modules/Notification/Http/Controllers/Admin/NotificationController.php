@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Modules\Notification\Entities\Notification;
 use Modules\Page\Entities\Page;
 use Modules\User\Entities\User;
+use Ladumor\OneSignal\OneSignal;
 
 class NotificationController
 {

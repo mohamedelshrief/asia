@@ -63,3 +63,33 @@
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     @endif
 @endpush
+
+
+@push('scripts')
+
+<script>
+    $(document).ready(function(){
+        shippingPricing();
+        $(".select-address input[type=radio]").change(function(){
+            shippingPricing();
+        })
+    })
+    function shippingPricing(){
+        address_id=$(".select-address input[type=radio]:checked").val();
+        sub_total=$("#subTotalPricing").val();
+        $.ajax({
+            url: "{{url('en/api/shipping-price')}}?address_id="+address_id,
+            type: "GET",
+            async: false,
+            success: function (reponse) {
+                shipping_amount=reponse[0].TotalPriceAED;
+                $(".shipping-methods .price-amount").html("AED "+shipping_amount);
+                $("#shipping_cost_amount").val(shipping_amount);
+                total_amount=parseInt(shipping_amount)+parseInt(sub_total);
+                $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+            },
+        });
+    }
+</script>
+@endpush
+

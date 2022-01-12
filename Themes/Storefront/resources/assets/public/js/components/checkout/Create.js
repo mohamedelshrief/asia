@@ -164,7 +164,7 @@ export default {
                 this.renderStripeElements();
             }
         });
-        window.alert("Testing");
+
     },
 
     methods: {
@@ -271,6 +271,9 @@ export default {
         },
 
         placeOrder() {
+            this.form.shipping_cost = $("#shipping_cost_amount").val();
+            //alert(JSON.stringify(this.form));
+            //return ;
             if (! this.form.terms_and_conditions || this.placingOrder) {
                 return;
             }

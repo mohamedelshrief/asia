@@ -62,4 +62,34 @@
     <?php endif; ?>
 <?php $__env->stopPush(); ?>
 
+
+<?php $__env->startPush('scripts'); ?>
+
+<script>
+    $(document).ready(function(){
+        shippingPricing();
+        $(".select-address input[type=radio]").change(function(){
+            shippingPricing();
+        })
+    })
+    function shippingPricing(){
+        address_id=$(".select-address input[type=radio]:checked").val();
+        sub_total=$("#subTotalPricing").val();
+        $.ajax({
+            url: "<?php echo e(url('en/api/shipping-price')); ?>?address_id="+address_id,
+            type: "GET",
+            async: false,
+            success: function (reponse) {
+                shipping_amount=reponse[0].TotalPriceAED;
+                $(".shipping-methods .price-amount").html("AED "+shipping_amount);
+                $("#shipping_cost_amount").val(shipping_amount);
+                total_amount=parseInt(shipping_amount)+parseInt(sub_total);
+                $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+            },
+        });
+    }
+</script>
+<?php $__env->stopPush(); ?>
+
+
 <?php echo $__env->make('public.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/Amp/Themes/Storefront/views/public/checkout/create.blade.php ENDPATH**/ ?>

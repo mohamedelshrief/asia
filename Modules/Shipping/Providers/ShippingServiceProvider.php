@@ -64,7 +64,7 @@ class ShippingServiceProvider extends ServiceProvider
         }
 
         ShippingMethod::register('emirates_post', function () {
-            return new Method('emirates_post', setting('emirates_post_label'), 100);
+            return new Method('emirates_post', setting('emirates_post_label'), 0);
         });
     }
 }

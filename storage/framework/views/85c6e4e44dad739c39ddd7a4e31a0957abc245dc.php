@@ -1,3 +1,7 @@
+<?php
+
+use Modules\Cart\Facades\Cart;
+?>
 <aside class="order-summary-wrap">
     <div class="order-summary">
         <div class="order-summary-top">
@@ -60,7 +64,8 @@
 
             <div class="shipping-methods" v-if="hasShippingMethod" v-cloak>
                 <h6><?php echo e(trans('storefront::cart.shipping_method')); ?></h6>
-
+                <input type="hidden" id="shipping_cost_amount" name="shipping_cost" />
+                <input type="hidden" id="subTotalPricing"  value="<?php echo e(Cart::total()->amount()); ?>" />
                 <div class="form-group">
                     <div class="form-radio" v-for="shippingMethod in cart.availableShippingMethods">
                         <input

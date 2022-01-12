@@ -5,6 +5,7 @@ namespace Modules\Order\Http\Controllers\Admin;
 use Modules\Order\Entities\Order;
 use Modules\Order\Entities\OrderProduct;
 use Modules\Setting\Entities\Country;
+use Modules\User\Entities\User;
 use Modules\Order\Events\OrderStatusChanged;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -43,7 +44,9 @@ class OrderStatusController
         return $message;
     }
     public function pushNotification($order,$title,$description){
-        $device_ids = array('8970e282-72bd-11ec-96e5-3ae6363ac16c');
+        $user=User::where("id",$order->customer_id)->first();
+
+        $device_ids = array($user->player_id);
 
         $content = array(
             "en" => $description

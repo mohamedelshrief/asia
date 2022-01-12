@@ -14,3 +14,10 @@ Route::put('settings', [
     'middleware' => 'can:admin.settings.edit',
 ]);
 
+
+
+Route::get('/cities/{country}', [
+    'as' => 'cities.data',
+    'uses' => 'SettingController@city',
+]);
+

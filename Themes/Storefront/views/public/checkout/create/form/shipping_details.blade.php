@@ -127,6 +127,30 @@
 
                             </div>
 
+                           <!-- <div class="col-md-9">
+                                <div class="form-group">
+                                    <label for="shipping-city">
+                                        {{ trans('checkout::attributes.shipping.city') }}<span>*</span>
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="shipping-city"
+                                        id="shipping-city"
+                                        class="form-control"
+                                    >
+
+                                    <span
+                                        class="error-message"
+                                        v-if="errors.has('shipping.city')"
+                                        v-text="errors.get('shipping.city')"
+                                    >
+                                    </span>
+                                </div>
+                            </div>-->
+
+
+
                             <div class="col-md-9">
                                 <div class="form-group">
                                     <label for="shipping-city">

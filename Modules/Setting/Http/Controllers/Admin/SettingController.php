@@ -5,7 +5,10 @@ namespace Modules\Setting\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Artisan;
 use Modules\Admin\Ui\Facades\TabManager;
 use Modules\Setting\Http\Requests\UpdateSettingRequest;
+use Illuminate\Http\JsonResponse;
 use DB;
+use Modules\Setting\Entities\City;
+
 class SettingController
 {
     /**
@@ -43,6 +46,16 @@ class SettingController
             Artisan::call('down');
         } elseif (app()->isDownForMaintenance()) {
             Artisan::call('up');
+        }
+    }
+
+    public function city($country): JsonResponse
+    {
+        if(isset($country)){
+            $cities=City::where("CountryCode",$country)->select('Cityid','CityName','CityNameAR')->limit(100)->get()->chunk(30);
+            return response()->json($cities);
+        }else{
+            return response()->json(null);
         }
     }
 }

@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <title>
             <?php if (! empty(trim($__env->yieldContent('title')))): ?>
                 <?php echo $__env->yieldContent('title'); ?> - <?php echo e(setting('store_name')); ?>

@@ -27,6 +27,10 @@ export default {
                 billing: {},
                 shipping: {},
             },
+            cities: {
+                billing: {},
+                shipping: {},
+            },
             placingOrder: false,
             errors: new Errors(),
             stripe: null,
@@ -216,19 +220,10 @@ export default {
         changeBillingCountry(country) {
             this.$set(this.form.billing, 'country', country);
 
-            this.fetchStates(country, (states) => {
-                this.$set(this.states, 'billing', states);
-                this.$set(this.form.billing, 'state', '');
-            });
         },
 
         changeShippingCountry(country) {
             this.$set(this.form.shipping, 'country', country);
-
-            this.fetchStates(country, (states) => {
-                this.$set(this.states, 'shipping', states);
-                this.$set(this.form.shipping, 'state', '');
-            });
         },
 
         fetchStates(country, callback) {

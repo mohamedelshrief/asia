@@ -85,7 +85,7 @@
                 shipping_amount=reponse[0].TotalPriceAED;
                 $(".shipping-methods .price-amount").html("AED "+shipping_amount);
                 $("#shipping_cost_amount").val(shipping_amount);
-                total_amount=parseInt(shipping_amount)+parseInt(sub_total);
+                total_amount=parseFloat(shipping_amount)+parseFloat(sub_total);
                 $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
             },
         });

@@ -60,7 +60,7 @@ class CartController
                         "OriginCity"=>$address->city,
                         "DestinationCountry"=>"971",
                         "DestinationState"=>null,
-                        "DestinationCity"=>"1",
+                        "DestinationCity"=>"678562",
                         "Height"=>"25",
                         "Width"=>"20",
                         "Length"=>"30",

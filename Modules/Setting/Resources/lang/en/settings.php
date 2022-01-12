@@ -31,6 +31,7 @@ return [
         'bank_transfer' => 'Bank Transfer',
         'check_payment' => 'Check / Money Order',
         'ngenius' => 'N-genius',
+        'emirates_post'=>"Emirates Post"
     ],
     'form' => [
         'allow_reviews' => 'Allow customers to give reviews & ratings',
@@ -75,7 +76,8 @@ return [
         'enable_cod' => 'Enable Cash On Delivery',
         'enable_bank_transfer' => 'Enable Bank Transfer',
         'enable_check_payment' => 'Enable Check / Money Order',
-        'enable_ngenius'=>'Enable Ngenius'
+        'enable_ngenius'=>'Enable Ngenius',
+        'enable_emirates_post'=>'Enable Emirates Post'
     ],
     'validation' => [
         'sqlite_is_not_installed' => 'SQLite is not installed.',

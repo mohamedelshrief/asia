@@ -233,6 +233,7 @@ class Cart extends DarryldecodeCart implements JsonSerializable
             'type' => 'shipping_method',
             'target' => 'total',
             'value' => "+{$shippingMethod->cost->amount()}",
+            //'value' => "+{$shippingMethod->cost->amount()}",
             'order' => 1,
             'attributes' => [
                 'shipping_method' => $shippingMethod,

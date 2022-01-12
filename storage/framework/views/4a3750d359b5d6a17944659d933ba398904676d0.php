@@ -16,4 +16,12 @@
     </section>
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startPush('pre-scripts'); ?>
+<script>
+    setTimeout(() => {
+        window.ReactNativeWebView.postMessage('success');
+    }, 1000);
+    </script>
+<?php $__env->stopPush(); ?>
+
 <?php echo $__env->make('public.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/Amp/Themes/Storefront/views/public/checkout/complete/show.blade.php ENDPATH**/ ?>

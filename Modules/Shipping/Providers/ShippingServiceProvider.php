@@ -22,6 +22,7 @@ class ShippingServiceProvider extends ServiceProvider
         $this->registerFreeShipping();
         $this->registerLocalPickup();
         $this->registerFlatRate();
+        $this->registerEmiratesPost();
     }
 
     private function registerFreeShipping()
@@ -54,6 +55,16 @@ class ShippingServiceProvider extends ServiceProvider
 
         ShippingMethod::register('flat_rate', function () {
             return new Method('flat_rate', setting('flat_rate_label'), setting('flat_rate_cost'));
+        });
+    }
+    private function registerEmiratesPost()
+    {
+        if (! setting('emirates_post_enabled')) {
+            return;
+        }
+
+        ShippingMethod::register('emirates_post', function () {
+            return new Method('emirates_post', setting('emirates_post_label'), 100);
         });
     }
 }

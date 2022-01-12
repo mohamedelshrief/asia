@@ -15,11 +15,11 @@
 
         <?php echo e(Form::checkbox('virtual', trans('product::attributes.virtual'), trans('product::products.form.the_product_won\'t_be_shipped'), $errors, $product)); ?>
 
-        <?php echo e(Form::checkbox('onetime', trans('product::attributes.onetime'), trans('product::products.form.onetime_purchase'), $errors, $product)); ?>
+        <?php echo e(Form::checkbox('one_time_purchaseable', trans('product::attributes.onetime'), trans('product::products.form.onetime_purchase'), $errors, $product)); ?>
 
         <?php echo e(Form::checkbox('is_active', trans('product::attributes.is_active'), trans('product::products.form.enable_the_product'), $errors, $product, ['checked' => true])); ?>
 
-        
+
     </div>
 </div>
 <?php /**PATH /var/www/html/Amp/Modules/Product/Resources/views/admin/products/tabs/general.blade.php ENDPATH**/ ?>

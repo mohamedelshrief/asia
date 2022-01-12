@@ -5,7 +5,7 @@ namespace Modules\Setting\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Artisan;
 use Modules\Admin\Ui\Facades\TabManager;
 use Modules\Setting\Http\Requests\UpdateSettingRequest;
-
+use DB;
 class SettingController
 {
     /**

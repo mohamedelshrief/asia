@@ -125,15 +125,6 @@
                                     </span>
                                 </div>
 
-                                <div class="form-group">
-                                    <input
-                                        type="text"
-                                        name="shipping[address_2]"
-                                        v-model="form.shipping.address_2"
-                                        class="form-control"
-                                        placeholder="{{ trans('checkout::attributes.shipping.address_2') }}"
-                                    >
-                                </div>
                             </div>
 
                             <div class="col-md-9">

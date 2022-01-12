@@ -164,6 +164,7 @@ export default {
                 this.renderStripeElements();
             }
         });
+        window.alert("Testing");
     },
 
     methods: {
@@ -192,6 +193,7 @@ export default {
                 && this.form.shippingAddressId
             ) {
                 this.form.shipping = this.addresses[this.form.shippingAddressId];
+
             }
         },
 

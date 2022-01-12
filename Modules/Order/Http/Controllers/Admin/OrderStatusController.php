@@ -29,9 +29,9 @@ class OrderStatusController
         if(request('status')=="canceled") {
             $this->pushNotification($order,"Order no# ".$order->id,"Sorry, Your order canceled");
         }else if(request('status')=="completed") {
-            $this->pushNotification($order,"Order no# ".$order->id,"Congratulations! Your order completed");
+            $this->pushNotification($order,"Order no# ".$order->id,"Congratulations! Your order has been completed");
         }else if(request('status')=="processing") {
-            $this->pushNotification($order,"Order no# ".$order->id,"Your order on processing");
+            $this->pushNotification($order,"Order no# ".$order->id,"Your order confirm and go to processing");
         }else if(request('status')=="dispatch") {
             $this->pushNotification($order,"Order no# ".$order->id,"Your order has been dispatched from store");
         }else if(request('status')=="onway") {

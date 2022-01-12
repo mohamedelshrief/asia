@@ -73,6 +73,7 @@ foreach (Setting::allCached()["supported_locales"] as $key => $value) {
             //Cart
             Route::get('/get-cart/{id}', \FleetCartApi\Http\Controllers\CheckoutController::class . '@getCart');
             Route::get('cart', Modules\Cart\Http\Controllers\CartController::class . '@index');
+            Route::get('shipping-price', Modules\Cart\Http\Controllers\CartController::class . '@ShippingPricing');
             Route::post('cart/items', Modules\Cart\Http\Controllers\Api\CartItemController::class . '@store');
             Route::put('cart/items/{cartItemId}', Modules\Cart\Http\Controllers\Api\CartItemController::class . '@update');
             Route::delete('cart/items/{cartItemId}', Modules\Cart\Http\Controllers\Api\CartItemController::class . '@destroy');
@@ -81,6 +82,8 @@ foreach (Setting::allCached()["supported_locales"] as $key => $value) {
 
             Route::post('cart/coupon', Modules\Coupon\Http\Controllers\CartCouponController::class . '@store');
             Route::delete('cart/remove/coupon', Modules\Coupon\Http\Controllers\CartCouponController::class . '@destroy');
+
+
     });
 
 }

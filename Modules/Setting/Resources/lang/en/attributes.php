@@ -141,5 +141,9 @@ return [
     'ngenius_api_key'=>"Ngenius Api key",
     'ngenius_outlet_key'=>'Ngenius Outlet key',
     'ngenius_label'=>'Ngenius label',
-    'ngenius_description'=>'Ngenius Description'
+    'ngenius_description'=>'Ngenius Description',
+
+    'emirates_post_enabled'=>'Emirates post Enabled',
+    'translatable.emirates_post_label' => 'Label',
+    'translatable.emirates_post_country'=> 'Select Country'
 ];

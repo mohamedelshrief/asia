@@ -10,7 +10,7 @@ class Country extends Model
     use HasFactory;
 
     protected $fillable = [];
-    
+
     protected static function newFactory()
     {
         return \Modules\Setting\Database\factories\CountryFactory::new();

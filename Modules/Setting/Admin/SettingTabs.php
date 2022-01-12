@@ -37,6 +37,7 @@ class SettingTabs extends Tabs
         $this->group('shipping_methods', trans('setting::settings.tabs.group.shipping_methods'))
             ->add($this->freeShipping())
             ->add($this->localPickup())
+            ->add($this->emiratespost())
             ->add($this->flatRate());
 
         $this->group('payment_methods', trans('setting::settings.tabs.group.payment_methods'))
@@ -253,7 +254,12 @@ class SettingTabs extends Tabs
             $tab->view('setting::admin.settings.tabs.local_pickup');
         });
     }
-
+    public function emiratespost(){
+        return tap(new Tab('emiratespost', trans('setting::settings.tabs.emirates_post')), function (Tab $tab) {
+            $tab->weight(45);
+            $tab->view('setting::admin.settings.tabs.emiratespost');
+        });
+    }
     private function flatRate()
     {
         return tap(new Tab('flat_rate', trans('setting::settings.tabs.flat_rate')), function (Tab $tab) {

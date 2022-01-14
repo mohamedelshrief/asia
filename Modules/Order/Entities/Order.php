@@ -19,6 +19,7 @@ use Modules\Payment\HasTransactionReference;
 use Modules\Shipping\Facades\ShippingMethod;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Transaction\Entities\Transaction;
+use Modules\Setting\Entities\City;
 
 class Order extends Model
 {
@@ -210,10 +211,20 @@ class Order extends Model
     {
         return Country::name($this->billing_country);
     }
+    public function getBillingCityNameAttribute()
+    {
+        $city=City::where("Cityid",$this->billing_city)->first();
+        return $city->CityName;
+    }
 
     public function getShippingCountryNameAttribute()
     {
         return Country::name($this->shipping_country);
+    }
+    public function getShippingCityNameAttribute()
+    {
+        $city=City::where("Cityid",$this->shipping_city)->first();
+        return $city->CityName;
     }
 
     public function getBillingStateNameAttribute()

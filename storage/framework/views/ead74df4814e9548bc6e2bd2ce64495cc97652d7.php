@@ -89,6 +89,78 @@
         });
     }
 </script>
+
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+
+var CSRF_TOKEN =window.FleetCart.csrfToken;
+$(document).ready(function(){
+  $( "#shipping-city" ).autocomplete({
+    source: function( request, response ) {
+      // Fetch data
+      country=$("#shipping-country").val();
+      $.ajax({
+        url:"<?php echo e(url('/en/api/search-city')); ?>/"+country+"/"+request.term,
+        type: 'GET',
+        dataType: "json",
+        success: function( data ) {
+            response( data );
+        }
+      });
+    },
+    select: function (event, ui) {
+       $('#shipping-city').val(ui.item.label ? ui.item.label : "");
+       $('#shipping-city-id').val(ui.item.value ? ui.item.value : "");
+       if($('#shipping-city-id').val()!=""){
+            shippingPricingByCity($('#shipping-city-id').val());
+       }
+       return false;
+    }
+  });
+
+  //bILLing
+  $( "#billing-city" ).autocomplete({
+    source: function( request, response ) {
+      // Fetch data
+      country=$("#billing-country").val();
+      $.ajax({
+        url:"<?php echo e(url('/en/api/search-city')); ?>/"+country+"/"+request.term,
+        type: 'GET',
+        dataType: "json",
+        success: function( data ) {
+            response( data );
+        }
+      });
+    },
+    select: function (event, ui) {
+       $('#billing-city').val(ui.item.label ? ui.item.label : "");
+       $('#billing-city-id').val(ui.item.value ? ui.item.value : "");
+       if($('#billing-city-id').val()!=""){
+            shippingPricingByCity($('#billing-city-id').val());
+       }
+       return false;
+    }
+  });
+
+});
+
+function shippingPricingByCity(id){
+        sub_total=$("#subTotalPricing").val();
+        $.ajax({
+            url: "<?php echo e(url('en/api/shipping-price')); ?>?city_id="+id,
+            type: "GET",
+            async: false,
+            success: function (reponse) {
+                shipping_amount=reponse[0].TotalPriceAED;
+                $(".shipping-methods .price-amount").html("AED "+shipping_amount);
+                $("#shipping_cost_amount").val(shipping_amount);
+                total_amount=parseFloat(shipping_amount)+parseFloat(sub_total);
+                $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+            },
+        });
+    }
+</script>
 <?php $__env->stopPush(); ?>
 
 

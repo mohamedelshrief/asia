@@ -20,7 +20,7 @@
                         <br>
                     <?php endif; ?>
 
-                    <?php echo e($order->billing_city); ?>, <?php echo e($order->billing_state_name); ?> <?php echo e($order->billing_zip); ?>
+                    <?php echo e($order->billing_city_name); ?>, <?php echo e($order->billing_state_name); ?> <?php echo e($order->billing_zip); ?>
 
                     <br>
                     <?php echo e($order->billing_country_name); ?>
@@ -47,7 +47,7 @@
                         <br>
                     <?php endif; ?>
 
-                    <?php echo e($order->shipping_city); ?>, <?php echo e($order->shipping_state_name); ?> <?php echo e($order->shipping_zip); ?>
+                    <?php echo e($order->shipping_city_name); ?>, <?php echo e($order->shipping_state_name); ?> <?php echo e($order->shipping_zip); ?>
 
                     <br>
                     <?php echo e($order->shipping_country_name); ?>

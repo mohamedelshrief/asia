@@ -111,7 +111,7 @@
 
                 </div>
 
-                <div class="col-md-9">
+                <!-- <div class="col-md-9">
                     <div class="form-group">
                         <label for="billing-city">
                             <?php echo e(trans('checkout::attributes.billing.city')); ?><span>*</span>
@@ -125,6 +125,29 @@
                             class="form-control"
                             @change="changeBillingCity($event.target.value)"
                         >
+
+                        <span
+                            class="error-message"
+                            v-if="errors.has('billing.city')"
+                            v-text="errors.get('billing.city')"
+                        >
+                        </span>
+                    </div>
+                </div> -->
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label for="billing-city">
+                            <?php echo e(trans('checkout::attributes.billing.city')); ?><span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="billing[city]"
+                            id="billing-city"
+                            class="form-control"
+                        >
+
+                        <input type="hidden" id="billing-city-id" value="" />
 
                         <span
                             class="error-message"

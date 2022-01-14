@@ -62,7 +62,7 @@ class CheckoutController extends Controller
             ], 403);
         }
 
-        ///Cart::clear();
+        //Cart::clear();
 
         return response()->json($response);
     }

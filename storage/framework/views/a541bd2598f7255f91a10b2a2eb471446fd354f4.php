@@ -34,7 +34,7 @@
                                                 <span v-text="address.full_name"></span>
                                                 <span v-text="address.address_1"></span>
                                                 <span v-if="address.address_2" v-text="address.address_2"></span>
-                                                <span>{{ address.city }}, {{ address.state_name }} {{ address.zip }}</span>
+                                                <span>{{ address.city_name }}, {{ address.state_name }} {{ address.zip }}</span>
                                                 <span v-text="address.country_name"></span>
                                             </div>
 
@@ -170,13 +170,13 @@
                                                 </label>
 
                                                 <input
-                                                    v-model="form.city"
+                                                    v-model="form.city_name"
                                                     name="city"
                                                     type="text"
                                                     id="city"
                                                     class="form-control"
                                                 >
-
+                                                <input type="hidden" id="city-id" v-model="form.city"/>
                                                 <span
                                                     class="error-message"
                                                     v-if="errors.has('city')"
@@ -313,5 +313,35 @@
         </div>
     </my-addresses>
 <?php $__env->stopSection(); ?>
+
+<?php $__env->startPush('scripts'); ?>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    var CSRF_TOKEN =window.FleetCart.csrfToken;
+    $(document).ready(function(){
+    $( "#city" ).autocomplete({
+        source: function( request, response ) {
+        // Fetch data
+        alert("")
+        country=$("#country").val();
+        $.ajax({
+            url:"<?php echo e(url('/en/api/search-city')); ?>/"+country+"/"+request.term,
+            type: 'GET',
+            dataType: "json",
+            success: function( data ) {
+                response( data );
+            }
+        });
+        },
+        select: function (event, ui) {
+        $('#city').val(ui.item.label);
+        $('#city-id').val(ui.item.value);
+        return false;
+        }
+    });
+
+});
+</script>
+<?php $__env->stopPush(); ?>
 
 <?php echo $__env->make('public.account.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/Amp/Themes/Storefront/views/public/account/addresses/index.blade.php ENDPATH**/ ?>

@@ -127,7 +127,7 @@
 
                             </div>
 
-                           <!-- <div class="col-md-9">
+                           <div class="col-md-9">
                                 <div class="form-group">
                                     <label for="shipping-city">
                                         {{ trans('checkout::attributes.shipping.city') }}<span>*</span>
@@ -146,12 +146,21 @@
                                         v-text="errors.get('shipping.city')"
                                     >
                                     </span>
+                                    <input type="hidden" id="shipping-city-id" value="" />
+
+
+                                    <span
+                                        class="error-message"
+                                        v-if="errors.has('shipping.city')"
+                                        v-text="errors.get('shipping.city')"
+                                    >
+                                    </span>
                                 </div>
-                            </div>-->
+                            </div>
 
 
 
-                            <div class="col-md-9">
+                            <!--<div class="col-md-9">
                                 <div class="form-group">
                                     <label for="shipping-city">
                                         {{ trans('checkout::attributes.shipping.city') }}<span>*</span>
@@ -173,7 +182,7 @@
                                     >
                                     </span>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="col-md-9">
                                 <div class="form-group">
@@ -278,3 +287,4 @@
         </div>
     </div>
 </div>
+

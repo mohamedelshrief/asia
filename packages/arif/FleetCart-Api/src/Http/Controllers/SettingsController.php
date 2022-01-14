@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Modules\Slider\Entities\Slider;
 use Modules\Admin\Ui\Facades\TabManager;
 use Modules\Support\Country;
+use Modules\Setting\Entities\City;
 use Modules\Payment\Facades\Gateway;
 use Modules\Address\Entities\DefaultAddress;
 use Modules\Page\Entities\Page;
@@ -61,5 +62,24 @@ class SettingsController
         $Sliders=Slider::all();
 
         return response()->json($Sliders);
+    }
+    public function searchCities($country,$city=""){
+
+        if($city!=""){
+            $cities=City::where("CountryCode",$country)->limit(20)->orderby('CityName','asc')->where("CityName",'LIKE',''.$city.'%')->get();
+        }else{
+            $cities=City::where("CountryCode",$country)->limit(20)->orderby('CityName','asc')->get();
+        }
+
+        $autocomplete=[];
+
+        foreach ($cities as $key => $value) {
+            $autocomplete[]=[
+                "value"=>$value->Cityid,
+                "label"=>$value->CityName,
+            ];
+        }
+
+        return json_encode($autocomplete);
     }
 }

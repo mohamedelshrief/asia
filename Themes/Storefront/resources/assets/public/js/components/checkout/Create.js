@@ -267,6 +267,14 @@ export default {
 
         placeOrder() {
             this.form.shipping_cost = $("#shipping_cost_amount").val();
+            if($('#billing-city-id').val()!=""){
+                this.$set(this.form.billing, 'city', $('#billing-city-id').val());
+            }
+            if($('#shipping-city-id').val()!=""){
+                this.$set(this.form.shipping, 'city', $('#shipping-city-id').val());
+            }
+
+
             //alert(JSON.stringify(this.form));
             //return ;
             if (! this.form.terms_and_conditions || this.placingOrder) {

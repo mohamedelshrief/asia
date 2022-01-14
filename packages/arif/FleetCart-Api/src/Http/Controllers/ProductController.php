@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\JoinClause;
 use Modules\Product\Filters\ProductFilter;
 use GuzzleHttp\Client;
-
 use Modules\Setting\Entities\Setting;
 class ProductController extends Controller
 {
@@ -140,7 +139,7 @@ class ProductController extends Controller
         return response()->json($newProducts);
     }
     public function brands(){
-        $brands=Brand::paginate(20);
+        $brands=Brand::orderBy("slug","ASC")->paginate(20);
         return response()->json($brands);
     }
     public function translation(){

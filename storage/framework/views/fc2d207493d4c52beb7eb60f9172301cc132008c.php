@@ -130,7 +130,7 @@
 
                             </div>
 
-                            <div class="col-md-9">
+                           <div class="col-md-9">
                                 <div class="form-group">
                                     <label for="shipping-city">
                                         <?php echo e(trans('checkout::attributes.shipping.city')); ?><span>*</span>
@@ -142,6 +142,15 @@
                                         id="shipping-city"
                                         class="form-control"
                                     >
+
+                                    <span
+                                        class="error-message"
+                                        v-if="errors.has('shipping.city')"
+                                        v-text="errors.get('shipping.city')"
+                                    >
+                                    </span>
+                                    <input type="hidden" id="shipping-city-id" value="" />
+
 
                                     <span
                                         class="error-message"
@@ -281,4 +290,5 @@
         </div>
     </div>
 </div>
+
 <?php /**PATH /var/www/html/Amp/Themes/Storefront/views/public/checkout/create/form/shipping_details.blade.php ENDPATH**/ ?>

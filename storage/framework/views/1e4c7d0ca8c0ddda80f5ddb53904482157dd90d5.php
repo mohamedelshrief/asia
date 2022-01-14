@@ -8,23 +8,6 @@ use \Modules\Setting\Entities\Country;
         <?php echo e(Form::text('emirates_post_label', trans('setting::attributes.translatable.emirates_post_label'), $errors, $settings, ['required' => true])); ?>
 
 
-
-
-        <div class="form-group">
-            <label class="col-md-3 control-label text-left"><?php echo e(trans('setting::attributes.translatable.emirates_post_country')); ?><span class="m-l-5 text-red">*</span></label>
-            <div class="col-md-9">
-                <select class="form-contol" name="emirates_country" id="emirates_country" required="true" >
-                    <option ><?php echo e(trans('setting::attributes.translatable.emirates_post_country')); ?></option>
-                    <?php $__currentLoopData = Country::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <?php if($settings["emirates_country"]==$item->country_id): ?>
-                        <option value="<?php echo e($item->country_id); ?>" selected ><?php echo e($item->country_name); ?></option>
-                    <?php else: ?>
-                        <option value="<?php echo e($item->country_id); ?>"><?php echo e($item->country_name); ?></option>
-                    <?php endif; ?>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </select>
-            </div>
-        </div>
     </div>
 </div>
 

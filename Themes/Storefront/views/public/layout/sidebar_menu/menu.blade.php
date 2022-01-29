@@ -1,7 +1,7 @@
 <ul class="list-inline sidebar-menu">
     @foreach ($menu->menus() as $menu)
         <li class="{{ $menu->hasSubMenus() ? 'dropdown multi-level' : '' }}">
-            <a href="{{ $menu->url() }}" class="menu-item" target="{{ $menu->target() }}">
+            <!--<a href="{{ $menu->url() }}" class="menu-item" target="{{ $menu->target() }}">
                 @if ($type === 'category_menu' && $menu->hasIcon())
                     <span class="menu-item-icon">
                         <i class="{{ $menu->icon() }}"></i>
@@ -9,7 +9,7 @@
                 @endif
 
                 {{ $menu->name() }}
-            </a>
+            </a>-->
 
             @if ($menu->hasSubMenus())
                 @include('public.layout.sidebar_menu.dropdown', ['subMenus' => $menu->subMenus()])

@@ -1,7 +1,7 @@
 <ul class="list-inline sidebar-menu">
     <?php $__currentLoopData = $menu->menus(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $menu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <li class="<?php echo e($menu->hasSubMenus() ? 'dropdown multi-level' : ''); ?>">
-            <a href="<?php echo e($menu->url()); ?>" class="menu-item" target="<?php echo e($menu->target()); ?>">
+            <!--<a href="<?php echo e($menu->url()); ?>" class="menu-item" target="<?php echo e($menu->target()); ?>">
                 <?php if($type === 'category_menu' && $menu->hasIcon()): ?>
                     <span class="menu-item-icon">
                         <i class="<?php echo e($menu->icon()); ?>"></i>
@@ -10,7 +10,7 @@
 
                 <?php echo e($menu->name()); ?>
 
-            </a>
+            </a>-->
 
             <?php if($menu->hasSubMenus()): ?>
                 <?php echo $__env->make('public.layout.sidebar_menu.dropdown', ['subMenus' => $menu->subMenus()], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

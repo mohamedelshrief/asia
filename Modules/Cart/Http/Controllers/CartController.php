@@ -36,12 +36,12 @@ class CartController
                         "OriginCity"=>"1",
                         "DestinationCountry"=>"971",
                         "DestinationState"=>null,
-                        "DestinationCity"=>$request->city_id,
+                        "DestinationCity"=>"1",
                         "Height"=>"25",
                         "Width"=>"20",
                         "Length"=>"30",
                         "DimensionUnit"=>"Centimetre",
-                        "Weight"=>"40000",
+                        "Weight"=>"1000",
                         "WeightUnit"=>"Grams",
                         "CalculationCurrencyCode"=>"AED",
                         "IsRegistered"=>"No",
@@ -60,12 +60,12 @@ class CartController
                         "OriginCity"=>"1",
                         "DestinationCountry"=>"971",
                         "DestinationState"=>null,
-                        "DestinationCity"=>$address->city,
+                        "DestinationCity"=>"1",
                         "Height"=>"25",
                         "Width"=>"20",
                         "Length"=>"30",
                         "DimensionUnit"=>"Centimetre",
-                        "Weight"=>"40000",
+                        "Weight"=>"1000",
                         "WeightUnit"=>"Grams",
                         "CalculationCurrencyCode"=>"AED",
                         "IsRegistered"=>"No",
@@ -85,7 +85,8 @@ class CartController
             $body = $response->getBody();
             $json_data=json_decode($body);
 
-            return $json_data->RateCalculation->RateList;
+            return $json_data;
+            //return $json_data->RateCalculation->RateList;
     }
 
 

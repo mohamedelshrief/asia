@@ -35,6 +35,10 @@ class Address extends Model
     }
     public function getCityNameAttribute(){
         $city=City::where("Cityid",$this->city)->first();
-        return $city->CityName;
+        if($city){
+            return $city->CityName;
+        }else{
+            return "";
+        }
     }
 }

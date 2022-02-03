@@ -29,9 +29,10 @@ class Ngenius implements GatewayInterface
         $txnServiceURL = "https://api-gateway.ngenius-payments.com/transactions/outlets/".$outletRef."/orders";             // set the transaction service URL (example only)
 
 
-        $tokenHeaders  = array("Authorization: Basic ".$apikey, "Content-Type: application/vnd.ni-identity.v1+json");
+        /*$tokenHeaders  = array("Authorization: Basic ".$apikey, "Content-Type: application/vnd.ni-identity.v1+json");
         $tokenResponse = $this->invokeCurlRequest("POST", $idServiceURL, $tokenHeaders, http_build_query(array('grant_type' => 'client_credentials')));
-        $tokenResponse = json_decode($tokenResponse);
+        $tokenResponse = json_decode($tokenResponse);*/
+        $tokenResponse=$this->generateAuthToken($apikey);
         var_dump( $tokenResponse);
        // exit;
         $access_token = $tokenResponse->access_token;
@@ -97,5 +98,29 @@ class Ngenius implements GatewayInterface
 
         return $server_output;
 
+    }
+    public function generateAuthToken($api_token){
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://api-gateway.ngenius-payments.com/identity/auth/access-token',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/vnd.ni-identity.v1+json',
+            'Authorization: Basic '.$api_token,
+            'Cookie: _abck=65F421B23F990E200ED0E638699695D6~-1~YAAQDB0gF5iWVnp+AQAAWGdovgc5ubUHotpXkGAHlD0Lut257yMI1cXXySouaHTClEx2w285+PLnacZwHLnQ5snqaeJ2X6oJWzbwYFbo+3PQxUPzLnTM5d4yqiO8bFobiR/e+cvtK1hIk+5qpyjqiPFBNdLkL3j2TVHxuM6r+g2lnD6CZMzkMNmwnlAc33IjzykMdvw3vCDvfJsImhW7T9FwnTIgn0GgvD79o5oDVGnw9FHPfVUTVNu9mxMHl7EGM+LkFYjSGMdPjQdUrOi7xeCSrnZfhhntZ/n1Ug0Gq48AFqjgwcmHFzfrY/Okj4u3SdttuzVutCiWu1R+rrn+G1+21eCd7Ev7YCmG8v6Wm5nxl/QYdDy7oHyfAfWuih+kLLKq~-1~-1~-1; bm_sz=E9FB6EC6527B747A77A4E5D342C37A8D~YAAQDB0gF5mWVnp+AQAAWGdovg5XNN8GUZq9sLfXzN9iViCZArlj6ruvxbrAP22zl6M9iH1zyu/aLN9V+zW9TacZFu/j3yE+Askz0Wv4OEqfjATBUNukePWwj74t5OBAIu0VH1/xda2HK0+Z1L0ZV+Exrw69dTN5yeRc3NNN/1Yyd/pUEiLINOgmXp6/H5OyQj4lGoNalrxJpdZtAdJuUE2DnARKNqmEGkmmQBSk50AUjXDdYxQD1RpmXQjCMhfpqAhspXtK27EneDP74VnSFCNFnFIoM8BqopWCXcNLD5QsGuv3yKlz975nT1Wh~4601142~3682371'
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return $response;
     }
 }

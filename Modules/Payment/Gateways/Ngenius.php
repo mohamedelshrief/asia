@@ -25,15 +25,15 @@ class Ngenius implements GatewayInterface
         $outletRef   = setting('ngenius_outlet_key');
         $apikey      = setting('ngenius_api_key');
 
-
         $idServiceURL  = "https://api-gateway.ngenius-payments.com/identity/auth/access-token";           // set the identity service URL (example only)
         $txnServiceURL = "https://api-gateway.ngenius-payments.com/transactions/outlets/".$outletRef."/orders";             // set the transaction service URL (example only)
 
 
-        $tokenHeaders  = array("Authorization: Basic ".$apikey, "Content-Type: application/x-www-form-urlencoded");
+        $tokenHeaders  = array("Authorization: Basic ".$apikey, "Content-Type: application/vnd.ni-identity.v1+json");
         $tokenResponse = $this->invokeCurlRequest("POST", $idServiceURL, $tokenHeaders, http_build_query(array('grant_type' => 'client_credentials')));
         $tokenResponse = json_decode($tokenResponse);
-
+        var_dump( $tokenResponse);
+       // exit;
         $access_token = $tokenResponse->access_token;
         $money=$order->total->amount;
         $order=[

@@ -9,7 +9,6 @@
                                 <img src="{{url('/images/logo.png')}}" width="75%" />
                             </a>
                             <p>
-                                {{$twoColumnBanners["banner_2"]->call_to_action_url}}
                                 {{ trans('account::attributes.home.footer_intro') }}
                             </p>
                             <!-- <h4 class="title">{{ trans('storefront::layout.contact_us') }}</h4> -->

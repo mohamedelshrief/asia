@@ -26,8 +26,8 @@ class Ngenius implements GatewayInterface
         $apikey      = setting('ngenius_api_key');
 
 
-        $idServiceURL  = "https://identity-uat.ngenius-payments.com/auth/realms/ni/protocol/openid-connect/token";           // set the identity service URL (example only)
-        $txnServiceURL = "https://api-gateway-uat.ngenius-payments.com/transactions/outlets/".$outletRef."/orders";             // set the transaction service URL (example only)
+        $idServiceURL  = "https://identity.ngenius-payments.com/auth/realms/ni/protocol/openid-connect/token";           // set the identity service URL (example only)
+        $txnServiceURL = "https://api-gateway.ngenius-payments.com/transactions/outlets/".$outletRef."/orders";             // set the transaction service URL (example only)
 
 
         $tokenHeaders  = array("Authorization: Basic ".$apikey, "Content-Type: application/x-www-form-urlencoded");

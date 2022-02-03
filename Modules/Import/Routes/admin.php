@@ -24,3 +24,7 @@ Route::get('download-csv', [
 Route::get('data-import',[
     'uses'=>"ImporterController@importData",
 ]);
+
+Route::get('data-tax',[
+    'uses'=>"ImporterController@importTax",
+]);

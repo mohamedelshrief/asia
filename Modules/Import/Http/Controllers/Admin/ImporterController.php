@@ -86,7 +86,7 @@ class ImporterController
         ********************************************
         ------------  Brand Import -----------------
         ********************************************/
-        $brands=DB::table('oc_manufacturer')->get();
+        /*$brands=DB::table('oc_manufacturer')->get();
         foreach ($brands as $key => $value) {
 
             //$brand->id=$value->manufacturer_id;
@@ -128,7 +128,7 @@ class ImporterController
 
             echo $base.$value->image."<br/>";
 
-        }
+        }*/
 
 
         /*
@@ -137,19 +137,21 @@ class ImporterController
         ********************************************
         */
 
-        /*$products = DB::connection('mysql2')->table('oc_product')
+        $products = DB::connection('mysql2')->table('oc_product')
         ->join("oc_product_description","oc_product_description.product_id","=","oc_product.product_id")
         ->select("oc_product.*","oc_product_description.*")
-        ->limit(10)
-        ->get();*/
+        ->whereBetween('oc_product.date_added',array("2021-11-15 00:00:00","2022-01-15 00:00:00"))
+        ->get();
+
+        //return $products;
         //->join("oc_product_to_category","oc_product_to_category.product_id","=","oc_product.product_id")
 
-        //foreach ($products as $key => $item) {
+        foreach ($products as $key => $item) {
             //$base="https://www.apmpllc.com/image/";
-            //echo $base.$item->image;
+            //echo $base.$item->image."<br/>";
             //Adding Product
-           // $check=Product::where("tmp_id",$item->product_id)->count();
-           /* if($check==0){
+           $check=Product::where("tmp_id",$item->product_id)->count();
+            if($check==0){
 
                     $product=new Product;
                     $product->slug=str_replace(" ","-",$item->name);
@@ -213,8 +215,17 @@ class ImporterController
 
                     echo $item->name."<br/>";
 
-                }*/
-       // }
+                }
+        }
 
+    }
+    public function importTax(){
+        $products=Product::get();
+        foreach ($products as $key => $item) {
+          Product::where("id",$item->id)->update(["tax_class_id"=>1]);
+
+           echo $item->id."<br/>";
+
+        }
     }
 }

@@ -66,13 +66,13 @@
 <?php $__env->startPush('scripts'); ?>
 
 <script>
-    $(document).ready(function(){
+   /* $(document).ready(function(){
         shippingPricing();
         $(".select-address input[type=radio]").change(function(){
             shippingPricing();
         })
     })
-    function shippingPricing(){
+    /function shippingPricing(){
         address_id=$(".select-address input[type=radio]:checked").val();
         sub_total=$("#subTotalPricing").val();
         $.ajax({
@@ -87,7 +87,7 @@
                 $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
             },
         });
-    }
+    }*/
 </script>
 
 
@@ -145,7 +145,7 @@ $(document).ready(function(){
 
 });
 
-function shippingPricingByCity(id){
+/*function shippingPricingByCity(id){
         sub_total=$("#subTotalPricing").val();
         $.ajax({
             url: "<?php echo e(url('en/api/shipping-price')); ?>?city_id="+id,
@@ -159,7 +159,7 @@ function shippingPricingByCity(id){
                 $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
             },
         });
-    }
+    }*/
 </script>
 <?php $__env->stopPush(); ?>
 

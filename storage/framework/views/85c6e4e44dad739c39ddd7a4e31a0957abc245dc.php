@@ -61,11 +61,13 @@ use Modules\Cart\Facades\Cart;
                     </span>
                 </li>
             </ul>
-
+            <?php
+               // var_dump(json_decode(Cart::availableShippingMethods())->flat_rate->cost->amount);
+            ?>
             <div class="shipping-methods" v-if="hasShippingMethod" v-cloak>
                 <h6><?php echo e(trans('storefront::cart.shipping_method')); ?></h6>
-                <input type="hidden" id="shipping_cost_amount" name="shipping_cost" />
-                <input type="hidden" id="subTotalPricing"  value="<?php echo e(Cart::total()->amount()); ?>" />
+                <!--<input type="hidden" id="shipping_cost_amount" name="shipping_cost" value="<?php echo e(json_decode(Cart::availableShippingMethods())->flat_rate->cost->amount); ?>" />
+                <input type="hidden" id="subTotalPricing"  value="<?php echo e(Cart::total()->amount()); ?>" />-->
                 <div class="form-group">
                     <div class="form-radio" v-for="shippingMethod in cart.availableShippingMethods">
                         <input

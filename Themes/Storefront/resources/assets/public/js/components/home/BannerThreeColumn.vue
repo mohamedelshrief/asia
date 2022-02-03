@@ -16,6 +16,7 @@
                             <span>
                                 <h6>Shop From Wide Range Of</h6>
                                 <h3>Graphic Cards</h3>
+                                {{ $trans('storefront::product_card.available') }}
                             </span>
                             <button class="banner-btn">Shop Now</button>
                         </div>

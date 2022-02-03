@@ -9,7 +9,10 @@
                                 <img src="<?php echo e(url('/images/logo.png')); ?>" width="75%" />
                             </a>
                             <p>
-                                Asia Mobile Group started its journey in 2004 in order to provide a unique shopping experience
+                                <?php echo e($twoColumnBanners["banner_2"]->call_to_action_url); ?>
+
+                                <?php echo e(trans('account::attributes.home.footer_intro')); ?>
+
                             </p>
                             <!-- <h4 class="title"><?php echo e(trans('storefront::layout.contact_us')); ?></h4> -->
 
@@ -162,20 +165,23 @@
                         <img src="<?php echo e(url('/images/dial-no.png')); ?>" width="auto" />
                         <div>
                             <h5>0097137666586</h5>
-                            <span>Working 24/7</span>
+                            <span><?php echo e(trans('account::attributes.home.working')); ?></span>
                         </div>
                     </div>
                     <div class="download">
                         <div class="content">
-                            <a href="#">Download App On Mobile:</a>
-                            <span>15% Discount On Your First Purchase</span>
+                            <a href="#"><?php echo e(trans('account::attributes.home.footer_download')); ?></a>
+                            <span><?php echo e(trans('account::attributes.home.footer_discount')); ?></span>
                         </div>
                         <div>
                             <span>
+                                <a href="https://apps.apple.com/pk/app/asia-mobile-phones/id1554074118" target="_blank">
                                 <img src="<?php echo e(url('/images/download.png')); ?>" width="auto" />
                             </span>
                             <span>
-                                <img src="<?php echo e(url('/images/download-link.png')); ?>" width="auto" />
+                                <a href="https://play.google.com/store/apps/details?id=com.asia.mp&hl=en&gl=US"  target="_blank">
+                                    <img src="<?php echo e(url('/images/download-link.png')); ?>" width="auto" />
+                                </a>
                             </span>
                         </div>
                     </div>
@@ -192,11 +198,11 @@
                     <!-- </div> -->
 
                     <!-- <div class="col-md-9 col-sm-18"> -->
-                    <div class="footer-text footer-terms">
+                   <!-- <div class="footer-text footer-terms">
                         <a href="#">Legal</a>
                         <a href="#">Privay Policy</a>
                         <a href="#">Terms And Conditions</a>
-                    </div>
+                    </div>-->
                     <!-- </div> -->
                     <!-- <?php if($acceptedPaymentMethodsImage->exists): ?>
                         <div class="col-md-9 col-sm-18">

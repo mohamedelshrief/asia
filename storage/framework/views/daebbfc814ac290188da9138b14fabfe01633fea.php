@@ -10,10 +10,10 @@
                         </tr>
 
                         <?php if($order->hasShippingMethod()): ?>
-                            <tr>
+                            <!--<tr>
                                 <td><?php echo e($order->shipping_method); ?></td>
                                 <td class="text-right"><?php echo e($order->shipping_cost->format()); ?></td>
-                            </tr>
+                            </tr>-->
                         <?php endif; ?>
 
                         <?php $__currentLoopData = $order->taxes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tax): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

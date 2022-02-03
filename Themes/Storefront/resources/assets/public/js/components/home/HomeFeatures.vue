@@ -22,5 +22,9 @@
 <script>
     export default {
         props: ['features'],
+
+        mounted() {
+            console.log("jjj");
+        }
     };
 </script>

@@ -10,10 +10,10 @@
                         </tr>
 
                         @if ($order->hasShippingMethod())
-                            <tr>
+                            <!--<tr>
                                 <td>{{ $order->shipping_method }}</td>
                                 <td class="text-right">{{ $order->shipping_cost->format() }}</td>
-                            </tr>
+                            </tr>-->
                         @endif
 
                         @foreach ($order->taxes as $tax)

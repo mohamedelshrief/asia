@@ -46,9 +46,9 @@ class PasswordResetController extends BaseController
      * @return [string] message
      * @return [json] passwordReset object
      */
-    public function validateToken($token)
+    public function validateToken(Request $request)
     {
-        $passwordReset = PasswordReset::where('token', $token)->first();
+        $passwordReset = PasswordReset::where('token', $request->otp)->first();
 
         if (!$passwordReset)
             return $this->responseWithError('Unprocessable entities.', ['token' => ['Invalid Token']]);
@@ -75,8 +75,8 @@ class PasswordResetController extends BaseController
     {
         $passwordReset = PasswordReset::where(['token' => $request->token, 'email' => $request->email])->first();
 
-        if (!$passwordReset)
-            return $this->responseWithError("Unprocessable Entities", ['token' => [trans('fleetcart_api::validation.invalid_token')]]);
+        /*if (!$passwordReset)
+            return $this->responseWithError("Unprocessable Entities", ['token' => [trans('fleetcart_api::validation.invalid_token')]]);*/
 
         $user = User::where('email', $passwordReset->email)->first();
 

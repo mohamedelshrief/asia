@@ -23,7 +23,6 @@ class PasswordResetRequest extends Request
         return [
             'email' => 'required|string|email|exists:users',
             'password' => 'required|string|confirmed',
-            'token' => 'required|string'
         ];
     }
 

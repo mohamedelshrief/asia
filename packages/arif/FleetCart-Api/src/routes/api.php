@@ -50,6 +50,7 @@ foreach (Setting::allCached()["supported_locales"] as $key => $value) {
             Route::post('/login', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@postLogin');
             Route::post('/logout', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@logout');
             Route::post('/password/reset/token', \FleetCartApi\Http\Controllers\Auth\PasswordResetController::class . '@create');
+            Route::post('/password/reset/validate', \FleetCartApi\Http\Controllers\Auth\PasswordResetController::class . '@validateToken');
             Route::post('/password/reset', \FleetCartApi\Http\Controllers\Auth\PasswordResetController::class . '@reset');
             Route::post('/contact', \FleetCartApi\Http\Controllers\ContactController::class . '@store');
             Route::get('/sliders', \FleetCartApi\Http\Controllers\SettingsController::class . '@sliders');

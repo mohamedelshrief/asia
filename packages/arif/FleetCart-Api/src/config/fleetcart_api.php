@@ -50,8 +50,8 @@ return [
         "validation_messages" => [],
         "markdown_view" => "fleetcart_api::emails.contact_email",
         "mailable" => \FleetCartApi\Mail\ContactEmail::class,
-        "from_email" => "info@gmail.com",
-        "to_email" => "hdarif2@gmail.com",
+        "from_email" => "info@apmpllc.com",
+        "to_email" => "info@apmpllc.com",
     ],
 
     /**

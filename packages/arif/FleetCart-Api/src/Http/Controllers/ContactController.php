@@ -18,7 +18,7 @@ class ContactController
 
         $mailable = config('fleetcart_api.contact.mailable');
 
-        Mail::to(config('fleetcart_api.contact.to_email'))->send(new $mailable());
+        Mail::to("info@apmpllc.com")->send(new $mailable());
 
         Event::dispatch('contact.submitted', $request->all());
 

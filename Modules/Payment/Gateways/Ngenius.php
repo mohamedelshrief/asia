@@ -46,9 +46,8 @@ class Ngenius implements GatewayInterface
             'merchantOrderReference'=>time(),
             'merchantAttributes'=>[
                 'redirectUrl'=>'http://asia.nytrotech.net/en/checkout/'.$order->id."/complete/ngenius",
-                "skip3DS"=>"http://asia.nytrotech.net/en/cart",
                 "cancelUrl"=>"http://asia.nytrotech.net/en/cart",
-                "skipConfirmationPage"=>"http://asia.nytrotech.net/en/cart",
+                "skipConfirmationPage"=>true,
                 "cancelText"=>"http://asia.nytrotech.net/en/cart",
             ]
         ];

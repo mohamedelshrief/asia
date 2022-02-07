@@ -71,7 +71,7 @@ class CheckoutCompleteController
         //return $orderCreateResponse;
         $orderCreateResponse = json_decode($orderCreateResponse);
 
-        return $orderCreateResponse->_embedded->payment->state;
+        return $orderCreateResponse->_embedded->payment["state"];
     }
     public function pushNotification($order,$title,$description){
         $user=User::where("id",$order->customer_id)->first();

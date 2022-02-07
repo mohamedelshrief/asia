@@ -24,6 +24,7 @@ class CheckoutCompleteController
         $order = Order::findOrFail($orderId);
         if(request('paymentMethod')=="ngenius" && isset($request->ref)){
             $payStatus=$this->checkRef($request->ref,$request->session()->get('ngenius_access'));
+            return $payStatus;
             if($payStatus=="FAILED"){
                return redirect()->route('cart.index');
             }
@@ -71,7 +72,7 @@ class CheckoutCompleteController
         //return $orderCreateResponse;
         $orderCreateResponse = json_decode($orderCreateResponse);
 
-        return $orderCreateResponse->_embedded["payment"]["state"];
+        return $orderCreateResponse->_embedded->payment;
     }
     public function pushNotification($order,$title,$description){
         $user=User::where("id",$order->customer_id)->first();

@@ -45,10 +45,10 @@ class Ngenius implements GatewayInterface
             'language'=>"en",
             'merchantOrderReference'=>time(),
             'merchantAttributes'=>[
-                'redirectUrl'=>'http://asia.nytrotech.net/en/checkout/'.$order->id."/complete/ngenius",
-                "cancelUrl"=>"http://asia.nytrotech.net/en/cart",
+                'redirectUrl'=>'https://asia.nytrotech.net/en/checkout/'.$order->id."/complete/ngenius",
+                "cancelUrl"=>"https://asia.nytrotech.net/en/cart",
                 "skipConfirmationPage"=>false,
-                "cancelText"=>"http://asia.nytrotech.net/en/cart",
+                "cancelText"=>"https://asia.nytrotech.net/en/cart",
             ]
         ];
         //$order = new stdClass();

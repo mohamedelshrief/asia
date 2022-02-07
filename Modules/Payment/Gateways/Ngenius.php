@@ -35,6 +35,7 @@ class Ngenius implements GatewayInterface
         $tokenResponseData = json_decode($tokenResponse);
 
         $access_token = $tokenResponseData->access_token;
+        $r->session()->put('ngenius_access',$access_token);
         $money=$order->total->amount;
         $order=[
             'action'=>"SALE",

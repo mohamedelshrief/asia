@@ -3,6 +3,7 @@
 namespace Modules\Checkout\Http\Controllers;
 
 use Exception;
+use Illuminate\Http\Request;
 use Modules\Order\Entities\Order;
 use Modules\Payment\Facades\Gateway;
 use Modules\Checkout\Events\OrderPlaced;
@@ -18,10 +19,12 @@ class CheckoutCompleteController
      * @param \Modules\Checkout\Services\OrderService $orderService
      * @return \Illuminate\Http\Response
      */
-    public function store($orderId, OrderService $orderService)
+    public function store($orderId, OrderService $orderService,Request $request)
     {
         $order = Order::findOrFail($orderId);
-        return request('paymentMethod');
+        if(request('paymentMethod')=="ngenius" && isset($request->ref)){
+                return $this->checkRef($request->ref,$request->session()->get('ngenius_access'));
+        }
 
         $gateway = Gateway::get(request('paymentMethod'));
 
@@ -44,6 +47,20 @@ class CheckoutCompleteController
         if (! request()->ajax()) {
             return redirect()->route('checkout.complete.show');
         }
+    }
+
+    public function checkRef($ref,$token){
+        $outletRef   = setting('ngenius_outlet_key');
+        $apikey      = setting('ngenius_api_key');
+        $txnServiceURL = "https://api-gateway.ngenius-payments.com/transactions/outlets/".$outletRef."/orders";
+        $order=[];
+        $orderCreateHeaders  = array("Authorization: Bearer ".$token, "Content-Type: application/vnd.ni-payment.v2+json", "Accept: application/vnd.ni-payment.v2+json");
+        $orderCreateResponse = $this->invokeCurlRequest("GET", $txnServiceURL, $orderCreateHeaders, $order);
+
+        //return $orderCreateResponse;
+        $orderCreateResponse = json_decode($orderCreateResponse);
+
+        return $orderCreateResponse;
     }
     public function pushNotification($order,$title,$description){
         $user=User::where("id",$order->customer_id)->first();
@@ -104,5 +121,27 @@ class CheckoutCompleteController
         }
 
         return view('public.checkout.complete.show', compact('order'));
+    }
+    function invokeCurlRequest($type, $url, $headers, $post) {
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        if ($type == "POST") {
+
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+
+        }
+
+        $server_output = curl_exec ($ch);
+
+        curl_close ($ch);
+
+        return $server_output;
+
     }
 }

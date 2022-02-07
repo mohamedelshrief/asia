@@ -51,15 +51,6 @@ class Ngenius implements GatewayInterface
                 "cancelText"=>"https://asia.nytrotech.net/en/cart",
             ]
         ];
-        //$order = new stdClass();
-
-        /*$order->action = "AUTH";                                        // Transaction mode ("AUTH" = authorize only, no automatic settle/capture, "SALE" = authorize + automatic settle/capture)
-        $order->amount->currencyCode = "AED";                           // Payment currency ('AED' only for now)
-        $order->amount->value = (int)$order->total*100;                                   // Minor units (1000 = 10.00 AED)
-        $order->language = "en";                                        // Payment page language ('en' or 'ar' only)
-        $order->merchantOrderReference = time();                                        // Payment page language ('en' or 'ar' only)
-
-        $order->merchantAttributes->redirectUrl = "https://google.com";*/
         $order = json_encode($order);
 
 

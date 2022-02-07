@@ -9,8 +9,6 @@
                                 <img src="<?php echo e(url('/images/logo.png')); ?>" width="75%" />
                             </a>
                             <p>
-                                <?php echo e($twoColumnBanners["banner_2"]->call_to_action_url); ?>
-
                                 <?php echo e(trans('account::attributes.home.footer_intro')); ?>
 
                             </p>

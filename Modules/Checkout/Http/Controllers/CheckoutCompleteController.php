@@ -21,6 +21,7 @@ class CheckoutCompleteController
     public function store($orderId, OrderService $orderService)
     {
         $order = Order::findOrFail($orderId);
+        return request('paymentMethod');
 
         $gateway = Gateway::get(request('paymentMethod'));
 

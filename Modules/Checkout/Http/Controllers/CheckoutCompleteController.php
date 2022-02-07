@@ -52,7 +52,7 @@ class CheckoutCompleteController
     public function checkRef($ref,$token){
         $outletRef   = setting('ngenius_outlet_key');
         $apikey      = setting('ngenius_api_key');
-        $txnServiceURL = "https://api-gateway.ngenius-payments.com/transactions/outlets/".$outletRef."/orders";
+        $txnServiceURL = "https://api-gateway.ngenius-payments.com/transactions/outlets/".$outletRef."/orders".$ref;
         $order=[];
         $orderCreateHeaders  = array("Authorization: Bearer ".$token, "Content-Type: application/vnd.ni-payment.v2+json", "Accept: application/vnd.ni-payment.v2+json");
         $orderCreateResponse = $this->invokeCurlRequest("GET", $txnServiceURL, $orderCreateHeaders, $order);

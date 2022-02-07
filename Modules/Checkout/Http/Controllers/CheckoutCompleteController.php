@@ -26,7 +26,8 @@ class CheckoutCompleteController
             $payStatus=$this->checkRef($request->ref,$request->session()->get('ngenius_access'));
             //return $payStatus;
             if($payStatus=="FAILED"){
-               return redirect()->route('cart.index');
+                Order::where("id",$orderId)->delete();
+                return redirect()->route('cart.index');
             }
         }
 

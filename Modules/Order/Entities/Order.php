@@ -29,7 +29,6 @@ class Order extends Model
     const COMPLETED = 'completed';
     const ON_HOLD = 'on_hold';
     const PENDING = 'pending';
-    const PENDING_PAYMENT = 'pending_payment';
     const PROCESSING = 'processing';
     const DISPATCH = 'dispatch';
     const ONWAY = 'onway';
@@ -214,7 +213,11 @@ class Order extends Model
     public function getBillingCityNameAttribute()
     {
         $city=City::where("Cityid",$this->billing_city)->first();
-        return $city->CityName;
+        if($city->CityName){
+            return $city->CityName;
+        }else{
+            return "";
+        }
     }
 
     public function getShippingCountryNameAttribute()
@@ -223,8 +226,12 @@ class Order extends Model
     }
     public function getShippingCityNameAttribute()
     {
-        $city=City::where("Cityid",$this->shipping_city)->first();
-        return $city->CityName;
+        $city=City::where("Cityid",$this->billing_city)->first();
+        if($city->CityName){
+            return $city->CityName;
+        }else{
+            return "";
+        }
     }
 
     public function getBillingStateNameAttribute()

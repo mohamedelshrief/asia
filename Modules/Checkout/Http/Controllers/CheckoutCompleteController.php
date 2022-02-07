@@ -24,7 +24,7 @@ class CheckoutCompleteController
         $order = Order::findOrFail($orderId);
         if(request('paymentMethod')=="ngenius" && isset($request->ref)){
             $payStatus=$this->checkRef($request->ref,$request->session()->get('ngenius_access'));
-            return $payStatus;
+            //return $payStatus;
             if($payStatus=="FAILED"){
                return redirect()->route('cart.index');
             }

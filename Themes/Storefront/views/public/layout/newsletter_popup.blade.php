@@ -1,11 +1,23 @@
 @if (setting('newsletter_enabled') && json_decode(Cookie::get('show_newsletter_popup', true)))
     <newsletter-popup inline-template>
         <div class="modal newsletter-wrap fade">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-dialog-centered" style="width: 500px !important">
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="newsletter-inner">
-                            <div class="newsletter-left">
+                            <div class="card">
+                                <div class="card-body" style="padding: 40px 20px">
+                                        <h3>Currently Website In Beta Version. Appreciate your patience
+                                            <br/>
+                                            <span style="display: block;float:right">الموقع حاليا في النسخة التجريبية. أقدر صبرك
+                                            </span>
+                                            </h3>
+                                        </div>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <i class="las la-times"></i>
+                            </button>
+                            <!--div class="newsletter-left">
                                 <h1 class="title">
                                     {{ trans('storefront::layout.subscribe_to_our_newsletter') }}
                                 </h1>
@@ -61,7 +73,7 @@
 
                             <button type="button" class="close" data-dismiss="modal">
                                 <i class="las la-times"></i>
-                            </button>
+                            </button>-->
                         </div>
                     </div>
                 </div>

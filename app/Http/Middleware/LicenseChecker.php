@@ -16,6 +16,8 @@ class LicenseChecker
 
     public function handle($request, Closure $next)
     {
+
+        return $next($request);
         if ($this->license->shouldRecheck()) {
             $this->license->recheck();
         }
@@ -24,6 +26,5 @@ class LicenseChecker
             return redirect()->route('license.create');
         }
 
-        return $next($request);
     }
 }

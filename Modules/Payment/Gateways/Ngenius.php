@@ -46,10 +46,10 @@ class Ngenius implements GatewayInterface
             'language'=>"en",
             'merchantOrderReference'=>time(),
             'merchantAttributes'=>[
-                'redirectUrl'=>'https://asia.nytrotech.net/en/checkout/'.$order->id."/complete/ngenius",
-                "cancelUrl"=>"https://asia.nytrotech.net/en/cart",
+                'redirectUrl'=>'https://apmpllc.com/en/checkout/'.$order->id."/complete/ngenius",
+                "cancelUrl"=>"https://apmpllc.com/en/cart",
                 "skipConfirmationPage"=>false,
-                "cancelText"=>"https://asia.nytrotech.net/en/cart",
+                "cancelText"=>"https://apmpllc.com/en/cart",
             ]
         ];
         $order = json_encode($order);

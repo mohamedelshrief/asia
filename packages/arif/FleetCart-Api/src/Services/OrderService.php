@@ -73,7 +73,7 @@ class OrderService
             'currency' => currency(),
             'currency_rate' => CurrencyRate::for(currency()),
             'locale' => locale(),
-            'status' => Order::PENDING_PAYMENT,
+            'status' => Order::PENDING,
             'note' => $request->order_note,
         ]);
     }

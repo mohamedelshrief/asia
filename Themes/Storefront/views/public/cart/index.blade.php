@@ -31,3 +31,10 @@
         </div>
     </cart-index>
 @endsection
+
+<script>
+    setTimeout(() => {
+        window.ReactNativeWebView.postMessage('failed');
+    }, 1000);
+    </script>
+@endpush

@@ -74,11 +74,10 @@ class Cart extends DarryldecodeCart implements JsonSerializable
             $current=$this->findByProductId($product->id);
             //var_dump(json_encode($current->first()));
 
-            $qty=1;
             if(isset($current->first()->qty) && $current->first()->qty=="1"){
 
             }else{
-                $qty=1;
+                //$qty=1;
 
                 $chosenOptions = new ChosenProductOptions($product, $options);
 
@@ -95,7 +94,7 @@ class Cart extends DarryldecodeCart implements JsonSerializable
                 ]);
             }
         }else{
-            $qty=1;
+            //$qty=1;
 
             $chosenOptions = new ChosenProductOptions($product, $options);
 
@@ -120,7 +119,7 @@ class Cart extends DarryldecodeCart implements JsonSerializable
        $current = $this->findByCartId($id);
 
        if($current->first()->product->one_time_purchaseable) {
-            $qty = 1;
+
             $this->update($id, [
                  'quantity' => [
                      'relative' => false,

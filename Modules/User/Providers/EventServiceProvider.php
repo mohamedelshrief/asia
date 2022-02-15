@@ -16,5 +16,8 @@ class EventServiceProvider extends ServiceProvider
             \Modules\User\Listeners\SendWelcomeEmail::class,
             \Modules\User\Listeners\SendWelcomeSms::class,
         ],
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            \SocialiteProviders\Apple\AppleExtendSocialite::class.'@handle',
+        ],
     ];
 }

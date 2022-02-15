@@ -4,7 +4,7 @@ namespace Modules\User;
 
 class LoginProvider
 {
-    private static $providers = ['facebook', 'google','apple'];
+    private static $providers = ['facebook', 'google'];
 
     public static function add($provider)
     {

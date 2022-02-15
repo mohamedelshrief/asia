@@ -19,7 +19,7 @@
         @if (setting('google_login_enabled'))
             <li>
                 <a href="{{ route('login.redirect', ['provider' => 'google']) }}" class="google" data-toggle="tooltip" data-placement="top" title="{{ trans('user::auth.google') }}">
-                    <i class="lab la-apple"></i>
+                    <i class="lab la-google"></i>
                 </a>
             </li>
         @endif
@@ -27,7 +27,7 @@
 
         @if (setting('apple_login_enabled'))
             <li>
-                <a href="{{ route('login.redirect', ['provider' => 'apple']) }}" class="apple" data-toggle="tooltip" data-placement="top" title="{{ trans('user::auth.google') }}">
+                <a href="{{ route('login.redirect', ['provider' => 'apple']) }}" class="apple" data-toggle="tooltip" data-placement="top" title="Apple">
                     <i class="lab la-apple"></i>
                 </a>
             </li>

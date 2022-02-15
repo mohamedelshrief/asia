@@ -1,6 +1,14 @@
 @extends('public.layout')
 
 @section('title', trans('user::auth.login'))
+@push('styles')
+<style>
+.form-wrap-inner .social-login li a.apple{
+  background: #232323;
+}
+
+</style>
+@endpush
 
 @section('content')
     <section class="form-wrap login-wrap">

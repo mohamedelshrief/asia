@@ -40,7 +40,7 @@ $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     FleetCart\Exceptions\Handler::class
 );
-
+$app->register(FleetCart\Providers\EventServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Return The Application

@@ -31,7 +31,8 @@ return [
         'bank_transfer' => 'Bank Transfer',
         'check_payment' => 'Check / Money Order',
         'ngenius' => 'N-genius',
-        'emirates_post'=>"Emirates Post"
+        'emirates_post'=>"Emirates Post",
+        'apple'=>'Apple'
     ],
     'form' => [
         'allow_reviews' => 'Allow customers to give reviews & ratings',
@@ -77,7 +78,8 @@ return [
         'enable_bank_transfer' => 'Enable Bank Transfer',
         'enable_check_payment' => 'Enable Check / Money Order',
         'enable_ngenius'=>'Enable Ngenius',
-        'enable_emirates_post'=>'Enable Emirates Post'
+        'enable_emirates_post'=>'Enable Emirates Post',
+        'enable_apple_login'=>'Enable Apple Login'
     ],
     'validation' => [
         'sqlite_is_not_installed' => 'SQLite is not installed.',

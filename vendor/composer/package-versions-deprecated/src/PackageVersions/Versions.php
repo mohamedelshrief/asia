@@ -146,6 +146,8 @@ final class Versions
   'razorpay/razorpay' => '2.8.1@4ad7b6a5bd9896305858ec0a861f66020e39f628',
   'rize/uri-template' => '0.3.4@2a874863c48d643b9e2e254ab288ec203060a0b8',
   'rmccue/requests' => 'v1.8.0@afbe4790e4def03581c4a0963a1e8aa01f6030f1',
+  'socialiteproviders/apple' => '4.1.1@b03a927cff27e2ed05b1f923fb70f4160896c483',
+  'socialiteproviders/manager' => 'v4.1.0@4e63afbd26dc45ff263591de2a0970436a6a0bf9',
   'spatie/laravel-newsletter' => '4.10.0@c3b9061a8410650aeab1416ed76e1afb57adc685',
   'spatie/once' => '2.2.1@e6c13ae474a7d4b30975ef6a502a593874ac12d2',
   'spatie/schema-org' => '3.4.0@066463b6f10eb9f7617f879302ed382aa6bdbf54',
@@ -207,7 +209,7 @@ final class Versions
   'maximebf/debugbar' => 'v1.17.3@e8ac3499af0ea5b440908e06cc0abe5898008b3c',
   'nunomaduro/collision' => 'v5.10.0@3004cfa49c022183395eabc6d0e5207dfe498d00',
   'symfony/debug' => 'v4.4.31@43ede438d4cb52cd589ae5dc070e9323866ba8e0',
-  'envaysoft/fleetcart' => 'dev-main@41d1b7c5bb4368f485cda3b2e57814f44cc580f6',
+  'envaysoft/fleetcart' => 'dev-main@3588707d9b4b844c40336b189864e13678b2d38e',
 );
 
     private function __construct()

@@ -59,6 +59,8 @@ return array(
     'Spatie\\SchemaOrg\\' => array($vendorDir . '/spatie/schema-org/src'),
     'Spatie\\Once\\' => array($vendorDir . '/spatie/once/src'),
     'Spatie\\Newsletter\\' => array($vendorDir . '/spatie/laravel-newsletter/src'),
+    'SocialiteProviders\\Manager\\' => array($vendorDir . '/socialiteproviders/manager/src'),
+    'SocialiteProviders\\Apple\\' => array($vendorDir . '/socialiteproviders/apple'),
     'Sample\\' => array($vendorDir . '/paypal/paypal-checkout-sdk/samples'),
     'Rize\\' => array($vendorDir . '/rize/uri-template/src/Rize'),
     'Razorpay\\Tests\\' => array($vendorDir . '/razorpay/razorpay/tests'),

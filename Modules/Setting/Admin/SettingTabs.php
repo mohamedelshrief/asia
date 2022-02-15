@@ -12,11 +12,6 @@ use Modules\User\Entities\Role;
 
 class SettingTabs extends Tabs
 {
-    /**
-     * Make new tabs with groups.
-     *
-     * @return void
-     */
     public function make()
     {
         $this->group('general_settings', trans('setting::settings.tabs.group.general_settings'))
@@ -32,6 +27,7 @@ class SettingTabs extends Tabs
 
         $this->group('social_logins', trans('setting::settings.tabs.group.social_logins'))
             ->add($this->facebook())
+            ->add($this->apple())
             ->add($this->google());
 
         $this->group('shipping_methods', trans('setting::settings.tabs.group.shipping_methods'))
@@ -234,6 +230,18 @@ class SettingTabs extends Tabs
             ]);
 
             $tab->view('setting::admin.settings.tabs.google');
+        });
+    }
+    private function apple()
+    {
+        return tap(new Tab('google', trans('setting::settings.tabs.apple')), function (Tab $tab) {
+            $tab->weight(39);
+
+            $tab->fields([
+                'apple_login_enabled',
+            ]);
+
+            $tab->view('setting::admin.settings.tabs.apple');
         });
     }
 

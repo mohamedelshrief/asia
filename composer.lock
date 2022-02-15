@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e169c48beec4a7160aa599ab42d83e98",
+    "content-hash": "1acd500e1f1fe2b5138134b87c74c0c9",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -7257,6 +7257,140 @@
                 "source": "https://github.com/WordPress/Requests/tree/v1.8.0"
             },
             "time": "2021-04-27T11:05:25+00:00"
+        },
+        {
+            "name": "socialiteproviders/apple",
+            "version": "4.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Apple.git",
+                "reference": "b03a927cff27e2ed05b1f923fb70f4160896c483"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Apple/zipball/b03a927cff27e2ed05b1f923fb70f4160896c483",
+                "reference": "b03a927cff27e2ed05b1f923fb70f4160896c483",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-openssl": "*",
+                "firebase/php-jwt": "^5.2",
+                "lcobucci/jwt": "^3.4",
+                "php": "^7.2 || ^8.0",
+                "socialiteproviders/manager": "~4.0"
+            },
+            "suggest": {
+                "ahilmurugesan/socialite-apple-helper": "Automatic Apple client key generation and management."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Apple\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ahilan",
+                    "email": "ahilmurugesan@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Vamsi Krishna V",
+                    "email": "vamsi@vonectech.com",
+                    "homepage": "https://vonectech.com/",
+                    "role": "Farmer"
+                }
+            ],
+            "description": "Apple OAuth2 Provider for Laravel Socialite",
+            "keywords": [
+                "apple",
+                "apple client key",
+                "apple sign in",
+                "client key generator",
+                "client key refresh",
+                "laravel",
+                "laravel apple",
+                "laravel socialite",
+                "sign in with apple",
+                "socialite",
+                "socialite apple"
+            ],
+            "time": "2020-12-03T02:15:50+00:00"
+        },
+        {
+            "name": "socialiteproviders/manager",
+            "version": "v4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Manager.git",
+                "reference": "4e63afbd26dc45ff263591de2a0970436a6a0bf9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Manager/zipball/4e63afbd26dc45ff263591de2a0970436a6a0bf9",
+                "reference": "4e63afbd26dc45ff263591de2a0970436a6a0bf9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^6.0 || ^7.0 || ^8.0 || ^9.0",
+                "laravel/socialite": "~4.0 || ~5.0",
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.2",
+                "phpunit/phpunit": "^6.0 || ^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SocialiteProviders\\Manager\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Manager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andy Wendt",
+                    "email": "andy@awendt.com"
+                },
+                {
+                    "name": "Anton Komarev",
+                    "email": "a.komarev@cybercog.su"
+                },
+                {
+                    "name": "Miguel Piedrafita",
+                    "email": "soy@miguelpiedrafita.com"
+                },
+                {
+                    "name": "atymic",
+                    "email": "atymicq@gmail.com",
+                    "homepage": "https://atymic.dev"
+                }
+            ],
+            "description": "Easily add new or override built-in providers in Laravel Socialite.",
+            "homepage": "https://socialiteproviders.com",
+            "keywords": [
+                "laravel",
+                "manager",
+                "oauth",
+                "providers",
+                "socialite"
+            ],
+            "time": "2022-01-23T22:40:23+00:00"
         },
         {
             "name": "spatie/laravel-newsletter",

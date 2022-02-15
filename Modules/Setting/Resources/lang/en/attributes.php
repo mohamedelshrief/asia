@@ -73,6 +73,8 @@ return [
     'google_login_client_id' => 'Client ID',
     'google_login_client_secret' => 'Client Secret',
 
+    'apple_login_enabled'=>'Status',
+
     'free_shipping_enabled' => 'Status',
     'translatable.free_shipping_label' => 'Label',
     'free_shipping_min_amount' => 'Minimum Amount',

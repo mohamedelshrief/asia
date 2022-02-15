@@ -183,7 +183,7 @@ return [
         Mehedi\Stylist\StylistServiceProvider::class,
         FleetCartApi\Providers\FleetCartApiServiceProvider::class,
         Ladumor\OneSignal\OneSignalServiceProvider::class,
-        \SocialiteProviders\Manager\ServiceProvider::class
+        SocialiteProviders\Manager\ServiceProvider::class
 
     ],
 

@@ -8,6 +8,7 @@ Route::post('login', 'AuthController@postLogin')->name('login.post');
 
 Route::get('login/{provider}', 'AuthController@redirectToProvider')->name('login.redirect');
 Route::get('login/{provider}/callback', 'AuthController@handleProviderCallback')->name('login.callback');
+Route::post('login/{provider}/callback', 'AuthController@handleProviderCallback');
 
 Route::get('logout', 'AuthController@getLogout')->name('logout');
 

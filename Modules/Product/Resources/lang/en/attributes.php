@@ -23,4 +23,7 @@ return [
     'in_stock' => 'Stock Availability',
     'new_from' => 'Product New From',
     'new_to' => 'Product New To',
+    'new_arrival'=>"New Arrival",
+    'relevance'=>"Relevance",
+    'most_purchased'=>"Most Purchased",
 ];

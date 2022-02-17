@@ -1,6 +1,7 @@
 <?php
 
 namespace FleetCartApi\Http\Controllers\Auth;
+use Exception;
 use Auth;
 use FleetCartApi\Entities\User;
 use FleetCartApi\Http\Controllers\Auth\BaseAuthController;
@@ -128,14 +129,15 @@ class AuthController extends BaseAuthController
         }
     }
 
-    public function handleProviderCallback($provider,Request $request)
+    public function handleProviderCallback(Request $request)
     {
-        if (! LoginProvider::isEnable($provider)) {
+        if (! LoginProvider::isEnable($request->provider)) {
             abort(404);
         }
 
         try {
-            $user = Socialite::driver($provider)->user();
+            //$user_tmp = Socialite::with($request->provider)->stateless()->redirect()->getTargetUrl();
+            $user=Socialite::with($request->provider)->stateless()->user();
         } catch (Exception $e) {
             return response()
                 ->json([

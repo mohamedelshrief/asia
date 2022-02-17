@@ -109,17 +109,17 @@ class ProductController extends Controller
         $Most= Product::all()->random(10);
 
         $json[]=[
-            "title"=>"New Arrival",
+            "title"=>trans('product::attributes.new_arrival'),
             "products"=>$newProducts,
             "url"=>"/products?sort=latest"
         ];
         $json[]=[
-            "title"=>"Relevance",
+            "title"=>trans('product::attributes.relevance'),
             "products"=>$relevanceProducts,
             "url"=>"/products?sort=relevance"
         ];
         $json[]=[
-            "title"=>"Most Purchased",
+            "title"=>trans('product::attributes.most_purchased'),
             "products"=> $Most,
             "url"=>"/products?sort=topRated"
         ];

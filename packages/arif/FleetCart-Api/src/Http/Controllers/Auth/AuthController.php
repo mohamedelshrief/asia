@@ -20,6 +20,9 @@ use Modules\Address\Entities\Address;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 use Illuminate\Support\Facades\Storage;
 use Modules\Notification\Entities\Notification;
+use Modules\User\LoginProvider;
+use Illuminate\Support\Facades\Cache;
+use Laravel\Socialite\Facades\Socialite;
 use File;
 
 class AuthController extends BaseAuthController
@@ -108,6 +111,67 @@ class AuthController extends BaseAuthController
             User::where("id",$user->id)->update(["player_id"=>$request->player_id]);
             $token = $user->createToken('Web Token')->accessToken;
             $userData=User::where("id",$user->id)->first();
+            return response()
+                ->json([
+                'token' => $token,
+                'user' => $userData
+            ]);
+        } catch (NotActivatedException $e) {
+            return response()
+                ->json([
+                    'message' => trans('fleetcart_api::validation.auth.account_not_activated')
+                ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        } catch (ThrottlingException $e) {
+            return response()->json([
+                'message' => trans('fleetcart_api::validation.auth.account_is_blocked', ['delay' => $e->getDelay()])
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+    }
+
+    public function handleProviderCallback($provider,Request $request)
+    {
+        if (! LoginProvider::isEnable($provider)) {
+            abort(404);
+        }
+
+        try {
+            $user = Socialite::driver($provider)->user();
+        } catch (Exception $e) {
+            return response()
+                ->json([
+                'message' => "Invalid Credentials",
+            ]);
+        }
+
+        if (User::registered($request->email)) {
+            auth()->login(
+                User::findByEmail($request->email)
+            );
+            return $this->getUserDetails( $user->id,$request->player_id);
+        }
+
+        [$firstName, $lastName] = $this->extractName($request->name);
+
+        $registeredUser = $this->auth->registerAndActivate([
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'email' => $request->email,
+            'phone' => '',
+            'password' => str_random(),
+        ]);
+
+        $this->assignCustomerRole($registeredUser);
+
+        auth()->login($registeredUser);
+
+        return $this->getUserDetails($registeredUser->id,$request->player_id);
+    }
+
+    public function getUserDetails($id,$player_id){
+        try {
+            $loginUser=User::where("id",$id)->update(["player_id"=>$player_id]);
+            $token = $loginUser->createToken('Web Token')->accessToken;
+            $userData=User::where("id",$id)->first();
             return response()
                 ->json([
                 'token' => $token,

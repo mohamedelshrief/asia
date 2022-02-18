@@ -131,42 +131,49 @@ class AuthController extends BaseAuthController
 
     public function handleProviderCallback(Request $request)
     {
-        if (! LoginProvider::isEnable($request->provider)) {
-            abort(404);
-        }
 
-        try {
-            //$user_tmp = Socialite::with($request->provider)->stateless()->redirect()->getTargetUrl();
-            $user=Socialite::with($request->provider)->stateless()->user();
-        } catch (Exception $e) {
-            return response()
-                ->json([
-                'message' => "Invalid Credentials",
+        $request->validate([
+            "email"=>"required|email",
+            "provider"=>"required",
+            "user_id"=>"required",
+            "user_name"=>"required"
+        ]);
+
+        $provider=$request->provider;
+        $user_id=$request->user_id;
+        $name=explode(' ', $request->user_name, 2);
+
+        $user = User::where('provider', $provider)->where('provider_id', $user_id)->where('email',$request->email)->first();
+        // if there is no record with these data, create a new user
+        //return  $user ;
+        if($user==""){
+            $request->validate([
+                "email"=>"required|email|unique:users,email"
+            ]);
+            $user = User::create([
+                'first_name'=> $name[0],
+                'last_name'=>$name[1],
+                'email'=>$request->email,
+                'provider' => $provider,
+                'provider_id' => $user_id,
+                'player_id' => $request->player_id,
+                'is_social'=>1
             ]);
         }
 
-        if (User::registered($request->email)) {
-            auth()->login(
-                User::findByEmail($request->email)
-            );
-            return $this->getUserDetails( $user->id,$request->player_id);
-        }
+        // create a token for the user, so they can login
+        $token = $user->createToken('Web Token')->accessToken;
+        // return the token for usage
 
-        [$firstName, $lastName] = $this->extractName($request->name);
+        $loginUser=User::where("id",$user->id)->update(["player_id"=>$request->player_id]);
+        $userData=User::where("id",$user->id)->first();
 
-        $registeredUser = $this->auth->registerAndActivate([
-            'first_name' => $firstName,
-            'last_name' => $lastName,
-            'email' => $request->email,
-            'phone' => '',
-            'password' => str_random(),
+        return response()->json([
+            'success' => true,
+            "user"=>$userData,
+            'token' => $token
         ]);
 
-        $this->assignCustomerRole($registeredUser);
-
-        auth()->login($registeredUser);
-
-        return $this->getUserDetails($registeredUser->id,$request->player_id);
     }
 
     public function getUserDetails($id,$player_id){

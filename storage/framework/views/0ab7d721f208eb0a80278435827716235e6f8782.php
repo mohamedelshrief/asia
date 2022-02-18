@@ -8,8 +8,7 @@
 
         <?php echo e(Form::number('value', trans('coupon::attributes.value'), $errors, $coupon, ['min' => 0])); ?>
 
-        <?php echo e(Form::checkbox('free_shipping', trans('coupon::attributes.free_shipping'), trans('coupon::coupons.form.allow_free_shipping'), $errors, $coupon->freeShipping())); ?>
-
+        <!--<?php echo e(Form::checkbox('free_shipping', trans('coupon::attributes.free_shipping'), trans('coupon::coupons.form.allow_free_shipping'), $errors, $coupon->freeShipping())); ?> -->
         <?php echo e(Form::text('start_date', trans('coupon::attributes.start_date'), $errors, $coupon, ['class' => 'datetime-picker', 'data-default-date' => $coupon->start_date])); ?>
 
         <?php echo e(Form::text('end_date', trans('coupon::attributes.end_date'), $errors, $coupon, ['class' => 'datetime-picker', 'data-default-date' => $coupon->end_date])); ?>

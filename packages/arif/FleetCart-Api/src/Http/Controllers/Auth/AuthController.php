@@ -133,23 +133,21 @@ class AuthController extends BaseAuthController
     {
 
         $request->validate([
-            "email"=>"required|email",
             "provider"=>"required",
             "user_id"=>"required",
-            "user_name"=>"required"
         ]);
 
         $provider=$request->provider;
         $user_id=$request->user_id;
-        $name=explode(' ', $request->user_name, 2);
+        $name="Customer User";
+        if($request->user_name!=""){
+            $name=explode(' ', $request->user_name, 2);
+        }
 
-        $user = User::where('provider', $provider)->where('provider_id', $user_id)->where('email',$request->email)->first();
+        $user = User::where('provider', $provider)->where('provider_id', $user_id)->first();
         // if there is no record with these data, create a new user
         //return  $user ;
         if($user==""){
-            $request->validate([
-                "email"=>"required|email|unique:users,email"
-            ]);
             $user = User::create([
                 'first_name'=> $name[0],
                 'last_name'=>$name[1],

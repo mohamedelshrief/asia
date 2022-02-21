@@ -139,9 +139,17 @@ class AuthController extends BaseAuthController
 
         $provider=$request->provider;
         $user_id=$request->user_id;
-        $name="Customer User";
+        $name1="Customer";
+        $name2="User";
+        $name=null;
         if($request->user_name!=""){
             $name=explode(' ', $request->user_name, 2);
+        }
+        if($name[0]){
+            $name1=$name[0];
+        }
+        if($name[1]){
+            $name2=$name[1];
         }
 
         $user = User::where('provider', $provider)->where('provider_id', $user_id)->first();
@@ -149,8 +157,8 @@ class AuthController extends BaseAuthController
         //return  $user ;
         if($user==""){
             $user = User::create([
-                'first_name'=> $name[0],
-                'last_name'=>$name[1],
+                'first_name'=>$name1,
+                'last_name'=>$name2,
                 'email'=>$request->email,
                 'provider' => $provider,
                 'provider_id' => $user_id,

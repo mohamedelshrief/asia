@@ -145,10 +145,10 @@ class AuthController extends BaseAuthController
         if($request->user_name!=""){
             $name=explode(' ', $request->user_name, 2);
         }
-        if($name[0]){
+        if(isset($name[0])){
             $name1=$name[0];
         }
-        if($name[1]){
+        if(isset($name[1])){
             $name2=$name[1];
         }
 

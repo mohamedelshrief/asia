@@ -10,27 +10,23 @@
     </span>
 
     <ul class="list-inline social-login">
-        <?php if(setting('facebook_login_enabled')): ?>
             <li>
                 <a href="<?php echo e(route('login.redirect', ['provider' => 'facebook'])); ?>" class="facebook" data-toggle="tooltip" data-placement="top" title="<?php echo e(trans('user::auth.facebook')); ?>">
-                    <i class="lab la-facebook-f"></i>
+                   <img src="/images/facebook.png" width="27px"/>
                 </a>
             </li>
-        <?php endif; ?>
 
-        <?php if(setting('google_login_enabled')): ?>
             <li>
                 <a href="<?php echo e(route('login.redirect', ['provider' => 'google'])); ?>" class="google" data-toggle="tooltip" data-placement="top" title="<?php echo e(trans('user::auth.google')); ?>">
-                    <i class="lab la-apple"></i>
+                    <img src="/images/google.png" width="20px"/>
                 </a>
             </li>
-        <?php endif; ?>
 
 
         <?php if(setting('apple_login_enabled')): ?>
             <li>
-                <a href="<?php echo e(route('login.redirect', ['provider' => 'apple'])); ?>" class="apple" data-toggle="tooltip" data-placement="top" title="<?php echo e(trans('user::auth.google')); ?>">
-                    <i class="lab la-apple"></i>
+                <a href="<?php echo e(route('login.redirect', ['provider' => 'apple'])); ?>" class="apple" data-toggle="tooltip" data-placement="top" title="Apple">
+                    <img src="/images/apple.png" width="20px"/>
                 </a>
             </li>
         <?php endif; ?>

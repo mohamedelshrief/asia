@@ -1,4 +1,12 @@
 <?php $__env->startSection('title', trans('user::auth.login')); ?>
+<?php $__env->startPush('styles'); ?>
+<style>
+.form-wrap-inner .social-login li a.apple{
+  background: #232323;
+}
+
+</style>
+<?php $__env->stopPush(); ?>
 
 <?php $__env->startSection('content'); ?>
     <section class="form-wrap login-wrap">

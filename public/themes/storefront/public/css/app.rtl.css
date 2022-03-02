@@ -20638,7 +20638,7 @@ span.flatpickr-weekday {
 }
 
 .product-price {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 24px;
   display: flex;
@@ -20649,7 +20649,7 @@ span.flatpickr-weekday {
 
 .product-price .previous-price {
   position: relative;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
   margin: 1px 8px 0 0;
   color: #a6a6a6;
@@ -21018,7 +21018,7 @@ span.flatpickr-weekday {
 .product-card .product-name h6 {
   padding-left: 60px;
   position: relative;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 18px;
   max-height: 35px;
   display: -webkit-box;
@@ -21028,8 +21028,8 @@ span.flatpickr-weekday {
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight:400;
 }
 
 .product-card .product-name h6.product-category {

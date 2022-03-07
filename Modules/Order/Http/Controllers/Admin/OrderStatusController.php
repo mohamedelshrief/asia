@@ -254,31 +254,34 @@ class OrderStatusController
 
     public function label($id){
         $order=Order::findOrFail($id);
-        $bin = base64_decode($order->shipping_data["AWBLabel"], true);
+        if(isset($order->shipping_data)){
+            $bin = base64_decode($order->shipping_data["AWBLabel"], true);
 
-        if (strpos($bin, '%PDF') !== 0) {
-          throw new Exception('Missing the PDF file signature');
+            if (strpos($bin, '%PDF') !== 0) {
+              throw new Exception('Missing the PDF file signature');
+            }
+
+            # Write the PDF contents to a local file
+            file_put_contents('pdfs/order_'.$order->id.'_shipping.pdf', $bin);
+            $url ='pdfs/order_'.$order->id.'_shipping.pdf';
+            //return $url ;
+
+            if (file_exists($url)) {
+                header('Content-Description: File Transfer');
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment; filename="' . basename($url) . '"');
+                header('Expires: 0');
+                header('Cache-Control: must-revalidate');
+                header('Pragma: public');
+                header('Content-Length: ' . filesize($url));
+                readfile($url);
+                exit;
+            }
+
+            return "No File Exist";
+        }else{
+            return redirect()->back();
         }
-
-        # Write the PDF contents to a local file
-        file_put_contents('pdfs/order_'.$order->id.'_shipping.pdf', $bin);
-        $url ='pdfs/order_'.$order->id.'_shipping.pdf';
-        //return $url ;
-
-        if (file_exists($url)) {
-            header('Content-Description: File Transfer');
-            header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="' . basename($url) . '"');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
-            header('Content-Length: ' . filesize($url));
-            readfile($url);
-            exit;
-        }
-
-        return "No File Exist";
-
     }
     public function getCountries(){
 

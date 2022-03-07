@@ -33,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        \URL::forceScheme('https');
         if (! config('app.installed')) {
             $this->app->register(DotenvEditorServiceProvider::class);
         }

@@ -10,6 +10,7 @@
                             <tr>
                                 <th><?php echo e(trans('order::orders.product')); ?></th>
                                 <th><?php echo e(trans('order::orders.unit_price')); ?></th>
+                                <th><?php echo e(trans('order::orders.sku')); ?></th>
                                 <th><?php echo e(trans('order::orders.quantity')); ?></th>
                                 <th><?php echo e(trans('order::orders.line_total')); ?></th>
                             </tr>
@@ -23,7 +24,7 @@
                                             <?php echo e($product->name); ?>
 
                                         <?php else: ?>
-                                            <a href="<?php echo e(route('admin.products.edit', $product->product->id)); ?>"><?php echo e($product->name); ?></a>
+                                            <a href="<?php echo e(url('/products/'.$product->product->slug)); ?>"><?php echo e($product->name); ?></a>
                                         <?php endif; ?>
 
                                         <?php if($product->hasAnyOption()): ?>
@@ -51,6 +52,10 @@
 
                                     </td>
 
+                                    <td>
+                                        <?php echo e($product->sku); ?>
+
+                                    </td>
                                     <td><?php echo e($product->qty); ?></td>
 
                                     <td>

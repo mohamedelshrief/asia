@@ -26,6 +26,8 @@ Route::post('orders/{order}/email', [
     'middleware' => 'can:admin.orders.show',
 ]);
 
+
+
 Route::get('orders/{order}/print', [
     'as' => 'admin.orders.print.show',
     'uses' => 'OrderPrintController@show',

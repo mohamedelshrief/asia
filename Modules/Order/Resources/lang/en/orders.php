@@ -12,6 +12,7 @@ return [
     'print' => 'Print',
     'order_and_account_information' => 'Order & Account Information',
     'order_information' => 'Order Information',
+    'order_id' => 'Order ID',
     'order_date' => 'Order Date',
     'order_status' => 'Order Status',
     'shipping_method' => 'Shipping Method',
@@ -39,4 +40,5 @@ return [
     'coupon' => 'Coupon',
     'tax' => 'Tax',
     'total' => 'Total',
+    'sku' => 'SKU',
 ];

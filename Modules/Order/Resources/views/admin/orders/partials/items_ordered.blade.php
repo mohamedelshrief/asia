@@ -10,6 +10,7 @@
                             <tr>
                                 <th>{{ trans('order::orders.product') }}</th>
                                 <th>{{ trans('order::orders.unit_price') }}</th>
+                                <th>{{ trans('order::orders.sku') }}</th>
                                 <th>{{ trans('order::orders.quantity') }}</th>
                                 <th>{{ trans('order::orders.line_total') }}</th>
                             </tr>
@@ -22,7 +23,7 @@
                                         @if ($product->trashed())
                                             {{ $product->name }}
                                         @else
-                                            <a href="{{ route('admin.products.edit', $product->product->id) }}">{{ $product->name }}</a>
+                                            <a href="{{ url('/products/'.$product->product->slug) }}">{{ $product->name }}</a>
                                         @endif
 
                                         @if ($product->hasAnyOption())
@@ -47,6 +48,9 @@
                                         {{ $product->unit_price->format() }}
                                     </td>
 
+                                    <td>
+                                        {{ $product->sku }}
+                                    </td>
                                     <td>{{ $product->qty }}</td>
 
                                     <td>

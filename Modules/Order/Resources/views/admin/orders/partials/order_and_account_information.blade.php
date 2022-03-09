@@ -6,7 +6,11 @@
                 Download Shipping Label <i class="fa fa-print" aria-hidden="true"></i>
             </a>
         @endif
-        <a href="{{ route('admin.orders.action.label', $order) }}" class="btn btn-default" target="_blank" data-toggle="tooltip" title="{{ trans('order::orders.print') }}">
+
+        <a href="{{ route('admin.orders.action.label', $order) }}" class="btn btn-default" target="_blank" data-toggle="tooltip" title="Delivery label Print" style="margin-left: 10px">
+            <i class="fa fa-barcode"></i>
+        </a>
+        <a href="{{ route('admin.orders.print.show', $order) }}" class="btn btn-default" target="_blank" data-toggle="tooltip" title="{{ trans('order::orders.print') }}">
             <i class="fa fa-print" aria-hidden="true"></i>
         </a>
         <form method="POST" action="{{ route('admin.orders.email.store', $order) }}">
@@ -29,6 +33,10 @@
                 <div class="table-responsive">
                     <table class="table">
                         <tbody>
+                            <tr>
+                                <td>{{ trans('order::orders.order_id') }}</td>
+                                <td>{{ $order->id }}</td>
+                            </tr>
                             <tr>
                                 <td>{{ trans('order::orders.order_date') }}</td>
                                 <td>{{ $order->created_at->toFormattedDateString() }}</td>

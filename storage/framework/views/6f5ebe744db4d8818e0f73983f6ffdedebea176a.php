@@ -6,7 +6,11 @@
                 Download Shipping Label <i class="fa fa-print" aria-hidden="true"></i>
             </a>
         <?php endif; ?>
-        <a href="<?php echo e(route('admin.orders.action.label', $order)); ?>" class="btn btn-default" target="_blank" data-toggle="tooltip" title="<?php echo e(trans('order::orders.print')); ?>">
+
+        <a href="<?php echo e(route('admin.orders.action.label', $order)); ?>" class="btn btn-default" target="_blank" data-toggle="tooltip" title="Delivery label Print" style="margin-left: 10px">
+            <i class="fa fa-barcode"></i>
+        </a>
+        <a href="<?php echo e(route('admin.orders.print.show', $order)); ?>" class="btn btn-default" target="_blank" data-toggle="tooltip" title="<?php echo e(trans('order::orders.print')); ?>">
             <i class="fa fa-print" aria-hidden="true"></i>
         </a>
         <form method="POST" action="<?php echo e(route('admin.orders.email.store', $order)); ?>">
@@ -30,6 +34,10 @@
                 <div class="table-responsive">
                     <table class="table">
                         <tbody>
+                            <tr>
+                                <td><?php echo e(trans('order::orders.order_id')); ?></td>
+                                <td><?php echo e($order->id); ?></td>
+                            </tr>
                             <tr>
                                 <td><?php echo e(trans('order::orders.order_date')); ?></td>
                                 <td><?php echo e($order->created_at->toFormattedDateString()); ?></td>

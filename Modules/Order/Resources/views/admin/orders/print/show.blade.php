@@ -117,6 +117,7 @@
                                     <thead>
                                         <tr>
                                             <th>{{ trans('order::print.product') }}</th>
+                                            <th>{{ trans('order::orders.sku') }}</th>
                                             <th>{{ trans('order::print.unit_price') }}</th>
                                             <th>{{ trans('order::print.quantity') }}</th>
                                             <th>{{ trans('order::print.line_total') }}</th>
@@ -147,6 +148,10 @@
                                                     @endif
                                                 </td>
 
+                                                <td>
+                                                    <label class="visible-xs">{{ trans('order::orders.sku') }}:</label>
+                                                    <span>{{ $product->product->sku}}</span>
+                                                </td>
                                                 <td>
                                                     <label class="visible-xs">{{ trans('order::print.unit_price') }}:</label>
                                                     <span>{{ $product->unit_price->convert($order->currency, $order->currency_rate)->convert($order->currency, $order->currency_rate)->format($order->currency) }}</span>

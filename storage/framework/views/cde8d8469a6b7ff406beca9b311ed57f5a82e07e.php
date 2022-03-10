@@ -117,6 +117,7 @@
                                     <thead>
                                         <tr>
                                             <th><?php echo e(trans('order::print.product')); ?></th>
+                                            <th><?php echo e(trans('order::orders.sku')); ?></th>
                                             <th><?php echo e(trans('order::print.unit_price')); ?></th>
                                             <th><?php echo e(trans('order::print.quantity')); ?></th>
                                             <th><?php echo e(trans('order::print.line_total')); ?></th>
@@ -149,6 +150,10 @@
                                                     <?php endif; ?>
                                                 </td>
 
+                                                <td>
+                                                    <label class="visible-xs"><?php echo e(trans('order::orders.sku')); ?>:</label>
+                                                    <span><?php echo e($product->product->sku); ?></span>
+                                                </td>
                                                 <td>
                                                     <label class="visible-xs"><?php echo e(trans('order::print.unit_price')); ?>:</label>
                                                     <span><?php echo e($product->unit_price->convert($order->currency, $order->currency_rate)->convert($order->currency, $order->currency_rate)->format($order->currency)); ?></span>

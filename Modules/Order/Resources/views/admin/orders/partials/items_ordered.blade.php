@@ -8,6 +8,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>{{ trans('admin::admin.table.id') }}</th>
                                 <th>{{ trans('order::orders.product') }}</th>
                                 <th>{{ trans('order::orders.unit_price') }}</th>
                                 <th>{{ trans('order::orders.sku') }}</th>
@@ -19,6 +20,10 @@
                         <tbody>
                             @foreach ($order->products as $product)
                                 <tr>
+
+                                    <td>
+                                        {{ $product->product_id }}
+                                    </td>
                                     <td>
                                         @if ($product->trashed())
                                             {{ $product->name }}
@@ -49,7 +54,8 @@
                                     </td>
 
                                     <td>
-                                        {{ $product->sku }}
+                                        {{$product->product->sku}}
+
                                     </td>
                                     <td>{{ $product->qty }}</td>
 

@@ -8,6 +8,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th><?php echo e(trans('admin::admin.table.id')); ?></th>
                                 <th><?php echo e(trans('order::orders.product')); ?></th>
                                 <th><?php echo e(trans('order::orders.unit_price')); ?></th>
                                 <th><?php echo e(trans('order::orders.sku')); ?></th>
@@ -19,6 +20,11 @@
                         <tbody>
                             <?php $__currentLoopData = $order->products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
+
+                                    <td>
+                                        <?php echo e($product->product_id); ?>
+
+                                    </td>
                                     <td>
                                         <?php if($product->trashed()): ?>
                                             <?php echo e($product->name); ?>
@@ -53,7 +59,8 @@
                                     </td>
 
                                     <td>
-                                        <?php echo e($product->sku); ?>
+                                        <?php echo e($product->product->sku); ?>
+
 
                                     </td>
                                     <td><?php echo e($product->qty); ?></td>

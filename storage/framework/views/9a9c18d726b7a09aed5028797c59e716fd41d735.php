@@ -19,7 +19,8 @@
         new DataTable('#products-table .table', {
             columns: [
                 { data: 'checkbox', orderable: false, searchable: false, width: '3%' },
-                { data: 'id', width: '5%' },
+                { data: 'id', width: '5%',searchable: true },
+                { data: 'sku', width: '5%',searchable: true },
                 { data: 'thumbnail', orderable: false, searchable: false, width: '10%' },
                 { data: 'name', name: 'translations.name', orderable: false, defaultContent: '' },
                 { data: 'price', searchable: false },

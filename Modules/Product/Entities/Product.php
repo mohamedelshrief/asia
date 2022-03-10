@@ -591,7 +591,7 @@ class Product extends Model
             ->withName()
             ->withBaseImage()
             ->withPrice()
-            ->addSelect(['id', 'is_active', 'created_at'])
+            ->addSelect(['id','sku', 'is_active', 'created_at'])
             ->when($request->has('except'), function ($query) use ($request) {
                 $query->whereNotIn('id', explode(',', $request->except));
             });

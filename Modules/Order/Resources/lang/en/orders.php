@@ -40,5 +40,5 @@ return [
     'coupon' => 'Coupon',
     'tax' => 'Tax',
     'total' => 'Total',
-    'sku' => 'SKU',
+    'sku' => 'Model No.',
 ];

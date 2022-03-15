@@ -60,7 +60,8 @@ class Product extends Model
         'is_active',
         'new_from',
         'new_to',
-        'one_time_purchaseable'
+        'one_time_purchaseable',
+        'weight'
     ];
 
     /**

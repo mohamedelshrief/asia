@@ -137,7 +137,7 @@ class ImporterController
         ********************************************
         */
 
-        $products = DB::connection('mysql2')->table('oc_product')
+        /*$products = DB::connection('mysql2')->table('oc_product')
         ->join("oc_product_description","oc_product_description.product_id","=","oc_product.product_id")
         ->select("oc_product.*","oc_product_description.*")
         ->whereBetween('oc_product.date_added',array("2021-11-15 00:00:00","2022-01-15 00:00:00"))
@@ -216,6 +216,12 @@ class ImporterController
                     echo $item->name."<br/>";
 
                 }
+        }*/
+        $products=Product::get();
+        foreach ($products as $key => $item) {
+          $old_pro= DB::connection('mysql2')->table('oc_product')->where("product_id",$item->tmp_id)->first();
+          Product::where("id",$item->id)->update(["weight"=>$old_pro->weight]);
+
         }
 
     }

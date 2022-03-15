@@ -26,4 +26,5 @@ return [
     'new_arrival'=>"New Arrival",
     'relevance'=>"Relevance",
     'most_purchased'=>"Most Purchased",
+    "weight"=>"Weight"
 ];

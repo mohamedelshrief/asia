@@ -81,7 +81,7 @@
                                     {!! $product->short_description !!}
                                     <br/>
                                     @if ($product->sku!="")
-                                        <b>{{ trans('storefront::product.model_code') }}: {{$product->sku}}</b>
+                                        <b><span style="color:#0335d6">{{ trans('storefront::product.model_code') }}</span> {{$product->sku}}</b>
                                     @endif
                                 </div>
 

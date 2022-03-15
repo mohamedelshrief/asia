@@ -79,6 +79,7 @@
 
                                 <div class="brief-description">
                                     {!! $product->short_description !!}
+                                    <b>{{ trans('storefront::product.model_code') }}: {{$product->sku}}</b>
                                 </div>
 
                                 <div class="details-info-top-actions">

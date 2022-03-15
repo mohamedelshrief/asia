@@ -220,7 +220,9 @@ class ImporterController
         $products=Product::get();
         foreach ($products as $key => $item) {
           $old_pro= DB::connection('mysql2')->table('oc_product')->where("product_id",$item->tmp_id)->first();
-          Product::where("id",$item->id)->update(["weight"=>$old_pro->weight]);
+          if($old_pro){
+            Product::where("id",$item->id)->update(["weight"=>$old_pro->weight]);
+          }
 
         }
 

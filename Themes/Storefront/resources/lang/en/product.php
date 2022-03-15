@@ -4,6 +4,7 @@ return [
     'left_in_stock' => ':count left in stock',
     'in_stock' => 'In stock',
     'out_of_stock' => 'Out of stock',
+    'model_code' => 'Model Code',
     'wishlist' => 'Wishlist',
     'compare' => 'Compare',
     'options' => [

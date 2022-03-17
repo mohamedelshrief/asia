@@ -7,6 +7,6 @@
     <th><?php echo e(trans('product::products.table.name')); ?></th>
     <th><?php echo e(trans('product::products.table.price')); ?></th>
     <th><?php echo e(trans('admin::admin.table.status')); ?></th>
-    <th data-sort><?php echo e(trans('admin::admin.table.created')); ?></th>
+    <th ><?php echo e(trans('admin::admin.table.created')); ?></th>
 </tr>
 <?php /**PATH /var/www/html/Amp/Modules/Product/Resources/views/admin/products/partials/thead.blade.php ENDPATH**/ ?>

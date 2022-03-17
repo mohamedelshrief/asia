@@ -114,14 +114,14 @@ class ProductController extends Controller
             "url"=>"/products?sort=latest"
         ];
         $json[]=[
-            "title"=>trans('product::attributes.relevance'),
-            "products"=>$relevanceProducts,
-            "url"=>"/products?sort=relevance"
-        ];
-        $json[]=[
             "title"=>trans('product::attributes.most_purchased'),
             "products"=> $Most,
             "url"=>"/products?sort=topRated"
+        ];
+        $json[]=[
+            "title"=>trans('product::attributes.relevance'),
+            "products"=>$relevanceProducts,
+            "url"=>"/products?sort=relevance"
         ];
         return response()->json($json);
     }

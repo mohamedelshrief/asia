@@ -48,4 +48,12 @@ return [
         'add_new_file' => 'Add New File',
         'onetime_purchase' => 'One-time Purchase Only',
     ],
+    "search"=>[
+        "search_by_model"=>"Search By Model",
+        "search_by_price"=>"Search By Price",
+        "search_by_brand"=>"Search By Brand",
+        "search_by_product_name"=>"Search By Product Name",
+        "stock_status"=>"Stock Status",
+        "image_status"=>"Image Status",
+    ]
 ];

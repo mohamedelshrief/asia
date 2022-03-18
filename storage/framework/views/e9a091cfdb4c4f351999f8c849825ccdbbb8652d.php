@@ -83,6 +83,10 @@
                                 <div class="brief-description">
                                     <?php echo $product->short_description; ?>
 
+                                    <br/>
+                                    <?php if($product->sku!=""): ?>
+                                        <b><span style="color:#0335d6"><?php echo e(trans('storefront::product.model_code')); ?></span> <?php echo e($product->sku); ?></b>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div class="details-info-top-actions">

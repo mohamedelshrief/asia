@@ -86,14 +86,14 @@
             @foreach ($Products as $item)
 
             <tr>
-                <td>{{$item->id}}</td>
+                <td>{{$item->ProductId}}</td>
                 <td>{{$item->sku}}</td>
                 <td>
                     <div class="thumbnail-holder">
                         <img src="{{$item->base_image->path}}"  alt="thumbnail">
                     </div>
                 </td>
-                <td>{{$item->name}}</td>
+                <td><a href="{{url('')}}/admin/products/{{$item->ProductId}}/edit">{{$item->name}}</a></td>
                 <td>{{$item->formatted_price}}</td>
                 <td>
                     @if ($item->is_active==true)

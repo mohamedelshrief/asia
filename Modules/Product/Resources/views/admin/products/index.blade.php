@@ -94,7 +94,11 @@
                     </div>
                 </td>
                 <td><a href="{{url('')}}/admin/products/{{$item->ProductId}}/edit">{{$item->name}}</a></td>
-                <td>{{$item->formatted_price}}</td>
+                <td>
+                    @php
+                    print($item->formatted_price);
+                    @endphp
+                </td>
                 <td>
                     @if ($item->is_active==true)
                         <span class="dot green"></span>

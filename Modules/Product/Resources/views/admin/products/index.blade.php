@@ -1,6 +1,12 @@
 @extends('admin::layout')
 
 @component('admin::components.page.header')
+<style>
+    .previous-price{
+        color: red;
+        text-decoration: line-through
+    }
+</style>
     @slot('title', trans('product::products.products'))
 
     <li class="active">{{ trans('product::products.products') }}</li>

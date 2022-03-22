@@ -22,6 +22,7 @@ class ProductTable extends AdminTable
     public function make()
     {
         return $this->newTable()
+
             ->editColumn('thumbnail', function ($product) {
                 return view('admin::partials.table.image', [
                     'file' => $product->base_image,

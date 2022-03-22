@@ -71,7 +71,7 @@ class ProductController
             if (isset($request->in_stock) && $request->in_stock!="any") {
                 $q->where("products.in_stock",$request->in_stock);
             }
-        })->paginate(20);
+        })->where("product_translations.locale",locale())->select("products.*","products.id as ProductId")->paginate(20);
 
         return view("product::admin.products.index",compact('Brands','Products','request'));
     }

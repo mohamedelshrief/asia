@@ -84,14 +84,14 @@
             <?php $__currentLoopData = $Products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
             <tr>
-                <td><?php echo e($item->id); ?></td>
+                <td><?php echo e($item->ProductId); ?></td>
                 <td><?php echo e($item->sku); ?></td>
                 <td>
                     <div class="thumbnail-holder">
                         <img src="<?php echo e($item->base_image->path); ?>"  alt="thumbnail">
                     </div>
                 </td>
-                <td><?php echo e($item->name); ?></td>
+                <td><a href="<?php echo e(url('')); ?>/admin/products/<?php echo e($item->ProductId); ?>/edit"><?php echo e($item->name); ?></a></td>
                 <td><?php echo e($item->formatted_price); ?></td>
                 <td>
                     <?php if($item->is_active==true): ?>

@@ -32,7 +32,7 @@ Route::put('products/{id}', [
     'middleware' => 'can:admin.products.edit',
 ]);
 
-Route::delete('products/{ids}', [
+Route::get('products/{ids}/delete', [
     'as' => 'admin.products.destroy',
     'uses' => 'ProductController@destroy',
     'middleware' => 'can:admin.products.destroy',

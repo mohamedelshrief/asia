@@ -1,4 +1,10 @@
 <?php $__env->startComponent('admin::components.page.header'); ?>
+<style>
+    .previous-price{
+        color: red;
+        text-decoration: line-through
+    }
+</style>
     <?php $__env->slot('title', trans('product::products.products')); ?>
 
     <li class="active"><?php echo e(trans('product::products.products')); ?></li>
@@ -78,6 +84,7 @@
                 <th>Price</th>
                 <th>Status</th>
                 <th>Created</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -92,7 +99,11 @@
                     </div>
                 </td>
                 <td><a href="<?php echo e(url('')); ?>/admin/products/<?php echo e($item->ProductId); ?>/edit"><?php echo e($item->name); ?></a></td>
-                <td><?php echo e($item->formatted_price); ?></td>
+                <td>
+                    <?php
+                    print($item->formatted_price);
+                    ?>
+                </td>
                 <td>
                     <?php if($item->is_active==true): ?>
                         <span class="dot green"></span>
@@ -102,7 +113,8 @@
                     <?php echo e($item->status); ?>
 
                 </td>
-                <td><?php echo e($item->created); ?></td>
+                <td><?php echo e($item->created_at); ?></td>
+                <td><a href="<?php echo e(url('')); ?>/admin/products/<?php echo e($item->ProductId); ?>/delete">Delete</a></td>
             </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </tbody>

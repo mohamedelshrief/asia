@@ -75,4 +75,8 @@ class ProductController
 
         return view("product::admin.products.index",compact('Brands','Products','request'));
     }
+    public function destroy(Request $request){
+        Product::where("id",$request->id)->delete();
+        return redirect()->route('admin.products.index');
+    }
 }

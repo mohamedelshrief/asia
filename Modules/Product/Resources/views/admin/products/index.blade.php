@@ -86,6 +86,7 @@
                 <th>Price</th>
                 <th>Status</th>
                 <th>Created</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -113,7 +114,8 @@
                     @endif
                     {{$item->status}}
                 </td>
-                <td>{{$item->created}}</td>
+                <td>{{$item->created_at}}</td>
+                <td><a href="{{url('')}}/admin/products/{{$item->ProductId}}/delete">Delete</a></td>
             </tr>
             @endforeach
         </tbody>

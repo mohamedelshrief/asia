@@ -224,8 +224,8 @@ class OrderStatusController
         $response = $client->post('https://osbtest.epg.gov.ae/ebs/genericapi/booking/rest/CreateBooking', [
             'json' => $payload,
             'headers' => [
-              'AccountNo'=>'C175120',
-              'Password'=>'C175120',
+              'AccountNo'=>'C681131',
+              'Password'=>'C681131',
               'Content-Type'=>'application/json'
             ]
           ]);

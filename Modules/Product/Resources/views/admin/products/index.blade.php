@@ -16,7 +16,11 @@
     @slot('buttons', ['create'])
     @slot('resource', 'products')
     @slot('name', trans('product::products.product'))
-
+    @if(session()->has('message'))
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+    @endif
     <form  method="get">
     <div class="panel">
         <div class="panel-body">
@@ -76,10 +80,20 @@
         </div>
     </div>
     </form>
+
+    <form method="get" action="{{route('admin.products.alldelete')}}">
+
+    @csrf
+    <input type="submit" class="btn btn-danger" value="Delete" style="float: right" />
     <table class="table dataTable">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>
+                    <div class="checkbox">
+                        <input type="checkbox"  class="select-row" id="checkAll">
+                        <label for="checkAll"></label>
+                    </div>
+                </th>
                 <th>SKu</th>
                 <th>Thumbnail</th>
                 <th>Name</th>
@@ -93,7 +107,12 @@
             @foreach ($Products as $item)
 
             <tr>
-                <td>{{$item->ProductId}}</td>
+                <td>
+                    <div class="checkbox">
+                        <input type="checkbox" name="product_id[]"  class="select-row" value="{{$item->ProductId}}" id="checkbox_{{$item->ProductId}}">
+                        <label for="checkbox_{{$item->ProductId}}"></label>
+                    </div>
+                </td>
                 <td>{{$item->sku}}</td>
                 <td>
                     <div class="thumbnail-holder">
@@ -121,10 +140,16 @@
         </tbody>
     </table>
     {{$Products->links()}}
+    </form>
 @endcomponent
 
 @push('scripts')
     <script>
+        $(document).ready(function(){
+            $("#checkAll").click(function(){
+                $('.select-row').not(this).prop('checked', this.checked);
+            });
+        })
         /*new DataTable('#products-table .table', {
             columns: [
                 { data: 'checkbox', orderable: false, searchable: false, width: '3%' },

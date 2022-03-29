@@ -14,7 +14,12 @@
     <?php $__env->slot('buttons', ['create']); ?>
     <?php $__env->slot('resource', 'products'); ?>
     <?php $__env->slot('name', trans('product::products.product')); ?>
+    <?php if(session()->has('message')): ?>
+        <div class="alert alert-success">
+            <?php echo e(session()->get('message')); ?>
 
+        </div>
+    <?php endif; ?>
     <form  method="get">
     <div class="panel">
         <div class="panel-body">
@@ -74,10 +79,20 @@
         </div>
     </div>
     </form>
+
+    <form method="get" action="<?php echo e(route('admin.products.alldelete')); ?>">
+
+    <?php echo csrf_field(); ?>
+    <input type="submit" class="btn btn-danger" value="Delete" style="float: right" />
     <table class="table dataTable">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>
+                    <div class="checkbox">
+                        <input type="checkbox"  class="select-row" id="checkAll">
+                        <label for="checkAll"></label>
+                    </div>
+                </th>
                 <th>SKu</th>
                 <th>Thumbnail</th>
                 <th>Name</th>
@@ -91,7 +106,12 @@
             <?php $__currentLoopData = $Products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
             <tr>
-                <td><?php echo e($item->ProductId); ?></td>
+                <td>
+                    <div class="checkbox">
+                        <input type="checkbox" name="product_id[]"  class="select-row" value="<?php echo e($item->ProductId); ?>" id="checkbox_<?php echo e($item->ProductId); ?>">
+                        <label for="checkbox_<?php echo e($item->ProductId); ?>"></label>
+                    </div>
+                </td>
                 <td><?php echo e($item->sku); ?></td>
                 <td>
                     <div class="thumbnail-holder">
@@ -121,10 +141,16 @@
     </table>
     <?php echo e($Products->links()); ?>
 
+    </form>
 <?php echo $__env->renderComponent(); ?>
 
 <?php $__env->startPush('scripts'); ?>
     <script>
+        $(document).ready(function(){
+            $("#checkAll").click(function(){
+                $('.select-row').not(this).prop('checked', this.checked);
+            });
+        })
         /*new DataTable('#products-table .table', {
             columns: [
                 { data: 'checkbox', orderable: false, searchable: false, width: '3%' },

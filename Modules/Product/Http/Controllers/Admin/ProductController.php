@@ -79,4 +79,10 @@ class ProductController
         Product::where("id",$request->id)->delete();
         return redirect()->route('admin.products.index');
     }
+    public function allDelete(Request $request){
+        foreach ($request->product_id as $key => $value) {
+            Product::where("id",$value)->delete();
+        }
+        return redirect()->back()->with("message","All Selected Products Deleted");
+    }
 }

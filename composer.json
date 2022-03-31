@@ -16,6 +16,7 @@
         "fideloper/proxy": "^4.0",
         "google/cloud-translate": "^1.12",
         "jackiedo/dotenv-editor": "^1.0",
+        "ladumor/laravel-pwa": "^0.0.2",
         "ladumor/one-signal": "^0.4.1",
         "laravel/framework": "^8.0",
         "laravel/helpers": "^1.1",

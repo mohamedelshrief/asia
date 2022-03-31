@@ -150,6 +150,7 @@ return array(
     'Laravel\\Passport\\' => array($vendorDir . '/laravel/passport/src'),
     'Laminas\\Diactoros\\' => array($vendorDir . '/laminas/laminas-diactoros/src'),
     'Ladumor\\OneSignal\\' => array($vendorDir . '/ladumor/one-signal/src'),
+    'Ladumor\\LaravelPwa\\' => array($vendorDir . '/ladumor/laravel-pwa/src'),
     'JmesPath\\' => array($vendorDir . '/mtdowling/jmespath.php/src'),
     'Jackiedo\\DotenvEditor\\' => array($vendorDir . '/jackiedo/dotenv-editor/src/Jackiedo/DotenvEditor'),
     'Instamojo\\' => array($vendorDir . '/instamojo/instamojo-php/src'),

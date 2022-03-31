@@ -1,0 +1,17 @@
+{
+    "name": "Asia Mobile Phone",
+    "short_name": "Asia Mobile Name",
+    "start_url": "/",
+    "background_color": "#0335d6",
+    "description": "Asia Mobile Phone",
+    "display": "fullscreen",
+    "theme_color": "#0335d6",
+    "icons": [
+        {
+            "src": "https://apmpllc.com/storage/media/1netW6YnLVTbladXa6ikq2dBTT5amP3zXeIPPQvN.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

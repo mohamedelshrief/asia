@@ -259,6 +259,7 @@ class ComposerStaticInitc39e8913993107e6fe516386813c780b
             'Laravel\\Passport\\' => 17,
             'Laminas\\Diactoros\\' => 18,
             'Ladumor\\OneSignal\\' => 18,
+            'Ladumor\\LaravelPwa\\' => 19,
         ),
         'J' => 
         array (
@@ -938,6 +939,10 @@ class ComposerStaticInitc39e8913993107e6fe516386813c780b
         'Ladumor\\OneSignal\\' => 
         array (
             0 => __DIR__ . '/..' . '/ladumor/one-signal/src',
+        ),
+        'Ladumor\\LaravelPwa\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ladumor/laravel-pwa/src',
         ),
         'JmesPath\\' => 
         array (
@@ -3722,6 +3727,7 @@ class ComposerStaticInitc39e8913993107e6fe516386813c780b
         'FleetCart\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'FleetCart\\DBStorage' => __DIR__ . '/../..' . '/app/DBStorage.php',
         'FleetCart\\DatabaseStorageModel' => __DIR__ . '/../..' . '/app/DatabaseStorageModel.php',
+        'FleetCart\\Events\\SocialiteWasCalled' => __DIR__ . '/../..' . '/app/Events/SocialiteWasCalled.php',
         'FleetCart\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'FleetCart\\Exceptions\\InvalidLicenseException' => __DIR__ . '/../..' . '/app/Exceptions/InvalidLicenseException.php',
         'FleetCart\\FleetCart' => __DIR__ . '/../..' . '/app/FleetCart.php',
@@ -6065,6 +6071,9 @@ class ComposerStaticInitc39e8913993107e6fe516386813c780b
         'JmesPath\\TreeInterpreter' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/TreeInterpreter.php',
         'JmesPath\\Utils' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/Utils.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'Ladumor\\LaravelPwa\\LaravelPwa' => __DIR__ . '/..' . '/ladumor/laravel-pwa/src/LaravelPwa.php',
+        'Ladumor\\LaravelPwa\\PWAServiceProvider' => __DIR__ . '/..' . '/ladumor/laravel-pwa/src/PWAServiceProvider.php',
+        'Ladumor\\LaravelPwa\\commands\\PublishPWA' => __DIR__ . '/..' . '/ladumor/laravel-pwa/src/commands/PublishPWA.php',
         'Ladumor\\OneSignal\\OneSignal' => __DIR__ . '/..' . '/ladumor/one-signal/src/OneSignal.php',
         'Ladumor\\OneSignal\\OneSignalClient' => __DIR__ . '/..' . '/ladumor/one-signal/src/OneSignalClient.php',
         'Ladumor\\OneSignal\\OneSignalManager' => __DIR__ . '/..' . '/ladumor/one-signal/src/OneSignalManager.php',

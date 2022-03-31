@@ -73,11 +73,11 @@ class CartController
                     ]
                 ];
             }
-            $response = $client->post('https://osbtest.epg.gov.ae/ebs/genericapi/ratecalculator/rest/CalculatePriceRate', [
+            $response = $client->post('https://osb.epg.gov.ae/ebs/genericapi/ratecalculator/rest/CalculatePriceRate', [
                 'json' => $payload,
                 'headers' => [
-                  'AccountNo'=>'C175120',
-                  'Password'=>'C175120',
+                  'AccountNo'=>'C681131',
+                  'Password'=>'C681131',
                   'Content-Type'=>'application/json'
                 ]
               ]);

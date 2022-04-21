@@ -55,5 +55,6 @@ return [
         "search_by_product_name"=>"Search By Product Name",
         "stock_status"=>"Stock Status",
         "image_status"=>"Image Status",
+        "price_sort"=>"Price Sorting"
     ]
 ];

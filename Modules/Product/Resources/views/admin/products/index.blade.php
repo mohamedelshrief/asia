@@ -34,10 +34,19 @@
                     <label>{{trans('product::products.search.search_by_price')}}</label>
                     <input type="number"   value="{{$request->price}}"  class="form-control" name="price" id="price"/>
                 </div>
+                <div class="col-md-2 col-lg-2">
+                    <label>{{trans('product::products.search.price_sort')}}</label>
+                    <select class="form-control select-2" value="{{$request->price_sort}}" name="price_sort" value="price_sort">
+                        <option value="any" @if($request->price_sort=='any') selected @endif>Any</option>
+                        <option value="ASC" @if($request->price_sort=='ASC') selected @endif>Low To High</option>
+                        <option value="DESC" @if($request->price_sort=='DESC') selected @endif>High To Low</option>
+                    </select>
+                </div>
+
 
                 <div class="col-md-2 col-lg-2">
                     <label>{{trans('product::products.search.search_by_product_name')}}</label>
-                    <input type="text" value="{{$request->get('query')}}"  class="form-control" name="query" id="query"/>
+                    <input type="text" value="{{$request->get('query')}}"  class="form-control" name="search_query" id="search_query"/>
                 </div>
 
 
@@ -85,7 +94,7 @@
 
     @csrf
     <input type="submit" class="btn btn-danger" value="Delete" style="float: right" />
-    <table class="table dataTable">
+    <table class="table dataTable" >
         <thead>
             <tr>
                 <th>
@@ -139,11 +148,23 @@
             @endforeach
         </tbody>
     </table>
-    {{$Products->links()}}
+
+    @if ($paginate!=600)
+        {{$Products->links()}}
+    @endif
     </form>
 @endcomponent
 
 @push('scripts')
+    @if ($paginate==600)
+        <script>
+            $(document).ready( function () {
+                $('.dataTable').DataTable({
+                    "ordering": false
+                });
+            } );
+        </script>
+    @endif
     <script>
         $(document).ready(function(){
             $("#checkAll").click(function(){

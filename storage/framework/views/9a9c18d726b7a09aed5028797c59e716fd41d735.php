@@ -33,10 +33,19 @@
                     <label><?php echo e(trans('product::products.search.search_by_price')); ?></label>
                     <input type="number"   value="<?php echo e($request->price); ?>"  class="form-control" name="price" id="price"/>
                 </div>
+                <div class="col-md-2 col-lg-2">
+                    <label><?php echo e(trans('product::products.search.price_sort')); ?></label>
+                    <select class="form-control select-2" value="<?php echo e($request->price_sort); ?>" name="price_sort" value="price_sort">
+                        <option value="any" <?php if($request->price_sort=='any'): ?> selected <?php endif; ?>>Any</option>
+                        <option value="ASC" <?php if($request->price_sort=='ASC'): ?> selected <?php endif; ?>>Low To High</option>
+                        <option value="DESC" <?php if($request->price_sort=='DESC'): ?> selected <?php endif; ?>>High To Low</option>
+                    </select>
+                </div>
+
 
                 <div class="col-md-2 col-lg-2">
                     <label><?php echo e(trans('product::products.search.search_by_product_name')); ?></label>
-                    <input type="text" value="<?php echo e($request->get('query')); ?>"  class="form-control" name="query" id="query"/>
+                    <input type="text" value="<?php echo e($request->get('query')); ?>"  class="form-control" name="search_query" id="search_query"/>
                 </div>
 
 
@@ -84,7 +93,7 @@
 
     <?php echo csrf_field(); ?>
     <input type="submit" class="btn btn-danger" value="Delete" style="float: right" />
-    <table class="table dataTable">
+    <table class="table dataTable" >
         <thead>
             <tr>
                 <th>
@@ -139,12 +148,24 @@
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </tbody>
     </table>
-    <?php echo e($Products->links()); ?>
 
+    <?php if($paginate!=600): ?>
+        <?php echo e($Products->links()); ?>
+
+    <?php endif; ?>
     </form>
 <?php echo $__env->renderComponent(); ?>
 
 <?php $__env->startPush('scripts'); ?>
+    <?php if($paginate==600): ?>
+        <script>
+            $(document).ready( function () {
+                $('.dataTable').DataTable({
+                    "ordering": false
+                });
+            } );
+        </script>
+    <?php endif; ?>
     <script>
         $(document).ready(function(){
             $("#checkAll").click(function(){

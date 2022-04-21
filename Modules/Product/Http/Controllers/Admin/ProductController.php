@@ -40,6 +40,7 @@ class ProductController
      */
     protected $validation = SaveProductRequest::class;
 
+    public $paginate=20;
     public function index(Request $request){
         /*if ($request->has('query')) {
             return $this->getModel()
@@ -54,26 +55,44 @@ class ProductController
         }
 
         $Brands=Brand::get();
+        $this->paginate=20;
+        $orderByColumnName="products.id";
+        $orderByColumnValue="DESC";
+        if (isset($request->price_sort) && $request->price_sort!="any") {
+            if($request->price_sort=="ASC"){
+                $orderByColumnName="products.price";
+                $orderByColumnValue="ASC";
+            }else{
+                $orderByColumnName="products.price";
+                $orderByColumnValue="DESC";
+            }
+        }
         $Products=Product::join("product_translations","product_translations.product_id","=","products.id")->where(function($q) use ($request) {
-            if (isset($request->query) &&  $request->query!="") {
-                $q->where("product_translations.name","LIKE",'%'.$request->get('query').'%');
+            if (isset($request->search_query) &&  $request->search_query!="" &&  $request->search_query!=null) {
+                $q->where("product_translations.name","LIKE",'%'.$request->get('search_query').'%');
+                $this->paginate=600;
             }
             if (isset($request->model_no)) {
                 $q->where("products.sku",$request->get('model_no'));
+                $this->paginate=600;
             }
             if (isset($request->price)) {
                 $q->where("products.price",$request->get('price'));
+                $this->paginate=600;
             }
 
             if (isset($request->brand) && $request->brand!="any") {
                 $q->where("products.brand_id",$request->brand);
+                $this->paginate=600;
             }
             if (isset($request->in_stock) && $request->in_stock!="any") {
                 $q->where("products.in_stock",$request->in_stock);
+                $this->paginate=600;
             }
-        })->where("product_translations.locale",locale())->select("products.*","products.id as ProductId")->paginate(20);
 
-        return view("product::admin.products.index",compact('Brands','Products','request'));
+        })->where("product_translations.locale",locale())->select("products.*","products.id as ProductId")->orderBy($orderByColumnName,$orderByColumnValue)->paginate($this->paginate);
+        $paginate=$this->paginate;
+        return view("product::admin.products.index",compact('Brands','Products','request','paginate'));
     }
     public function destroy(Request $request){
         Product::where("id",$request->id)->delete();

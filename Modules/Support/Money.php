@@ -179,7 +179,7 @@ class Money implements JsonSerializable
     public function format($currency = null, $locale = null)
     {
         $currency = $currency ?: currency();
-        $locale = $locale ?: locale();
+        $locale = "en";
 
         $numberFormatter = new NumberFormatter($locale, NumberFormatter::CURRENCY);
 

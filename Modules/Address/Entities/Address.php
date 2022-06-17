@@ -10,7 +10,7 @@ use Modules\Setting\Entities\City;
 
 class Address extends Model
 {
-    protected $fillable = ['first_name', 'last_name', 'address_1', 'address_2', 'city', 'state', 'zip', 'country','phone','label','default_address'];
+    protected $fillable = ['first_name', 'last_name', 'address_1', 'address_2', 'city', 'state', 'zip', 'country','phone','label','default_address','latitude','longitude'];
 
     protected $appends = ['full_name', 'state_name', 'country_name','city_name'];
 

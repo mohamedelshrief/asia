@@ -304,6 +304,8 @@ class AuthController extends BaseAuthController
         $address->zip=$request->zip;
         $address->country=$request->country;
         $address->phone=$request->phone;
+        $address->latitude=$request->latitude;
+        $address->longitude=$request->longitude;
         $address->label=$request->label;
         $address->default_address=$request->default_address;
         $address->save();

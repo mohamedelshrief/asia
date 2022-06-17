@@ -45,8 +45,7 @@ class Money implements JsonSerializable
 
         return (int) round($this->amount * $fraction);
     }
-
-    public function currency()
+public function currency()
     {
         return $this->currency;
     }
@@ -127,8 +126,7 @@ class Money implements JsonSerializable
             throw new InvalidArgumentException('Mismatch money currency.');
         }
     }
-
-    public function convertToDefaultCurrency()
+public function convertToDefaultCurrency()
     {
         $currencyRate = CurrencyRate::for($this->currency);
 
@@ -170,8 +168,7 @@ class Money implements JsonSerializable
     {
         return $this->newInstance(ceil($this->amount));
     }
-
-    public function floor()
+ public function floor()
     {
         return $this->newInstance(floor($this->amount));
     }
@@ -179,7 +176,7 @@ class Money implements JsonSerializable
     public function format($currency = null, $locale = null)
     {
         $currency = $currency ?: currency();
-        $locale = $locale ?: locale();
+        $locale = "en";
 
         $numberFormatter = new NumberFormatter($locale, NumberFormatter::CURRENCY);
 
@@ -218,3 +215,5 @@ class Money implements JsonSerializable
         return (string) $this->amount;
     }
 }
+
+

@@ -194,7 +194,7 @@ class OrderStatusController
                 "CODCurrency"=> null,
                 "CommodityDescription"=> $order->note,
                 "Pieces"=> 1,
-                "Weight"=> $request->weight,
+                "Weight"=> $request->weight*1000,
                 "WeightUnit"=> "Grams",
                 "Length"=> $request->length,
                 "Width"=> $request->width,

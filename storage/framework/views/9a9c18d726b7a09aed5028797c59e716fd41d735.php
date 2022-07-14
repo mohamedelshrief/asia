@@ -63,6 +63,22 @@
                     </select>
                 </div>
 
+
+                <div class="col-md-2 col-lg-2">
+                    <label>By Category</label>
+                    <select class="form-control select-2" value="<?php echo e($request->category); ?>" name="category" value="category">
+                        <option value="any" <?php if($request->category=='any'): ?> selected <?php endif; ?>>Any</option>
+                        <?php $__currentLoopData = $Categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if($request->category==$item->id): ?>
+                                <option value="<?php echo e($item->id); ?>" selected ><?php echo e($item->name); ?></option>
+                            <?php else: ?>
+                                <option value="<?php echo e($item->id); ?>"><?php echo e($item->name); ?></option>
+                            <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </select>
+                </div>
+
+
                 <div class="col-md-2 col-lg-2">
                     <label><?php echo e(trans('product::products.search.stock_status')); ?></label>
                     <select class="form-control select-2" name="in_stock">

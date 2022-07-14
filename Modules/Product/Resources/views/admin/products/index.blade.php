@@ -64,6 +64,22 @@
                     </select>
                 </div>
 
+
+                <div class="col-md-2 col-lg-2">
+                    <label>By Category</label>
+                    <select class="form-control select-2" value="{{$request->category}}" name="category" value="category">
+                        <option value="any" @if($request->category=='any') selected @endif>Any</option>
+                        @foreach ($Categories as $item)
+                            @if ($request->category==$item->id)
+                                <option value="{{$item->id}}" selected >{{$item->name}}</option>
+                            @else
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+
+
                 <div class="col-md-2 col-lg-2">
                     <label>{{trans('product::products.search.stock_status')}}</label>
                     <select class="form-control select-2" name="in_stock">

@@ -6,6 +6,7 @@ use Modules\Product\Entities\Product;
 use Modules\Admin\Traits\HasCrudActions;
 use Modules\Product\Http\Requests\SaveProductRequest;
 use Modules\Brand\Entities\Brand;
+use Modules\Category\Entities\Category;
 use Illuminate\Http\Request;
 
 class ProductController
@@ -55,6 +56,7 @@ class ProductController
         }
 
         $Brands=Brand::get();
+        $Categories=Category::get();
         $this->paginate=20;
         $orderByColumnName="products.id";
         $orderByColumnValue="DESC";
@@ -89,10 +91,13 @@ class ProductController
                 $q->where("products.in_stock",$request->in_stock);
                 $this->paginate=600;
             }
-
-        })->where("product_translations.locale",locale())->select("products.*","products.id as ProductId")->orderBy($orderByColumnName,$orderByColumnValue)->paginate($this->paginate);
+            if (isset($request->category) && $request->category!="any") {
+                //$q->where("products.in_stock",$request->category);
+                //$this->paginate=600;
+            }
+        })->whereIn("products.is_active",[0,1])->where("product_translations.locale",locale())->select("products.*","products.id as ProductId")->orderBy($orderByColumnName,$orderByColumnValue)->paginate($this->paginate);
         $paginate=$this->paginate;
-        return view("product::admin.products.index",compact('Brands','Products','request','paginate'));
+        return view("product::admin.products.index",compact('Brands','Categories','Products','request','paginate'));
     }
     public function destroy(Request $request){
         Product::where("id",$request->id)->delete();

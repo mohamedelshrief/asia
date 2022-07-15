@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0dd0d90dab02b0bb360def84ba20224",
+    "content-hash": "9f956f7ba68507daac1ac2d83f316613",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -2787,16 +2787,16 @@
         },
         {
             "name": "ladumor/laravel-pwa",
-            "version": "v0.0.2",
+            "version": "v0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shailesh-ladumor/laravel-pwa.git",
-                "reference": "063af4928d4a39c1b4c0b90811026193446d9fcd"
+                "reference": "8256db4b88554e69d8c0691ea8880efe29845411"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shailesh-ladumor/laravel-pwa/zipball/063af4928d4a39c1b4c0b90811026193446d9fcd",
-                "reference": "063af4928d4a39c1b4c0b90811026193446d9fcd",
+                "url": "https://api.github.com/repos/shailesh-ladumor/laravel-pwa/zipball/8256db4b88554e69d8c0691ea8880efe29845411",
+                "reference": "8256db4b88554e69d8c0691ea8880efe29845411",
                 "shasum": ""
             },
             "require": {
@@ -2836,7 +2836,11 @@
                 "php",
                 "pwa-laravel"
             ],
-            "time": "2021-10-07T03:27:21+00:00"
+            "support": {
+                "issues": "https://github.com/shailesh-ladumor/laravel-pwa/issues",
+                "source": "https://github.com/shailesh-ladumor/laravel-pwa/tree/v0.0.3"
+            },
+            "time": "2022-04-24T06:31:02+00:00"
         },
         {
             "name": "ladumor/one-signal",
@@ -10389,20 +10393,20 @@
         },
         {
             "name": "weblagence/laravel-facebook-pixel",
-            "version": "dev-master",
+            "version": "v1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/weblagence/laravel-facebook-pixel.git",
-                "reference": "fa1e271d5f014bcaf8f48df603ba64b67cfac21e"
+                "reference": "5c1a614c00135c8237dd25d09a422cf39f388b9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/weblagence/laravel-facebook-pixel/zipball/fa1e271d5f014bcaf8f48df603ba64b67cfac21e",
-                "reference": "fa1e271d5f014bcaf8f48df603ba64b67cfac21e",
+                "url": "https://api.github.com/repos/weblagence/laravel-facebook-pixel/zipball/5c1a614c00135c8237dd25d09a422cf39f388b9f",
+                "reference": "5c1a614c00135c8237dd25d09a422cf39f388b9f",
                 "shasum": ""
             },
             "require": {
-                "php": "~7.1|^8.0"
+                "php": "~7.1"
             },
             "require-dev": {
                 "phpunit/phpunit": ">=7.0",
@@ -10447,7 +10451,11 @@
                 "laravel-facebook-pixel",
                 "weblagence"
             ],
-            "time": "2021-05-04T09:38:05+00:00"
+            "support": {
+                "issues": "https://github.com/weblagence/laravel-facebook-pixel/issues",
+                "source": "https://github.com/weblagence/laravel-facebook-pixel/tree/v1.1"
+            },
+            "time": "2021-02-25T10:39:05+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -11353,16 +11361,16 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "mehedi/stylist": 20,
-        "weblagence/laravel-facebook-pixel": 20
+        "mehedi/stylist": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0, >=7.3.0"
+        "php": ">=7.3.0"
     },
     "platform-dev": [],
     "platform-overrides": {
         "php": "7.3.0"
-    }
+    },
+    "plugin-api-version": "2.2.0"
 }

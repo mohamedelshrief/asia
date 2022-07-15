@@ -49,7 +49,6 @@
                     <input type="text" value="{{$request->get('query')}}"  class="form-control" name="search_query" id="search_query"/>
                 </div>
 
-
                 <div class="col-md-2 col-lg-2">
                     <label>{{trans('product::products.search.search_by_brand')}}</label>
                     <select class="form-control select-2" value="{{$request->brand}}" name="brand" value="brand">
@@ -63,7 +62,6 @@
                         @endforeach
                     </select>
                 </div>
-
 
                 <div class="col-md-2 col-lg-2">
                     <label>By Category</label>

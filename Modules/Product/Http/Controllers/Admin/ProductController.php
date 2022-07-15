@@ -6,6 +6,7 @@ use Modules\Product\Entities\Product;
 use Modules\Admin\Traits\HasCrudActions;
 use Modules\Product\Http\Requests\SaveProductRequest;
 use Modules\Brand\Entities\Brand;
+use Modules\Category\Entities\Category;
 use Illuminate\Http\Request;
 
 class ProductController
@@ -55,6 +56,7 @@ class ProductController
         }
 
         $Brands=Brand::get();
+        $Categories=Category::get();
         $this->paginate=20;
         $orderByColumnName="products.id";
         $orderByColumnValue="DESC";
@@ -67,32 +69,65 @@ class ProductController
                 $orderByColumnValue="DESC";
             }
         }
-        $Products=Product::join("product_translations","product_translations.product_id","=","products.id")->where(function($q) use ($request) {
-            if (isset($request->search_query) &&  $request->search_query!="" &&  $request->search_query!=null) {
-                $q->where("product_translations.name","LIKE",'%'.$request->get('search_query').'%');
-                $this->paginate=600;
-            }
-            if (isset($request->model_no)) {
-                $q->where("products.sku",$request->get('model_no'));
-                $this->paginate=600;
-            }
-            if (isset($request->price)) {
-                $q->where("products.price",$request->get('price'));
-                $this->paginate=600;
-            }
+        if (isset($request->category) && $request->category!="any") {
 
-            if (isset($request->brand) && $request->brand!="any") {
-                $q->where("products.brand_id",$request->brand);
-                $this->paginate=600;
-            }
-            if (isset($request->in_stock) && $request->in_stock!="any") {
-                $q->where("products.in_stock",$request->in_stock);
-                $this->paginate=600;
-            }
+            //With Category
+            $Products=Product::join("product_translations","product_translations.product_id","=","products.id")->join("product_categories","product_categories.product_id","=","products.id")->where(function($q) use ($request) {
+                if (isset($request->search_query) &&  $request->search_query!="" &&  $request->search_query!=null) {
+                    $q->where("product_translations.name","LIKE",'%'.$request->get('search_query').'%');
+                    $this->paginate=600;
+                }
+                if (isset($request->model_no)) {
+                    $q->where("products.sku",$request->get('model_no'));
+                    $this->paginate=600;
+                }
+                if (isset($request->price)) {
+                    $q->where("products.price",$request->get('price'));
+                    $this->paginate=600;
+                }
+    
+                if (isset($request->brand) && $request->brand!="any") {
+                    $q->where("products.brand_id",$request->brand);
+                    $this->paginate=600;
+                }
+                if (isset($request->in_stock) && $request->in_stock!="any") {
+                    $q->where("products.in_stock",$request->in_stock);
+                    $this->paginate=600;
+                }
+                if (isset($request->category) && $request->category!="any") {
+                    $this->paginate=600;
+                }
+            })->where("product_categories.category_id",$request->category)->where("product_translations.locale",locale())->select("products.*","products.id as ProductId")->orderBy($orderByColumnName,$orderByColumnValue)->paginate($this->paginate);
+        }else{
 
-        })->where("product_translations.locale",locale())->select("products.*","products.id as ProductId")->orderBy($orderByColumnName,$orderByColumnValue)->paginate($this->paginate);
+            //WithOut Category
+            $Products=Product::join("product_translations","product_translations.product_id","=","products.id")->where(function($q) use ($request) {
+                if (isset($request->search_query) &&  $request->search_query!="" &&  $request->search_query!=null) {
+                    $q->where("product_translations.name","LIKE",'%'.$request->get('search_query').'%');
+                    $this->paginate=600;
+                }
+                if (isset($request->model_no)) {
+                    $q->where("products.sku",$request->get('model_no'));
+                    $this->paginate=600;
+                }
+                if (isset($request->price)) {
+                    $q->where("products.price",$request->get('price'));
+                    $this->paginate=600;
+                }
+    
+                if (isset($request->brand) && $request->brand!="any") {
+                    $q->where("products.brand_id",$request->brand);
+                    $this->paginate=600;
+                }
+                if (isset($request->in_stock) && $request->in_stock!="any") {
+                    $q->where("products.in_stock",$request->in_stock);
+                    $this->paginate=600;
+                }
+            })->where("product_translations.locale",locale())->select("products.*","products.id as ProductId")->orderBy($orderByColumnName,$orderByColumnValue)->paginate($this->paginate);
+        }
+       
         $paginate=$this->paginate;
-        return view("product::admin.products.index",compact('Brands','Products','request','paginate'));
+        return view("product::admin.products.index",compact('Brands','Categories','Products','request','paginate'));
     }
     public function destroy(Request $request){
         Product::where("id",$request->id)->delete();

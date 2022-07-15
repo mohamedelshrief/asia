@@ -139,7 +139,7 @@ class ProductController extends Controller
         return response()->json($newProducts);
     }
     public function brands(){
-        $brands=Brand::orderBy("slug","ASC")->paginate(20);
+        $brands=Brand::orderBy("sort_id","ASC")->paginate(20);
         return response()->json($brands);
     }
     public function translation(){

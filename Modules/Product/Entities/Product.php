@@ -131,7 +131,7 @@ class Product extends Model
             });
         });
 
-        static::addActiveGlobalScope();
+        //static::addActiveGlobalScope();
     }
 
     public static function newArrivals($limit)
@@ -567,7 +567,6 @@ class Product extends Model
             'translations',
             'categories',
             'files',
-            'is_active',
             'in_stock',
             'brand_id',
             'tax_class',
@@ -588,11 +587,10 @@ class Product extends Model
     public function table($request)
     {
         $query = $this->newQuery()
-            ->withoutGlobalScope('active')
             ->withName()
             ->withBaseImage()
             ->withPrice()
-            ->addSelect(['id','sku', 'is_active', 'created_at'])
+            ->addSelect(['id','sku', 'created_at'])
             ->when($request->has('except'), function ($query) use ($request) {
                 $query->whereNotIn('id', explode(',', $request->except));
             });

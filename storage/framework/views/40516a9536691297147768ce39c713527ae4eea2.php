@@ -1,0 +1,2 @@
+<?php echo $__env->make('public.products.show.custom_options.select', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php /**PATH /var/www/html/Themes/Storefront/views/public/products/show/custom_options/dropdown.blade.php ENDPATH**/ ?>

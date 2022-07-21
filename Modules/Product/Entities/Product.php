@@ -301,9 +301,16 @@ class Product extends Model
      */
     public function getAdditionalImagesAttribute()
     {
-        return $this->files
-            ->where('pivot.zone', 'additional_images')
-            ->sortBy('pivot.id')->toArray();
+        $images=$this->files
+        ->where('pivot.zone', 'additional_images')
+        ->sortBy('pivot.id');
+        $files=[];
+        foreach ($images as $key => $image) {
+            $files[]=[
+                "path"=>$image->path
+            ];
+        }
+        return $files;
     }
 
     /**

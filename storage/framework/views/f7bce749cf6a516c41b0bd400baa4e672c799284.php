@@ -70,6 +70,9 @@
         </section>
     <?php endif; ?>
 
+    <?php if(setting('storefront_product_tabs_2_section_enabled')): ?>
+        <product-tabs-two :data="<?php echo e(json_encode($tabProductsTwo)); ?>"></product-tabs-two>
+    <?php endif; ?>
 
     <?php if(setting('storefront_top_brands_section_enabled')): ?>
         <top-categories :top-categories="<?php echo e(json_encode($topBrands)); ?>"></top-categories>
@@ -117,6 +120,7 @@
         <product-tabs-one :data="<?php echo e(json_encode($productTabsOne)); ?>"></product-tabs-one>
     <?php endif; ?>
 
+
     <?php if(setting('storefront_two_column_banners_enabled')): ?>
         <!--<banner-two-column :data="<?php echo e(json_encode($twoColumnBanners)); ?>"></banner-two-column>-->
         <section class="banner-wrap two-column-banner">
@@ -163,9 +167,8 @@
         <product-grid :data="<?php echo e(json_encode($productGrid)); ?>"></product-grid>
     <?php endif; ?>
 
-    <?php if(setting('storefront_product_tabs_2_section_enabled')): ?>
-        <product-tabs-two :data="<?php echo e(json_encode($tabProductsTwo)); ?>"></product-tabs-two>
-    <?php endif; ?>
+
+
 
     <?php if(setting('storefront_flash_sale_and_vertical_products_section_enabled')): ?>
         <flash-sale-and-vertical-products :data="<?php echo e(json_encode($flashSaleAndVerticalProducts)); ?>"></flash-sale-and-vertical-products>
@@ -244,17 +247,11 @@
         <banner-two-column :data="<?php echo e(json_encode($twoColumnBanners)); ?>"></banner-two-column>
     <?php endif; ?> -->
 
-    <!-- <?php if(setting('storefront_product_grid_section_enabled')): ?>
-        <product-grid :data="<?php echo e(json_encode($productGrid)); ?>"></product-grid>
-    <?php endif; ?> -->
 
     <!-- <?php if(setting('storefront_three_column_banners_enabled')): ?>
         <banner-three-column :data="<?php echo e(json_encode($threeColumnBanners)); ?>"></banner-three-column>
     <?php endif; ?> -->
 
-    <!-- <?php if(setting('storefront_product_tabs_2_section_enabled')): ?>
-        <product-tabs-two :data="<?php echo e(json_encode($tabProductsTwo)); ?>"></product-tabs-two>
-    <?php endif; ?> -->
 
     <!-- <?php if(setting('storefront_one_column_banner_enabled')): ?>
         <banner-one-column :banner="<?php echo e(json_encode($oneColumnBanner)); ?>"></banner-one-column>

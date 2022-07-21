@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <meta name="theme-color" content="#0335d6"/>
+        <link rel="apple-touch-icon" href="https://apmpllc.com/storage/media/1netW6YnLVTbladXa6ikq2dBTT5amP3zXeIPPQvN.png">
+        <link rel="manifest" href="<?php echo e(url('/manifest.json')); ?>">
         <title>
             <?php if (! empty(trim($__env->yieldContent('title')))): ?>
                 <?php echo $__env->yieldContent('title'); ?> - <?php echo e(setting('store_name')); ?>
@@ -148,6 +151,14 @@
 
         <?php echo setting('custom_footer_assets'); ?>
 
+        <script src="<?php echo e(url('/sw.js')); ?>"></script>
+        <script>
+            if (!navigator.serviceWorker.controller) {
+                navigator.serviceWorker.register("/sw.js").then(function (reg) {
+                    console.log("Service worker has been registered for scope: " + reg.scope);
+                });
+            }
+        </script>
     </body>
 </html>
 <?php /**PATH /var/www/html/Themes/Storefront/views/public/layout.blade.php ENDPATH**/ ?>

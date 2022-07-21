@@ -13,6 +13,8 @@
 
         <?php echo e(Form::select('tags', trans('product::attributes.tags'), $errors, $tags, $product, ['class' => 'selectize prevent-creation', 'multiple' => true])); ?>
 
+        <?php echo e(Form::text('weight', trans('product::attributes.weight'), $errors, $product, ['required' => true])); ?>
+
         <?php echo e(Form::checkbox('virtual', trans('product::attributes.virtual'), trans('product::products.form.the_product_won\'t_be_shipped'), $errors, $product)); ?>
 
         <?php echo e(Form::checkbox('one_time_purchaseable', trans('product::attributes.onetime'), trans('product::products.form.onetime_purchase'), $errors, $product)); ?>

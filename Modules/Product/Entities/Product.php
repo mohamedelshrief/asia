@@ -303,7 +303,7 @@ class Product extends Model
     {
         return $this->files
             ->where('pivot.zone', 'additional_images')
-            ->sortBy('pivot.id');
+            ->sortBy('pivot.id')->toArray();
     }
 
     /**

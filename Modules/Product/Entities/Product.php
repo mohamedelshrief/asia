@@ -98,7 +98,7 @@ class Product extends Model
     protected $appends = [
         'base_image', 'formatted_price', 'rating_percent', 'is_in_stock',
         'is_out_of_stock', 'is_new', 'has_percentage_special_price', 'special_price_percent',
-        'additional_images'
+        'additional_images','additional_imgs'
     ];
 
     /**
@@ -300,6 +300,19 @@ class Product extends Model
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getAdditionalImagesAttribute()
+    {
+        $images=$this->files
+        ->where('pivot.zone', 'additional_images')
+        ->sortBy('pivot.id');
+        $files=[];
+        foreach ($images as $key => $image) {
+            $files[]=[
+                "path"=>$image->path
+            ];
+        }
+        return $images;
+    }
+    public function getAdditionalImgsAttribute()
     {
         $images=$this->files
         ->where('pivot.zone', 'additional_images')

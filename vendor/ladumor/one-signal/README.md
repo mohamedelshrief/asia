@@ -1,6 +1,6 @@
 # Laravel One Signal
 
-Laravel One Signal is Laravel Wrapper for [One Signal](https://onesignal.com). One Signal is a great platform for send a push notification to your users.
+Laravel One Signal is Laravel Wrapper for [One Signal](https://onesignal.com). One Signal is a great platform for send a push notification to your users. This package mentions in One Signal's official Document. you can see [here](https://documentation.onesignal.com/docs/other-cms-setup)
 
 [![Total Downloads](https://poser.pugx.org/ladumor/one-signal/downloads)](https://packagist.org/packages/ladumor/one-signal)
 [![Daily Downloads](https://poser.pugx.org/ladumor/one-signal/d/daily)](https://packagist.org/packages/ladumor/one-signal)
@@ -33,6 +33,7 @@ Laravel One Signal is Laravel Wrapper for [One Signal](https://onesignal.com). O
     - [Get Single Device](#get-single-device)
     - [Create Device](#get-single-device)
     - [Update Device](#update-device)
+    - [Delete Device](#delete-device)
     - [Create Segment (NEED PAID PLAN)](#create-segment)
     - [Delete Segment (NEED PAID PLAN)](#delete-segment)
     - [View Apps](#view-apps)
@@ -48,7 +49,7 @@ Laravel One Signal is Laravel Wrapper for [One Signal](https://onesignal.com). O
 
 Install the package by the following command,
 
-    composer require ladumor/one-signal:0.4.0
+    composer require ladumor/one-signal:0.4.2
 
 
 ## Publish the config file
@@ -193,6 +194,10 @@ For update a device in your application, use the `addDevice` method by calling, 
      return OneSignal::updateDevice($fields, $playerId);   
 You can check [here](https://documentation.onesignal.com/reference#section-body-parameters) supported parameters and guide.
 
+### Delete Device
+Delete existing device on your application
+
+```OneSignal::deleteDevice($deviceId);```
 
 ### Create Segment
  #### NOTE: REQUIRED ONE-SIGNAL [PAID PLAN](https://documentation.onesignal.com/docs/paid-plan-benefits)

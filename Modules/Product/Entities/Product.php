@@ -98,6 +98,7 @@ class Product extends Model
     protected $appends = [
         'base_image', 'formatted_price', 'rating_percent', 'is_in_stock',
         'is_out_of_stock', 'is_new', 'has_percentage_special_price', 'special_price_percent',
+        'additional_images'
     ];
 
     /**

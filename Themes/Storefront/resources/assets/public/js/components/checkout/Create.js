@@ -266,7 +266,7 @@ export default {
         },
 
         placeOrder() {
-            this.form.shipping_cost = $("#shipping_cost_amount").val();
+            //this.form.shipping_cost = $("#shipping_cost_amount").val();
             if($('#billing-city-id').val()!=""){
                 this.$set(this.form.billing, 'city', $('#billing-city-id').val());
             }

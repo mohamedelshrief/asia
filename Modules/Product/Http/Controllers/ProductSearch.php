@@ -28,7 +28,7 @@ trait ProductSearch
         }
 
         $query = $model->filter($productFilter);
-
+        $query->where("is_active",1);
         if (request()->filled('category')) {
             $productIds = (clone $query)->select('products.id')->resetOrders()->pluck('id');
         }

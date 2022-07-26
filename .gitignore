@@ -13,3 +13,4 @@ yarn-error.log
 *.map
 .env
 /vendor
+/public/storage/

@@ -147,6 +147,7 @@ class Product extends Model
     {
         return static::select('id')
             ->withName()
+            ->where("is_active",1)
             ->whereIn('id', $ids)
             ->when(! empty($ids), function ($query) use ($ids) {
                 $idsString = collect($ids)->filter()->implode(',');

@@ -1,71 +1,69 @@
-@extends('public.layout')
+<?php $__env->startSection('title', trans('storefront::checkout.checkout')); ?>
 
-@section('title', trans('storefront::checkout.checkout'))
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <checkout-create
-        customer-email="{{ auth()->user()->email ?? null }}"
-        customer-phone="{{ auth()->user()->phone ?? null }}"
-        :addresses="{{ $addresses }}"
-        :default-address="{{ $defaultAddress }}"
-        :gateways="{{ $gateways }}"
-        :countries="{{ json_encode($countries) }}"
+        customer-email="<?php echo e(auth()->user()->email ?? null); ?>"
+        customer-phone="<?php echo e(auth()->user()->phone ?? null); ?>"
+        :addresses="<?php echo e($addresses); ?>"
+        :default-address="<?php echo e($defaultAddress); ?>"
+        :gateways="<?php echo e($gateways); ?>"
+        :countries="<?php echo e(json_encode($countries)); ?>"
         inline-template
     >
         <section class="checkout-wrap">
             <div class="container">
-                @include('public.cart.index.steps')
+                <?php echo $__env->make('public.cart.index.steps', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                 <form @submit.prevent="placeOrder" @input="errors.clear($event.target.name)">
                     <div class="checkout">
                         <div class="checkout-inner">
                             <div class="checkout-left">
                                 <div class="checkout-form">
-                                    @include('public.checkout.create.form.account_details')
-                                    @include('public.checkout.create.form.billing_details')
-                                    @include('public.checkout.create.form.shipping_details')
-                                    @include('public.checkout.create.form.order_note')
+                                    <?php echo $__env->make('public.checkout.create.form.account_details', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                    <?php echo $__env->make('public.checkout.create.form.billing_details', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                    <?php echo $__env->make('public.checkout.create.form.shipping_details', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                    <?php echo $__env->make('public.checkout.create.form.order_note', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                 </div>
                             </div>
 
                             <div class="checkout-right">
-                                @include('public.checkout.create.payment')
-                                @include('public.checkout.create.coupon')
+                                <?php echo $__env->make('public.checkout.create.payment', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                <?php echo $__env->make('public.checkout.create.coupon', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                             </div>
                         </div>
 
-                        @include('public.checkout.create.order_summary')
+                        <?php echo $__env->make('public.checkout.create.order_summary', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     </div>
                 </form>
             </div>
         </section>
     </checkout-create>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('pre-scripts')
-    @if (setting('paypal_enabled'))
-        <script src="https://www.paypal.com/sdk/js?client-id={{ setting('paypal_client_id') }}&currency={{ setting('default_currency') }}&disable-funding=credit,card,venmo,sepa,bancontact,eps,giropay,ideal,mybank,p24,p24"></script>
-    @endif
+<?php $__env->startPush('pre-scripts'); ?>
+    <?php if(setting('paypal_enabled')): ?>
+        <script src="https://www.paypal.com/sdk/js?client-id=<?php echo e(setting('paypal_client_id')); ?>&currency=<?php echo e(setting('default_currency')); ?>&disable-funding=credit,card,venmo,sepa,bancontact,eps,giropay,ideal,mybank,p24,p24"></script>
+    <?php endif; ?>
 
-    @if (setting('stripe_enabled'))
+    <?php if(setting('stripe_enabled')): ?>
         <script src="https://js.stripe.com/v3/"></script>
-    @endif
+    <?php endif; ?>
 
-    @if (setting('paytm_enabled'))
-        @if (setting('paytm_test_mode'))
-            <script src="https://securegw-stage.paytm.in/merchantpgpui/checkoutjs/merchants/{{ setting('paytm_merchant_id') }}.js"></script>
-        @else
-            <script src="https://securegw.paytm.in/merchantpgpui/checkoutjs/merchants/{{ setting('paytm_merchant_id') }}.js"></script>
-        @endif
-    @endif
+    <?php if(setting('paytm_enabled')): ?>
+        <?php if(setting('paytm_test_mode')): ?>
+            <script src="https://securegw-stage.paytm.in/merchantpgpui/checkoutjs/merchants/<?php echo e(setting('paytm_merchant_id')); ?>.js"></script>
+        <?php else: ?>
+            <script src="https://securegw.paytm.in/merchantpgpui/checkoutjs/merchants/<?php echo e(setting('paytm_merchant_id')); ?>.js"></script>
+        <?php endif; ?>
+    <?php endif; ?>
 
-    @if (setting('razorpay_enabled'))
+    <?php if(setting('razorpay_enabled')): ?>
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    @endif
-@endpush
+    <?php endif; ?>
+<?php $__env->stopPush(); ?>
 
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 
 <script>
    /*$(document).ready(function(){
@@ -78,7 +76,7 @@
         address_id=$(".select-address input[type=radio]:checked").val();
         sub_total=$("#subTotalPricing").val();
         $.ajax({
-            url: "{{url('en/api/shipping-price')}}?address_id="+address_id,
+            url: "<?php echo e(url('en/api/shipping-price')); ?>?address_id="+address_id,
             type: "GET",
             async: false,
             success: function (reponse) {
@@ -104,7 +102,7 @@ $(document).ready(function(){
       // Fetch data
       country=$("#shipping-country").val();
       $.ajax({
-        url:"{{url('/en/api/search-city')}}/"+country+"/"+request.term,
+        url:"<?php echo e(url('/en/api/search-city')); ?>/"+country+"/"+request.term,
         type: 'GET',
         dataType: "json",
         success: function( data ) {
@@ -128,7 +126,7 @@ $(document).ready(function(){
       // Fetch data
       country=$("#billing-country").val();
       $.ajax({
-        url:"{{url('/en/api/search-city')}}/"+country+"/"+request.term,
+        url:"<?php echo e(url('/en/api/search-city')); ?>/"+country+"/"+request.term,
         type: 'GET',
         dataType: "json",
         success: function( data ) {
@@ -151,7 +149,7 @@ $(document).ready(function(){
 /*function shippingPricingByCity(id){
         sub_total=$("#subTotalPricing").val();
         $.ajax({
-            url: "{{url('en/api/shipping-price')}}?city_id="+id,
+            url: "<?php echo e(url('en/api/shipping-price')); ?>?city_id="+id,
             type: "GET",
             async: false,
             success: function (reponse) {
@@ -164,5 +162,7 @@ $(document).ready(function(){
         });
     }*/
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
 
+
+<?php echo $__env->make('public.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/Amp/Themes/Storefront/views/public/checkout/create.blade.php ENDPATH**/ ?>

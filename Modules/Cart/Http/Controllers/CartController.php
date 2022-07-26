@@ -69,7 +69,7 @@ class CartController
                         "WeightUnit"=>"Grams",
                         "CalculationCurrencyCode"=>"AED",
                         "IsRegistered"=>"No",
-                        "ProductCode"=>"EPG-22",
+                        "ProductCode"=>"EPG-21",
                     ]
                 ];
             }

@@ -21,8 +21,15 @@ class UserTable extends AdminTable
     public function make()
     {
         return $this->newTable()
+            ->editColumn('role', function ($user) {
+                $labels="";
+                foreach ( $user->getRoles() as $key => $value) {
+                    $labels.="<span class='badge badge-success'>".$value->name."</span>";
+                }
+                return $labels;
+            })
             ->editColumn('last_login', function ($user) {
                 return view('admin::partials.table.date')->with('date', $user->last_login);
-            });
+            })->rawColumns(['role']);
     }
 }

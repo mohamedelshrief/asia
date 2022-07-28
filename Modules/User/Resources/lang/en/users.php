@@ -5,6 +5,7 @@ return [
     'users' => 'Users',
     'profile' => 'Profile',
     'table' => [
+        'role'=>'Role',
         'first_name' => 'First Name',
         'last_name' => 'Last Name',
         'email' => 'Email',

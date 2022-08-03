@@ -128,7 +128,7 @@ class OrderService
             'shipping_cost' => $request->shipping_cost,//Cart::shippingCost()->amount(),
             'coupon_id' => Cart::coupon()->id(),
             'discount' => Cart::discount()->amount(),
-            'total' => Cart::total()->amount()+$request->shipping_cost,
+            'total' => Cart::total()->amount(),
             'payment_method' => $request->payment_method,
             'currency' => currency(),
             'currency_rate' => CurrencyRate::for(currency()),

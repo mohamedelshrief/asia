@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Mail;
 use Modules\User\Contracts\Authentication;
 use Modules\User\Http\Requests\UpdateProfileRequest;
 use Modules\User\Mail\Welcome;
+use FleetCart\Mail\EmailChange;
 use Modules\Address\Entities\Address;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 use Illuminate\Support\Facades\Storage;
@@ -332,6 +333,7 @@ class AuthController extends BaseAuthController
         return response(['message' => 'Address Updated'], 200);
 
     }
+
     public function notifications(){
 
         $notifications = new Notification();
@@ -340,5 +342,47 @@ class AuthController extends BaseAuthController
        // Notification::update(["read_at"=>date("d")]);
         return $notification_data;
 
+    }
+
+    public function UpdateEmail(Request $request){
+        $request->validate([
+            "email"=>"required|email"
+        ]);
+
+        $code=rand(1000,9999);
+
+        Mail::to($request->email)->send(new EmailChange($request->email,$code));
+
+        User::where("id",auth("api")->user()->id)->update(["email_code"=>$code]);
+
+        return response(['message' => 'Email verification code sent successfully'], 200);
+    }
+
+    public function verifyChangeEmail(Request $request){
+        $request->validate([
+            "email"=>"required|email",
+            "code"=>"required|min:4|max:4"
+        ]);
+
+        $code=auth("api")->user()->email_code;
+
+        if($code==$request->code){
+            User::where("id",auth("api")->user()->id)->update(["email_code"=>"","email"=>$request->email]);
+
+            $user=User::where("id",auth("api")->user()->id)->first();
+            $token = $user->createToken('Web Token')->accessToken;
+            $userData=User::where("id",auth("api")->user()->id)->first();
+            return response()
+                ->json([
+                'message' => 'Email verified and changed',
+                'token' => $token,
+                'user' => $userData
+            ]);
+
+            //return response(['message' => 'Email verified and changed'], 200);
+        }else{
+
+            return response(['message' => 'Incorrect verificaton code'], 400);
+        }
     }
 }

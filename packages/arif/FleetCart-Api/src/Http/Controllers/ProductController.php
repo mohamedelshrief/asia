@@ -106,8 +106,20 @@ class ProductController extends Controller
 
         $newProducts = Product::latest()->take(10)->get();
         $relevanceProducts =Product::all()->random(10);
+        $specialProducts =Product::all();
         $Most= Product::all()->random(10);
 
+        $specialOffers=[];
+        foreach ($specialProducts as $key => $product) {
+            if($product->special_price!=null){
+                $specialOffers[]=$product;
+            }
+        }
+        $json[]=[
+            "title"=>trans('product::attributes.special_offers'),
+            "products"=>$specialOffers,
+            "url"=>"/categories/specials-offers/products"
+        ];
         $json[]=[
             "title"=>trans('product::attributes.new_arrival'),
             "products"=>$newProducts,

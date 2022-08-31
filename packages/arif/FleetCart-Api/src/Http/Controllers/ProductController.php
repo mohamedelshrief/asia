@@ -118,7 +118,7 @@ class ProductController extends Controller
         $json[]=[
             "title"=>trans('product::attributes.special_offers'),
             "products"=>$specialOffers,
-            "url"=>"/categories/specials-offers/products"
+            "url"=>"/products?category=specials-offers"
         ];
         $json[]=[
             "title"=>trans('product::attributes.new_arrival'),

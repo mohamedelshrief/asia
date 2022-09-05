@@ -113,6 +113,66 @@ class Cart extends DarryldecodeCart implements JsonSerializable
 
     }
 
+    public function api_store($productId, $qty, $options = [])
+    {
+
+        $options = array_filter($options);
+        $product = Product::with('files', 'categories', 'taxClass')->findOrFail($productId);
+
+        if($product->one_time_purchaseable){
+
+            if(auth("api")->check()) {
+                $past_orders=Order::join("order_products","order_products.order_id","=","orders.id")
+                ->where("orders.customer_id",auth()->user()->id)
+                ->where("order_products.product_id",$product->id)
+                ->get();
+
+                if(count($past_orders)){
+                    throw new UnknownModelException("You can not purchase this as this is only one time purchasable product");
+                }
+            }
+            $current=$this->findByProductId($product->id);
+            //var_dump(json_encode($current->first()));
+
+            if(isset($current->first()->qty) && $current->first()->qty=="1"){
+
+            }else{
+                //$qty=1;
+
+                $chosenOptions = new ChosenProductOptions($product, $options);
+
+                $this->add([
+                    'id' => md5("product_id.{$product->id}:options." . serialize($options)),
+                    'name' => $product->name,
+                    'price' => $product->selling_price->amount(),
+                    'quantity' => $qty,
+                    'attributes' => [
+                        'product' => $product,
+                        'options' => $chosenOptions->getEntities(),
+                        'created_at' => time(),
+                    ],
+                ]);
+            }
+        }else{
+            //$qty=1;
+
+            $chosenOptions = new ChosenProductOptions($product, $options);
+
+            $this->add([
+                'id' => md5("product_id.{$product->id}:options." . serialize($options)),
+                'name' => $product->name,
+                'price' => $product->selling_price->amount(),
+                'quantity' => $qty,
+                'attributes' => [
+                    'product' => $product,
+                    'options' => $chosenOptions->getEntities(),
+                    'created_at' => time(),
+                ],
+            ]);
+        }
+
+    }
+
     public function updateQuantity($id, $qty)
     {
 

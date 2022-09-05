@@ -37,7 +37,7 @@ class CartItemController extends Controller
      */
     public function store(StoreCartItemRequest $request)
     {
-        Cart::store($request->product_id, $request->qty, $request->options ?? []);
+        Cart::api_store($request->product_id, $request->qty, $request->options ?? []);
 
         return Cart::instance();
     }

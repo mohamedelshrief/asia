@@ -26,6 +26,7 @@ class SaveProductRequest extends Request
             'slug' => $this->getSlugRules(),
             'name' => 'required',
             'description' => 'required',
+	    'weight'=>'required',
             'brand_id' => ['nullable', Rule::exists('brands', 'id')],
             'tax_class_id' => ['nullable', Rule::exists('tax_classes', 'id')],
             'virtual' => 'required|boolean',

@@ -54,6 +54,8 @@ class CheckoutController extends Controller
 
         try {
             $response = $gateway->purchase($order, $request);
+
+	   Cart::clear();
         } catch (Exception $e) {
             $orderService->delete($order);
 

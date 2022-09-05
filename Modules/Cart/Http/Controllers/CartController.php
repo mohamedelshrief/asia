@@ -25,6 +25,14 @@ class CartController
     }
 
     public function ShippingPricing(Request $request){
+$cart=json_decode(Cart::instance());
+            $weight=0;
+            foreach ($cart->items as $key => $item) {
+                $weight+=$item->product->weight;
+            }
+            //return $weight;
+            $client = new Client();
+            $shippingWeight=$weight*1000;
             $client = new Client();
             if(isset($request->city_id)){
                 $payload=[
@@ -36,12 +44,12 @@ class CartController
                         "OriginCity"=>"1",
                         "DestinationCountry"=>"971",
                         "DestinationState"=>null,
-                        "DestinationCity"=>"1",
+                        "DestinationCity"=>$request->city_id,
                         "Height"=>"25",
                         "Width"=>"20",
                         "Length"=>"30",
                         "DimensionUnit"=>"Centimetre",
-                        "Weight"=>"1000",
+                        "Weight"=>$shippingWeight,
                         "WeightUnit"=>"Grams",
                         "CalculationCurrencyCode"=>"AED",
                         "IsRegistered"=>"No",
@@ -60,12 +68,12 @@ class CartController
                         "OriginCity"=>"1",
                         "DestinationCountry"=>"971",
                         "DestinationState"=>null,
-                        "DestinationCity"=>"1",
+                        "DestinationCity"=>$address->city,
                         "Height"=>"25",
                         "Width"=>"20",
                         "Length"=>"30",
                         "DimensionUnit"=>"Centimetre",
-                        "Weight"=>"1000",
+                        "Weight"=>$shippingWeight,
                         "WeightUnit"=>"Grams",
                         "CalculationCurrencyCode"=>"AED",
                         "IsRegistered"=>"No",

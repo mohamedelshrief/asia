@@ -42,6 +42,10 @@ foreach (Setting::allCached()["supported_locales"] as $key => $value) {
 
                         Route::post('/verify-change-email', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@UpdateEmail');
                         Route::post('/change-email', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@verifyChangeEmail');
+
+                        
+                        Route::post('delete-account', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@deleteUser');
+
                     });
 
 

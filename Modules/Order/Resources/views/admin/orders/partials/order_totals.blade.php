@@ -9,12 +9,10 @@
                             <td class="text-right">{{ $order->sub_total->format() }}</td>
                         </tr>
 
-                        @if ($order->hasShippingMethod())
-                            <!--<tr>
-                                <td>{{ $order->shipping_method }}</td>
+                            <tr>
+                                <td>Shipping Cost</td>
                                 <td class="text-right">{{ $order->shipping_cost->format() }}</td>
-                            </tr>-->
-                        @endif
+                            </tr>
 
                         @foreach ($order->taxes as $tax)
                             <tr>

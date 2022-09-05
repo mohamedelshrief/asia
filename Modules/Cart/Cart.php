@@ -123,7 +123,7 @@ class Cart extends DarryldecodeCart implements JsonSerializable
 
             if(auth("api")->check()) {
                 $past_orders=Order::join("order_products","order_products.order_id","=","orders.id")
-                ->where("orders.customer_id",auth()->user()->id)
+                ->where("orders.customer_id",auth("api")->user()->id)
                 ->where("order_products.product_id",$product->id)
                 ->get();
 

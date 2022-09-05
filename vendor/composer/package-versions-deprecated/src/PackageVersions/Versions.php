@@ -210,7 +210,7 @@ final class Versions
   'filp/whoops' => '2.14.5@a63e5e8f26ebbebf8ed3c5c691637325512eb0dc',
   'maximebf/debugbar' => 'v1.18.0@0d44b75f3b5d6d41ae83b79c7a4bceae7fbc78b6',
   'nunomaduro/collision' => 'v5.11.0@8b610eef8582ccdc05d8f2ab23305e2d37049461',
-  'envaysoft/fleetcart' => '1.0.x-dev@78f80b15c9a8ac769abe692510d4012b49d965f0',
+  'envaysoft/fleetcart' => '1.0.x-dev@cabc804a9d083fd23370c180784900a68d760057',
 );
 
     private function __construct()

@@ -72,7 +72,9 @@ class DatabaseEngine extends Engine implements PaginatesEloquentModels
     public function paginate(Builder $builder, $perPage, $page)
     {
         return $this->buildSearchQuery($builder)
-                ->orderBy($builder->model->getKeyName(), 'desc')
+                ->when(! $this->getFullTextColumns($builder), function ($query) use ($builder) {
+                    $query->orderBy($builder->model->getKeyName(), 'desc');
+                })
                 ->paginate($perPage, ['*'], 'page', $page);
     }
 
@@ -87,7 +89,9 @@ class DatabaseEngine extends Engine implements PaginatesEloquentModels
     public function simplePaginate(Builder $builder, $perPage, $page)
     {
         return $this->buildSearchQuery($builder)
-                ->orderBy($builder->model->getKeyName(), 'desc')
+                ->when(! $this->getFullTextColumns($builder), function ($query) use ($builder) {
+                    $query->orderBy($builder->model->getKeyName(), 'desc');
+                })
                 ->simplePaginate($perPage, ['*'], 'page', $page);
     }
 
@@ -101,11 +105,14 @@ class DatabaseEngine extends Engine implements PaginatesEloquentModels
      */
     protected function searchModels(Builder $builder, $page = null, $perPage = null)
     {
-        return $this->buildSearchQuery($builder)->when(
-            ! is_null($page) && ! is_null($perPage),
-            function ($query) use ($page, $perPage) {
-                return $query->forPage($page, $perPage);
-            })->orderBy($builder->model->getKeyName(), 'desc')->get();
+        return $this->buildSearchQuery($builder)
+            ->when(! is_null($page) && ! is_null($perPage), function ($query) use ($page, $perPage) {
+                $query->forPage($page, $perPage);
+            })
+            ->when(! $this->getFullTextColumns($builder), function ($query) use ($builder) {
+                $query->orderBy($builder->model->getKeyName(), 'desc');
+            })
+            ->get();
     }
 
     /**
@@ -124,7 +131,7 @@ class DatabaseEngine extends Engine implements PaginatesEloquentModels
         );
 
         return $this->constrainForSoftDeletes(
-            $builder, $this->addAdditionalConstraints($builder, $query)
+            $builder, $this->addAdditionalConstraints($builder, $query->take($builder->limit))
         );
     }
 
@@ -161,7 +168,8 @@ class DatabaseEngine extends Engine implements PaginatesEloquentModels
                 if (in_array($column, $fullTextColumns)) {
                     $query->orWhereFullText(
                         $builder->model->qualifyColumn($column),
-                        $builder->query
+                        $builder->query,
+                        $this->getFullTextOptions($builder)
                     );
                 } else {
                     if ($canSearchPrimaryKey && $column === $builder->model->getKeyName()) {
@@ -199,6 +207,8 @@ class DatabaseEngine extends Engine implements PaginatesEloquentModels
             foreach ($builder->whereIns as $key => $values) {
                 $query->whereIn($key, $values);
             }
+        })->when(! is_null($builder->queryCallback), function ($query) use ($builder) {
+            call_user_func($builder->queryCallback, $query);
         });
     }
 
@@ -272,6 +282,29 @@ class DatabaseEngine extends Engine implements PaginatesEloquentModels
     }
 
     /**
+     * Get the full-text search options for the query.
+     *
+     * @param  \Laravel\Scout\Builder  $builder
+     * @return array
+     */
+    protected function getFullTextOptions(Builder $builder)
+    {
+        $options = [];
+
+        if (PHP_MAJOR_VERSION < 8) {
+            return [];
+        }
+
+        foreach ((new ReflectionMethod($builder->model, 'toSearchableArray'))->getAttributes(SearchUsingFullText::class) as $attribute) {
+            $arguments = $attribute->getArguments()[1] ?? [];
+
+            $options = array_merge($options, Arr::wrap($arguments));
+        }
+
+        return $options;
+    }
+
+    /**
      * Pluck and return the primary keys of the given results.
      *
      * @param  mixed  $results
@@ -282,7 +315,7 @@ class DatabaseEngine extends Engine implements PaginatesEloquentModels
         $results = $results['results'];
 
         return count($results) > 0
-                    ? $results->modelKeys()
+                    ? collect($results->modelKeys())
                     : collect();
     }
 

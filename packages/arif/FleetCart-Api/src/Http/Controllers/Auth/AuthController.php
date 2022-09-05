@@ -102,6 +102,12 @@ class AuthController extends BaseAuthController
 
         $user = User::whereEmail($request->email)->first();
 
+        if($user->is_delete==1){
+            return response()->json([
+                'message' => trans('fleetcart_api::validation.auth.invalid_password')
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
         if(!Hash::check($request->password, $user->password))
         {
             return response()->json([

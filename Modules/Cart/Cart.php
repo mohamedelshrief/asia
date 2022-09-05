@@ -68,14 +68,14 @@ class Cart extends DarryldecodeCart implements JsonSerializable
                 ->get();
 
                 if(count($past_orders)){
-                    throw new UnknownModelException("You can not purchase this as this is only one time purchasable product");
+                    throw new UnknownModelException(trans('cart::messages.one_time'));
                 }
             }
             $current=$this->findByProductId($product->id);
             //var_dump(json_encode($current->first()));
 
             if(isset($current->first()->qty) && $current->first()->qty=="1"){
-
+                throw new UnknownModelException(trans('cart::messages.one_time'));
             }else{
                 //$qty=1;
 
@@ -128,14 +128,14 @@ class Cart extends DarryldecodeCart implements JsonSerializable
                 ->get();
 
                 if(count($past_orders)){
-                    throw new UnknownModelException("You can not purchase this as this is only one time purchasable product");
+                    throw new UnknownModelException(trans('cart::messages.one_time'));
                 }
             }
             $current=$this->findByProductId($product->id);
             //var_dump(json_encode($current->first()));
 
             if(isset($current->first()->qty) && $current->first()->qty=="1"){
-                    throw new UnknownModelException("You can not purchase this as this is only one time purchasable product");
+                    throw new UnknownModelException(trans('cart::messages.one_time'));
             
             }else{
                 //$qty=1;

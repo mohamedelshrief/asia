@@ -135,7 +135,9 @@ class Cart extends DarryldecodeCart implements JsonSerializable
             //var_dump(json_encode($current->first()));
 
             if(isset($current->first()->qty) && $current->first()->qty=="1"){
-
+                if(count($past_orders)){
+                    throw new UnknownModelException("You can not purchase this as this is only one time purchasable product");
+                }
             }else{
                 //$qty=1;
 

@@ -394,7 +394,7 @@ class AuthController extends BaseAuthController
 
 
     public function deleteUser(){
-        User::where("id",auth("api")->user()->id)->update(["is_delete"=>1]);
+        User::where("id",auth("api")->user()->id)->update(["is_delete"=>1,"email"=>"delete_".auth("api")->user()->email]);
 
         return response(['message' => 'Account Deleted Successfully'], 200);
     }

@@ -28,11 +28,9 @@ class CartController
 $cart=json_decode(Cart::instance());
             $weight=0;
             foreach ($cart->items as $key => $item) {
-                $weightCount=$item->product->weight*$item->product->qty;
+                $weightCount=floatval($item->product->weight)*$item->qty;
                 $weight+=$weightCount;
             }
-            //return $weight;
-            $client = new Client();
             $shippingWeight=$weight*1000;
             $client = new Client();
             if(isset($request->city_id)){

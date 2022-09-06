@@ -28,7 +28,8 @@ class CartController
 $cart=json_decode(Cart::instance());
             $weight=0;
             foreach ($cart->items as $key => $item) {
-                $weight+=$item->product->weight;
+                $weightCount=$item->product->weight*$item->product->qty;
+                $weight+=$weightCount;
             }
             //return $weight;
             $client = new Client();

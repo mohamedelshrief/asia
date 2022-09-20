@@ -25,7 +25,8 @@ use Modules\Notification\Entities\Notification;
 use Modules\User\LoginProvider;
 use Illuminate\Support\Facades\Cache;
 use Laravel\Socialite\Facades\Socialite;
-use File;
+use FleetCart\Http\Requests\UpdateUserRequest;
+use Illuminate\Support\Facades\File;
 
 class AuthController extends BaseAuthController
 {
@@ -233,30 +234,33 @@ class AuthController extends BaseAuthController
      * @param UpdateProfileRequest $request
      * @return JsonResponse|Response
      */
-    public function update_me(UpdateProfileRequest $request)
+    public function update_me(UpdateUserRequest $request)
     {
         //return $request->all();
-        if($request->password !="" && $request->old_password!=""){
-            if(!Hash::check($request->old_password, auth('api')->user()->password)){
-                return response(['message' => 'Old password is invalid'], 403);
-            }
-            $request->bcryptPassword();
-        }
+        // if($request->password !="" && $request->old_password!=""){
+        //     if(!Hash::check($request->old_password, auth('api')->user()->password)){
+        //         return response(['message' => 'Old password is invalid'], 403);
+        //     }
+        //     $request->bcryptPassword();
+        // }
         if ($request->has('image')) {
-            $image = $request->image;  // your base64 encoded
-            $image = str_replace('data:image/png;base64,', '', $image);
-            $image = str_replace('data:image/jpg;base64,', '', $image);
-            $image = str_replace('data:image/jpeg;base64,', '', $image);
-            $image = str_replace(' ', '+', $image);
-            $imageName = date("dmYhis").uniqid() .'.'.'png';
-            File::put(public_path(). '/storage/media/' . $imageName, base64_decode($image));
-            $request['image']="/storage/media/".$imageName;
+            if (strpos($request->image, 'data:image') !== false) {
+                $image = $request->image;  // your base64 encoded
+                $image = str_replace('data:image/png;base64,', '', $image);
+                $image = str_replace('data:image/jpg;base64,', '', $image);
+                $image = str_replace('data:image/jpeg;base64,', '', $image);
+                $image = str_replace(' ', '+', $image);
+                $imageName = date("dmYhis").uniqid() .'.'.'png';
+                File::put(public_path(). '/storage/media/' . $imageName, base64_decode($image));
+                $request['image']="/storage/media/".$imageName;
+            }else{
+                unset($request['image']);
+            }
         }else{
-
             unset($request['image']);
         }
-        auth('api')->user()->update($request->all());
-        return \response()->json(["user"=>auth('api')->user(),'message' => trans('account::messages.profile_updated')]);
+        auth('api')->user()->update($request->validated());
+        return response()->json(["user"=>auth('api')->user(),'message' => trans('account::messages.profile_updated')]);
     }
 
     public function getReset()

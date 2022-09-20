@@ -64,7 +64,8 @@ class Handler extends ExceptionHandler
 
         if ($e instanceof ValidationException && $request->ajax()) {
             return response()->json([
-                'message' => trans('core::messages.the_given_data_was_invalid'),
+                'message' => $e->validator->errors()->first(),
+                // 'message' => trans('core::messages.the_given_data_was_invalid'),
                 'errors' => $e->validator->getMessageBag(),
             ], 422);
         }

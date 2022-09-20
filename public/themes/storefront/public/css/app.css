@@ -25293,10 +25293,9 @@ textarea.form-control {
     margin-top: 45px;
 }
 
-
-/* .landscape-products-wrap.related-products-wrap .slick-track {
-    width: 1305px !important;
-} */
+.landscape-products-wrap.related-products-wrap .slick-track {
+    /* width: 1305px !important; */
+}
 
 .landscape-products-wrap .products-header {
     border-bottom: 1px solid #e5e5e5;

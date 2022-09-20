@@ -1,16 +1,13 @@
 .landscape-products-wrap {
     margin-top: 45px;
-
     &.related-products-wrap {
         .slick-track {
-            width: 1305px !important;
+            // width: 1305px !important;
         }
     }
-
     .products-header {
         border-bottom: 1px solid $border-color-lite;
     }
-
     .section-title {
         padding-bottom: 14px;
     }
@@ -21,17 +18,14 @@
     .arrow-next.slick-arrow {
         top: -40px;
     }
-
     .slick-list {
         margin: 0 -15px -50px;
         padding: 30px 0 50px;
-
         .slick-track {
             display: flex;
             align-items: stretch;
         }
     }
-
     .slick-dots {
         position: relative;
         bottom: auto;

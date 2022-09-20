@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Cache;
 use Laravel\Socialite\Facades\Socialite;
 use FleetCart\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\File;
+use Illuminate\Foundation\Application;
 
 class AuthController extends BaseAuthController
 {
@@ -234,7 +235,7 @@ class AuthController extends BaseAuthController
      * @param UpdateProfileRequest $request
      * @return JsonResponse|Response
      */
-    public function update_me(UpdateUserRequest $request)
+    public function update_me(Application $app, UpdateUserRequest $request)
     {
         //return $request->all();
         // if($request->password !="" && $request->old_password!=""){
@@ -243,6 +244,8 @@ class AuthController extends BaseAuthController
         //     }
         //     $request->bcryptPassword();
         // }
+        $app->setLocale($request->locale);
+
         if ($request->has('image')) {
             if (strpos($request->image, 'data:image') !== false) {
                 $image = $request->image;  // your base64 encoded

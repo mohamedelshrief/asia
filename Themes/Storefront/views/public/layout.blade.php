@@ -50,7 +50,7 @@
         @if (is_rtl())
             <link rel="stylesheet" href="{{ v(Theme::url('public/css/app.rtl.css')) }}">
         @else
-            <link rel="stylesheet" href="{{ v(Theme::url('public/css/app.css')) }}">
+            <link rel="stylesheet" href="{{ url('themes/storefront/public/css/app.css') }}">
         @endif
         <link rel="stylesheet" href="{{ url('css/front.css') }}">
 

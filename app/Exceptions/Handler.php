@@ -40,6 +40,17 @@ class Handler extends ExceptionHandler
      * @param \Throwable  $e
      * @return void
      */
+    public function register() { 
+        $this->renderable(function(ValidationException $exception,$request) {
+            return response()->json([
+                'message' => $exception->validator->errors()->first(),
+                'errors' => $exception->validator->errors()
+                ],
+            422);
+        });
+    }
+
+
     public function report(Throwable $e)
     {
         parent::report($e);

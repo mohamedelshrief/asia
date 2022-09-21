@@ -11,50 +11,41 @@ Route::group([
 });*/
 
 foreach (Setting::allCached()["supported_locales"] as $key => $value) {
-    Route::prefix($value.'/api')
-        ->middleware('api_cors')
-        ->group(function () {
-            Route::middleware('auth:api')
-                ->group(function () {
+    Route::prefix($value.'/api')->middleware('api_cors')->group(function () {
+            Route::middleware('auth:api')->group(function () {
+                Route::post('/products/{product}/reviews', \FleetCartApi\Http\Controllers\Account\AccountReviewController::class . '@store');
 
-                    Route::post('/products/{product}/reviews', \FleetCartApi\Http\Controllers\Account\AccountReviewController::class . '@store');
+                Route::prefix('me')->group(function () {
+                    Route::get('/', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@me');
+                    Route::get('/orders', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@index');
+                    Route::get('/notifications', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@notifications');
+                    Route::get('/orders/{id}', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@index');
+                    Route::get('/orders/recent', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@recent');
+                    Route::post('/update', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@update_me');
+                    Route::get('/reviews', \FleetCartApi\Http\Controllers\Account\AccountReviewController::class . '@index');
+                    Route::get('/wishlist', \FleetCartApi\Http\Controllers\Account\WishlistController::class . '@index');
+                    Route::post('/wishlist', \FleetCartApi\Http\Controllers\Account\WishlistController::class . '@toggle');
+                    Route::post('/wishlist/store', \FleetCartApi\Http\Controllers\Account\WishlistController::class . '@store');
+                    Route::delete('/wishlist/{id}', \FleetCartApi\Http\Controllers\Account\WishlistController::class . '@destroy');
 
-                    Route::prefix('me')->group(function () {
-                        Route::get('/', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@me');
-                        Route::get('/orders', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@index');
-                        Route::get('/notifications', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@notifications');
-                        Route::get('/orders/{id}', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@index');
-                        Route::get('/orders/recent', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@recent');
-                        Route::post('/update', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@update_me');
-                        Route::get('/reviews', \FleetCartApi\Http\Controllers\Account\AccountReviewController::class . '@index');
-                        Route::get('/wishlist', \FleetCartApi\Http\Controllers\Account\WishlistController::class . '@index');
-                        Route::post('/wishlist', \FleetCartApi\Http\Controllers\Account\WishlistController::class . '@toggle');
-                        Route::post('/wishlist/store', \FleetCartApi\Http\Controllers\Account\WishlistController::class . '@store');
-                        Route::delete('/wishlist/{id}', \FleetCartApi\Http\Controllers\Account\WishlistController::class . '@destroy');
+                    // Addresses API
+                    Route::get("get-addresses",\FleetCartApi\Http\Controllers\Auth\AuthController::class . '@get_addresses');
+                    Route::post("add_address",\FleetCartApi\Http\Controllers\Auth\AuthController::class. '@add_address');
+                    Route::post("update_address/{id}",\FleetCartApi\Http\Controllers\Auth\AuthController::class. '@update_address');
+                    Route::post("delete_address",\FleetCartApi\Http\Controllers\Auth\AuthController::class. '@delete_address');
 
-                        // Addresses API
-                        Route::get("get-addresses",\FleetCartApi\Http\Controllers\Auth\AuthController::class . '@get_addresses');
-                        Route::post("add_address",\FleetCartApi\Http\Controllers\Auth\AuthController::class. '@add_address');
-                        Route::post("update_address/{id}",\FleetCartApi\Http\Controllers\Auth\AuthController::class. '@update_address');
-                        Route::post("delete_address",\FleetCartApi\Http\Controllers\Auth\AuthController::class. '@delete_address');
+                    Route::get('/order-shipping-status/{track_id}', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@orderStatus');
 
-                        Route::get('/order-shipping-status/{track_id}', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@orderStatus');
+                    Route::post('/verify-change-email', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@UpdateEmail');
+                    Route::post('/change-email', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@verifyChangeEmail');
 
-                        Route::post('/verify-change-email', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@UpdateEmail');
-                        Route::post('/change-email', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@verifyChangeEmail');
-
-                        
-                        Route::post('delete-account', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@deleteUser');
-
-                    });
-
-
+                    
+                    Route::post('delete-account', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@deleteUser');
 
                 });
-            Route::prefix('me')->group(function () {
-                Route::post('/verify-email-otp', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@verifyEmailOtp');
             });
 
+            Route::post('/verify-email-otp', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@verifyEmailOtp');
             Route::post('/register', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@postRegister');
             Route::post('/login', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@postLogin');
             Route::post('/login/social-login/callback', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@handleProviderCallback');

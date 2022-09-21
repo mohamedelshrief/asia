@@ -244,25 +244,26 @@ class AuthController extends BaseAuthController
             }
             $request->bcryptPassword();
         }
+        $data = $request->validated();
         // $app->setLocale($request->locale);
  
         // if (!empty($request->has('image'))) {
-            if (strpos($request->image, 'data:image') !== false) {
-                $image = $request->image;  // your base64 encoded
+            if (strpos($data['image'], 'data:image') !== false) {
+                $image = $data['image'];  // your base64 encoded
                 $image = str_replace('data:image/png;base64,', '', $image);
                 $image = str_replace('data:image/jpg;base64,', '', $image);
                 $image = str_replace('data:image/jpeg;base64,', '', $image);
                 $image = str_replace(' ', '+', $image);
                 $imageName = date("dmYhis").uniqid() .'.'.'png';
                 File::put(public_path(). '/storage/media/' . $imageName, base64_decode($image));
-                $request['image']="/storage/media/".$imageName;
+                $data['image']="/storage/media/".$imageName;
             }else{
-                unset($request['image']);
+                unset($data['image']);
             }
         // }else{
         //     unset($request['image']);
         // }
-        auth('api')->user()->update($request->validated());
+        auth('api')->user()->update($data);
         return response()->json(["user"=>auth('api')->user(),'message' => trans('account::messages.profile_updated')]);
     }
 

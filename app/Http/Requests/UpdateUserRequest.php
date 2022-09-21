@@ -30,6 +30,8 @@ class UpdateUserRequest extends FormRequest
             'first_name' => ['required','string'],
             'last_name' => ['required','string'],
             'image' => ['nullable','string'],
+            'old_password' => ['nullable'],
+            'password' => ['nullable', 'confirmed', 'min:6'],
         ];
     }
 }

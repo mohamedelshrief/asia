@@ -238,31 +238,30 @@ class AuthController extends BaseAuthController
     public function update_me(Application $app, UpdateUserRequest $request)
     {
         //return $request->all();
-        if($request->password != "" && $request->old_password != ""){
-            if(!Hash::check($request->old_password, auth('api')->user()->password)){
+        $data = $request->validated();
+        if($data['password'] != "" && $data['old_password'] != ""){
+            if(!Hash::check($data['old_password'], auth('api')->user()->password)){
                 return response(['message' => 'Old password is invalid'], 403);
             }
-            $request->bcryptPassword();
+            // $request->bcryptPassword();
+            $data['password'] = bcrypt($data['password']);
+        }else{
+            unset($data['password']);
         }
-        $data = $request->validated();
         // $app->setLocale($request->locale);
  
-        // if (!empty($request->has('image'))) {
-            if (strpos($data['image'], 'data:image') !== false) {
-                $image = $data['image'];  // your base64 encoded
-                $image = str_replace('data:image/png;base64,', '', $image);
-                $image = str_replace('data:image/jpg;base64,', '', $image);
-                $image = str_replace('data:image/jpeg;base64,', '', $image);
-                $image = str_replace(' ', '+', $image);
-                $imageName = date("dmYhis").uniqid() .'.'.'png';
-                File::put(public_path(). '/storage/media/' . $imageName, base64_decode($image));
-                $data['image']="/storage/media/".$imageName;
-            }else{
-                unset($data['image']);
-            }
-        // }else{
-        //     unset($request['image']);
-        // }
+        if (strpos($data['image'], 'data:image') !== false) {
+            $image = $data['image'];  // your base64 encoded
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace('data:image/jpg;base64,', '', $image);
+            $image = str_replace('data:image/jpeg;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $imageName = date("dmYhis").uniqid() .'.'.'png';
+            File::put(public_path(). '/storage/media/' . $imageName, base64_decode($image));
+            $data['image']="/storage/media/".$imageName;
+        }else{
+            unset($data['image']);
+        }
         auth('api')->user()->update($data);
         return response()->json(["user"=>auth('api')->user(),'message' => trans('account::messages.profile_updated')]);
     }

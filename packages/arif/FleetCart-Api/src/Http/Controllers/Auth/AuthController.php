@@ -238,12 +238,12 @@ class AuthController extends BaseAuthController
     public function update_me(Application $app, UpdateUserRequest $request)
     {
         //return $request->all();
-        // if($request->password !="" && $request->old_password!=""){
-        //     if(!Hash::check($request->old_password, auth('api')->user()->password)){
-        //         return response(['message' => 'Old password is invalid'], 403);
-        //     }
-        //     $request->bcryptPassword();
-        // }
+        if($request->password != "" && $request->old_password != ""){
+            if(!Hash::check($request->old_password, auth('api')->user()->password)){
+                return response(['message' => 'Old password is invalid'], 403);
+            }
+            $request->bcryptPassword();
+        }
         // $app->setLocale($request->locale);
  
         if (!empty($request->has('image'))) {

@@ -116,7 +116,8 @@ class AuthController extends BaseAuthController
 
         if($user->email_code != ""){
             return response()->json([
-                'message' => trans('fleetcart_api::validation.auth.account_not_activated')
+                'message' => trans('fleetcart_api::validation.auth.account_not_activated'),
+                'not_verified'=>true,
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 

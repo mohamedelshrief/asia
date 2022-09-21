@@ -250,6 +250,9 @@ class AuthController extends BaseAuthController
                 unset($data['password']);
             }
         }
+        if(!isset($data['email'])){
+            $data['email'] = null;
+        }
         // $app->setLocale($request->locale);
  
         if (strpos($data['image'], 'data:image') !== false) {

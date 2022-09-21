@@ -40,6 +40,7 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             "phone.required"=>"phone number is required",
+            "email.email"=>"email must be a valid email",
         ];
     }
 }

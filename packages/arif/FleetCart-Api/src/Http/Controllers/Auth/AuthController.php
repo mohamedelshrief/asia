@@ -69,7 +69,7 @@ class AuthController extends BaseAuthController
      * @param RegisterRequest $request
      * @return JsonResponse
      */
-    public function postRegister(RegisterRequest $request): JsonResponse
+    public function postRegister(RegisterRequest $request)
     {
         $request->merge(['password' => bcrypt(request('password'))]);
 

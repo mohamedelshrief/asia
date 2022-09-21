@@ -246,7 +246,7 @@ class AuthController extends BaseAuthController
         }
         // $app->setLocale($request->locale);
  
-        if (!empty($request->has('image'))) {
+        // if (!empty($request->has('image'))) {
             if (strpos($request->image, 'data:image') !== false) {
                 $image = $request->image;  // your base64 encoded
                 $image = str_replace('data:image/png;base64,', '', $image);
@@ -259,9 +259,9 @@ class AuthController extends BaseAuthController
             }else{
                 unset($request['image']);
             }
-        }else{
-            unset($request['image']);
-        }
+        // }else{
+        //     unset($request['image']);
+        // }
         auth('api')->user()->update($request->validated());
         return response()->json(["user"=>auth('api')->user(),'message' => trans('account::messages.profile_updated')]);
     }

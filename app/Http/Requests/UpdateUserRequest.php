@@ -34,4 +34,11 @@ class UpdateUserRequest extends FormRequest
             'password' => ['nullable', 'confirmed', 'min:6'],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            "phone.required"=>"phone number is required",
+        ];
+    }
 }

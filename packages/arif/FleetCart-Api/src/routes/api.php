@@ -46,6 +46,7 @@ foreach (Setting::allCached()["supported_locales"] as $key => $value) {
             });
 
             Route::post('/verify-email-otp', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@verifyEmailOtp');
+            Route::post('/resend-email-otp', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@generateOTP');
             Route::post('/register', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@postRegister');
             Route::post('/login', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@postLogin');
             Route::post('/login/social-login/callback', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@handleProviderCallback');

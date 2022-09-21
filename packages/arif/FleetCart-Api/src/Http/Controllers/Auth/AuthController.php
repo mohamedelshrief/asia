@@ -244,7 +244,7 @@ class AuthController extends BaseAuthController
         //     }
         //     $request->bcryptPassword();
         // }
-        $app->setLocale($request->locale);
+        // $app->setLocale($request->locale);
  
         if (!empty($request->has('image'))) {
             if (strpos($request->image, 'data:image') !== false) {

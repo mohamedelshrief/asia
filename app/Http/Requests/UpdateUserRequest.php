@@ -26,13 +26,13 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             // 'email' => ['nullable','email', Rule::unique('users')->ignore($this->email, 'email')],
-            'email' => ['email:rfc,dns'],
-            'phone' => ['required'],
-            'first_name' => ['required','string'],
-            'last_name' => ['required','string'],
-            'image' => ['nullable','string'],
-            'old_password' => ['nullable'],
-            'password' => ['nullable', 'confirmed', 'min:6'],
+            'email' => 'nullable|email:rfc,dns',
+            'phone' => 'required',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'image' => 'nullable|string',
+            'old_password' => 'nullable',
+            'password' => 'nullable|confirmed|min:6',
         ];
     }
 

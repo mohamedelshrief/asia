@@ -84,13 +84,15 @@ class AuthController extends BaseAuthController
                 ->send(new Welcome($request->first_name));
         }
 
-        $token = $user->createToken('Web Token')->accessToken;
+        return $this->UpdateEmail($request);
 
-        return response()->json([
-            'message' => trans('fleetcart_api::messages.account_created'),
-            'token' => $token,
-            'user' => $user,
-        ], Response::HTTP_CREATED);
+        // $token = $user->createToken('Web Token')->accessToken;
+
+        // return response()->json([
+        //     'message' => trans('fleetcart_api::messages.account_created'),
+        //     'token' => $token,
+        //     'user' => $user,
+        // ], Response::HTTP_CREATED);
     }
 
     /**
@@ -107,6 +109,12 @@ class AuthController extends BaseAuthController
         if($user->is_delete==1){
             return response()->json([
                 'message' => trans('fleetcart_api::validation.auth.invalid_password')
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        if($user->email_code != ""){
+            return response()->json([
+                'message' => trans('fleetcart_api::validation.auth.account_not_activated')
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
@@ -371,7 +379,8 @@ class AuthController extends BaseAuthController
 
         Mail::to($request->email)->send(new EmailChange($request->email,$code));
 
-        User::where("id",auth("api")->user()->id)->update(["email_code"=>$code]);
+        // User::where("id",auth("api")->user()->id)->update(["email_code"=>$code]);
+        User::where("email",$request->email)->update(["email_code"=>$code]);
 
         return response(['message' => 'Email verification code sent successfully'], 200);
     }
@@ -382,16 +391,16 @@ class AuthController extends BaseAuthController
             "code"=>"required|min:4|max:4"
         ]);
 
-        $code=auth("api")->user()->email_code;
+        $user = User::where("email",$request->email)->first();
+        $code = $user->email_code;
 
         if($code==$request->code){
-            User::where("id",auth("api")->user()->id)->update(["email_code"=>"","email"=>$request->email]);
+            User::where("id",$user->id)->update(["email_code"=>"","email"=>$request->email]);
 
-            $user=User::where("id",auth("api")->user()->id)->first();
+            // $user=User::where("id",auth("api")->user()->id)->first();
             $token = $user->createToken('Web Token')->accessToken;
-            $userData=User::where("id",auth("api")->user()->id)->first();
-            return response()
-                ->json([
+            $userData=User::where("id",$user->id)->first();
+            return response()->json([
                 'message' => 'Email verified and changed',
                 'token' => $token,
                 'user' => $userData

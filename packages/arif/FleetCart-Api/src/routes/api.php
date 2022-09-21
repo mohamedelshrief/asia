@@ -40,8 +40,8 @@ foreach (Setting::allCached()["supported_locales"] as $key => $value) {
 
                         Route::get('/order-shipping-status/{track_id}', \FleetCartApi\Http\Controllers\Account\OrderController::class . '@orderStatus');
 
-                        Route::post('/verify-change-email', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@UpdateEmail');
-                        Route::post('/change-email', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@verifyChangeEmail');
+                        // Route::post('/verify-change-email', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@UpdateEmail');
+                        // Route::post('/change-email', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@verifyChangeEmail');
 
                         
                         Route::post('delete-account', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@deleteUser');
@@ -51,7 +51,10 @@ foreach (Setting::allCached()["supported_locales"] as $key => $value) {
 
 
                 });
-
+            Route::prefix('me')->group(function () {
+                Route::post('/verify-change-email', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@UpdateEmail');
+                Route::post('/change-email', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@verifyChangeEmail');
+            });
 
             Route::post('/register', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@postRegister');
             Route::post('/login', \FleetCartApi\Http\Controllers\Auth\AuthController::class . '@postLogin');

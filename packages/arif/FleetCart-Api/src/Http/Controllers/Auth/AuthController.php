@@ -69,7 +69,7 @@ class AuthController extends BaseAuthController
      * @param RegisterRequest $request
      * @return JsonResponse
      */
-    public function postRegister(RegisterRequest $request)
+    public function postRegister(RegisterRequest $request): JsonResponse
     {
         $request->merge(['password' => bcrypt(request('password'))]);
 
@@ -84,7 +84,9 @@ class AuthController extends BaseAuthController
                 ->send(new Welcome($request->first_name));
         }
 
-        return $this->UpdateEmail($request);
+        return response()->json([
+            "message"=>$this->UpdateEmail($request),
+        ]);
 
         // $token = $user->createToken('Web Token')->accessToken;
 

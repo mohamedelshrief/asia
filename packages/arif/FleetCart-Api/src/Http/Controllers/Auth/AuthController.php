@@ -239,14 +239,16 @@ class AuthController extends BaseAuthController
     {
         //return $request->all();
         $data = $request->validated();
-        if($data['password'] != "" && $data['old_password'] != ""){
-            if(!Hash::check($data['old_password'], auth('api')->user()->password)){
-                return response(['message' => 'Old password is invalid'], 403);
+        if(isset($data['password'])){
+            if($data['password'] != "" && $data['old_password'] != ""){
+                if(!Hash::check($data['old_password'], auth('api')->user()->password)){
+                    return response(['message' => 'Old password is invalid'], 403);
+                }
+                // $request->bcryptPassword();
+                $data['password'] = bcrypt($data['password']);
+            }else{
+                unset($data['password']);
             }
-            // $request->bcryptPassword();
-            $data['password'] = bcrypt($data['password']);
-        }else{
-            unset($data['password']);
         }
         // $app->setLocale($request->locale);
  

@@ -85,7 +85,7 @@ class AuthController extends BaseAuthController
         }
 
         return response()->json([
-            "message"=>$this->UpdateEmail($request),
+            "message"=>$this->generateOTP($request),
         ]);
 
         // $token = $user->createToken('Web Token')->accessToken;
@@ -372,6 +372,46 @@ class AuthController extends BaseAuthController
 
     }
 
+    public function verifyEmailOtp(Request $request){
+        $request->validate([
+            "email"=>"required|email",
+            "code"=>"required|min:4|max:4"
+        ]);
+        $user = User::where("email",$request->UpdateEmail)->first();
+        $code = $user->email_code;
+
+        if($code==$request->code){
+            User::where("id",$user->id)->update(["email_code"=>"","email"=>$request->email]);
+
+            // $user=User::where("id",auth("api")->user()->id)->first();
+            $token = $user->createToken('Web Token')->accessToken;
+            $userData=User::where("id",$user->id)->first();
+            return response()
+                ->json([
+                'message' => 'Email verified and changed',
+                'token' => $token,
+                'user' => $userData
+            ]);
+
+            //return response(['message' => 'Email verified and changed'], 200);
+        }else{
+
+            return response(['message' => 'Incorrect verificaton code'], 400);
+        }
+    }
+
+    public function generateOTP(Request $request){
+        $request->validate([
+            "email"=>"required|email"
+        ]);
+
+        $code=rand(1000,9999);
+
+        Mail::to($request->email)->send(new EmailChange($request->email,$code));
+        User::where("email",$request->email)->update(["email_code"=>$code]);
+        return response(['message' => 'Email verification code sent successfully'], 200);
+    }
+
     public function UpdateEmail(Request $request){
         $request->validate([
             "email"=>"required|email"
@@ -381,8 +421,7 @@ class AuthController extends BaseAuthController
 
         Mail::to($request->email)->send(new EmailChange($request->email,$code));
 
-        // User::where("id",auth("api")->user()->id)->update(["email_code"=>$code]);
-        User::where("email",$request->email)->update(["email_code"=>$code]);
+        User::where("id",auth("api")->user()->id)->update(["email_code"=>$code]);
 
         return response(['message' => 'Email verification code sent successfully'], 200);
     }
@@ -393,16 +432,16 @@ class AuthController extends BaseAuthController
             "code"=>"required|min:4|max:4"
         ]);
 
-        $user = User::where("email",$request->email)->first();
-        $code = $user->email_code;
+        $code=auth("api")->user()->email_code;
 
         if($code==$request->code){
-            User::where("id",$user->id)->update(["email_code"=>"","email"=>$request->email]);
+            User::where("id",auth("api")->user()->id)->update(["email_code"=>"","email"=>$request->email]);
 
-            // $user=User::where("id",auth("api")->user()->id)->first();
+            $user=User::where("id",auth("api")->user()->id)->first();
             $token = $user->createToken('Web Token')->accessToken;
-            $userData=User::where("id",$user->id)->first();
-            return response()->json([
+            $userData=User::where("id",auth("api")->user()->id)->first();
+            return response()
+                ->json([
                 'message' => 'Email verified and changed',
                 'token' => $token,
                 'user' => $userData

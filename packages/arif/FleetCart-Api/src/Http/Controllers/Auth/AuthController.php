@@ -377,7 +377,7 @@ class AuthController extends BaseAuthController
             "email"=>"required|email",
             "code"=>"required|min:4|max:4"
         ]);
-        return $user = User::where("email",$request->UpdateEmail)->first();
+        $user = User::where("email",$request->email)->first();
         $code = $user->email_code;
 
         if($code == (int)$request->code){

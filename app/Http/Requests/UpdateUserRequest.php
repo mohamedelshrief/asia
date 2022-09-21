@@ -26,7 +26,7 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             // 'email' => ['nullable','email', Rule::unique('users')->ignore($this->email, 'email')],
-            'email' => 'sometimes|email:rfc,dns',
+            'email' => 'email:rfc,dns',
             'phone' => 'required',
             'first_name' => 'required|string',
             'last_name' => 'required|string',
@@ -39,8 +39,8 @@ class UpdateUserRequest extends FormRequest
     public function messages()
     {
         return [
-            "phone.required"=>"phone number is required",
-            "email.email"=>"email must be a valid email",
+            "phone.required" => trans('account::messages.phone'),
+            "email.email" => trans('account::messages.invalid_email'),
         ];
     }
 }

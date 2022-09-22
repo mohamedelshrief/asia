@@ -27,7 +27,7 @@ class UpdateUserRequest extends FormRequest
         return [
             // 'email' => ['nullable','email', Rule::unique('users')->ignore($this->email, 'email')],
             'email' => 'email:rfc,dns',
-            'phone' => 'required',
+            'phone' => 'nullable',
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'image' => 'nullable|string',

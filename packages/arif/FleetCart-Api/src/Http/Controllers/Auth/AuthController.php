@@ -189,7 +189,7 @@ class AuthController extends BaseAuthController
 
         if($user->is_delete == 1){
             $user->update([
-                "email" =>  null,
+                "email" =>  $request->email,
                 "is_delete" =>  0,
                 "is_social" =>  1
             ]);

@@ -187,6 +187,13 @@ class AuthController extends BaseAuthController
             ]);
         }
 
+        if($user->is_delete == 1){
+            $user->update([
+                "email" =>  null,
+                "is_delete" =>  0,
+            ]);
+        }
+
         // create a token for the user, so they can login
         $token = $user->createToken('Web Token')->accessToken;
         // return the token for usage
@@ -457,7 +464,11 @@ class AuthController extends BaseAuthController
 
 
     public function deleteUser(){
-        User::where("id",auth("api")->user()->id)->update(["is_delete"=>1,"email"=>"delete_".auth("api")->user()->email]);
+        User::where("id",auth("api")->user()->id)->update([
+                "is_delete" =>  1,
+                "email"     =>  "delete_".auth("api")->user()->email,
+                "is_social" =>  0,
+            ]);
 
         return response(['message' => 'Account Deleted Successfully'], 200);
     }

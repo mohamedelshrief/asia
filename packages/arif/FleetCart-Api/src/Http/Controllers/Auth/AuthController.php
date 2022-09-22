@@ -191,6 +191,7 @@ class AuthController extends BaseAuthController
             $user->update([
                 "email" =>  null,
                 "is_delete" =>  0,
+                "is_social" =>  1
             ]);
         }
 

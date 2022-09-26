@@ -73,7 +73,7 @@ class AuthController extends BaseAuthController
         try {
             $user = Socialite::driver($provider)->user();
         } catch (Exception $e) {
-            return redirect()->route('login')->with('error', $e->getMessage());
+            return redirect()->route('login')->with('error', $e);
         }
 
         if (User::registered($user->getEmail())) {

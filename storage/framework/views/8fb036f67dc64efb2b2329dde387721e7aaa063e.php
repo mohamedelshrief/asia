@@ -52,7 +52,7 @@
         <?php if(is_rtl()): ?>
             <link rel="stylesheet" href="<?php echo e(v(Theme::url('public/css/app.rtl.css'))); ?>">
         <?php else: ?>
-            <link rel="stylesheet" href="<?php echo e(v(Theme::url('public/css/app.css'))); ?>">
+            <link rel="stylesheet" href="<?php echo e(url('themes/storefront/public/css/app.css')); ?>">
         <?php endif; ?>
         <link rel="stylesheet" href="<?php echo e(url('css/front.css')); ?>">
 

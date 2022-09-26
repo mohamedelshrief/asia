@@ -50,11 +50,9 @@ class ProductController
                 ->limit($request->get('limit', 10))
                 ->get();
         }*/
-
         if ($request->has('table')) {
             return $this->getModel()->table($request);
         }
-
         $Brands=Brand::get();
         $Categories=Category::get();
         $this->paginate=20;

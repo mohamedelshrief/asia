@@ -71,9 +71,9 @@ class AuthController extends BaseAuthController
         }
 
         try {
-            dd($provider);
             $user = Socialite::driver($provider)->user();
         } catch (Exception $e) {
+            dd($e);
             return redirect()->route('login')->with('error', $e->getMessage());
         }
 

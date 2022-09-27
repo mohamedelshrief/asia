@@ -440,7 +440,7 @@ class Product extends Model
         return $this->price;
     }
 
-    public function getHasDiscount(){
+    public function getHasDiscountAttribute(){
         return $this->hasSpecialPrice() && ($this->special_price_type === 'percent' || $this->special_price_type === 'fixed');
     }
 

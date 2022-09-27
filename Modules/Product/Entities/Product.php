@@ -19,6 +19,7 @@ use Modules\Support\Eloquent\Sluggable;
 use Modules\FlashSale\Entities\FlashSale;
 use Modules\Support\Eloquent\Translatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 use Modules\Attribute\Entities\ProductAttribute;
 
 class Product extends Model
@@ -614,16 +615,24 @@ class Product extends Model
      */
     public function table($request)
     {
-        $query = $this->newQuery()
-            ->withName()
-            ->withBaseImage()
-            ->withPrice()
-            ->addSelect(['id','sku', 'created_at'])
-            ->when($request->has('except'), function ($query) use ($request) {
-                $query->whereNotIn('id', explode(',', $request->except));
-            });
+        // $query = $this->newQuery()
+        //     ->withName()
+        //     ->withBaseImage()
+        //     ->withPrice()
+        //     ->addSelect(['id','sku', 'created_at'])
+        //     ->when($request->has('except'), function ($subQuery) use ($request) {
+        //         $subQuery->whereNotIn('id', explode(',', $request->except));
+        //     });
 
-        return new ProductTable($query);
+        $builder = DB::table('products')
+            ->select('products.id','products.sku','products.slug','products.price','products.is_active','products.special_price','products.created_at','product_translations.name as name')
+            ->join('product_translations','product_translations.product_id','=','products.id')
+            // ->join('entity_files','entity_files.entity_id','=','products.id','inner',[
+            //     'entity_files.entity_type'=>'Modules\Product\Entities\Product',
+            //     'entity_files.zone'=>'base_image'
+            // ])
+            ->where('product_translations.locale','en');
+        return new ProductTable($builder);
     }
 
     /**

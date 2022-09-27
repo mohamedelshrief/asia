@@ -2,6 +2,7 @@
 
 namespace Modules\Admin\Ui;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Support\Responsable;
 
 class AdminTable implements Responsable
@@ -69,7 +70,7 @@ class AdminTable implements Responsable
                     : '<span class="dot red"></span>';
             })
             ->editColumn('created', function ($entity) {
-                return view('admin::partials.table.date')->with('date', $entity->created_at);
+                return view('admin::partials.table.date')->with('date', Carbon::parse($entity->created_at));
             })
             ->rawColumns(array_merge($this->defaultRawColumns, $this->rawColumns))
             ->removeColumn('translations');

@@ -15,7 +15,7 @@
         @endif
 
         DataTable.setRoutes('#{{ $name }} .table', {
-            index: { name: 'admin.products.index', params: { except: 5039 } },
+            index: { name: 'admin.products.index', },
             edit: 'admin.products.edit',
             destroy: 'admin.products.destroy',
         });
@@ -25,11 +25,11 @@
             columns: [
                 { data: 'checkbox', orderable: false, searchable: false, width: '3%' },
                 { data: 'id', width: '5%' },
-                { data: 'thumbnail', orderable: false, searchable: false, width: '10%' },
-                { data: 'name', name: 'translations.name', orderable: false, defaultContent: '' },
-                { data: 'price', searchable: false },
-                { data: 'status', name: 'is_active', searchable: false },
-                { data: 'created', name: 'created_at' },
+                // { data: 'thumbnail', orderable: false, searchable: false, width: '10%' },
+                { data: 'name', name: 'product_translations.name', orderable: false, defaultContent: '', width: '20%' },
+                { data: 'price', searchable: false, width: '10%' },
+                { data: 'status', name: 'is_active', searchable: false, width: '10%' },
+                { data: 'created', name: 'created_at', width: '10%' },
             ],
         });
     </script>

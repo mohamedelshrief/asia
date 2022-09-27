@@ -98,7 +98,7 @@ class Product extends Model
     protected $appends = [
         'base_image', 'formatted_price', 'rating_percent', 'is_in_stock',
         'is_out_of_stock', 'is_new', 'has_percentage_special_price', 'special_price_percent',
-        'additional_images','additional_imgs','original_price'
+        'additional_images','additional_imgs','original_price','has_discount'
     ];
 
     /**
@@ -438,6 +438,10 @@ class Product extends Model
         }
 
         return $this->price;
+    }
+
+    public function getHasDiscount(){
+        return $this->hasSpecialPrice() && ($this->special_price_type === 'percent' || $this->special_price_type === 'fixed');
     }
 
     public function getSpecialPrice()

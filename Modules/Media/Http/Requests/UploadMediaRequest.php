@@ -21,7 +21,7 @@ class UploadMediaRequest extends Request
     public function messages()
     {
         return [
-            'file.file' => trans('core::validation.upload'),
+            'file.file' => trans('core::validation.uploaded'),
         ];
     }
 }

@@ -78,8 +78,8 @@ class Handler extends ExceptionHandler
             //     'message'   =>  'hello',
             // ],422);
             return response()->json([
-                'message' => $e->validator->errors()->first(),
-                // 'message' => trans('core::messages.the_given_data_was_invalid'),
+                // 'message' => $e->validator->errors()->first(),
+                'message' => trans('core::messages.the_given_data_was_invalid'),
                 'errors' => $e->validator->getMessageBag(),
             ], 422);
         }

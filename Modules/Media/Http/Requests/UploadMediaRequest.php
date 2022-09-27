@@ -17,4 +17,11 @@ class UploadMediaRequest extends Request
             'file' => 'file',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'file.file' => trans('core::validation.upload'),
+        ];
+    }
 }

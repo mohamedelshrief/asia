@@ -15,7 +15,7 @@
         @endif
 
         DataTable.setRoutes('#{{ $name }} .table', {
-            index: { name: 'admin.products.index', params: { except: {!! $product->id ?? "''" !!} } },
+            index: { name: 'admin.products.index', params: { except: 5039 } },
             edit: 'admin.products.edit',
             destroy: 'admin.products.destroy',
         });

@@ -28,6 +28,12 @@ class ProductTable extends AdminTable
                             <del class='text-red'>{$product->price}</del>";
                 }
                 return "<span class='m-r-5'>{$product->price}</span>";
+            })
+            ->editColumn('thumbnail', function ($product) {
+                return "<img src=".config('app.url').'/'.$product->thumbnail.">";
+                // return view('admin::partials.table.image', [
+                //     'file' => $product->thumbnail,
+                // ]);
             });
 
             // ->editColumn('thumbnail', function ($product) {

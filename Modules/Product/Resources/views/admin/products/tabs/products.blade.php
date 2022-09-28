@@ -25,7 +25,7 @@
             columns: [
                 { data: 'checkbox', orderable: false, searchable: false, width: '3%' },
                 { data: 'id', width: '5%' },
-                // { data: 'thumbnail', orderable: false, searchable: false, width: '10%' },
+                { data: 'thumbnail', orderable: false, searchable: false, width: '10%' },
                 { data: 'name', name: 'product_translations.name', orderable: false, defaultContent: '', width: '20%' },
                 { data: 'price', searchable: false, width: '10%' },
                 { data: 'status', name: 'is_active', searchable: false, width: '10%' },

@@ -18,6 +18,35 @@ trait ProductSearch
      * @param \Modules\Product\Filters\ProductFilter $productFilter
      * @return \Illuminate\Http\Response
      */
+    public function searchProductsForApi(Product $model, ProductFilter $productFilter)
+    {
+        $productIds = [];
+
+        if (request()->filled('query')) {
+            $model = $model->search(request('query'));
+            $productIds = $model->keys();
+        }
+        $query = $model->filter($productFilter);
+        $query->where("is_active",1);
+        if (request()->filled('query')) {
+            $query->whereHas('translations',function($subQuery){
+                $subQuery->where('name','like','%'.request('query').'%');
+            });
+        }
+        if (request()->filled('category')) {
+            $productIds = (clone $query)->select('products.id')->resetOrders()->pluck('id');
+        }
+
+        $products = $query->paginate(request('perPage', 30));
+
+        event(new ShowingProductList($products));
+
+        return response()->json([
+            'products' => $products,
+            'attributes' => $this->getAttributes($productIds),
+        ]);
+    }
+
     public function searchProducts(Product $model, ProductFilter $productFilter)
     {
         $productIds = [];
@@ -26,7 +55,6 @@ trait ProductSearch
             $model = $model->search(request('query'));
             $productIds = $model->keys();
         }
-
         $query = $model->filter($productFilter);
         $query->where("is_active",1);
         if (request()->filled('category')) {

@@ -63,7 +63,7 @@ class ProductController extends Controller
     public function index(Product $model, ProductFilter $productFilter)
     {
         request()->merge(['perPage' => request('per_page', config('fleetcart_api.per_page', 10))]);
-        return $this->searchProducts($model, $productFilter);
+        return $this->searchProductsForApi($model, $productFilter);
     }
 
     /**

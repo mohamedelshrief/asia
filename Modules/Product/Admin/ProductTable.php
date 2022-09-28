@@ -30,7 +30,7 @@ class ProductTable extends AdminTable
                 return "<span class='m-r-5'>{$product->price}</span>";
             })
             ->editColumn('thumbnail', function ($product) {
-                return "<img src=".config('app.url').'/'.$product->thumbnail.">";
+                return "<img src=".config('app.url').'/storage/'.$product->thumbnail.">";
                 // return view('admin::partials.table.image', [
                 //     'file' => $product->thumbnail,
                 // ]);

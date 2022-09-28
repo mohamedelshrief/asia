@@ -19,7 +19,6 @@
             edit: 'admin.products.edit',
             destroy: 'admin.products.destroy',
         });
-
         new DataTable('#{{ $name }} .table', {
             pageLength: 10,
             columns: [

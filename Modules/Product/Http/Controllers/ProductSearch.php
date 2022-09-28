@@ -28,11 +28,11 @@ trait ProductSearch
         }
         $query = $model->filter($productFilter);
         $query->where("is_active",1);
-        if (request()->filled('query')) {
-            $query->whereHas('translations',function($subQuery){
-                $subQuery->where('name','like','%'.request('query').'%');
-            });
-        }
+        // if (request()->filled('query')) {
+        //     $query->whereHas('translations',function($subQuery){
+        //         $subQuery->where('name','like','%'.request('query').'%');
+        //     });
+        // }
         if (request()->filled('category')) {
             $productIds = (clone $query)->select('products.id')->resetOrders()->pluck('id');
         }

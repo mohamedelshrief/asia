@@ -19,6 +19,10 @@ class BrandProductController
      * @param \Modules\Product\Filters\ProductFilter $productFilter
      * @return \Illuminate\Http\Response
      */
+    public function download(){
+        return view('download-page');
+    }
+    
     public function index($slug, Product $model, ProductFilter $productFilter)
     {
         request()->merge(['brand' => $slug]);

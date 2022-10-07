@@ -86,14 +86,6 @@ class ProductController extends Controller
         return [
             'price'=>$variantPrice,
         ];
-
-        return product_price_formatted($product, function ($price) use ($product, $variantPrice) {
-            if (! $product->hasSpecialPrice()) {
-                return $variantPrice;
-            }
-
-            return "{$variantPrice} <span class='previous-price'>{$price}</span>";
-        });
     }
 
     /**

@@ -32,12 +32,6 @@ class CartItemController extends Controller
     public function index()
     {
         $cart = Cart::instance();
-        dd($cart->getAllProducts());
-        $cart = $cart->toArray();
-        $keys = array_keys($cart['items']);
-        return $keys;
-
-        array_push($cart['items'],$cart['items'][$keys[0]]['unitPrice']);
         return $cart; 
     }
 
@@ -50,7 +44,6 @@ class CartItemController extends Controller
     public function store(StoreCartItemRequest $request)
     {
         Cart::api_store($request->product_id, $request->qty, $request->options ?? []);
-
         return Cart::instance();
     }
 

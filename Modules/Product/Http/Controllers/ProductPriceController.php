@@ -36,7 +36,7 @@ class ProductPriceController
         });
     }
 
-    private function cartItem(Product $product, array $options)
+    public function cartItem(Product $product, array $options)
     {
         $chosenOptions = new ChosenProductOptions($product, $options);
 

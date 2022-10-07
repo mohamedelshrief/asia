@@ -22,6 +22,9 @@ use Illuminate\Database\Query\JoinClause;
 use Modules\Product\Filters\ProductFilter;
 use GuzzleHttp\Client;
 use Modules\Setting\Entities\Setting;
+use Modules\Cart\Facades\Cart;
+use Modules\Product\Http\Controllers\ProductPriceController;
+
 class ProductController extends Controller
 {
     use ProductSearch;
@@ -73,7 +76,9 @@ class ProductController extends Controller
             ->withPrice()
             ->findOrFail($id);
 
-        $variantPrice = $this->cartItem($product, request('options', []))
+        $productPriceController = new ProductPriceController();
+
+        $variantPrice = $productPriceController->cartItem($product, request('options', []))
             ->total()
             ->convertToCurrentCurrency()
             ->format();

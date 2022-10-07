@@ -32,6 +32,7 @@ class CartItemController extends Controller
     public function index()
     {
         $cart = Cart::instance();
+        get_class_methods($cart);
         $cart = $cart->toArray();
         $keys = array_keys($cart['items']);
         return $keys;

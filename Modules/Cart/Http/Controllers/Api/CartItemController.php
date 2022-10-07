@@ -33,7 +33,7 @@ class CartItemController extends Controller
     {
         $cart = Cart::instance();
         $cart = $cart->toArray();
-        $keys = array_keys($cart);
+        $keys = array_keys($cart['items']);
         return $keys;
 
         array_push($cart['items'],$cart['items'][$keys[0]]['unitPrice']);

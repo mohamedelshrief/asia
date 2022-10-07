@@ -29,6 +29,12 @@ class CartItemController extends Controller
         // $this->middleware([CheckProductIsInStock::class])->only(['store', 'update']);
     }
 
+    public function index()
+    {
+        $cart = Cart::instance();
+        return $cart->toArray();
+    }
+
     /**
      * Store a newly created resource in storage.
      *

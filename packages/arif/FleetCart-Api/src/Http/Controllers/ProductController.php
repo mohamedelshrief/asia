@@ -66,6 +66,31 @@ class ProductController extends Controller
         return $this->searchProductsForApi($model, $productFilter);
     }
 
+    public function showPrice($id)
+    {
+        $product = Product::queryWithoutEagerRelations()
+            ->select('id')
+            ->withPrice()
+            ->findOrFail($id);
+
+        $variantPrice = $this->cartItem($product, request('options', []))
+            ->total()
+            ->convertToCurrentCurrency()
+            ->format();
+
+        return [
+            'price'=>$variantPrice,
+        ];
+
+        return product_price_formatted($product, function ($price) use ($product, $variantPrice) {
+            if (! $product->hasSpecialPrice()) {
+                return $variantPrice;
+            }
+
+            return "{$variantPrice} <span class='previous-price'>{$price}</span>";
+        });
+    }
+
     /**
      * Show the specified resource.
      *

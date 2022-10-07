@@ -75,9 +75,11 @@ foreach (Setting::allCached()["supported_locales"] as $key => $value) {
             Route::get('/payment-gateways', \FleetCartApi\Http\Controllers\PaymentGatewaysController::class . '@index');
             Route::post('/checkout', \FleetCartApi\Http\Controllers\CheckoutController::class . '@store');
 
+            //PRICE
+            Route::post('/products/{product}/price', \FleetCartApi\Http\Controllers\ProductController::class . '@showPrice');
             //Cart
             Route::get('/get-cart/{id}', \FleetCartApi\Http\Controllers\CheckoutController::class . '@getCart');
-            Route::get('cart', Modules\Cart\Http\Controllers\CartController::class . '@index');
+            Route::get('cart', Modules\Cart\Http\Controllers\Api\CartItemController::class . '@index');
             Route::get('shipping-price', Modules\Cart\Http\Controllers\CartController::class . '@ShippingPricing');
             Route::post('cart/items', Modules\Cart\Http\Controllers\Api\CartItemController::class . '@store');
             Route::put('cart/items/{cartItemId}', Modules\Cart\Http\Controllers\Api\CartItemController::class . '@update');

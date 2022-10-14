@@ -157,7 +157,7 @@
                                         name="slides[<%- slideNumber %>][screen_name]"
                                         class="form-control"
                                         id="slides-<%- slideNumber %>-screen_name"
-                                        value="<%- slide.screen_name %>"
+                                        value="productDetail"
                                     >
                                 </div>
                             </div>

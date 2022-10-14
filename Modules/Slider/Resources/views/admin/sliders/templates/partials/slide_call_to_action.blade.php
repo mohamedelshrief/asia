@@ -1,5 +1,5 @@
 <div class="slide-options call-to-action">
-    <h4>{{ trans("slider::sliders.slide.form.call_to_action") }}</h4>
+    <h4>{{ trans("slider::sliders.slide.form.call_to_action") }}</h4> 
 
     <div class="form-group">
         <div class="col-md-12 p-l-0">

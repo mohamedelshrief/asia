@@ -2,6 +2,7 @@
 
 namespace Modules\Slider\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Modules\Core\Http\Requests\Request;
 
 class SaveSliderRequest extends Request
@@ -23,5 +24,12 @@ class SaveSliderRequest extends Request
         return [
             'name' => 'required',
         ];
+    }
+
+    protected function failedValidation(Validator $errors){
+        if(request()->wantsJson()){
+            return $errors;
+        }
+        return back()->withInput()->withError($errors->errors()->first());
     }
 }

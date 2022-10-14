@@ -22,7 +22,7 @@ class SliderSlide extends Model
      *
      * @var array
      */
-    protected $fillable = ['options', 'call_to_action_url', 'open_in_new_window', 'position'];
+    protected $fillable = ['options', 'call_to_action_url', 'open_in_new_window', 'position','screen_name','screen_value','can_open_screen'];
 
     /**
      * The attributes that should be cast to native types.

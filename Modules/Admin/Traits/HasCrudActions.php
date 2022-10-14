@@ -42,7 +42,7 @@ trait HasCrudActions
             'tabs' => TabManager::get($this->getModel()->getTable()),
             $this->getResourceName() => $this->getModel(),
         ], $this->getFormData('create'));
-
+        
         return view("{$this->viewPath}.create", $data);
     }
 
@@ -54,7 +54,6 @@ trait HasCrudActions
     public function store()
     {
         $this->disableSearchSyncing();
-
         $entity = $this->getModel()->create(
             $this->getRequest('store')->all()
         );

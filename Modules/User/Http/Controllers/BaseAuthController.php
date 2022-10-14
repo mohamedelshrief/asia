@@ -15,6 +15,8 @@ use Modules\User\Http\Requests\PasswordResetRequest;
 use Modules\User\Http\Requests\ResetCompleteRequest;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 abstract class BaseAuthController extends Controller
 {

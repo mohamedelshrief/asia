@@ -17,7 +17,7 @@
 
         <div class="slide-body">
             <input type="hidden" name="slides[<%- slideNumber %>][id]" value="<%- slide.id %>">
-
+ 
             <div class="slide-image" data-slide-number="<%- slideNumber %>">
                 <% if (slide.file && slide.file.path) { %>
                     <img src="<%- slide.file.path %>" alt="slide-image">
@@ -146,6 +146,50 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="form-group">
+                                    <label for="slides-<%- slideNumber %>-screen_name">
+                                        {{ trans('slider::attributes.screen_name') }}
+                                    </label>
+
+                                    <input type="text" readonly
+                                        name="slides[<%- slideNumber %>][screen_name]"
+                                        class="form-control"
+                                        id="slides-<%- slideNumber %>-screen_name"
+                                        value="<%- slide.screen_name %>"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6">
+                                <div class="form-group">
+                                    <label for="slides-<%- slideNumber %>-screen_value">
+                                        {{ trans('slider::attributes.screen_value') }}
+                                    </label>
+
+                                    <input type="text"
+                                        name="slides[<%- slideNumber %>][screen_value]"
+                                        class="form-control"
+                                        id="slides-<%- slideNumber %>-screen_value"
+                                        value="<%- slide.screen_value %>"
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="form-group">
+                                    <label for="slides-<%- slideNumber %>-can_open_screen">
+                                        {{ trans('slider::attributes.can_open_screen') }}
+                                    </label>
+                                    <select class="form-control select-2" name="slides[<%- slideNumber %>][can_open_screen]">
+                                        
+                                        <option value="1" <%= slide.can_open_screen != 1 || slide.can_open_screen ? 'selected' : '' %> >Yes</option>
+                                        <option value="0" <%= slide.can_open_screen == 0 ? 'selected' : '' %>>No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
 
                     <div id="slider-<%- slideNumber %>-options" class="tab-pane fade in clearfix">

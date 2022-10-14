@@ -1,4 +1,5 @@
 @extends('admin::layout')
+{{-- @dd($tabs, compact('slider'), $tabs->render(compact('slider'))) --}}
 
 @component('admin::components.page.header')
     @slot('title', trans('admin::resource.create', ['resource' => trans('slider::sliders.slider')]))

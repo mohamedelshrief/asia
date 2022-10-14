@@ -20,4 +20,7 @@ return [
     'fade' => 'Fade',
     'dots' => 'Dots',
     'arrows' => 'Arrows',
+    'screen_name' => 'Screen Name',
+    'screen_value' => 'Screen value',
+    'can_open_screen' => 'Can Open Screen',
 ];

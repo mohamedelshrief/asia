@@ -3,6 +3,7 @@
 namespace Modules\Admin\Traits;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Modules\Support\Search\Searchable;
 use Modules\Admin\Ui\Facades\TabManager;
 
@@ -53,6 +54,12 @@ trait HasCrudActions
      */
     public function store()
     {
+        $validator = new $this->validation;
+        $validatorResponse = Validator::make(request()->all(), $validator->rules());
+        if ($validatorResponse->fails()) {
+            return redirect()->back()->withError($validatorResponse->errors()->first())->withErrors($validatorResponse);
+        }
+        
         $this->disableSearchSyncing();
         $entity = $this->getModel()->create(
             $this->getRequest('store')->all()

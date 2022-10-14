@@ -25,11 +25,4 @@ class SaveSliderRequest extends Request
             'name' => 'required',
         ];
     }
-
-    protected function failedValidation(Validator $errors){
-        if(request()->wantsJson()){
-            return $errors;
-        }
-        return back()->withInput()->withError($errors->errors()->first());
-    }
 }

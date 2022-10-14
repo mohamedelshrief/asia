@@ -1,0 +1,53 @@
+{
+
+    "applinks": {
+
+        "details": [
+
+            {
+
+                "appIDs": [
+
+                    "258J7YRDVF.com.apmpllc.asiamp"
+
+                ],
+
+                "components": [
+
+                    {
+
+                        "#": "no_universal_links",
+
+                        "exclude": true,
+
+                        "comment": "Matches any URL whose fragment equals no_universal_links and instructs the system not to open it as a universal link"
+
+                    },
+
+                    {
+
+                        "/": "/product/*",
+
+                        "comment": "Matches any URL whose path starts with /product/"
+
+                    }
+
+                ]
+
+            }
+
+        ]
+
+    },
+
+    "webcredentials": {
+
+        "apps": [
+
+            "258J7YRDVF.com.apmpllc.asiamp"
+
+        ]
+
+    }
+
+}

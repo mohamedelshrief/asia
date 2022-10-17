@@ -44,6 +44,16 @@ class SaveProductRequest extends Request
         ];
     }
 
+    public function messages()
+    {
+        return [
+            "name.required"=>trans('core::validation.required'),
+            "description.required"=>trans('core::validation.required'),
+            "weight.required"=>trans('core::validation.required'),
+            "brand_id.required"=>trans('core::validation.required'),
+        ];
+    }
+
     private function getSlugRules()
     {
         $rules = request()->route()->getName() === 'admin.products.update'

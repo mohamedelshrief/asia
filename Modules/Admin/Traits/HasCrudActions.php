@@ -55,7 +55,7 @@ trait HasCrudActions
     public function store()
     {
         $validator = new $this->validation;
-        $validatorResponse = Validator::make(request()->all(), $validator->rules());
+        $validatorResponse = Validator::make(request()->all(), $validator->rules(), $validator->messages());
         if ($validatorResponse->fails()) {
             return redirect()->back()->withError($validatorResponse->errors()->first())->withErrors($validatorResponse);
         }

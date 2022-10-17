@@ -46,7 +46,7 @@ class SaveProductRequest extends Request
 
     private function getSlugRules()
     {
-        $rules = $this->route()->getName() === 'admin.products.update'
+        $rules = request()->route()->getName() === 'admin.products.update'
             ? ['required']
             : ['sometimes'];
 

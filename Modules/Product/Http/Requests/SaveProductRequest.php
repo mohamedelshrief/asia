@@ -41,7 +41,8 @@ class SaveProductRequest extends Request
             'in_stock' => 'required|boolean',
             'new_from' => 'nullable|date',
             'new_to' => 'nullable|date',
-            'asin'=>'required',
+            'asin'=>'required|unique:products',
+            'sku'=>'required',
         ];
     }
 
@@ -53,6 +54,8 @@ class SaveProductRequest extends Request
             "weight.required"=>trans('core::validation.required'),
             "brand_id.required"=>trans('core::validation.required'),
             "asin.required"=>trans('core::validation.required'),
+            "asin.unique"=>trans('core::validation.unique'),
+            "sku.required"=>trans('core::validation.required'),
         ];
     }
 

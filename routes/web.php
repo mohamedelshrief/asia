@@ -27,6 +27,10 @@ $data = [
                         "comment"=>"Home Page",
                     ],
                     [
+                        "/"=>"/$(lang)/*",
+                        "comment"=>"Home Page",
+                    ],
+                    [
                         "/"=>"/$(lang)/products/*",
                         "comment"=>"Product Detail Page",
                     ],

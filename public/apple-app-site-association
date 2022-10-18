@@ -2,37 +2,37 @@
 
     "applinks": {
 
+        "apps": [],
+
         "details": [
 
             {
 
-                "appIDs": [
+                "appIDs": [ "258J7YRDVF.com.apmpllc.asiamp" ],
 
-                    "258J7YRDVF.com.apmpllc.asiamp"
-
-                ],
+                "appID": "258J7YRDVF.com.apmpllc.asiamp",
 
                 "components": [
 
                     {
 
-                        "#": "no_universal_links",
+                        "/": "/",
 
-                        "exclude": true,
-
-                        "comment": "Matches any URL whose fragment equals no_universal_links and instructs the system not to open it as a universal link"
+                        "comment": "Home Page"
 
                     },
 
                     {
 
-                        "/": "/product/*",
+                        "/": "/products/*",
 
-                        "comment": "Matches any URL whose path starts with /product/"
+                        "comment": "Product Detail Page"
 
                     }
 
-                ]
+                ],
+
+                "paths": ["/", "/products/*"]
 
             }
 
@@ -42,11 +42,7 @@
 
     "webcredentials": {
 
-        "apps": [
-
-            "258J7YRDVF.com.apmpllc.asiamp"
-
-        ]
+        "apps": [ "258J7YRDVF.com.apmpllc.asiamp" ]
 
     }
 

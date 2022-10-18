@@ -45,6 +45,6 @@ Route::get('apple-app-site-association', function() use($data){
     return response()->json($data);
 });
 
-Route::get('.well-known/apple-app-site-association', function() use($data){
+Route::get('{any}/apple-app-site-association', function() use($data){
     return response()->json($data);
 });

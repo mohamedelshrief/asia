@@ -18,6 +18,7 @@ return [
     'special_price_start' => 'Special Price Start',
     'special_price_end' => 'Special Price End',
     'sku' => 'SKU',
+    'asin' => 'ASIN',
     'manage_stock' => 'Inventory Management',
     'qty' => 'Qty',
     'in_stock' => 'Stock Availability',

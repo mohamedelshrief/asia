@@ -41,6 +41,7 @@ class SaveProductRequest extends Request
             'in_stock' => 'required|boolean',
             'new_from' => 'nullable|date',
             'new_to' => 'nullable|date',
+            'asin'=>'required',
         ];
     }
 
@@ -51,6 +52,7 @@ class SaveProductRequest extends Request
             "description.required"=>trans('core::validation.required'),
             "weight.required"=>trans('core::validation.required'),
             "brand_id.required"=>trans('core::validation.required'),
+            "asin.required"=>trans('core::validation.required'),
         ];
     }
 
@@ -60,8 +62,7 @@ class SaveProductRequest extends Request
             ? ['required']
             : ['sometimes'];
 
-        $slug = Product::withoutGlobalScope('active')->where('id', $this->id)->value('slug');
-
+        $slug = Product::withoutGlobalScope('active')->where('id', request()->id)->value('slug');
         $rules[] = Rule::unique('products', 'slug')->ignore($slug, 'slug');
 
         return $rules;

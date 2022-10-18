@@ -48,6 +48,7 @@ class Product extends Model
         'tax_class_id',
         'slug',
         'sku',
+        'asin',
         'price',
         'special_price',
         'special_price_type',

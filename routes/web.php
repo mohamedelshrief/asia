@@ -9,3 +9,42 @@ Route::get('install/complete', 'InstallController@complete')->name('install.comp
 
 Route::get('license', 'LicenseController@create')->name('license.create');
 Route::post('license', 'LicenseController@store')->name('license.store');
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$data = [
+    "applinks"=>[
+        "apps"=>[],
+        "details"=>[
+            [
+                "appIDs"=>[
+                    "258J7YRDVF.com.apmpllc.asiamp"
+                ],
+                "appID"=>"258J7YRDVF.com.apmpllc.asiamp",
+                "components"=>[
+                    [
+                        "/"=>"/",
+                        "comment"=>"Home Page",
+                    ],
+                    [
+                        "/"=>"/products/*",
+                        "comment"=>"Product Detail Page",
+                    ],
+                ],
+                "paths"=>["/","/products/*"],
+            ]
+        ]
+    ],
+    "webcredentials"=>[
+        "apps"=>[
+            "258J7YRDVF.com.apmpllc.asiamp"
+        ]
+    ],
+];
+Route::get('apple-app-site-association', function() use($data){
+    return response()->json($data);
+});
+
+Route::get('.well-known/apple-app-site-association', function() use($data){
+    return response()->json($data);
+});

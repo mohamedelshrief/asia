@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        {{ Form::text('sku', trans('product::attributes.sku'), $errors, $product) }}
+        {{ Form::text('sku', trans('product::attributes.sku').'<span class="m-l-5 text-red">*</span>', $errors, $product) }}
         {{ Form::text('asin', trans('product::attributes.asin').'<span class="m-l-5 text-red">*</span>', $errors, $product) }}
         {{ Form::select('manage_stock', trans('product::attributes.manage_stock'), $errors, trans('product::products.form.manage_stock_states'), $product) }}
 

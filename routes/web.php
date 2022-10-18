@@ -27,11 +27,19 @@ $data = [
                         "comment"=>"Home Page",
                     ],
                     [
+                        "/"=>"/$(lang)/products/*",
+                        "comment"=>"Product Detail Page",
+                    ],
+                    [
+                        "/"=>"/??/products/*",
+                        "comment"=>"Product Detail Page",
+                    ],
+                    [
                         "/"=>"/products/*",
                         "comment"=>"Product Detail Page",
                     ],
                 ],
-                "paths"=>["/","/products/*"],
+                "paths"=>["/","/$(lang)/*", "/$(lang)/products/*", "/??/products/*", "/products/*"],
             ]
         ]
     ],

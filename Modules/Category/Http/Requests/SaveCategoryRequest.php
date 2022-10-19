@@ -32,11 +32,11 @@ class SaveCategoryRequest extends Request
 
     private function getSlugRules()
     {
-        $rules = $this->route()->getName() === 'admin.categories.update'
+        $rules = request()->route()->getName() === 'admin.categories.update'
             ? ['required']
             : ['nullable'];
 
-        $slug = Category::withoutGlobalScope('active')->where('id', $this->id)->value('slug');
+        $slug = Category::withoutGlobalScope('active')->where('id', request()->id)->value('slug');
 
         $rules[] = Rule::unique('categories', 'slug')->ignore($slug, 'slug');
 

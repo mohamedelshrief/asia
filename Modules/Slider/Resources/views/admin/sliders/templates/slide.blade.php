@@ -158,9 +158,24 @@
                                         class="form-control"
                                         id="slides-<%- slideNumber %>-screen_name"
                                     >
-                                        <option value="productDetail">productDetail</option>
-                                        <option value="ListBrandProducts">ListBrandProducts</option>
-                                        <option value="subCategoryDetails">subCategoryDetails</option>
+                                        <option 
+                                            <%= slide.screen_name == "productDetail" ? 'selected' : '' %>
+                                            value="productDetail"
+                                        >
+                                            productDetail
+                                        </option>
+                                        <option 
+                                            <%= slide.screen_name == "ListBrandProducts" ? 'selected' : '' %>
+                                            value="ListBrandProducts"
+                                        >
+                                            ListBrandProducts
+                                        </option>
+                                        <option 
+                                            <%= slide.screen_name == "subCategoryDetails" ? 'selected' : '' %>
+                                            value="subCategoryDetails"
+                                        >
+                                            subCategoryDetails
+                                        </option>
                                     </select>
                                 </div>
                             </div>

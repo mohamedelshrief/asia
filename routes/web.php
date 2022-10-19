@@ -53,6 +53,7 @@ $data = [
         ]
     ],
 ];
+
 Route::get('apple-app-site-association', function() use($data){
     return response()->json($data);
 });

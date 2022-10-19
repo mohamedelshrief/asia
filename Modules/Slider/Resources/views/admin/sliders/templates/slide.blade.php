@@ -153,12 +153,15 @@
                                         {{ trans('slider::attributes.screen_name') }}
                                     </label>
 
-                                    <input type="text" readonly
+                                    <select
                                         name="slides[<%- slideNumber %>][screen_name]"
                                         class="form-control"
                                         id="slides-<%- slideNumber %>-screen_name"
-                                        value="productDetail"
                                     >
+                                        <option value="productDetail">productDetail</option>
+                                        <option value="ListBrandProducts">ListBrandProducts</option>
+                                        <option value="subCategoryDetails">subCategoryDetails</option>
+                                    </select>
                                 </div>
                             </div>
 

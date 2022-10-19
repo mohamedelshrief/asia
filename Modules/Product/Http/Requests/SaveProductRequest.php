@@ -41,7 +41,7 @@ class SaveProductRequest extends Request
             'in_stock' => 'required|boolean',
             'new_from' => 'nullable|date',
             'new_to' => 'nullable|date',
-            'asin'=>'required|unique:products',
+            'asin'=>'required',
             'sku'=>'required',
         ];
     }

@@ -30,11 +30,11 @@ class SaveBrandRequest extends Request
 
     private function getSlugRules()
     {
-        $rules = $this->route()->getName() === 'admin.brands.update'
+        $rules = request()->route()->getName() === 'admin.brands.update'
             ? ['required']
             : ['sometimes'];
 
-        $slug = Brand::withoutGlobalScope('active')->where('id', $this->id)->value('slug');
+        $slug = Brand::withoutGlobalScope('active')->where('id', request()->id)->value('slug');
 
         $rules[] = Rule::unique('brands', 'slug')->ignore($slug, 'slug');
 

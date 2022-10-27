@@ -62,11 +62,14 @@ use Modules\Cart\Facades\Cart;
             </ul>
             @php
                // var_dump(json_decode(Cart::availableShippingMethods())->flat_rate->cost->amount);
+               $stop=0;
             @endphp
             <div class="shipping-methods" v-if="hasShippingMethod" v-cloak>
                 <h6>{{ trans('storefront::cart.shipping_method') }}</h6>
+                @if ($stop)
                 <!--<input type="hidden" id="shipping_cost_amount" name="shipping_cost" value="{{json_decode(Cart::availableShippingMethods())->flat_rate->cost->amount}}" />
                 <input type="hidden" id="subTotalPricing"  value="{{Cart::total()->amount()}}" />-->
+                @endif
                 <div class="form-group">
                     <div class="form-radio" v-for="shippingMethod in cart.availableShippingMethods">
                         <input

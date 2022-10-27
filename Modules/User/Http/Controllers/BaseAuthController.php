@@ -71,8 +71,13 @@ abstract class BaseAuthController extends Controller
      * @param \Modules\User\Http\Requests\LoginRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function postLogin(LoginRequest $request)
+    public function postLogin(Request $request)
     {
+        $validator = new LoginRequest();
+        $validatorResponse = Validator::make(request()->all(), $validator->rules(), $validator->messages());
+        if ($validatorResponse->fails()) {
+            return redirect()->back()->withError($validatorResponse->errors()->first())->withErrors($validatorResponse);
+        }
         try {
             $loggedIn = $this->auth->login([
                 'email' => $request->email,
@@ -112,8 +117,14 @@ abstract class BaseAuthController extends Controller
      * @param \Modules\User\Http\Requests\RegisterRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function postRegister(RegisterRequest $request)
+    public function postRegister(Request $request)
     {
+        $validator = new RegisterRequest();
+        $validatorResponse = Validator::make(request()->all(), $validator->rules(), $validator->messages());
+        if ($validatorResponse->fails()) {
+            return redirect()->back()->withError($validatorResponse->errors()->first())->withErrors($validatorResponse);
+        }
+
         $user = $this->auth->registerAndActivate($request->only([
             'first_name',
             'last_name',

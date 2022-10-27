@@ -44,7 +44,6 @@ class AuthController extends BaseAuthController
     public function __construct(Authentication $auth)
     {
         $this->auth = $auth;
-
 //        $this->middleware('api:guest')->except('getLogout');
     }
     //
@@ -105,7 +104,6 @@ class AuthController extends BaseAuthController
      */
     public function postLogin(LoginRequest $request): JsonResponse
     {
-
         $user = User::whereEmail($request->email)->first();
 
         if($user->is_delete==1){

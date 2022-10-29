@@ -284,7 +284,7 @@ class Cart extends DarryldecodeCart implements JsonSerializable
             return collect();
         }
         $shippingData = ShippingMethod::available();
-        $shippingData['emirates_post']->cost->amount = 20;
+        // $shippingData['emirates_post']->cost->amount = 20;
         return $shippingData;
     }
 

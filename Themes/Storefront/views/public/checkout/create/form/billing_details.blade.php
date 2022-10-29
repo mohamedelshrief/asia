@@ -132,53 +132,6 @@
                         </span>
                     </div>
                 </div> -->
-                <div class="col-md-9">
-                    <div class="form-group">
-                        <label for="billing-city">
-                            {{ trans('checkout::attributes.billing.city') }}<span>*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            name="billing[city]"
-                            id="billing-city"
-                            class="form-control"
-                        >
-
-                        <input type="hidden" id="billing-city-id" value="" />
-
-                        <span
-                            class="error-message"
-                            v-if="errors.has('billing.city')"
-                            v-text="errors.get('billing.city')"
-                        >
-                        </span>
-                    </div>
-                </div>
-
-                <div class="col-md-9">
-                    <div class="form-group">
-                        <label for="billing-zip">
-                            {{ trans('checkout::attributes.billing.zip') }}<span>*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            name="billing[zip]"
-                            :value="form.billing.zip"
-                            id="billing-zip"
-                            class="form-control"
-                            @change="changeBillingZip($event.target.value)"
-                        >
-
-                        <span
-                            class="error-message"
-                            v-if="errors.has('billing.zip')"
-                            v-text="errors.get('billing.zip')"
-                        >
-                        </span>
-                    </div>
-                </div>
 
                 <div class="col-md-9">
                     <div class="form-group">
@@ -247,6 +200,54 @@
                             class="error-message"
                             v-if="errors.has('billing.state')"
                             v-text="errors.get('billing.state')"
+                        >
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label for="billing-city">
+                            {{ trans('checkout::attributes.billing.city') }}<span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="billing[city]"
+                            id="billing-city"
+                            class="form-control"
+                        >
+
+                        <input type="hidden" id="billing-city-id" value="" />
+
+                        <span
+                            class="error-message"
+                            v-if="errors.has('billing.city')"
+                            v-text="errors.get('billing.city')"
+                        >
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label for="billing-zip">
+                            {{ trans('checkout::attributes.billing.zip') }}<span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="billing[zip]"
+                            :value="form.billing.zip"
+                            id="billing-zip"
+                            class="form-control"
+                            @change="changeBillingZip($event.target.value)"
+                        >
+
+                        <span
+                            class="error-message"
+                            v-if="errors.has('billing.zip')"
+                            v-text="errors.get('billing.zip')"
                         >
                         </span>
                     </div>

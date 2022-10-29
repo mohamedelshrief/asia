@@ -80,19 +80,36 @@ $cart=json_decode(Cart::instance());
                     ]
                 ];
             }
-            $response = $client->post('https://osb.epg.gov.ae/ebs/genericapi/ratecalculator/rest/CalculatePriceRate', [
-                'json' => $payload,
-                'headers' => [
-                  'AccountNo'=>'C681131',
-                  'Password'=>'C681131',
-                  'Content-Type'=>'application/json'
-                ]
-              ]);
-
-            $body = $response->getBody();
-            $json_data=json_decode($body);
-
-            return $json_data;
+            try {
+                $response = $client->post('https://osb.epg.gov.ae/ebs/genericapi/ratecalculator/rest/CalculatePriceRate', [
+                    'json' => $payload,
+                    'headers' => [
+                      'AccountNo'=>'C681131',
+                      'Password'=>'C681131',
+                      'Content-Type'=>'application/json'
+                    ]
+                  ]);
+    
+                $body = $response->getBody();
+                $json_data=json_decode($body);
+    
+                session()->put("shippingResponse",$json_data);
+                // session()->put("shippingResponse",NULL);
+                return $json_data;
+            } catch (\Exception $exception) {
+                $response = [
+                    'RateCalculation' => [
+                        'RateList' => [
+                            [
+                                'TotalPriceAED' => 10,
+                            ]
+                        ]
+                    ]
+                ];
+                session()->put("shippingResponse",$response);
+                // session()->put("shippingResponse",NULL);
+                return $response;
+            }
             //return $json_data->RateCalculation->RateList;
     }
 

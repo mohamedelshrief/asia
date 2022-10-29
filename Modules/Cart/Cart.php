@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Validation\ValidationException;
 use Darryldecode\Cart\Exceptions\InvalidItemException;
 use Darryldecode\Cart\Exceptions\UnknownModelException;
+use Illuminate\Http\Request;
+use Modules\Cart\Http\Controllers\CartController;
 
 class Cart extends DarryldecodeCart implements JsonSerializable
 {
@@ -310,7 +312,12 @@ class Cart extends DarryldecodeCart implements JsonSerializable
 
     public function shippingCost()
     {
-        return $this->shippingMethod()->cost();
+        $sessionShippingCost = session()->get('shippingResponse');
+        if(request()->route()->getName() != "cart.index" && isset($sessionShippingCost['RateCalculation']['RateList'][0]['TotalPriceAED'])){
+            return Money::inCurrentCurrency($sessionShippingCost['RateCalculation']['RateList'][0]['TotalPriceAED']);
+        }
+        return Money::inCurrentCurrency(0);
+        // return $this->shippingMethod()->cost();
     }
 
     public function addShippingMethod($shippingMethod)
@@ -520,7 +527,8 @@ class Cart extends DarryldecodeCart implements JsonSerializable
         //     ->add($this->tax());    
         // }
         return $this->subTotal()
-            ->add($this->shippingMethod()->cost())
+            // ->add($this->shippingMethod()->cost())
+            ->add($this->shippingCost())
             ->subtract($this->coupon()->value())
             ->add($this->tax());
     }

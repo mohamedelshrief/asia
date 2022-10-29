@@ -100,7 +100,6 @@ class OrderService
         $user = auth('api')->user();
 
         if (!$user) $user = auth()->user();
-
         return Order::create([
             'customer_id' => $user->id,
             'customer_email' => $request->customer_email,
@@ -125,7 +124,7 @@ class OrderService
             'shipping_country' => $request->shipping['country'],
             'sub_total' => Cart::subTotal()->amount(),
             'shipping_method' => Cart::shippingMethod()->name(),
-            'shipping_cost' => $request->shipping_cost,//Cart::shippingCost()->amount(),
+            'shipping_cost' => Cart::shippingCost()->amount(),
             'coupon_id' => Cart::coupon()->id(),
             'discount' => Cart::discount()->amount(),
             'total' => Cart::total()->amount()+$request->shipping_cost,

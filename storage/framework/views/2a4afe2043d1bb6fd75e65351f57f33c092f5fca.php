@@ -8,11 +8,10 @@
                             <td><?php echo e(trans('order::orders.subtotal')); ?></td>
                             <td class="text-right"><?php echo e($order->sub_total->format()); ?></td>
                         </tr>
-
-                            <tr>
-                                <td>Shipping Cost</td>
-                                <td class="text-right"><?php echo e($order->shipping_cost->format()); ?></td>
-                            </tr>
+                        <tr>
+                            <td>Shipping Cost</td>
+                            <td class="text-right"><?php echo e($order->shipping_cost->format()); ?></td>
+                        </tr>
 
                         <?php $__currentLoopData = $order->taxes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tax): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>

@@ -68,7 +68,7 @@
 @push('scripts')
 
 <script>
-   /*$(document).ready(function(){
+   $(document).ready(function(){
         shippingPricing();
         $(".select-address input[type=radio]").change(function(){
             shippingPricing();
@@ -90,7 +90,7 @@
                 $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
             },
         });
-    }*/
+    }
 </script>
 
 

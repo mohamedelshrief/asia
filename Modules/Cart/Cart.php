@@ -283,8 +283,9 @@ class Cart extends DarryldecodeCart implements JsonSerializable
         if ($this->allItemsAreVirtual()) {
             return collect();
         }
-
-        return ShippingMethod::available();
+        $shippingData = ShippingMethod::available();
+        $shippingData['emirates_post']->cost->amount = 20;
+        return $shippingData;
     }
 
     public function allItemsAreVirtual()
@@ -304,7 +305,6 @@ class Cart extends DarryldecodeCart implements JsonSerializable
         if (! $this->hasShippingMethod()) {
             return new NullCartShippingMethod;
         }
-
         return new CartShippingMethod($this, $this->getConditionsByType('shipping_method')->first());
     }
 
@@ -315,13 +315,19 @@ class Cart extends DarryldecodeCart implements JsonSerializable
 
     public function addShippingMethod($shippingMethod)
     {
+        // if(isset($this->availableShippingMethods()['emirates_post']->cost)){
+        //     $shippingAmount = $this->availableShippingMethods()['emirates_post']->cost;
+        // }
+        // else{
+        //     $shippingAmount = $shippingMethod->cost->amount();
+        // }
+        $shippingAmount = $shippingMethod->cost->amount();
         $this->removeShippingMethod();
-
         $this->condition(new CartCondition([
             'name' => $shippingMethod->label,
             'type' => 'shipping_method',
             'target' => 'total',
-            'value' => "+{$shippingMethod->cost->amount()}",
+            'value' => "+{$shippingAmount}",
             //'value' => "+{$shippingMethod->cost->amount()}",
             'order' => 1,
             'attributes' => [
@@ -507,6 +513,12 @@ class Cart extends DarryldecodeCart implements JsonSerializable
 
     public function total()
     {
+        // if(isset($this->availableShippingMethods()['emirates_post']->cost)){
+        //     return $this->subTotal()
+        //     ->add($this->availableShippingMethods()['emirates_post']->cost)
+        //     ->subtract($this->coupon()->value())
+        //     ->add($this->tax());    
+        // }
         return $this->subTotal()
             ->add($this->shippingMethod()->cost())
             ->subtract($this->coupon()->value())

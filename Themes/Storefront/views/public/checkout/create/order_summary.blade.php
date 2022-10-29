@@ -65,9 +65,7 @@ use Modules\Cart\Facades\Cart;
                 @if (isset(son_decode(Cart::availableShippingMethods())->flat_rate->cost->amount))
                 <input type="hidden" id="shipping_cost_amount" name="shipping_cost" value="{{json_decode(Cart::availableShippingMethods())->flat_rate->cost->amount}}" />
                 @endif
-                @if(isset(Cart::total()->amount()))
                 <input type="hidden" id="subTotalPricing"  value="{{Cart::total()->amount()}}" />
-                @endif
                 <div class="form-group">
                     <div class="form-radio" v-for="shippingMethod in cart.availableShippingMethods">
                         <input

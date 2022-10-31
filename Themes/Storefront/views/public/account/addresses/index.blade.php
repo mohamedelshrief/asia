@@ -167,13 +167,18 @@
                                                     {{ trans('storefront::account.addresses.city') }}<span>*</span>
                                                 </label>
 
-                                                <input
-                                                    v-model="form.city_name"
+                                                {{-- <input
+                                                    v-model="form.city"
                                                     name="city"
                                                     type="text"
                                                     id="city"
                                                     class="form-control"
-                                                >
+                                                > --}}
+                                                <select v-model="form.city" name="city" id="city" class="form-control">
+                                                    @foreach ($cities as $city)
+                                                        <option value="{{$city->id}}">{{$city->CityName}}</option>
+                                                    @endforeach
+                                                </select>
                                                 <input type="hidden" id="city-id" v-model="form.city"/>
                                                 <span
                                                     class="error-message"

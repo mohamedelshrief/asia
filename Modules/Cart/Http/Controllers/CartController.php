@@ -33,6 +33,7 @@ $cart=json_decode(Cart::instance());
             }
             $shippingWeight=$weight*1000;
             $client = new Client();
+            $address=Address::first();
             if(isset($request->city_id)){
                 $payload=[
                     "RateCalculationRequest"=>[
@@ -43,7 +44,7 @@ $cart=json_decode(Cart::instance());
                         "OriginCity"=>"1",
                         "DestinationCountry"=>"971",
                         "DestinationState"=>null,
-                        "DestinationCity"=>$request->city_id,
+                        "DestinationCity"=>$address->city,
                         "Height"=>"25",
                         "Width"=>"20",
                         "Length"=>"30",
@@ -52,11 +53,10 @@ $cart=json_decode(Cart::instance());
                         "WeightUnit"=>"Grams",
                         "CalculationCurrencyCode"=>"AED",
                         "IsRegistered"=>"No",
-                        "ProductCode"=>"EPG-22",
+                        "ProductCode"=>"EPG-21",
                     ]
                 ];
             }else{
-
                 $address=Address::where("id",$request->address_id)->first();
                 $payload=[
                     "RateCalculationRequest"=>[
@@ -101,7 +101,7 @@ $cart=json_decode(Cart::instance());
                     'RateCalculation' => [
                         'RateList' => [
                             [
-                                'TotalPriceAED' => 10,
+                                'TotalPriceAED' => 0,
                             ]
                         ]
                     ]

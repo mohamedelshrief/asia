@@ -93,8 +93,8 @@ $cart=json_decode(Cart::instance());
                 $body = $response->getBody();
                 $json_data=json_decode($body);
     
-                session()->put("shippingResponse",$json_data);
-                // session()->put("shippingResponse",NULL);
+                session()->put(auth()->id()."-shippingResponse",$json_data);
+                // session()->put(auth()->id()."-shippingResponse",NULL);
                 return $json_data;
             } catch (\Exception $exception) {
                 $response = [
@@ -106,8 +106,8 @@ $cart=json_decode(Cart::instance());
                         ]
                     ]
                 ];
-                session()->put("shippingResponse",$response);
-                // session()->put("shippingResponse",NULL);
+                session()->put(auth()->id()."-shippingResponse",$response);
+                // session()->put(auth()->id()."-shippingResponse",NULL);
                 return $response;
             }
             //return $json_data->RateCalculation->RateList;

@@ -98,7 +98,7 @@ class OrderService
     private function store($request)
     {
         $user = auth('api')->user();
-
+        session()->put(auth()->id()."-shippingResponse",NULL);
         if (!$user) $user = auth()->user();
         return Order::create([
             'customer_id' => $user->id,

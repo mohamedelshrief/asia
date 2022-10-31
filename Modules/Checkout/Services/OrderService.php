@@ -98,9 +98,8 @@ class OrderService
     private function store($request)
     {
         $user = auth('api')->user();
-        session()->put(auth()->id()."-shippingResponse",NULL);
         if (!$user) $user = auth()->user();
-        return Order::create([
+        $order = Order::create([
             'customer_id' => $user->id,
             'customer_email' => $request->customer_email,
             'customer_phone' => $request->customer_phone,
@@ -135,6 +134,8 @@ class OrderService
             'status' => Order::PENDING,
             'note' => $request->order_note,
         ]);
+        session()->put(auth()->id()."-shippingResponse",NULL);
+        return $order;
     }
 
     private function storeOrderProducts(Order $order)

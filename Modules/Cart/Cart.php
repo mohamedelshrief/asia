@@ -57,7 +57,7 @@ class Cart extends DarryldecodeCart implements JsonSerializable
      */
     public function store($productId, $qty, $options = [])
     {
-
+        session()->put(auth()->id()."-shippingResponse",NULL);
         $options = array_filter($options);
         $product = Product::with('files', 'categories', 'taxClass')->findOrFail($productId);
 

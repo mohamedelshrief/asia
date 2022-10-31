@@ -533,9 +533,14 @@ class Cart extends DarryldecodeCart implements JsonSerializable
         //     ->subtract($this->coupon()->value())
         //     ->add($this->tax());    
         // }
+        if(request()->route()->getName() != "cart.index"){
+            return $this->subTotal()
+                // ->add($this->shippingMethod()->cost())
+                ->add($this->shippingCost())
+                ->subtract($this->coupon()->value())
+                ->add($this->tax());
+        }
         return $this->subTotal()
-            // ->add($this->shippingMethod()->cost())
-            ->add($this->shippingCost())
             ->subtract($this->coupon()->value())
             ->add($this->tax());
     }

@@ -44,6 +44,7 @@ class CheckoutController extends Controller
      */
     public function store(Request $globalRequest, StoreOrderRequest $request, CustomerService $customerService, OrderService $orderService)
     {
+        session()->put(auth()->id()."-shippingResponse",NULL);
         if (auth('api')->guest() && $request->create_an_account) {
             $customerService->register($request)->login();
         }

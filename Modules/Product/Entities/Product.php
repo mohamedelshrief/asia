@@ -626,7 +626,7 @@ class Product extends Model
         //     });
 
         $builder = DB::table('products')
-            ->select('products.id','products.sku','products.slug','products.price','products.is_active','products.special_price','products.created_at','product_translations.name as name','files.path as thumbnail')
+            ->select('products.id','products.sku','products.slug','products.price','products.is_active','products.special_price','products.created_at','product_translations.name as name','files.path as thumbnail','files.disk')
             ->join('product_translations','product_translations.product_id','=','products.id')
             ->join('entity_files','entity_files.entity_id','=','products.id')
             ->join('files','files.id','=','entity_files.file_id')

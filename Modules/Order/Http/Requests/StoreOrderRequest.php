@@ -56,6 +56,13 @@ class StoreOrderRequest extends Request
         ];
     }
 
+    public function messages()
+    {
+        return [
+            "billing.first_name.required"=>"Please Add Or Select An Address",
+        ];
+    }
+
     private function emailUniqueRule()
     {
         return $this->create_an_account ? Rule::unique('users', 'email') : null;

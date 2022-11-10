@@ -1,7 +1,7 @@
 <div class="shipping-details">
     <div class="row">
         <div class="col-md-18">
-            <div class="form-group ship-to-different-address-label">
+            {{-- <div class="form-group ship-to-different-address-label">
                 <div class="form-check">
                     <input
                         type="checkbox"
@@ -14,7 +14,7 @@
                         {{ trans('checkout::attributes.ship_to_a_different_address') }}
                     </label>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="ship-to-different-address-form" v-show="form.ship_to_a_different_address" v-cloak>
                 <h4 class="section-title">{{ trans('storefront::checkout.shipping_details') }}</h4>

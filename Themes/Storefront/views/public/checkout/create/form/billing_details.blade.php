@@ -27,24 +27,17 @@
     </div>
 
     <div class="add-new-address-wrap" v-cloak>
-        <a
-            href="{{route('account.addresses.index')}}"
-            class="btn btn-primary btn-apply-coupon text-white"
-        >
-            {{ trans('storefront::checkout.add_new_address') }}
-    </a>
-    <br><br>
 
-        {{-- <button
+        <button
             v-if="hasAddress"
             type="button"
             class="btn btn-add-new-address"
             @click="addNewBillingAddress"
         >
             {{ trans('storefront::checkout.add_new_address') }}
-        </button> --}}
+        </button>   
 
-        {{-- <div class="add-new-address-form" v-show="! hasAddress || form.newBillingAddress">
+        <div class="add-new-address-form" v-show="! hasAddress || form.newBillingAddress">
             <div class="row">
                 <div class="col-md-9">
                     <div class="form-group">
@@ -261,6 +254,6 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
 </div>

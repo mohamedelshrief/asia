@@ -18,7 +18,9 @@ use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Validation\ValidationException;
 use Darryldecode\Cart\Exceptions\InvalidItemException;
 use Darryldecode\Cart\Exceptions\UnknownModelException;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Modules\Address\Entities\Address;
 use Modules\Cart\Http\Controllers\CartController;
 
 class Cart extends DarryldecodeCart implements JsonSerializable
@@ -313,7 +315,7 @@ class Cart extends DarryldecodeCart implements JsonSerializable
     public function shippingCost()
     {
         $sessionShippingCost = session()->get(auth()->id()."-shippingResponse");
-        if(request()->route()->getName() != "cart.index") {
+        if(request()->route()->getName() != "cart.index" && auth()->user()->addresses->count() > 0) {
             if(is_array($sessionShippingCost)){
                 if(isset($sessionShippingCost['RateCalculation'])){
                     return Money::inCurrentCurrency($sessionShippingCost['RateCalculation']['RateList'][0]['TotalPriceAED']);

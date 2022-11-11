@@ -38,7 +38,7 @@ class StoreOrderRequest extends Request
             'billing.last_name' => 'required',
             'billing.address_1' => 'required',
             'billing.city' => 'required',
-            //'billing.zip' => 'required',
+            'billing.zip' => 'required',
             'billing.country' => ['required', Rule::in(Country::supportedCodes())],
             'billing.state' => 'required',
             'create_an_account' => 'boolean',
@@ -56,12 +56,12 @@ class StoreOrderRequest extends Request
         ];
     }
 
-    public function messages()
-    {
-        return [
-            "billing.first_name.required"=>"Please Add Or Select An Address",
-        ];
-    }
+    // public function messages()
+    // {
+    //     return [
+    //         "billing.first_name.required"=>"Please Add Or Select An Address",
+    //     ];
+    // }
 
     private function emailUniqueRule()
     {

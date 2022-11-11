@@ -85,7 +85,7 @@
                     type: "GET",
                     async: false,
                     success: function (reponse) {
-                        if(shipping_amount == 0){
+                        // if(shipping_amount == 0){
                             shipping_amount=reponse.RateCalculation.RateList[0].TotalPriceAED;
                             // $(".shipping-methods .form-group .form-radio:nth-child(2) .price-amount").html("AED "+shipping_amount);
                             $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
@@ -93,7 +93,7 @@
                             total_amount=parseFloat(shipping_amount) + parseFloat(sub_total);
                         //    alert(shipping_amount+' fsdfsd=> '+sub_total);
                             $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
-                        }
+                        // }
                     },
                 });
             }
@@ -110,15 +110,19 @@
             type: "GET",
             async: false,
             success: function (reponse) {
-                if(shipping_amount == 0){
+                // if(shipping_amount == 0){
                     shipping_amount=reponse.RateCalculation.RateList[0].TotalPriceAED;
                     // $(".shipping-methods .form-group .form-radio:nth-child(2) .price-amount").html("AED "+shipping_amount);
                     $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
                     $("#shipping_cost_amount").val(shipping_amount);
                     total_amount=parseFloat(shipping_amount) + parseFloat(sub_total);
+                    console.log(shipping_amount,sub_total,total_amount);
                 //    alert(shipping_amount+' fsdfsd=> '+sub_total);
                     $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
-                }
+                    setTimeout(() => {
+                        $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+                    }, 500);
+                // }
             },
         });
     }

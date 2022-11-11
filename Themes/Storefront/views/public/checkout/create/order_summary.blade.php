@@ -65,7 +65,7 @@ use Modules\Cart\Facades\Cart;
                 {{-- @if (isset(json_decode(Cart::availableShippingMethods())->flat_rate->cost->amount))
                 <input type="hidden" id="shipping_cost_amount" name="shipping_cost" value="{{json_decode(Cart::availableShippingMethods())->flat_rate->cost->amount}}" />
                 @endif --}}
-                <input type="hidden" id="subTotalPricing"  value="{{Cart::total()->amount()}}" />
+                <input type="hidden" id="subTotalPricing"  value="{{Cart::subTotal()->amount()}}" />
                 @if(Cart::shippingCost())
                 <input type="hidden" id="shippingCost"  value="{{Cart::shippingCost()->amount()}}"/>
                 @endif

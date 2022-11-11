@@ -99,14 +99,14 @@
         //     }
         // });
     })
-    function shippingPricing(newAddress = ""){
+    function shippingPricing(){
         address_id=$(".select-address input[type=radio]:checked").val();
         sub_total=$("#subTotalPricing").val();
         var shipping_amount=$("#shippingCost").val();
         $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
         $("#shipping_cost_amount").val(shipping_amount);
         $.ajax({
-            url: "{{url('en/api/shipping-price')}}?address_id="+address_id+"&newAdress="+newAddress,
+            url: "{{url('en/api/shipping-price')}}?address_id="+address_id,
             type: "GET",
             async: false,
             success: function (reponse) {
@@ -190,7 +190,7 @@ $(document).ready(function(){
 });
 
 function shippingPricingByCity(id){
-        shippingPricing("newAddress");
+        shippingPricing();
         // sub_total=$("#subTotalPricing").val();
         // $.ajax({
         //     url: "{{url('en/api/shipping-price')}}?city_id="+id,

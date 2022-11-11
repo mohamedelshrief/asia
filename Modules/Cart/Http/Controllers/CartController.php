@@ -90,27 +90,23 @@ class CartController
                     ]
                 ]
             ];
-            if(isset(auth()->user()->email)){
-                if(request()->route()->getName() != "cart.index" && (auth()->user()->addresses->count() > 0 || !empty($request->newAddress))) {
-                    $response = $client->post('https://osb.epg.gov.ae/ebs/genericapi/ratecalculator/rest/CalculatePriceRate', [
-                        'json' => $payload,
-                        'headers' => [
-                            'AccountNo'=>'C681131',
-                            'Password'=>'C681131',
-                            'Content-Type'=>'application/json'
-                        ]
-                        ]);
-        
-                    $body = $response->getBody();
-                    $json_data=json_decode($body);
-        
-                    session()->put(auth()->id()."-shippingResponse",$json_data);
-                    if(!empty($request->newAddress)){
-                        session()->put(auth()->id()."-newAddress","newAddress");
-                    }
-                    // session()->put(auth()->id()."-shippingResponse",NULL);
-                    // return $json_data;
-                }
+
+            if(request()->route()->getName() != "cart.index") {
+                $response = $client->post('https://osb.epg.gov.ae/ebs/genericapi/ratecalculator/rest/CalculatePriceRate', [
+                    'json' => $payload,
+                    'headers' => [
+                        'AccountNo'=>'C681131',
+                        'Password'=>'C681131',
+                        'Content-Type'=>'application/json'
+                    ]
+                    ]);
+    
+                $body = $response->getBody();
+                $json_data=json_decode($body);
+    
+                session()->put(auth()->id()."-shippingResponse",$json_data);
+                // session()->put(auth()->id()."-shippingResponse",NULL);
+                // return $json_data;
             }
         } catch (\Exception $exception) {
             

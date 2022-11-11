@@ -137,6 +137,16 @@
                             }, 500);
                             break;
                         }
+                        else{
+                            console.log("else-if-else");
+                            $(".shipping-methods .form-group .price-amount").html("AED "+0);
+                            $("#shipping_cost_amount").val(0);
+                            total_amount=parseFloat(0) + parseFloat(sub_total);
+                            $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+                            setTimeout(() => {
+                                $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+                            }, 500);
+                        }
                     }
                 }
                 else{

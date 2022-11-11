@@ -127,7 +127,7 @@
                     var addressess = $('.select-address .form-radio input[type="radio"]');
                     for (let index = 0; index < addressess.length; index++) {
                         if($(addressess[index]).is(":checked")){
-                            console.log("address-checked");
+                            console.log("else-if-for-if");
                             $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
                             $("#shipping_cost_amount").val(shipping_amount);
                             total_amount=parseFloat(shipping_amount) + parseFloat(sub_total);
@@ -138,7 +138,7 @@
                             break;
                         }
                         else{
-                            console.log("else-if-else");
+                            console.log("else-if-for-else");
                             $(".shipping-methods .form-group .price-amount").html("AED "+0);
                             $("#shipping_cost_amount").val(0);
                             total_amount=parseFloat(0) + parseFloat(sub_total);
@@ -147,6 +147,17 @@
                                 $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
                             }, 500);
                         }
+                    }
+                    console.log("addressess"+addressess.length);
+                    if(addressess.length == 0){
+                        console.log("else-if-if");
+                        $(".shipping-methods .form-group .price-amount").html("AED "+0);
+                        $("#shipping_cost_amount").val(0);
+                        total_amount=parseFloat(0) + parseFloat(sub_total);
+                        $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+                        setTimeout(() => {
+                            $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+                        }, 500);
                     }
                 }
                 else{

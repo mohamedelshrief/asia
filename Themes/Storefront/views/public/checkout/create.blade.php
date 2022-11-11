@@ -189,21 +189,22 @@ $(document).ready(function(){
 
 });
 
-/*function shippingPricingByCity(id){
-        sub_total=$("#subTotalPricing").val();
-        $.ajax({
-            url: "{{url('en/api/shipping-price')}}?city_id="+id,
-            type: "GET",
-            async: false,
-            success: function (reponse) {
-                shipping_amount=reponse[0].TotalPriceAED;
-                $(".shipping-methods .price-amount").html("AED "+shipping_amount);
-                $("#shipping_cost_amount").val(shipping_amount);
-                total_amount=parseFloat(shipping_amount)+parseFloat(sub_total);
-                $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
-            },
-        });
-    }*/
+function shippingPricingByCity(id){
+        shippingPricing();
+        // sub_total=$("#subTotalPricing").val();
+        // $.ajax({
+        //     url: "{{url('en/api/shipping-price')}}?city_id="+id,
+        //     type: "GET",
+        //     async: false,
+        //     success: function (reponse) {
+        //         shipping_amount=reponse[0].TotalPriceAED;
+        //         $(".shipping-methods .price-amount").html("AED "+shipping_amount);
+        //         $("#shipping_cost_amount").val(shipping_amount);
+        //         total_amount=parseFloat(shipping_amount)+parseFloat(sub_total);
+        //         $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+        //     },
+        // });
+    }
 </script>
 @endpush
 

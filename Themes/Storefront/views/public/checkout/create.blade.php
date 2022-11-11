@@ -73,40 +73,40 @@
         $(".select-address input[type=radio]").change(function(){
             shippingPricing();
         })
-        $('input[type="text"]').on('change',function(event){
-            if($(this).attr('name') == "billing[city]"){
-                city_id=$(this).parent().parent().parent().find('#billing-city-id').val();
-                sub_total=$("#subTotalPricing").val();
-                var shipping_amount=$("#shippingCost").val();
-                $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
-                $("#shipping_cost_amount").val(shipping_amount);
-                $.ajax({
-                    url: "{{url('en/api/shipping-price')}}?city_id="+city_id,
-                    type: "GET",
-                    async: false,
-                    success: function (reponse) {
-                        // if(shipping_amount == 0){
-                            shipping_amount=reponse.RateCalculation.RateList[0].TotalPriceAED;
-                            // $(".shipping-methods .form-group .form-radio:nth-child(2) .price-amount").html("AED "+shipping_amount);
-                            $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
-                            $("#shipping_cost_amount").val(shipping_amount);
-                            total_amount=parseFloat(shipping_amount) + parseFloat(sub_total);
-                        //    alert(shipping_amount+' fsdfsd=> '+sub_total);
-                            $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
-                        // }
-                    },
-                });
-            }
-        });
+        // $('input[type="text"]').on('change',function(event){
+        //     if($(this).attr('name') == "billing[city]"){
+        //         city_id=$(this).parent().parent().parent().find('#billing-city-id').val();
+        //         sub_total=$("#subTotalPricing").val();
+        //         var shipping_amount=$("#shippingCost").val();
+        //         $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
+        //         $("#shipping_cost_amount").val(shipping_amount);
+        //         $.ajax({
+        //             url: "{{url('en/api/shipping-price')}}?city_id="+city_id,
+        //             type: "GET",
+        //             async: false,
+        //             success: function (reponse) {
+        //                 // if(shipping_amount == 0){
+        //                     shipping_amount=reponse.RateCalculation.RateList[0].TotalPriceAED;
+        //                     // $(".shipping-methods .form-group .form-radio:nth-child(2) .price-amount").html("AED "+shipping_amount);
+        //                     $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
+        //                     $("#shipping_cost_amount").val(shipping_amount);
+        //                     total_amount=parseFloat(shipping_amount) + parseFloat(sub_total);
+        //                 //    alert(shipping_amount+' fsdfsd=> '+sub_total);
+        //                     $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+        //                 // }
+        //             },
+        //         });
+        //     }
+        // });
     })
-    function shippingPricing(){
+    function shippingPricing(newAddress = ""){
         address_id=$(".select-address input[type=radio]:checked").val();
         sub_total=$("#subTotalPricing").val();
         var shipping_amount=$("#shippingCost").val();
         $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
         $("#shipping_cost_amount").val(shipping_amount);
         $.ajax({
-            url: "{{url('en/api/shipping-price')}}?address_id="+address_id,
+            url: "{{url('en/api/shipping-price')}}?address_id="+address_id+"&newAdress="+newAddress,
             type: "GET",
             async: false,
             success: function (reponse) {
@@ -190,7 +190,7 @@ $(document).ready(function(){
 });
 
 function shippingPricingByCity(id){
-        shippingPricing();
+        shippingPricing("newAddress");
         // sub_total=$("#subTotalPricing").val();
         // $.ajax({
         //     url: "{{url('en/api/shipping-price')}}?city_id="+id,

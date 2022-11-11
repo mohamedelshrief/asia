@@ -135,6 +135,7 @@ class OrderService
             'note' => $request->order_note,
         ]);
         session()->put(auth()->id()."-shippingResponse",NULL);
+        session()->put(auth()->id()."-newAddress",NULL);
         return $order;
     }
 

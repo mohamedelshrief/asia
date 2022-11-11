@@ -70,6 +70,7 @@
 <script>
    $(document).ready(function(){
         shippingPricing();
+
         $(".select-address input[type=radio]").change(function(){
             shippingPricing();
         })
@@ -124,8 +125,8 @@
                 else if($('.select-address .form-radio')){
                     console.log("else-if");
                     var addressess = $('.select-address .form-radio input[type="radio"]');
-                    addressess.forEach(element => {
-                        if($(element).is(":checked")){
+                    for (let index = 0; index < addressess.length; index++) {
+                        if($(addressess[index]).is(":checked")){
                             console.log("address-checked");
                             $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
                             $("#shipping_cost_amount").val(shipping_amount);
@@ -136,7 +137,7 @@
                             }, 500);
                             break;
                         }
-                    });
+                    }
                 }
                 else{
                     console.log("else");

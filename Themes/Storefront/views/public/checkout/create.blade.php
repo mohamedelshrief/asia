@@ -110,19 +110,44 @@
             type: "GET",
             async: false,
             success: function (reponse) {
-                // if(shipping_amount == 0){
-                    shipping_amount=reponse.RateCalculation.RateList[0].TotalPriceAED;
-                    // $(".shipping-methods .form-group .form-radio:nth-child(2) .price-amount").html("AED "+shipping_amount);
+                shipping_amount=reponse.RateCalculation.RateList[0].TotalPriceAED;
+                if($('#billing-city').val() != "" && $('#billing-city').val() != null){
+                    console.log("if");
                     $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
                     $("#shipping_cost_amount").val(shipping_amount);
                     total_amount=parseFloat(shipping_amount) + parseFloat(sub_total);
-                    console.log(shipping_amount,sub_total,total_amount);
-                //    alert(shipping_amount+' fsdfsd=> '+sub_total);
                     $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
                     setTimeout(() => {
                         $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
                     }, 500);
-                // }
+                }
+                else if($('.select-address .form-radio')){
+                    console.log("else-if");
+                    var addressess = $('.select-address .form-radio input[type="radio"]');
+                    addressess.forEach(element => {
+                        if($(element).is(":checked")){
+                            console.log("address-checked");
+                            $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
+                            $("#shipping_cost_amount").val(shipping_amount);
+                            total_amount=parseFloat(shipping_amount) + parseFloat(sub_total);
+                            $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+                            setTimeout(() => {
+                                $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+                            }, 500);
+                            break;
+                        }
+                    });
+                }
+                else{
+                    console.log("else");
+                    $(".shipping-methods .form-group .price-amount").html("AED "+0);
+                    $("#shipping_cost_amount").val(0);
+                    total_amount=parseFloat(0) + parseFloat(sub_total);
+                    $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+                    setTimeout(() => {
+                        $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+                    }, 500);
+                }
             },
         });
     }

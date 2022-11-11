@@ -315,14 +315,16 @@ class Cart extends DarryldecodeCart implements JsonSerializable
     public function shippingCost()
     {
         $sessionShippingCost = session()->get(auth()->id()."-shippingResponse");
-        if(request()->route()->getName() != "cart.index" && auth()->user()->addresses->count() > 0) {
-            if(is_array($sessionShippingCost)){
-                if(isset($sessionShippingCost['RateCalculation'])){
-                    return Money::inCurrentCurrency($sessionShippingCost['RateCalculation']['RateList'][0]['TotalPriceAED']);
+        if(isset(auth()->user()->addresses)){
+            if(request()->route()->getName() != "cart.index" && auth()->user()->addresses->count() > 0) {
+                if(is_array($sessionShippingCost)){
+                    if(isset($sessionShippingCost['RateCalculation'])){
+                        return Money::inCurrentCurrency($sessionShippingCost['RateCalculation']['RateList'][0]['TotalPriceAED']);
+                    }
                 }
-            }
-            if(isset($sessionShippingCost->RateCalculation->RateList[0]->TotalPriceAED)){
-                return Money::inCurrentCurrency($sessionShippingCost->RateCalculation->RateList[0]->TotalPriceAED);
+                if(isset($sessionShippingCost->RateCalculation->RateList[0]->TotalPriceAED)){
+                    return Money::inCurrentCurrency($sessionShippingCost->RateCalculation->RateList[0]->TotalPriceAED);
+                }
             }
         }
         return Money::inCurrentCurrency(0);

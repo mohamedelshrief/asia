@@ -15,6 +15,7 @@ use Modules\Cart\Http\Middleware\CheckCartStock;
 use Modules\Order\Http\Requests\StoreOrderRequest;
 use Modules\Cart\Http\Middleware\CheckCouponUsageLimit;
 use Modules\Cart\Http\Middleware\RedirectIfCartIsEmpty;
+use Modules\Setting\Entities\City;
 
 class CheckoutController extends Controller
 {
@@ -43,6 +44,7 @@ class CheckoutController extends Controller
         return view('public.checkout.create', [
             'cart' => Cart::instance(),
             'countries' => Country::supported(),
+            'cities' => City::all(),
             'gateways' => Gateway::all(),
             'defaultAddress' => auth()->user()->defaultAddress ?? new DefaultAddress,
             'addresses' => $this->getAddresses(),

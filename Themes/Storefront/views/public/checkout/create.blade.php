@@ -187,52 +187,66 @@
 
 var CSRF_TOKEN =window.FleetCart.csrfToken;
 $(document).ready(function(){
-  $( "#shipping-city" ).autocomplete({
-    source: function( request, response ) {
-      // Fetch data
-      country=$("#shipping-country").val();
-      $.ajax({
-        url:"{{url('/en/api/search-city')}}/"+country+"/"+request.term,
-        type: 'GET',
-        dataType: "json",
-        success: function( data ) {
-            response( data );
-        }
-      });
-    },
-    select: function (event, ui) {
-       $('#shipping-city').val(ui.item.label ? ui.item.label : "");
-       $('#shipping-city-id').val(ui.item.value ? ui.item.value : "");
-       if($('#shipping-city-id').val()!=""){
+//   $( "#shipping-city" ).autocomplete({
+//     source: function( request, response ) {
+//       // Fetch data
+//       country=$("#shipping-country").val();
+//       $.ajax({
+//         url:"{{url('/en/api/search-city')}}/"+country+"/"+request.term,
+//         type: 'GET',
+//         dataType: "json",
+//         success: function( data ) {
+//             response( data );
+//         }
+//       });
+//     },
+//     select: function (event, ui) {
+//        $('#shipping-city').val(ui.item.label ? ui.item.label : "");
+//        $('#shipping-city-id').val(ui.item.value ? ui.item.value : "");
+//        if($('#shipping-city-id').val()!=""){
+//             shippingPricingByCity($('#shipping-city-id').val());
+//        }
+//        return false;
+//     }
+//   });
+    //SHIPPING
+    $( "#shipping-city" ).on("change",function(){
+        $('#shipping-city-id').val($(this).val());
+        if($('#shipping-city-id').val()!=""){
             shippingPricingByCity($('#shipping-city-id').val());
-       }
-       return false;
-    }
-  });
-
-  //bILLing
-  $( "#billing-city" ).autocomplete({
-    source: function( request, response ) {
-      // Fetch data
-      country=$("#billing-country").val();
-      $.ajax({
-        url:"{{url('/en/api/search-city')}}/"+country+"/"+request.term,
-        type: 'GET',
-        dataType: "json",
-        success: function( data ) {
-            response( data );
         }
-      });
-    },
-    select: function (event, ui) {
-       $('#billing-city').val(ui.item.label ? ui.item.label : "");
-       $('#billing-city-id').val(ui.item.value ? ui.item.value : "");
-       if($('#billing-city-id').val()!=""){
+    });
+
+    //BILLING
+    $( "#billing-city" ).on("change",function(){
+        $('#billing-city-id').val($(this).val());
+        if($('#billing-city-id').val()!=""){
             shippingPricingByCity($('#billing-city-id').val());
-       }
-       return false;
-    }
-  });
+        }
+    });
+
+//   $( "#billing-city" ).autocomplete({
+//     source: function( request, response ) {
+//       // Fetch data
+//       country=$("#billing-country").val();
+//       $.ajax({
+//         url:"{{url('/en/api/search-city')}}/"+country+"/"+request.term,
+//         type: 'GET',
+//         dataType: "json",
+//         success: function( data ) {
+//             response( data );
+//         }
+//       });
+//     },
+//     select: function (event, ui) {
+//        $('#billing-city').val(ui.item.label ? ui.item.label : "");
+//        $('#billing-city-id').val(ui.item.value ? ui.item.value : "");
+//        if($('#billing-city-id').val()!=""){
+//             shippingPricingByCity($('#billing-city-id').val());
+//        }
+//        return false;
+//     }
+//   });
 
 });
 

@@ -212,12 +212,21 @@
                             {{ trans('checkout::attributes.billing.city') }}<span>*</span>
                         </label>
 
-                        <input
+                        <select 
+                            name="billing[city]"
+                            id="billing-city"
+                            class="form-control">
+                            @foreach ($cities as $city)
+                                <option value="{{$city->id}}">{{$city->CityName}}</option>
+                            @endforeach
+                        </select>
+
+                        {{-- <input
                             type="text"
                             name="billing[city]"
                             id="billing-city"
                             class="form-control"
-                        >
+                        > --}}
 
                         <input type="hidden" id="billing-city-id" value="" />
 

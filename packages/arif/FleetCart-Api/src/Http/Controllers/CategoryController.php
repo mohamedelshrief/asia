@@ -15,7 +15,7 @@ class CategoryController
      */
     public function index()
     {
-        return Category::get()->limit(5)->nest();
+        return Category::all()->take(5)->nest();
     }
 
 }

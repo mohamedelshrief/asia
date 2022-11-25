@@ -126,10 +126,10 @@ class ProductController extends Controller
 
     public function HomepageProduct(){
 
-        $newProducts = Product::latest()->take(10)->get();
-        $relevanceProducts =Product::all()->random(10);
+        $newProducts = Product::latest()->take(5)->get();
+        $relevanceProducts =Product::all()->random(5);
         $specialProducts =Product::all();
-        $Most= Product::all()->random(10);
+        $Most= Product::all()->random(5);
 
         $specialOffers=[];
         foreach ($specialProducts as $key => $product) {
@@ -173,7 +173,7 @@ class ProductController extends Controller
         return response()->json($newProducts);
     }
     public function brands(){
-        $brands=Brand::orderBy("sort_id","ASC")->paginate(20);
+        $brands=Brand::orderBy("sort_id","ASC")->paginate(10);
         return response()->json($brands);
     }
     public function translation(){

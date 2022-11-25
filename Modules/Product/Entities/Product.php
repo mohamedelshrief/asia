@@ -100,8 +100,32 @@ class Product extends Model
     protected $appends = [
         'base_image', 'formatted_price', 'rating_percent', 'is_in_stock',
         'is_out_of_stock', 'is_new', 'has_percentage_special_price', 'special_price_percent',
-        'additional_images','additional_imgs','original_price','has_discount'
+        'additional_images','additional_imgs','original_price','has_discount',
+        'productTitle','image','ratings'
     ];
+
+    public function getProductTitleAttribute()
+    {
+        return $this->name;
+    }
+
+    public function getImageAttribute()
+    {
+        return $this->base_image->path;
+    }
+
+    public function getRatingsAttribute()
+    {
+        if(empty($this->rating_percent)){
+            return 0;
+        }
+        return $this->rating_percent;
+    }
+
+    public function getPriceAttribute($price)
+    {
+        return Money::inDefaultCurrency($price);
+    }
 
     /**
      * The attributes that are translatable.
@@ -263,10 +287,7 @@ class Product extends Model
     public function getOriginalPriceAttribute(){
         return $this->price;
     }
-    public function getPriceAttribute($price)
-    {
-        return Money::inDefaultCurrency($price);
-    }
+    
 
     public function getSpecialPriceAttribute($specialPrice)
     {
@@ -299,6 +320,11 @@ class Product extends Model
         return $this->files->where('pivot.zone', 'base_image')->first() ?: new File;
     }
 
+     /**
+     * Get the product's name.
+     *
+     * @return \Modules\Media\Entities\File
+     */
     /**
      * Get product's additional images.
      *

@@ -15,7 +15,7 @@ class CategoryController
      */
     public function index()
     {
-        return Category::all()->nest();
+        return Category::all()->random(5)->nest();
     }
 
 }

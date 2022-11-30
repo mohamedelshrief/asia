@@ -301,7 +301,7 @@ class Order extends Model
                 'currency',
                 'total',
                 'status',
-                'plateform',
+                'platform',
                 'created_at',
             ]);
 

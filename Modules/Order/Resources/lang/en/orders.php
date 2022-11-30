@@ -7,7 +7,7 @@ return [
         'customer_name' => 'Customer Name',
         'customer_email' => 'Customer Email',
         'total' => 'Total',
-        'plateform' => 'Plateform'
+        'platform' => 'Platform'
     ],
     'send_email' => 'Send Email',
     'print' => 'Print',

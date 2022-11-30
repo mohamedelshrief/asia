@@ -53,7 +53,7 @@ class StoreOrderRequest extends Request
             'shipping.state' => 'required_if:ship_to_a_different_address,1',
             'payment_method' => ['required', Rule::in(Gateway::names())],
             'terms_and_conditions' => 'accepted',
-            'plateform' => 'nullable'
+            'platform' => 'nullable'
         ];
     }
 

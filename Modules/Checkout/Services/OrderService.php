@@ -133,6 +133,7 @@ class OrderService
             'locale' => locale(),
             'status' => Order::PENDING,
             'note' => $request->order_note,
+            'plateform' => $request->plateform,
         ]);
         session()->put(auth()->id()."-shippingResponse",NULL);
         return $order;

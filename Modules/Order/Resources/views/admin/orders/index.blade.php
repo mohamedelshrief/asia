@@ -16,6 +16,7 @@
                         <th>{{ trans('order::orders.table.customer_name') }}</th>
                         <th>{{ trans('order::orders.table.customer_email') }}</th>
                         <th>{{ trans('admin::admin.table.status') }}</th>
+                        <th>{{ trans('order::orders.table.plateform') }}</th>
                         <th>{{ trans('order::orders.table.total') }}</th>
                         <th data-sort>{{ trans('admin::admin.table.created') }}</th>
                     </tr>
@@ -38,6 +39,7 @@
                 { data: 'customer_name', orderable: false, searchable: false },
                 { data: 'customer_email' },
                 { data: 'status' },
+                { data: 'plateform' },
                 { data: 'total' },
                 { data: 'created', name: 'created_at' },
             ],

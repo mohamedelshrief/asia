@@ -14,6 +14,7 @@ use Modules\Order\Http\Requests\StoreOrderRequest;
 use Modules\Cart\Http\Middleware\CheckCouponUsageLimit;
 use Modules\Cart\Http\Middleware\RedirectIfCartIsEmpty;
 use Modules\Cart\Http\Middleware\CheckCartStock;
+use Modules\Order\Http\Requests\StoreOrderApiRequest;
 
 class CheckoutController extends Controller
 {
@@ -42,7 +43,7 @@ class CheckoutController extends Controller
      * @param \Modules\Checkout\Services\OrderService $orderService
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $globalRequest, StoreOrderRequest $request, CustomerService $customerService, OrderService $orderService)
+    public function store(Request $globalRequest, StoreOrderApiRequest $request, CustomerService $customerService, OrderService $orderService)
     {
         session()->put(auth()->id()."-shippingResponse",NULL);
         if (auth('api')->guest() && $request->create_an_account) {

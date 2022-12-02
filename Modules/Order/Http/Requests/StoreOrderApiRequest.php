@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 use Modules\Payment\Facades\Gateway;
 use Modules\Core\Http\Requests\Request;
 
-class StoreOrderRequest extends Request
+class StoreOrderApiRequest extends Request
 {
 
 
@@ -53,7 +53,15 @@ class StoreOrderRequest extends Request
             'shipping.state' => 'required_if:ship_to_a_different_address,1',
             'payment_method' => ['required', Rule::in(Gateway::names())],
             'terms_and_conditions' => 'accepted',
+            'platform' => 'required'
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            "platform"=>"App",
+        ]);
     }
 
     // public function messages()

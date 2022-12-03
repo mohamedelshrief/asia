@@ -85,7 +85,7 @@ class CartController
                 'RateCalculation' => [
                     'RateList' => [
                         [
-                            'TotalPriceAED' => 0,
+                            'TotalPriceAED' => 20,
                         ]
                     ]
                 ]
@@ -109,7 +109,9 @@ class CartController
                 // return $json_data;
             }
         } catch (\Exception $exception) {
-            
+            session()->put(auth()->id()."-shippingResponse",$json_data);
+            // session()->put(auth()->id()."-shippingResponse",NULL);
+            return $json_data;
         }
         session()->put(auth()->id()."-shippingResponse",$json_data);
         // session()->put(auth()->id()."-shippingResponse",NULL);

@@ -314,18 +314,22 @@ class Cart extends DarryldecodeCart implements JsonSerializable
 
     public function shippingCost()
     {
-        $sessionShippingCost = session()->get(auth()->id()."-shippingResponse");
-        if(request()->route()->getName() != "cart.index") {
-            if(is_array($sessionShippingCost)){
-                if(isset($sessionShippingCost['RateCalculation'])){
-                    return Money::inCurrentCurrency($sessionShippingCost['RateCalculation']['RateList'][0]['TotalPriceAED']);
+        // dd($this->shippingMethod()->name());
+        if($this->shippingMethod()->name() == "emirates_post"){
+            // return Money::inCurrentCurrency(100);
+            $sessionShippingCost = session()->get(auth()->id()."-shippingResponse");
+            if(request()->route()->getName() != "cart.index") {
+                if(is_array($sessionShippingCost)){
+                    if(isset($sessionShippingCost['RateCalculation'])){
+                        return Money::inCurrentCurrency($sessionShippingCost['RateCalculation']['RateList'][0]['TotalPriceAED']);
+                    }
+                }
+                if(isset($sessionShippingCost->RateCalculation->RateList[0]->TotalPriceAED)){
+                    return Money::inCurrentCurrency($sessionShippingCost->RateCalculation->RateList[0]->TotalPriceAED);
                 }
             }
-            if(isset($sessionShippingCost->RateCalculation->RateList[0]->TotalPriceAED)){
-                return Money::inCurrentCurrency($sessionShippingCost->RateCalculation->RateList[0]->TotalPriceAED);
-            }
         }
-        return Money::inCurrentCurrency(0);
+        // return Money::inCurrentCurrency(0);
         return $this->shippingMethod()->cost();
     }
 
@@ -570,5 +574,66 @@ class Cart extends DarryldecodeCart implements JsonSerializable
     public function __toString()
     {
         return json_encode($this->jsonSerialize());
+    }
+
+    public function ShippingPricing(){
+        $cart=json_decode(Cart::instance());
+        $weight=0;
+        foreach ($cart->items as $key => $item) {
+            $weightCount=floatval($item->product->weight)*$item->qty;
+            $weight+=$weightCount;
+        }
+        $shippingWeight=$weight*1000;
+        $client = new Client();
+        $address=Address::first();
+        $payload=[
+            "RateCalculationRequest"=>[
+                "ShipmentType"=>"Express",
+                "ServiceType"=>"Domestic",
+                "ContentTypeCode"=>"NonDocument",
+                "OriginState"=>null,
+                "OriginCity"=>"1",
+                "DestinationCountry"=>"971",
+                "DestinationState"=>null,
+                "DestinationCity"=>$address->city,
+                "Height"=>"25",
+                "Width"=>"20",
+                "Length"=>"30",
+                "DimensionUnit"=>"Centimetre",
+                "Weight"=>$shippingWeight,
+                "WeightUnit"=>"Grams",
+                "CalculationCurrencyCode"=>"AED",
+                "IsRegistered"=>"No",
+                "ProductCode"=>"EPG-21",
+            ]
+        ];
+        try {
+            $json_data = [
+                'RateCalculation' => [
+                    'RateList' => [
+                        [
+                            'TotalPriceAED' => 20,
+                        ]
+                    ]
+                ]
+            ];
+
+            if(request()->route()->getName() != "cart.index") {
+                $response = $client->post('https://osb.epg.gov.ae/ebs/genericapi/ratecalculator/rest/CalculatePriceRate', [
+                    'json' => $payload,
+                    'headers' => [
+                        'AccountNo'=>'C681131',
+                        'Password'=>'C681131',
+                        'Content-Type'=>'application/json'
+                    ]
+                    ]);
+    
+                $body = $response->getBody();
+                $json_data=json_decode($body);
+            }
+        } catch (\Exception $exception) {
+            return $json_data;
+        }
+        return $json_data;
     }
 }

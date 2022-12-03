@@ -23507,3 +23507,7 @@ Stack trace:
 >>>>>>> 8be6e8ef5d84b3cdbdc8b99fca6b09c05845dd69
 #61 {main}
 "} 
+[2022-12-03 19:01:25] production.ERROR: Maximum execution time of 60 seconds exceeded {"userId":582,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 60 seconds exceeded at /var/www/html/asiamp/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOStatement.php:117)
+[stacktrace]
+#0 {main}
+"} 

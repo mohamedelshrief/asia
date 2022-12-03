@@ -14,6 +14,7 @@
                         <th><?php echo e(trans('order::orders.table.customer_name')); ?></th>
                         <th><?php echo e(trans('order::orders.table.customer_email')); ?></th>
                         <th><?php echo e(trans('admin::admin.table.status')); ?></th>
+                        <th><?php echo e(trans('order::orders.table.platform')); ?></th>
                         <th><?php echo e(trans('order::orders.table.total')); ?></th>
                         <th data-sort><?php echo e(trans('admin::admin.table.created')); ?></th>
                     </tr>
@@ -36,6 +37,7 @@
                 { data: 'customer_name', orderable: false, searchable: false },
                 { data: 'customer_email' },
                 { data: 'status' },
+                { data: 'platform' },
                 { data: 'total' },
                 { data: 'created', name: 'created_at' },
             ],

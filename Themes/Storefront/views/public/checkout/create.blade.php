@@ -71,6 +71,10 @@
    $(document).ready(function(){
         shippingPricing();
 
+        $(".shipping-methods input[type=radio]").change(function(){
+            shippingPricing();
+        })
+
         $(".select-address input[type=radio]").change(function(){
             shippingPricing();
         })
@@ -101,10 +105,15 @@
         // });
     })
     function shippingPricing(){
+        // console.log("here");
+        // if(!$("#emirates_post").is(":checked")){
+        //     return;
+        // }
         address_id=$(".select-address input[type=radio]:checked").val();
         sub_total=$("#subTotalPricing").val();
         var shipping_amount=$("#shippingCost").val();
-        $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
+        // $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
+        $(".shipping-methods .form-group label[for='emirates_post']").next().html("AED "+shipping_amount);
         $("#shipping_cost_amount").val(shipping_amount);
         $.ajax({
             url: "{{url('en/api/shipping-price')}}?address_id="+address_id,
@@ -114,13 +123,16 @@
                 shipping_amount=reponse.RateCalculation.RateList[0].TotalPriceAED;
                 if($('#billing-city').val() != "" && $('#billing-city').val() != null){
                     console.log("if");
-                    $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
-                    $("#shipping_cost_amount").val(shipping_amount);
-                    total_amount=parseFloat(shipping_amount) + parseFloat(sub_total);
-                    $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
-                    setTimeout(() => {
+                    // $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
+                    $(".shipping-methods .form-group label[for='emirates_post']").next().html("AED "+shipping_amount);
+                    if($("#emirates_post").is(":checked")){
+                        $("#shipping_cost_amount").val(shipping_amount);
+                        total_amount=parseFloat(shipping_amount) + parseFloat(sub_total);
                         $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
-                    }, 500);
+                        setTimeout(() => {
+                            $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+                        }, 500);
+                    }
                 }
                 else if($('.select-address .form-radio')){
                     console.log("else-if");
@@ -128,18 +140,38 @@
                     for (let index = 0; index < addressess.length; index++) {
                         if($(addressess[index]).is(":checked")){
                             console.log("else-if-for-if");
-                            $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
-                            $("#shipping_cost_amount").val(shipping_amount);
-                            total_amount=parseFloat(shipping_amount) + parseFloat(sub_total);
-                            $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
-                            setTimeout(() => {
+                            // $(".shipping-methods .form-group .price-amount").html("AED "+shipping_amount);
+                            $(".shipping-methods .form-group label[for='emirates_post']").next().html("AED "+shipping_amount);
+                            if($("#emirates_post").is(":checked")){
+                                $("#shipping_cost_amount").val(shipping_amount);
+                                total_amount=parseFloat(shipping_amount) + parseFloat(sub_total);
                                 $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
-                            }, 500);
-                            break;
+                                setTimeout(() => {
+                                    $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+                                }, 500);
+                                break;
+                            }
                         }
                         else{
                             console.log("else-if-for-else");
-                            $(".shipping-methods .form-group .price-amount").html("AED "+0);
+                            // $(".shipping-methods .form-group .price-amount").html("AED "+0);
+                            $(".shipping-methods .form-group label[for='emirates_post']").next().html("AED "+0);
+                            if($("#emirates_post").is(":checked")){
+                                $("#shipping_cost_amount").val(0);
+                                total_amount=parseFloat(0) + parseFloat(sub_total);
+                                $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+                                setTimeout(() => {
+                                    $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
+                                }, 500);
+                            }
+                        }
+                    }
+                    console.log("addressess"+addressess.length);
+                    if(addressess.length == 0){
+                        console.log("else-if-if");
+                        // $(".shipping-methods .form-group .price-amount").html("AED "+0);
+                        $(".shipping-methods .form-group label[for='emirates_post']").next().html("AED "+0);
+                        if($("#emirates_post").is(":checked")){
                             $("#shipping_cost_amount").val(0);
                             total_amount=parseFloat(0) + parseFloat(sub_total);
                             $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
@@ -148,10 +180,12 @@
                             }, 500);
                         }
                     }
-                    console.log("addressess"+addressess.length);
-                    if(addressess.length == 0){
-                        console.log("else-if-if");
-                        $(".shipping-methods .form-group .price-amount").html("AED "+0);
+                }
+                else{
+                    console.log("else");
+                    // $(".shipping-methods .form-group .price-amount").html("AED "+0);
+                    $(".shipping-methods .form-group label[for='emirates_post']").next().html("AED "+0);
+                    if($("#emirates_post").is(":checked")){
                         $("#shipping_cost_amount").val(0);
                         total_amount=parseFloat(0) + parseFloat(sub_total);
                         $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
@@ -159,16 +193,6 @@
                             $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
                         }, 500);
                     }
-                }
-                else{
-                    console.log("else");
-                    $(".shipping-methods .form-group .price-amount").html("AED "+0);
-                    $("#shipping_cost_amount").val(0);
-                    total_amount=parseFloat(0) + parseFloat(sub_total);
-                    $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
-                    setTimeout(() => {
-                        $(".order-summary-total .total-price").html("AED "+total_amount.toFixed(2));
-                    }, 500);
                 }
             },
         });

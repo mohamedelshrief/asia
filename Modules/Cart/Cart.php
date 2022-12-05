@@ -329,8 +329,8 @@ class Cart extends DarryldecodeCart implements JsonSerializable
                 }
             }
         }
-        return Money::inCurrentCurrency(0);
-        return $this->shippingMethod()->cost() ? $this->shippingMethod()->cost() : 0;
+        // return Money::inCurrentCurrency(0);
+        return $this->shippingMethod()->cost();
     }
 
     public function addShippingMethod($shippingMethod)

@@ -85,7 +85,7 @@ class CartController
                 'RateCalculation' => [
                     'RateList' => [
                         [
-                            'TotalPriceAED' => Cart::shippingCost()->amount() ? 10 : 12,
+                            'TotalPriceAED' => Cart::shippingCost()->amount(),
                         ]
                     ]
                 ]

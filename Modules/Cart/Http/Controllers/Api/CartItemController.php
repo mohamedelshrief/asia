@@ -11,6 +11,7 @@ use Modules\Cart\Http\Requests\StoreCartItemRequest;
 use Modules\Coupon\Exceptions\MaximumSpendException;
 use Modules\Coupon\Exceptions\MinimumSpendException;
 use Modules\Cart\Http\Middleware\CheckProductIsInStock;
+use Modules\Shipping\Facades\ShippingMethod;
 
 class CartItemController extends Controller
 {
@@ -44,6 +45,8 @@ class CartItemController extends Controller
     public function store(StoreCartItemRequest $request)
     {
         Cart::api_store($request->product_id, $request->qty, $request->options ?? []);
+        $shippingMethod = ShippingMethod::available()->first();
+        Cart::addShippingMethod($shippingMethod);
         return Cart::instance();
     }
 

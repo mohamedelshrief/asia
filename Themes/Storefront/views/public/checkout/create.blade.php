@@ -116,7 +116,7 @@
         $(".shipping-methods .form-group label[for='emirates_post']").next().html("AED "+shipping_amount);
         $("#shipping_cost_amount").val(shipping_amount);
         $.ajax({
-            url: "{{url('en/api/shipping-price')}}?address_id="+address_id,
+            url: "{{url('en/api/shipping-price-web')}}?address_id="+address_id,
             type: "GET",
             async: false,
             success: function (reponse) {

@@ -85,24 +85,24 @@ class CartController
                 'RateCalculation' => [
                     'RateList' => [
                         [
-                            'TotalPriceAED' => 12,
+                            'TotalPriceAED' => Cart::shippingCost()->amount(),
                         ]
                     ]
                 ]
             ];
 
             if(setting("local_pickup_enabled")){
-                // $json_data["RateCalculation"]["RateList"][0]["TotalPriceAED"] = (float)setting("local_pickup_cost");
+                $json_data["RateCalculation"]["RateList"][0]["TotalPriceAED"] = (float)setting("local_pickup_cost");
                 return $json_data;
             }
 
             if(setting("free_shipping_enabled")){
-                // $json_data["RateCalculation"]["RateList"][0]["TotalPriceAED"] = 0;
+                $json_data["RateCalculation"]["RateList"][0]["TotalPriceAED"] = 0;
                 return $json_data;
             }
 
             if(setting("flat_rate_enabled")){
-                // $json_data["RateCalculation"]["RateList"][0]["TotalPriceAED"] = (float)setting("flat_rate_cost");
+                $json_data["RateCalculation"]["RateList"][0]["TotalPriceAED"] = (float)setting("flat_rate_cost");
                 return $json_data;
             }
 

@@ -45,8 +45,8 @@ class CartItemController extends Controller
     public function store(StoreCartItemRequest $request)
     {
         Cart::api_store($request->product_id, $request->qty, $request->options ?? []);
-        $shippingMethod = ShippingMethod::available()->first();
-        Cart::addShippingMethod($shippingMethod);
+        // $shippingMethod = ShippingMethod::available()->first();
+        // Cart::addShippingMethod($shippingMethod);
         return Cart::instance();
     }
 

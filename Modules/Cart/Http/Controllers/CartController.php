@@ -145,7 +145,7 @@ class CartController
         }
         // session()->put(auth()->id()."-shippingResponse",$json_data);
         // session()->put(auth()->id()."-shippingResponse",NULL);
-        $shippingMethod->cost->amount = 30te;
+        $shippingMethod->cost->amount = 30;
         Cart::addShippingMethod($shippingMethod);
         return Cart::instance();
         // return $json_data;

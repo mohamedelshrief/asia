@@ -145,6 +145,7 @@ class CartController
         }
         // session()->put(auth()->id()."-shippingResponse",$json_data);
         // session()->put(auth()->id()."-shippingResponse",NULL);
+        dd($json_data);
         $shippingMethod->cost->amount = $json_data->RateCalculation->RateList[0]["TotalPriceAED"];
         Cart::addShippingMethod($shippingMethod);
         return Cart::instance();

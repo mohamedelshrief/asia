@@ -26,6 +26,7 @@ class CartController
     }
 
     public function ShippingPricing(Request $request){
+        Cart::removeShippingMethod();
         $cart=json_decode(Cart::instance());
         $weight=0;
         foreach ($cart->items as $key => $item) {

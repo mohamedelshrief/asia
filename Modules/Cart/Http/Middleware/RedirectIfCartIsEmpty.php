@@ -27,7 +27,7 @@ class RedirectIfCartIsEmpty
         if (Cart::isEmpty()) {
 
             if($request->expectsJson()){
-                return response(['message' => 'The given data was invalid', 'errors' => [
+                return response(['message' => 'Cart is empty', 'errors' => [
                     'cart' => "Cart is empty",
                 ]], 422);
             }

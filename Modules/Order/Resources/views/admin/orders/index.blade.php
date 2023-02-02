@@ -9,6 +9,15 @@
 @section('content')
     <div class="box box-primary">
         <div class="box-body index-table" id="orders-table">
+            <div style="border: 1px solid silver; border-radius:5px; padding:20px 10px;margin-bottom:10px">
+                    <label for="">Status Filter</label>
+                    <select class="form-control" name="" id="status_dropdown" style="width:20%">
+                        <option value="" selected>Select Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Dispatch">Dispatch</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+            </div>
             @component('admin::components.table')
                 @slot('thead')
                     <tr>
@@ -43,6 +52,12 @@
                 { data: 'total' },
                 { data: 'created', name: 'created_at' },
             ],
+        });
+
+        $("#status_dropdown").on("change",function(){
+            var status = $(this).val();
+            $("input[type='search']").val(status);
+            $("input[type='search']").trigger('keyup');
         });
     </script>
 @endpush

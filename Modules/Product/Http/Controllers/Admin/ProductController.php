@@ -95,6 +95,10 @@ class ProductController
                 if (isset($request->category) && $request->category!="any") {
                     $this->paginate=600;
                 }
+                if (isset($request->asin)) {
+                    $q->where("products.asin",$request->get('asin'));
+                    $this->paginate=600;
+                }
             })->where("product_categories.category_id",$request->category)->where("product_translations.locale",locale())->select("products.*","products.id as ProductId")->orderBy($orderByColumnName,$orderByColumnValue)->paginate($this->paginate);
         }else{
 
@@ -119,6 +123,10 @@ class ProductController
                 }
                 if (isset($request->in_stock) && $request->in_stock!="any") {
                     $q->where("products.in_stock",$request->in_stock);
+                    $this->paginate=600;
+                }
+                if (isset($request->asin)) {
+                    $q->where("products.asin",$request->get('asin'));
                     $this->paginate=600;
                 }
             })->where("product_translations.locale",locale())->select("products.*","products.id as ProductId")->orderBy($orderByColumnName,$orderByColumnValue)->paginate($this->paginate);

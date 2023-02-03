@@ -44,7 +44,7 @@
                 </div>
 
 
-                <div class="col-md-2 col-lg-2">
+                <div class="col-md-3 col-lg-3">
                     <label>{{trans('product::products.search.search_by_product_name')}}</label>
                     <input type="text" value="{{$request->get('query')}}"  class="form-control" name="search_query" id="search_query"/>
                 </div>
@@ -62,6 +62,9 @@
                         @endforeach
                     </select>
                 </div>
+            </div>
+
+            <div class="row" style="margin-top: 10px;">
 
                 <div class="col-md-2 col-lg-2">
                     <label>By Category</label>
@@ -96,9 +99,15 @@
                     </select>
                 </div>
 
-                <div class="col-md-3" style="padding-top:20px">
+                <div class="col-md-2 col-lg-2">
+                    <label>{{trans('product::products.search.search_by_asin')}}</label>
+                    <input type="text" value="{{$request->asin}}" class="form-control" name="asin" id="asin"/>
+                </div>
+
+                <div class="col-md-3" style="padding-top:27px">
                     <input type="submit" class="btn btn-success btn-block" value="Search"/>
                 </div>
+            
             </div>
         </div>
     </div>

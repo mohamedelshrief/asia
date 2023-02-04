@@ -85,11 +85,25 @@
             else{
                 $('input[id="cod"]').parent().css({"display":"none"})
                 if($('input[id="cod"]').is(":checked")){
-                    console.log($('input[id="cod"]').parent().prev().find("input").prop("checked", true));
+                    $('input[id="cod"]').parent().prev().find("input").prop("checked", true);
                 }
             }
             
         })
+
+        $('#billing-city').on('change',function(){
+            if($("#billing-city :selected").text() == "Al-Ain"){
+                console.log('here');
+                $('input[id="cod"]').parent().css({"display":"block"})
+            }
+            else{
+                console.log('not-here');
+                $('input[id="cod"]').parent().css({"display":"none"})
+                if($('input[id="cod"]').is(":checked")){
+                    $('input[id="cod"]').parent().prev().find("input").prop("checked", true);
+                }
+            }
+        });
         // $('input[type="text"]').on('change',function(event){
         //     if($(this).attr('name') == "billing[city]"){
         //         city_id=$(this).parent().parent().parent().find('#billing-city-id').val();

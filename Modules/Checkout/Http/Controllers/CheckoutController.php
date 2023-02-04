@@ -45,7 +45,7 @@ class CheckoutController extends Controller
             'cart' => Cart::instance(),
             'countries' => Country::supported(),
             'cities' => City::all(),
-            'gateways' => Gateway::all(),
+            'gateways' => Gateway::all()->reverse(),
             'defaultAddress' => auth()->user()->defaultAddress ?? new DefaultAddress,
             'addresses' => $this->getAddresses(),
             'termsPageURL' => Page::urlForPage(setting('storefront_terms_page')),

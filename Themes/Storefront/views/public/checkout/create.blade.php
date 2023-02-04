@@ -71,12 +71,24 @@
    $(document).ready(function(){
         shippingPricing();
 
+        $('input[id="cod"]').parent().css({"display":"none"})
+
         $(".shipping-methods input[type=radio]").change(function(){
             shippingPricing();
         })
 
         $(".select-address input[type=radio]").change(function(){
             shippingPricing();
+            if($(this).siblings().find('.city_name').text() == "Al-Ain"){
+                $('input[id="cod"]').parent().css({"display":"block"})
+            }
+            else{
+                $('input[id="cod"]').parent().css({"display":"none"})
+                if($('input[id="cod"]').is(":checked")){
+                    console.log($('input[id="cod"]').parent().prev().find("input").prop("checked", true));
+                }
+            }
+            
         })
         // $('input[type="text"]').on('change',function(event){
         //     if($(this).attr('name') == "billing[city]"){

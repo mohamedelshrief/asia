@@ -15,7 +15,7 @@
                     <span v-text="address.full_name"></span>
                     <span v-text="address.address_1"></span>
                     <span v-if="address.address_2" v-text="address.address_2"></span>
-                    <span>@{{ address.city }}, @{{ address.state_name }} @{{ address.zip }}</span>
+                    <span><span class="city_name">@{{ address.city_name }}</span>, @{{ address.state_name }} @{{ address.zip }}</span>
                     <span v-text="address.country_name"></span>
                 </label>
             </div>

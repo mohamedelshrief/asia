@@ -137,7 +137,9 @@ class CartController
         } catch (\Exception $exception) {
             // session()->put(auth()->id()."-shippingResponse",$json_data);
             // session()->put(auth()->id()."-shippingResponse",NULL);
-            $shippingMethod->cost->amount = $json_data["RateCalculation"]["RateList"][0]["TotalPriceAED"];
+            if(isset($shippingMethod->cost->amount)){
+                $shippingMethod->cost->amount = $json_data["RateCalculation"]["RateList"][0]["TotalPriceAED"];
+            }
             Cart::addShippingMethod($shippingMethod);
             return Cart::instance();
 
@@ -145,7 +147,9 @@ class CartController
         }
         // session()->put(auth()->id()."-shippingResponse",$json_data);
         // session()->put(auth()->id()."-shippingResponse",NULL);
-        $shippingMethod->cost->amount = $json_data->RateCalculation->RateList[0]->TotalPriceAED;
+        if(isset($shippingMethod->cost->amount)){
+            $shippingMethod->cost->amount = $json_data->RateCalculation->RateList[0]->TotalPriceAED;
+        }
         Cart::addShippingMethod($shippingMethod);
         return Cart::instance();
         // return $json_data;

@@ -298,6 +298,7 @@ class Order extends Model
                 'customer_first_name',
                 'customer_last_name',
                 'customer_email',
+                'customer_phone',
                 'currency',
                 'total',
                 'status',

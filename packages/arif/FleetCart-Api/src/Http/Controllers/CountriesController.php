@@ -30,7 +30,12 @@ class CountriesController
         //$country=CountryDB::where("country_code",$country)->first();
         if(isset($country)){
             $client = new Client();
-            $cities=City::where("CountryCode",$country)->select('Cityid','CityName','CityNameAR')->get();
+            if(locale() == "ar"){
+                $cities=City::where("CountryCode",$country)->select('Cityid','CityNameAR as CityName')->get();
+            }
+            else{
+                $cities=City::where("CountryCode",$country)->select('Cityid','CityName')->get();
+            }
             /*$response = $client->get('https://osbtest.epg.gov.ae/ebs/genericapi/lookups/rest/GetCitiesByCountryId?CountryId='.$country->country_id, [
                 'headers' => [
                 'AccountNo'=>'C175120',

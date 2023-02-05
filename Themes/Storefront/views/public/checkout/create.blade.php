@@ -79,7 +79,7 @@
 
         $(".select-address input[type=radio]").change(function(){
             shippingPricing();
-            if($(this).siblings().find('.city_name').text() == "Al-Ain"){
+            if($(this).siblings().find('.city_name').text() == "Al-Ain" || $(this).siblings().find('.city_name').text() == "العين"){
                 $('input[id="cod"]').parent().css({"display":"block"})
             }
             else{
@@ -92,7 +92,7 @@
         })
 
         $('#billing-city').on('change',function(){
-            if($("#billing-city :selected").text() == "Al-Ain"){
+            if($("#billing-city :selected").text() == "Al-Ain" || $("#billing-city :selected").text() == "العين"){
                 console.log('here');
                 $('input[id="cod"]').parent().css({"display":"block"})
             }

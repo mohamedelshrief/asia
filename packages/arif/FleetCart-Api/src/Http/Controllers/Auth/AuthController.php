@@ -318,8 +318,10 @@ class AuthController extends BaseAuthController
 
     public function add_address(Request $request){
         $request->validate([
-            "first_name"=>"required|regex:/(^([a-z A-Z]+)(\d+)?$)/u",
-            "last_name"=>"required|regex:/(^([a-z A-Z]+)(\d+)?$)/u",
+            // "first_name"=>"required|regex:/(^([a-z A-Z]+)(\d+)?$)/u",
+            // "last_name"=>"required|regex:/(^([a-z A-Z]+)(\d+)?$)/u",
+            "first_name"=>"required",
+            "last_name"=>"required",
             "address_1"=>"required",
             "city"=>"required",
             "zip"=>"required",

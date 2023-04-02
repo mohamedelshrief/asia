@@ -23,14 +23,19 @@ trait ProductSearch
         $productIds = [];
 
         if (request()->filled('query')) {
-            $model = $model->search(request('query'));
+            $search = str_replace(" ","",request('query'));
+            $newModel = $model->search($search);
+            $model = $model->search($search);
+
             $productIds = $model->keys();
+            $productIds->merge($newModel->keys());
         }
         $query = $model->filter($productFilter);
         $query->where("is_active",1);
         if (request()->filled('query')) {
-            $query->whereHas('translations',function($subQuery){
-                $subQuery->where('name','like','%'.request('query').'%');
+            $query->whereHas('translations',function($subQuery) use($search){
+                $subQuery->where('name','like','%'.request('query').'%')
+                        ->orWhere('name','like','%'.$search.'%');
             });
         }
         if (request()->filled('category')) {

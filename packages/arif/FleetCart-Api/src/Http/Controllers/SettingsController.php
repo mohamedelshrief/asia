@@ -19,12 +19,16 @@ class SettingsController
         $settings = setting()->all();
 
         $tabs = TabManager::get('settings');
-        $payment_gateways = Gateway::all()->toArray();
+        $payment_gateways = Gateway::all();
 
         if(locale() == "ar"){
-            if(isset($payment_gateways["ngenius"])){
-                $payment_gateways["ngenius"]["label"] = "ادفع عبر الإنترنت";
-                $payment_gateways["ngenius"]["description"] = "الدفع عبر بوابة الدفع N-genius";
+            // if(isset($payment_gateways["ngenius"])){
+            //     $payment_gateways["ngenius"]["label"] = "ادفع عبر الإنترنت";
+            //     $payment_gateways["ngenius"]["description"] = "الدفع عبر بوابة الدفع N-genius";
+            // }
+            if(isset($payment_gateways->ngenius)){
+                $payment_gateways->ngenius->label = "ادفع عبر الإنترنت";
+                $payment_gateways->ngenius->description = "الدفع عبر بوابة الدفع N-genius";
             }
         }
 

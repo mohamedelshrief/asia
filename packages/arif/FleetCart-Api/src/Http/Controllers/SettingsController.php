@@ -19,6 +19,14 @@ class SettingsController
         $settings = setting()->all();
 
         $tabs = TabManager::get('settings');
+        $payment_gateways = Gateway::all()->toArray();
+
+        if(locale() == "ar"){
+            if(isset($payment_gateways["ngenius"])){
+                $payment_gateways["ngenius"]["label"] = "ادفع عبر الإنترنت";
+                $payment_gateways["ngenius"]["description"] = "الدفع عبر بوابة الدفع N-genius";
+            }
+        }
 
         $array = [
             'general' => [
@@ -47,7 +55,7 @@ class SettingsController
                     "currency_rate_exchange_service" => $settings['currency_rate_exchange_service'],
                 ],
                 'enabled_countries' => Country::supported(),
-                'payment_gateways' => Gateway::all(),
+                'payment_gateways' => $payment_gateways,
                 // 'defaultAddress' => request()->user()->defaultAddress ?? new DefaultAddress,
                 // 'addresses' => request()->user()->addresses->keyBy('id'),
                 'termsPageURL' => Page::urlForPage(setting('storefront_terms_page')),

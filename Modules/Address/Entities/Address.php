@@ -41,4 +41,14 @@ class Address extends Model
             return "";
         }
     }
+
+    public function getLabelAttribute($value){
+        if($value == "Home" && locale() == "ar"){
+            return "بيت";
+        }
+        if($value == "Office" && locale() == "ar"){
+            return "مكتب";
+        }
+        return $value;
+    }
 }

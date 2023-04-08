@@ -44,10 +44,16 @@ class Address extends Model
 
     public function getLabelAttribute($value){
         if($value == "Home" && locale() == "ar"){
-            return "بيت";
+            return "المنزل";
+        }
+        if($value == "المنزل" && locale() == "en"){
+            return "Home";
         }
         if($value == "Office" && locale() == "ar"){
-            return "مكتب";
+            return "المكتب";
+        }
+        if($value == "المكتب" && locale() == "en"){
+            return "Office";
         }
         return $value;
     }

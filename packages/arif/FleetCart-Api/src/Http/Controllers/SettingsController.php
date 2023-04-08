@@ -19,17 +19,23 @@ class SettingsController
         $settings = setting()->all();
 
         $tabs = TabManager::get('settings');
-        $payment_gateways = Gateway::all();
+        // $payment_gateways = Gateway::all();
+        $payment_gateways = Gateway::all()->toArray();
 
         if(locale() == "ar"){
-            // if(isset($payment_gateways["ngenius"])){
-            //     $payment_gateways["ngenius"]["label"] = "ادفع عبر الإنترنت";
-            //     $payment_gateways["ngenius"]["description"] = "الدفع عبر بوابة الدفع N-genius";
-            // }
-            if(isset($payment_gateways->ngenius)){
-                $payment_gateways->ngenius->label = "ادفع عبر الإنترنت";
-                $payment_gateways->ngenius->description = "الدفع عبر بوابة الدفع N-genius";
+            // dd($payment_gateways);
+            if(isset($payment_gateways["ngenius"])){
+                $payment_gateways["ngenius"]->label = "ادفع عبر الإنترنت";
+                $payment_gateways["ngenius"]->description = "الدفع عبر بوابة الدفع N-genius";
             }
+            if(isset($payment_gateways["cod"])){
+                $payment_gateways["cod"]->label = "الدفع عند الاستلام";
+                $payment_gateways["cod"]->description = "ادفع نقدا عند الاستلام";
+            }
+            // if(isset($payment_gateways->ngenius)){
+            //     $payment_gateways->ngenius->label = "ادفع عبر الإنترنت";
+            //     $payment_gateways->ngenius->description = "الدفع عبر بوابة الدفع N-genius";
+            // }
         }
 
         $array = [
